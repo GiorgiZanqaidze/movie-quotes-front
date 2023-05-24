@@ -3,11 +3,21 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'helventica_eng';
+  font-family: 'helventica_eng_bold';
   src: url('./fonts/Helvetica-Neue-Font/HelventicaNeue.otf');
 }
 
 @font-face {
-  font-family: 'helventica_geo';
+  font-family: 'helventica_eng_light';
+  src: url('./fonts/Helvetica-Neue-Font/Helvetica_medium.ttf');
+}
+
+@font-face {
+  font-family: 'helventica_geo_bold';
   src: url('./fonts/Helvetica.Georgian/helvetica-neue-lt-geo-55-roman.ttf');
+}
+
+@font-face {
+  font-family: 'helventica_geo_light';
+  src: url('./fonts/Helvetica-Neue-Font/HelventicaNeue.otf');
 }

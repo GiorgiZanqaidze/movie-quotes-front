@@ -1,5 +1,5 @@
 <template>
-  <header class="flex mt-3 mx-2 sm:m-5 justify-between items-center bg-black h-[38px]">
+  <header class="flex m-3 mx-2 sm:m-5 justify-between items-center bg-black h-[38px]">
     <h1 class="text-lightGrey text-sm sm:text-lg">MOVIE QUOTES</h1>
     <div class="flex sm:gap-7 gap-3">
       <div class="flex items-center">
@@ -11,14 +11,14 @@
       <div>
         <a
           href="#"
-          class="text-white text-sm sm:text-lg sm:py-[7px] px-2 py-2 sm:px-3 rounded bg-darkRed"
+          class="text-white text-sm sm:text-lg sm:py-[7px] px-2 py-1 sm:px-3 rounded bg-darkRed"
           >Sign Up</a
         >
       </div>
       <div>
         <a
           href="#"
-          class="text-white border text-sm sm:text-lg sm:py-[7px] px-2 sm:px-3 py-2 rounded bg-transparent"
+          class="text-white border text-sm sm:text-lg sm:py-[7px] px-2 sm:px-3 py-1 rounded bg-transparent"
           >Log In</a
         >
       </div>
