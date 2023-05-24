@@ -4,6 +4,8 @@ import TheHeader from './components/TheHeader.vue'
 </script>
 
 <template>
-  <TheHeader />
-  <RouterView />
+  <div class="font-helventica_eng">
+    <TheHeader />
+    <RouterView />
+  </div>
 </template>

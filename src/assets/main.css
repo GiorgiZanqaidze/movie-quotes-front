@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'helventica_eng';
+  src: url('./fonts/Helvetica-Neue-Font/HelventicaNeue.otf');
+}
+
+@font-face {
+  font-family: 'helventica_geo';
+  src: url('./fonts/Helvetica.Georgian/helvetica-neue-lt-geo-55-roman.ttf');
+}
