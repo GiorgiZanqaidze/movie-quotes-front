@@ -6,9 +6,9 @@
     ></div>
     <the-login v-if="modal.isVisible.name === 'logIn' && modal.isVisible.condition"></the-login>
     <sign-up v-if="modal.isVisible.name === 'signUp' && modal.isVisible.condition"></sign-up>
-    <!-- <forgot-password
-      v-if="modal.isVisible.name === 'signUp' && modal.isVisible.condition"
-    ></forgot-password> -->
+    <forgot-password
+      v-if="modal.isVisible.name === 'forgotPassword' && modal.isVisible.condition"
+    ></forgot-password>
   </div>
 </template>
 

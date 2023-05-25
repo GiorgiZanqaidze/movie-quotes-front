@@ -37,7 +37,12 @@
           :label="$t('modals.login.remember_me')"
           parentClass="flex gap-2 items-center"
         />
-        <a href="#" class="text-mediumBlue underline">{{ $t('modals.login.forgot_password') }}</a>
+        <a
+          href="#"
+          @click="modal.toggleModal('forgotPassword', true)"
+          class="text-mediumBlue underline"
+          >{{ $t('modals.login.forgot_password') }}</a
+        >
       </div>
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.login.sign_in') }}

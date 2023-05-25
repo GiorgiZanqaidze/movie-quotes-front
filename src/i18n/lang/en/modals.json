@@ -29,5 +29,13 @@
     "google": "Sign in with Google",
     "have_account": "Already have an account?",
     "log_in": "Log in"
+  },
+  "forgot_password": {
+    "title": "Forgot password?",
+    "welcome": "Enter the email and we’ll send an email with instructions to reset your password",
+    "email": "Email",
+    "placeholder_email": "Enter your email",
+    "get_started": "Get started",
+    "back_to_login": "Back to log in"
   }
 }
