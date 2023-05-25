@@ -1,15 +1,7 @@
-import advantages2 from "./advantages-v2.json";
-import advantages from "./advantages.json";
-import car from "./car.json";
-import texts from "./texts.json";
-import advanced from "./advanced.json";
+import landing from './landing.json'
 
 const translations = {
-  texts,
-  advantages2,
-  advantages,
-  car,
-  advanced,
-};
+  landing
+}
 
-export default translations;
+export default translations
