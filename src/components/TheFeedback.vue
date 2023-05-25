@@ -1,13 +1,15 @@
 <template>
   <div
-    class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[400px] sm:h-[402px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium py-2 px-2"
+    class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[400px] sm:h-[402px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium py-4 px-2"
   >
-    <header class="flex flex-col items-center">
+    <header class="flex flex-col items-center mb-4">
       <img :src="imgSrc" alt="sent email" />
       <h1 class="text-white sm:mt-8 sm:text-3xl mb-2">{{ title }}</h1>
-      <span class="text-mediumGray text-sm my-4 text-center max-w-[360px]">{{ title }}</span>
+      <span class="text-mediumGray text-sm my-4 text-center max-w-[500px]">{{ text }}</span>
     </header>
-    <button>{{ buttonText }}</button>
+    <button class="w-[300px] bg-darkRed mx-auto block rounded text-white py-1">
+      {{ buttonText }}
+    </button>
     <p v-if="description">{{ description }}</p>
   </div>
 </template>
@@ -24,6 +26,10 @@ export default {
       required: true
     },
     buttonText: {
+      type: String,
+      required: true
+    },
+    text: {
       type: String,
       required: true
     },

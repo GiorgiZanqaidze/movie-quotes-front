@@ -54,9 +54,14 @@
     "confirm_password": "Confirm password",
     "back_to_login": "Back to log in"
   },
-  "feed_back": {
-    "msg": "Thank you!",
-    "welcome": "Please check your email and follow the instructions to activate your account.",
-    "button": "Go to my email"
+  "feedback": {
+    "thank_msg": "Thank you!",
+    "check_email": "Please check your email and follow the instructions to activate your account.",
+    "check_email_button": "Go to my email",
+    "activate_email": "Your account has been activated.",
+    "news_feed": "Go to my news feed",
+    "check_your_email": "Check your email",
+    "password_recover": "We have sent a password recover instructions to your email",
+    "skip": "Skip, I’ll confirm later"
   }
 }

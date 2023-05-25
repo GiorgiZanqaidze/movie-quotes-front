@@ -10,8 +10,9 @@
     <new-password v-if="modal.isVisible.name === 'newPassword'"></new-password>
     <the-feedback
       img-src="src/assets/icons/send_email.svg"
-      title="im am ok"
-      buttonText="go next"
+      :title="$t('modals.feedback.thank_msg')"
+      :buttonText="$t('modals.feedback.check_email_button')"
+      :text="$t('modals.feedback.check_email')"
       v-if="modal.isVisible.name === 'signUp'"
     ></the-feedback>
   </div>
