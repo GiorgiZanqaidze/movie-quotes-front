@@ -70,7 +70,6 @@ export default {}
 .container {
   background-size: cover;
   background-position: center;
-  /*  this is where the magic happens:  */
   background-attachment: fixed;
 }
 </style>

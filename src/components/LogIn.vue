@@ -53,9 +53,9 @@
       </button>
       <span class="text-sm sm:text-[16px] text-center text-mediumGray"
         >{{ $t('modals.login.have_account') }}
-        <button @click="modal.toggleModal('signUp', true)" class="text-mediumBlue underline">
+        <a href="#" @click="modal.toggleModal('signUp', true)" class="text-mediumBlue underline">
           {{ $t('modals.login.sign_up') }}
-        </button></span
+        </a></span
       >
     </Form>
   </div>

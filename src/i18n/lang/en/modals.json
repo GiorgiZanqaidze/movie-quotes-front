@@ -53,5 +53,10 @@
     "descript": "Skip, I’ll confirm later",
     "confirm_password": "Confirm password",
     "back_to_login": "Back to log in"
+  },
+  "feed_back": {
+    "msg": "Thank you!",
+    "welcome": "Please check your email and follow the instructions to activate your account.",
+    "button": "Go to my email"
   }
 }
