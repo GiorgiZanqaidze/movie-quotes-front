@@ -1,19 +1,16 @@
-import { createI18n } from "vue-i18n";
-import en from "./lang/en/index.js";
-import ka from "./lang/ka/index.js";
-import { datetimeFormats, numberFormats } from "./formats.js";
+import { createI18n } from 'vue-i18n'
+import en from './lang/en/index.js'
+import ka from './lang/ka/index.js'
 
 const messages = {
   en,
-  ka,
-};
+  ka
+}
 
 const i18n = createI18n({
-  locale: "en",
-  fallbackLocale: "en",
-  messages,
-  datetimeFormats,
-  numberFormats,
-});
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages
+})
 
-export default i18n;
+export default i18n

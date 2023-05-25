@@ -8,9 +8,9 @@ export const useModalStore = defineStore('modal', {
     }
   }),
   actions: {
-    toggleModal(modalName) {
+    toggleModal(modalName, showModal) {
       this.isVisible = {
-        condition: !this.isVisible.condition,
+        condition: showModal,
         name: modalName
       }
     }

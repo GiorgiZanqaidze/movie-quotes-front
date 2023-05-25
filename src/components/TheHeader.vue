@@ -15,7 +15,7 @@
       </div>
       <div>
         <a
-          @click="toggleModal('signUp')"
+          @click="toggleModal('signUp', true)"
           href="#"
           class="text-white text-sm sm:text-lg sm:py-[7px] px-2 py-1 sm:px-3 rounded bg-darkRed"
           >{{ $t('landing.sign_up') }}
@@ -23,7 +23,7 @@
       </div>
       <div>
         <a
-          @click="toggleModal('logIn')"
+          @click="toggleModal('logIn', true)"
           href="#"
           class="text-white border text-sm sm:text-lg sm:py-[7px] px-2 sm:px-3 py-1 rounded bg-transparent"
           >{{ $t('landing.log_in') }}</a
@@ -42,8 +42,8 @@ export default {
   },
 
   methods: {
-    toggleModal(signUp) {
-      this.modal.toggleModal(signUp)
+    toggleModal(signUp, show) {
+      this.modal.toggleModal(signUp, show)
     }
   }
 }

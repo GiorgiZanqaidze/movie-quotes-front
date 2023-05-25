@@ -24,7 +24,7 @@
         Get Started
       </button>
       <div disable class="bg-transparent sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
-        <p @click="modal.toggleModal('logIn')" class="text-center cursor-pointer">
+        <p @click="modal.toggleModal('logIn', true)" class="text-center cursor-pointer">
           <img src="@/assets/icons/left_arrow.svg" alt="arrow" class="inline-block mr-1" />Back to
           log in
         </p>
