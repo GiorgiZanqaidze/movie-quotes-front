@@ -61,7 +61,7 @@ export default {
       type: String
     },
     requiredIcon: {
-      type: Boolean
+      type: String
     }
   }
 }

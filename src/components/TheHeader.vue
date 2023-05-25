@@ -15,13 +15,15 @@
       </div>
       <div>
         <a
+          @click="toggleModal('signUp')"
           href="#"
           class="text-white text-sm sm:text-lg sm:py-[7px] px-2 py-1 sm:px-3 rounded bg-darkRed"
-          >{{ $t('landing.sign_up') }}</a
-        >
+          >{{ $t('landing.sign_up') }}
+        </a>
       </div>
       <div>
         <a
+          @click="toggleModal('logIn')"
           href="#"
           class="text-white border text-sm sm:text-lg sm:py-[7px] px-2 sm:px-3 py-1 rounded bg-transparent"
           >{{ $t('landing.log_in') }}</a
@@ -32,5 +34,17 @@
 </template>
 
 <script>
-export default {}
+import { useModalStore } from '@/stores/modal'
+export default {
+  setup() {
+    const modal = useModalStore()
+    return { modal }
+  },
+
+  methods: {
+    toggleModal(signUp) {
+      this.modal.toggleModal(signUp)
+    }
+  }
+}
 </script>

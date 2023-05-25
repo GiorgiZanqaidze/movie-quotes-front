@@ -1,5 +1,8 @@
 <template>
-  <div class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px] bg-black/75"></div>
+  <div
+    @click="modal.toggleModal('signUp')"
+    class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px] bg-black/75"
+  ></div>
   <div
     class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 w-[601px] h-[704px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium"
   >
@@ -67,10 +70,18 @@
 <script>
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
+
+import { useModalStore } from '@/stores/modal'
 export default {
   components: {
     Form,
     TheInput
+  },
+
+  setup() {
+    const modal = useModalStore()
+
+    return { modal }
   }
 }
 </script>
