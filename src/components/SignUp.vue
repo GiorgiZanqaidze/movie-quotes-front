@@ -74,17 +74,10 @@
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
 
-import { useModalStore } from '@/stores/modal'
 export default {
   components: {
     Form,
     TheInput
-  },
-
-  setup() {
-    const modal = useModalStore()
-
-    return { modal }
   }
 }
 </script>

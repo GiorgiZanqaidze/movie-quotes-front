@@ -5,7 +5,8 @@
       class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px] bg-black/75"
     ></div>
     <the-login v-if="modal.isVisible.name === 'logIn'"></the-login>
-    <sign-up v-if="modal.isVisible.name === 'signUp'"></sign-up>
+    <!-- <sign-up v-if="modal.isVisible.name === 'signUp'"></sign-up> -->
+    <forgot-password v-if="modal.isVisible.name === 'signUp'"></forgot-password>
   </div>
 </template>
 
