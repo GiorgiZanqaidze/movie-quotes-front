@@ -1,0 +1,5 @@
+{
+    "hello": "hello {name}, have a nice day!",
+    "best_captains": "These are Top 3 Strongest Captains: {0} {1} {2}. They are awesome",
+    "apple": "no apples | one apple | {count} apples"
+}

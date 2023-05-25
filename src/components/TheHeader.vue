@@ -7,6 +7,15 @@
           <option value="eng">ENG</option>
           <option value="ka">GEO</option>
         </select>
+        <select v-model="$i18n.locale" class="text-white bg-black text-sm sm:text-lg">
+          <option
+            v-for="locale in $i18n.availableLocales"
+            :key="`locale-${locale}`"
+            :value="locale"
+          >
+            {{ locale }}
+          </option>
+        </select>
       </div>
       <div>
         <a

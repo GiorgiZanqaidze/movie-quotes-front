@@ -49,14 +49,16 @@
       </div>
     </div>
     <!-- <TheSignUp /> -->
+    <!-- <TheLogin /> -->
   </main>
 </template>
 
 <script setup>
 import TheSignUp from '../components/TheSignUp.vue'
+import TheLogin from '../components/TheLogin.vue'
 
 components: {
-  TheSignUp
+  TheSignUp, TheLogin
 }
 </script>
 
