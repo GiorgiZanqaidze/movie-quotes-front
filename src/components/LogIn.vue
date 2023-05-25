@@ -14,8 +14,8 @@
         id="email"
         type="email"
         name="email"
-        label="Email"
-        placeholder="Enter your email"
+        :label="$t('modals.login.email')"
+        :placeholder="$t('modals.login.placeholder_email')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
       />
@@ -24,11 +24,21 @@
         id="password"
         type="password"
         name="password"
-        label="Password"
-        placeholder="Password"
+        :label="$t('modals.login.password')"
+        :placeholder="$t('modals.login.placeholder_password')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
       />
+      <div class="flex justify-between text-sm">
+        <TheInput
+          id="remember_me"
+          type="checkbox"
+          name="remember_me"
+          :label="$t('modals.login.remember_me')"
+          parentClass="flex gap-2 items-center"
+        />
+        <a href="#" class="text-mediumBlue underline">{{ $t('modals.login.forgot_password') }}</a>
+      </div>
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.login.sign_in') }}
       </button>
@@ -38,7 +48,9 @@
       </button>
       <span class="text-sm sm:text-[16px] text-center text-mediumGray"
         >{{ $t('modals.login.have_account') }}
-        <button class="text-mediumBlue underline">{{ $t('modals.login.sign_up') }}</button></span
+        <button @click="modal.toggleModal('signUp', true)" class="text-mediumBlue underline">
+          {{ $t('modals.login.sign_up') }}
+        </button></span
       >
     </Form>
   </div>
@@ -47,11 +59,16 @@
 <script>
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
-
+import { useModalStore } from '@/stores/modal'
 export default {
   components: {
     Form,
     TheInput
+  },
+  setup() {
+    const modal = useModalStore()
+
+    return { modal }
   }
 }
 </script>

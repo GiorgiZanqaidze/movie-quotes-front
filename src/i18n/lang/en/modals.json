@@ -11,7 +11,8 @@
     "remember": "Rememer me",
     "forgot_password": "Forgot password",
     "have_account": "Don't have an account?",
-    "sign_up": "Sign up"
+    "sign_up": "Sign up",
+    "remember_me": "Remember me"
   },
   "sign_up": {
     "title": "Create an account",
@@ -20,9 +21,9 @@
     "placeholder_name": "At least 3 & max.15 lower case characters",
     "email": "Email",
     "placeholder_email": "Enter your email",
-    "password": "At least 8 & max.15 lower case characters",
-    "placeholder_password": "Password",
-    "confirm_password": "At least 8 & max.15 lower case characters",
+    "password": "Password",
+    "placeholder_password": "At least 8 & max.15 lower case characters",
+    "confirm_password": "Confirm password",
     "placeholder_confirm_password": "Confirm password",
     "get_started": "Get started",
     "google": "Sign in with Google",

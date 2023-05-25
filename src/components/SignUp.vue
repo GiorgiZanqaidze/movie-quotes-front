@@ -14,19 +14,20 @@
         id="name"
         type="name"
         name="name"
-        label="name"
-        placeholder="At least 3 & max.15 lower case characters"
+        :label="$t('modals.sign_up.name')"
+        :placeholder="$t('modals.sign_up.placeholder_name')"
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
+        sign_in
       />
       <TheInput
         rules="required"
         id="email"
         type="email"
         name="email"
-        label="email"
-        placeholder="Enter your email"
+        :label="$t('modals.sign_up.email')"
+        :placeholder="$t('modals.sign_up.placeholder_email')"
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
@@ -36,8 +37,8 @@
         id="password"
         type="password"
         name="password"
-        label="password"
-        placeholder="At least 8 & max.15 lower case characters"
+        :label="$t('modals.sign_up.password')"
+        :placeholder="$t('modals.sign_up.placeholder_password')"
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
@@ -47,8 +48,8 @@
         id="password_confirmation"
         type="password"
         name="password_confirmation"
-        label="password"
-        placeholder="Confirm Password"
+        :label="$t('modals.sign_up.confirm_password')"
+        :placeholder="$t('modals.sign_up.placeholder_confirm_password')"
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
@@ -66,9 +67,13 @@
       </button>
       <span class="sm:text-md text-sm text-center text-mediumGray"
         >{{ $t('modals.sign_up.have_account') }}
-        <button class="text-mediumBlue sm:text-md text-sm">
+        <a
+          href="#"
+          @click="modal.toggleModal('logIn', true)"
+          class="text-mediumBlue sm:text-md text-sm"
+        >
           {{ $t('modals.sign_up.log_in') }}
-        </button></span
+        </a></span
       >
     </Form>
   </div>
@@ -77,11 +82,17 @@
 <script>
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
-
+import { useModalStore } from '@/stores/modal'
 export default {
   components: {
     Form,
     TheInput
+  },
+
+  setup() {
+    const modal = useModalStore()
+
+    return { modal }
   }
 }
 </script>

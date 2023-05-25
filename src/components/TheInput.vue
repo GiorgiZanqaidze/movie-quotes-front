@@ -1,5 +1,5 @@
 <template>
-  <div :class="parentClass" class="relative">
+  <div :class="parentClass" class="relative" v-if="type !== 'checkbox'">
     <label :for="id"
       >{{ label }}
       <img
@@ -22,6 +22,12 @@
       :name="name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
+  </div>
+  <div v-if="type === 'checkbox'">
+    <div class="flex gap-2 items-center">
+      <input :id="id" :type="type" :name="name" />
+      <label :for="id">{{ label }}</label>
+    </div>
   </div>
 </template>
 
