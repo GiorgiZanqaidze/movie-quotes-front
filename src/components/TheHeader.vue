@@ -1,5 +1,5 @@
 <template>
-  <header class="flex m-3 mx-2 sm:m-5 justify-between items-center bg-black h-[38px]">
+  <header class="flex mx-2 sm:m-5 justify-between items-center bg-black h-[38px]">
     <h1 class="text-lightGrey text-sm sm:text-lg">{{ $t('landing.quotes') }}</h1>
     <div class="flex sm:gap-7 gap-3">
       <div class="flex items-center">

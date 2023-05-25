@@ -18,7 +18,10 @@
       :placeholder="placeholder"
       :class="InputClass"
     />
-    <ErrorMessage :name="name" class="text-darkRed text-sm absolute bottom-[-25px] left-2" />
+    <ErrorMessage
+      :name="name"
+      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+    />
   </div>
 </template>
 
