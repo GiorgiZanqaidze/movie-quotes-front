@@ -37,5 +37,21 @@
     "placeholder_email": "Enter your email",
     "get_started": "Get started",
     "back_to_login": "Back to log in"
+  },
+  "send_email": {
+    "title": "Check your email",
+    "welcome": "We have sent a password recover instructions to your email",
+    "button": "Go to my email",
+    "descript": "Skip, I’ll confirm later"
+  },
+  "new_password": {
+    "title": "Create new password",
+    "welcome": "Your new password must be different from previous used passwords",
+    "password": "Password",
+    "placeholder_password": "At least 8 & max.15 lower case characters",
+    "button": "Reset password",
+    "descript": "Skip, I’ll confirm later",
+    "confirm_password": "Confirm password",
+    "back_to_login": "Back to log in"
   }
 }
