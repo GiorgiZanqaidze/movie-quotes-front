@@ -1,9 +1,5 @@
 <template>
   <div
-    @click="modal.toggleModal('logIn')"
-    class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px] bg-black/75"
-  ></div>
-  <div
     class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 w-[601px] h-[562px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium"
   >
     <header class="flex flex-col items-center">

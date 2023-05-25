@@ -1,10 +1,11 @@
 <template>
   <div>
     <div
-      @click="modal.toggleModal('logIn')"
+      @click="modal.toggleModal('null')"
       class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px] bg-black/75"
     ></div>
-    <slot></slot>
+    <the-login v-if="modal.isVisible.name === 'logIn'"></the-login>
+    <sign-up v-if="modal.isVisible.name === 'signUp'"></sign-up>
   </div>
 </template>
 
