@@ -19,10 +19,10 @@
         <div class="flex">
           <div class="sm:w-[53px] sm:h-[3px] bg-white sm:mt-4 sm:mr-1"></div>
           <div>
-            <h1 class="sm:text-4xl w-[317px] sm:w-[761px]">
-              “You have to leave somethig behind to go forward”
-            </h1>
-            <p class="sm:mt-2">Interstellar, 2014</p>
+            <h1 class="sm:text-4xl w-[317px] sm:w-[761px]">“{{ $t('landing.movie_1.title') }}”</h1>
+            <p class="sm:mt-2">
+              {{ $t('landing.movie_1.name') }}, {{ $t('landing.movie_1.released') }}
+            </p>
           </div>
         </div>
       </div>
@@ -35,11 +35,10 @@
         <div class="flex">
           <div class="sm:w-[53px] sm:h-[3px] bg-white sm:mt-4 sm:mr-1"></div>
           <div>
-            <h1 class="sm:text-4xl sm:w-[761px] w-[317px]">
-              I think we’re just gonna have to be secretly in love with earch other and leave it
-              that
-            </h1>
-            <p class="sm:mt-2">The Royal Tenenbaums,2001</p>
+            <h1 class="sm:text-4xl sm:w-[761px] w-[317px]">“{{ $t('landing.movie_2.title') }}”</h1>
+            <p class="sm:mt-2">
+              {{ $t('landing.movie_2.name') }},{{ $t('landing.movie_2.released') }}
+            </p>
           </div>
         </div>
       </div>
@@ -52,11 +51,10 @@
         <div class="flex">
           <div class="sm:w-[53px] sm:h-[3px] bg-white sm:mt-4 sm:mr-1"></div>
           <div>
-            <h1 class="sm:text-4xl sm:w-[761px] w-[317px]">
-              I think we’re just gonna have to be secretly in love with earch other and leave it
-              that
-            </h1>
-            <p class="sm:mt-2">The Royal Tenenbaums,2001</p>
+            <h1 class="sm:text-4xl sm:w-[761px] w-[317px]">“{{ $t('landing.movie_3.title') }}”</h1>
+            <p class="sm:mt-2">
+              {{ $t('landing.movie_3.name') }},{{ $t('landing.movie_3.released') }}
+            </p>
           </div>
         </div>
       </div>
