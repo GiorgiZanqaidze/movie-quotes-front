@@ -1,0 +1,11 @@
+{
+  "return_home": "Return home",
+  "not_permited": {
+    "title": "You shall not pass",
+    "text": "Sorry, but  you don’t have permission to access this page"
+  },
+  "not_found_page": {
+    "title": "Whoops",
+    "text": "We can't see the page you are looking for"
+  }
+}

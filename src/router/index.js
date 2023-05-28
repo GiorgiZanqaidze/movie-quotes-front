@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '../views/LandingPage.vue'
-
+import NotFoundPage from '../views/NotPermission.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -8,6 +8,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: LandingPage
+    },
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    {
+      path: '/:notFoundPage',
+      component: NotFoundPage
     }
   ]
 })

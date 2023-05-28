@@ -62,6 +62,11 @@
     "news_feed": "Go to my news feed",
     "check_your_email": "Check your email",
     "password_recover": "We have sent a password recover instructions to your email",
-    "skip": "Skip, I’ll confirm later"
+    "skip": "Skip, I’ll confirm later",
+    "success": "Success!",
+    "changed_password": "Your Password changed successfully",
+    "link_expired": "Link expired",
+    "link_expired_desc": "Login link has expired, because you haven’t used it",
+    "another_link": "Request another link"
   }
 }
