@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 
 import './config/vee-validate/rules'
 import './config/vee-validate/messages'
-import i18n from '@/i18n/index'
+import i18n from '@/config/i18n/index'
 
 import App from './App.vue'
 import router from './router'

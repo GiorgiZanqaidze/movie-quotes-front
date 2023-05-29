@@ -8,6 +8,7 @@
     </header>
     <Form
       class="text-white mx-auto flex flex-col sm:gap-4 w-[340px] sm:w-[360px] gap-3 px-4 py-4 sm:px-0 sm:py-4"
+      @submit="handleRegister"
     >
       <TheInput
         rules="required"
@@ -19,7 +20,7 @@
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
-        sign_in
+        @change-input="handleInput"
       />
       <TheInput
         rules="required"
@@ -31,6 +32,7 @@
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
+        @change-input="handleInput"
       />
       <TheInput
         rules="required"
@@ -42,6 +44,7 @@
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
+        @change-input="handleInput"
       />
       <TheInput
         rules="required"
@@ -53,6 +56,7 @@
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
+        @change-input="handleInput"
       />
       <button class="w-full bg-darkRed sm:py-1 rounded my-1">
         {{ $t('modals.sign_up.get_started') }}
@@ -83,10 +87,43 @@
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
+import axios from '@/config/axios/index.js'
 export default {
   components: {
     Form,
     TheInput
+  },
+
+  data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      }
+    }
+  },
+
+  methods: {
+    handleRegister() {
+      axios
+        .post('/register', this.formData)
+        .then((response) => {
+          this.$router.push('/login')
+          this.$toaster.success('Account created successfully, now you can login!')
+        })
+        .catch((errors) => {
+          console.log(errors)
+        })
+    },
+    handleInput(data) {
+      this.formData = {
+        ...this.formData,
+        [data.name]: data.value
+      }
+      console.log(this.formData)
+    }
   },
 
   setup() {

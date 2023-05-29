@@ -10,13 +10,13 @@
       />
     </label>
     <Field
-      v-slot="{ errors }"
       :rules="rules"
       :id="id"
       :type="type"
       :name="name"
       :placeholder="placeholder"
       :class="InputClass"
+      @change="changeValue"
     />
     <ErrorMessage
       :name="name"
@@ -34,9 +34,16 @@
 <script>
 import { Field, ErrorMessage } from 'vee-validate'
 export default {
+  emits: ['change-input'],
   components: {
     Field,
     ErrorMessage
+  },
+
+  methods: {
+    changeValue(event) {
+      this.$emit('change-input', event.target)
+    }
   },
 
   props: {

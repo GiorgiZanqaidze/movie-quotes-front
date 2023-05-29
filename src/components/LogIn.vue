@@ -8,6 +8,7 @@
     </header>
     <Form
       class="text-white w-[340px] sm:w-[360px] mx-auto flex flex-col gap-4 px-4 py-4 sm:px-0 sm:py-4"
+      @submit="handleLogin"
     >
       <TheInput
         rules="required"
@@ -18,6 +19,8 @@
         :placeholder="$t('modals.login.placeholder_email')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
+        v-model="formData.email"
+        @change-input="handleInput"
       />
       <TheInput
         rules="required"
@@ -28,6 +31,8 @@
         :placeholder="$t('modals.login.placeholder_password')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
+        v-model="formData.password"
+        @change-input="handleInput"
       />
       <div class="flex justify-between text-sm">
         <TheInput
@@ -65,10 +70,40 @@
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
+import { setToken } from '@/helpers/cookie_token/index.js'
+import axios from '@/config/axios/index.js'
 export default {
   components: {
     Form,
     TheInput
+  },
+  data() {
+    return {
+      formData: {
+        email: '',
+        password: '',
+        device_name: 'browser'
+      }
+    }
+  },
+  methods: {
+    handleLogin() {
+      axios
+        .post('/login', this.formData)
+        .then((response) => {
+          setToken(response.data, 1000)
+          this.$router.push('/news-feed')
+        })
+        .catch((errors) => {
+          this.errors = errors.response.data.errors
+        })
+    },
+    handleInput(data) {
+      this.formData = {
+        ...this.formData,
+        [data.name]: data.value
+      }
+    }
   },
   setup() {
     const modal = useModalStore()
