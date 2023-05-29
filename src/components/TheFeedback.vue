@@ -7,9 +7,13 @@
       <h1 class="text-white sm:mt-8 sm:text-3xl mb-2">{{ title }}</h1>
       <span class="text-mediumGray text-sm my-4 text-center max-w-[500px]">{{ text }}</span>
     </header>
-    <button class="w-[300px] bg-darkRed mx-auto block rounded text-white py-1 text-sm md-text-sm">
+    <a
+      :href="linkTo"
+      target="_blank"
+      class="w-[300px] bg-darkRed mx-auto block rounded text-white py-1 text-sm md-text-sm text-center"
+    >
       {{ buttonText }}
-    </button>
+    </a>
     <p v-if="description">{{ description }}</p>
   </div>
 </template>
@@ -36,7 +40,15 @@ export default {
     description: {
       type: String,
       required: false
+    },
+    linkTo: {
+      type: String,
+      required: false
     }
+  },
+
+  created() {
+    console.log(this.linkTo)
   }
 }
 </script>

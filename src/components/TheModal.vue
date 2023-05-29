@@ -14,6 +14,7 @@
       :title="$t('modals.feedback.thank_msg')"
       :buttonText="$t('modals.feedback.check_email_button')"
       :text="$t('modals.feedback.check_email')"
+      link-to="https://mail.google.com/"
       v-if="modal.isVisible.name === 'checkEmail'"
     ></the-feedback>
     <the-feedback

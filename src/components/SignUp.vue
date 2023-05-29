@@ -88,6 +88,7 @@ import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
 import axios from '@/config/axios/index.js'
+import registerUser from '@/services/registerUser.js'
 export default {
   components: {
     Form,
@@ -107,22 +108,14 @@ export default {
 
   methods: {
     handleRegister() {
-      axios
-        .post('/register', this.formData)
-        .then((response) => {
-          this.$router.push('/login')
-          this.$toaster.success('Account created successfully, now you can login!')
-        })
-        .catch((errors) => {
-          console.log(errors)
-        })
+      registerUser(this.formData)
+      this.modal.toggleModal('checkEmail', true)
     },
     handleInput(data) {
       this.formData = {
         ...this.formData,
         [data.name]: data.value
       }
-      console.log(this.formData)
     }
   },
 

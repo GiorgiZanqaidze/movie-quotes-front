@@ -72,6 +72,8 @@ import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
 import { setToken } from '@/helpers/cookie_token/index.js'
 import axios from '@/config/axios/index.js'
+import loginUser from '@/services/loginUser.js'
+
 export default {
   components: {
     Form,
@@ -87,17 +89,11 @@ export default {
     }
   },
   methods: {
-    handleLogin() {
-      axios
-        .post('/login', this.formData)
-        .then((response) => {
-          setToken(response.data, 1000)
-          this.$router.push('/news-feed')
-        })
-        .catch((errors) => {
-          this.errors = errors.response.data.errors
-        })
+    async handleLogin() {
+      await loginUser(this.formData)
+      this.$router.push('/news-feed')
     },
+
     handleInput(data) {
       this.formData = {
         ...this.formData,
