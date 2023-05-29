@@ -2,7 +2,8 @@
   <div v-if="modal.isVisible.condition">
     <div
       @click="modal.toggleModal('null', false)"
-      class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px] bg-black/75"
+      class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px]"
+      style="background: rgba(0, 0, 0, 0.54); backdrop-filter: blur(3px)"
     ></div>
     <the-login v-if="modal.isVisible.name === 'logIn'"></the-login>
     <sign-up v-if="modal.isVisible.name === 'signUp'"></sign-up>
