@@ -1,0 +1,72 @@
+{
+  "login": {
+    "title": "Log in to your account",
+    "welcome": "Welcome back! Please enter your details.",
+    "email": "Email",
+    "password": "Password",
+    "placeholder_email": "Enter your email",
+    "placeholder_password": "Password",
+    "sign_in": "Sign In",
+    "google": "Sign in with Google",
+    "remember": "Rememer me",
+    "forgot_password": "Forgot password",
+    "have_account": "Don't have an account?",
+    "sign_up": "Sign up",
+    "remember_me": "Remember me"
+  },
+  "sign_up": {
+    "title": "Create an account",
+    "welcome": "Start your journey!",
+    "name": "Name",
+    "placeholder_name": "At least 3 & max.15 lower case characters",
+    "email": "Email",
+    "placeholder_email": "Enter your email",
+    "password": "Password",
+    "placeholder_password": "At least 8 & max.15 lower case characters",
+    "confirm_password": "Confirm password",
+    "placeholder_confirm_password": "Confirm password",
+    "get_started": "Get started",
+    "google": "Sign in with Google",
+    "have_account": "Already have an account?",
+    "log_in": "Log in"
+  },
+  "forgot_password": {
+    "title": "Forgot password?",
+    "welcome": "Enter the email and we’ll send an email with instructions to reset your password",
+    "email": "Email",
+    "placeholder_email": "Enter your email",
+    "get_started": "Get started",
+    "back_to_login": "Back to log in"
+  },
+  "send_email": {
+    "title": "Check your email",
+    "welcome": "We have sent a password recover instructions to your email",
+    "button": "Go to my email",
+    "descript": "Skip, I’ll confirm later"
+  },
+  "new_password": {
+    "title": "Create new password",
+    "welcome": "Your new password must be different from previous used passwords",
+    "password": "Password",
+    "placeholder_password": "At least 8 & max.15 lower case characters",
+    "button": "Reset password",
+    "descript": "Skip, I’ll confirm later",
+    "confirm_password": "Confirm password",
+    "back_to_login": "Back to log in"
+  },
+  "feedback": {
+    "thank_msg": "Thank you!",
+    "check_email": "Please check your email and follow the instructions to activate your account.",
+    "check_email_button": "Go to my email",
+    "activate_email": "Your account has been activated.",
+    "news_feed": "Go to my news feed",
+    "check_your_email": "Check your email",
+    "password_recover": "We have sent a password recover instructions to your email",
+    "skip": "Skip, I’ll confirm later",
+    "success": "Success!",
+    "changed_password": "Your Password changed successfully",
+    "link_expired": "Link expired",
+    "link_expired_desc": "Login link has expired, because you haven’t used it",
+    "another_link": "Request another link"
+  }
+}
