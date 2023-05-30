@@ -19,7 +19,6 @@
         :placeholder="$t('modals.login.placeholder_email')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
-        v-model="formData.email"
         @change-input="handleInput"
       />
       <TheInput
@@ -31,7 +30,6 @@
         :placeholder="$t('modals.login.placeholder_password')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
-        v-model="formData.password"
         @change-input="handleInput"
       />
       <div class="flex justify-between text-sm">

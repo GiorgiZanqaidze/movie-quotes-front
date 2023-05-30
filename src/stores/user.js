@@ -1,17 +1,14 @@
 import { defineStore } from 'pinia'
 
-export const useModalStore = defineStore('user', {
+export const userStore = defineStore('user', {
   state() {
     return {
-      data: null
+      data: {}
     }
   },
   actions: {
-    toggleModal(modalName, showModal) {
-      this.isVisible = {
-        condition: showModal,
-        name: modalName
-      }
+    getUser(userData) {
+      this.data = userData
     }
   }
 })

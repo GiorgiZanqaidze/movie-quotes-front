@@ -11,6 +11,13 @@ export default {
   setup() {
     const modal = useModalStore()
     return { modal }
+  },
+
+  created() {
+    const token = this.$route.query.reset_password_token
+    if (token) {
+      this.modal.toggleModal('newPassword', true)
+    }
   }
 }
 </script>
