@@ -52,7 +52,8 @@
 
 <script>
 import { Form } from 'vee-validate'
-import { useModalStore } from '../stores/modal'
+import { useModalStore } from '@/stores/modal'
+import resetPassword from '@/services/resetPassword'
 export default {
   components: {
     Form
@@ -63,13 +64,20 @@ export default {
       formData: {
         password: '',
         password_confirmation: ''
-      }
+      },
+      resetPasswordToken: ''
     }
+  },
+
+  created() {
+    this.resetPasswordToken = this.$route.query.reset_password_token
+
+    console.log(this.resetPasswordToken)
   },
 
   methods: {
     handleSubmit() {
-      console.log(this.formData)
+      resetPassword(this.formData, this.resetPasswordToken)
     },
     handleInput(data) {
       this.formData = {

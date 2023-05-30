@@ -9,7 +9,7 @@
     </header>
     <a
       :href="linkTo"
-      target="_blank"
+      :target="blank"
       class="w-[300px] bg-darkRed mx-auto block rounded text-white py-1 text-sm md-text-sm text-center"
     >
       {{ buttonText }}
@@ -44,11 +44,15 @@ export default {
     linkTo: {
       type: String,
       required: false
+    },
+    blank: {
+      type: String,
+      required: false
     }
-  },
-
-  created() {
-    console.log(this.linkTo)
   }
+
+  // created() {
+  //   console.log(this.linkTo)
+  // }
 }
 </script>

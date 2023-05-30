@@ -16,6 +16,7 @@
       :text="$t('modals.feedback.check_email')"
       link-to="https://mail.google.com/"
       v-if="modal.isVisible.name === 'checkEmail'"
+      blank="_blank"
     ></the-feedback>
     <the-feedback
       img-src="src/assets/icons/confirmed.svg"
@@ -23,6 +24,7 @@
       :buttonText="$t('modals.feedback.news_feed')"
       :text="$t('modals.feedback.activate_email')"
       v-if="modal.isVisible.name === 'activatedEccount'"
+      link-to="/"
     ></the-feedback>
     <the-feedback
       img-src="src/assets/icons/confirmed.svg"
