@@ -10,6 +10,7 @@
     </header>
     <Form
       class="text-white w-[340px] sm:w-[360px] mx-auto flex flex-col gap-4 px-4 py-4 sm:px-0 sm:py-4"
+      @submit="handleResetPassword"
     >
       <TheInput
         rules="required"
@@ -20,6 +21,7 @@
         :placeholder="$t('modals.forgot_password.placeholder_email')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
+        @change-input="handleInput"
       /><button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.forgot_password.get_started') }}
       </button>
@@ -37,6 +39,7 @@
 <script>
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
+import resetPassword from '@/services/resetPassword'
 
 import { useModalStore } from '../stores/modal'
 
@@ -44,6 +47,29 @@ export default {
   components: {
     Form,
     TheInput
+  },
+
+  data() {
+    return {
+      formData: {
+        email: ''
+      }
+    }
+  },
+
+  methods: {
+    handleResetPassword() {
+      resetPassword(this.formData)
+    },
+
+    handleInput(data) {
+      this.formData = {
+        ...this.formData,
+        [data.name]: data.value
+      }
+
+      console.log(this.formData)
+    }
   },
 
   setup() {

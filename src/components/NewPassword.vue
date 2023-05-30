@@ -12,6 +12,7 @@
     </header>
     <Form
       class="text-white mx-auto flex flex-col sm:gap-4 w-[340px] sm:w-[400px] gap-3 px-4 py-10 sm:px-0 sm:py-4"
+      @submit="handleSubmit"
     >
       <the-input
         rules="required"
@@ -23,6 +24,7 @@
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
+        @change-input="handleInput"
       ></the-input>
       <the-input
         rules="required"
@@ -34,6 +36,7 @@
         InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
         parentClass="flex flex-col gap-1"
         requiredIcon="true"
+        @change-input="handleInput"
       ></the-input>
       <button class="w-full bg-darkRed py-1 rounded my-1 text-sm sm:text-md">
         {{ $t('modals.new_password.button') }}
@@ -54,6 +57,28 @@ export default {
   components: {
     Form
   },
+
+  data() {
+    return {
+      formData: {
+        password: '',
+        password_confirmation: ''
+      }
+    }
+  },
+
+  methods: {
+    handleSubmit() {
+      console.log(this.formData)
+    },
+    handleInput(data) {
+      this.formData = {
+        ...this.formData,
+        [data.name]: data.value
+      }
+    }
+  },
+
   setup() {
     const modal = useModalStore()
 
