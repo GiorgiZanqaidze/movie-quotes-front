@@ -7,7 +7,6 @@ const token = parts.length === 2 ? parts.pop().split(';').shift() : null
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-  timeout: 1000,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

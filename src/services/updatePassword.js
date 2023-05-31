@@ -1,8 +1,8 @@
 import axiosInstance from '@/config/axios/index'
 
-export default async function verifyUser(data) {
+export default async function updataPassword(data) {
   try {
-    await axiosInstance.post(`/email/verify/${data}`)
+    await axiosInstance.post(`/reset-password`, data)
   } catch (error) {
     console.log(error)
   }

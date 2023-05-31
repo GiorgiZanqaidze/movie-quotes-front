@@ -1,7 +1,6 @@
-import axiosInstance from '../config/axios/index'
+import axiosInstance from '@/config/axios/index'
 
 export default async function resetPassword(data, token) {
-  console.log(data)
   try {
     await axiosInstance.patch(`/reset-password/${token}`, data)
   } catch (error) {

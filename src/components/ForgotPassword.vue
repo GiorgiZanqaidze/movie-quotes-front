@@ -39,7 +39,7 @@
 <script>
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
-import resetPassword from '@/services/resetPassword'
+import updatePassword from '@/services/updatePassword.js'
 
 import { useModalStore } from '../stores/modal'
 
@@ -59,7 +59,7 @@ export default {
 
   methods: {
     handleResetPassword() {
-      resetPassword(this.formData)
+      updatePassword(this.formData)
     },
 
     handleInput(data) {
@@ -67,8 +67,6 @@ export default {
         ...this.formData,
         [data.name]: data.value
       }
-
-      console.log(this.formData)
     }
   },
 

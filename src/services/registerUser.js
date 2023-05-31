@@ -1,4 +1,4 @@
-import axiosInstance from '../config/axios/index'
+import axiosInstance from '@/config/axios/index'
 
 export default async function registerUser(data) {
   try {
