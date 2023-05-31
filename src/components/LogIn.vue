@@ -9,12 +9,16 @@
     <Form
       class="text-white w-[340px] sm:w-[360px] mx-auto flex flex-col gap-4 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleLogin"
+      v-slot="{ errors }"
     >
+      {{ errors }}
       <TheInput
         rules="required"
         id="email"
         type="email"
         name="email"
+        :errors="errors"
+        :error="error.email"
         :label="$t('modals.login.email')"
         :placeholder="$t('modals.login.placeholder_email')"
         InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
@@ -68,9 +72,10 @@
 import { Form } from 'vee-validate'
 import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
-import { setToken } from '@/helpers/cookie_token/index.js'
-import axios from '@/config/axios/index.js'
+// import axios from '@/config/axios/index.js'
 import loginUser from '@/services/loginUser.js'
+import { getToken } from '@/helpers/cookie_token/index'
+import axios from 'axios'
 
 export default {
   components: {
@@ -88,7 +93,26 @@ export default {
   },
   methods: {
     async handleLogin() {
-      await loginUser(this.formData)
+      axios.defaults.withCredentials = true
+
+      await axios.get('http://localhost:8000/sanctum/csrf-cookie')
+
+      axios
+        .post('http://localhost:8000/api/login', this.formData, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
       this.$router.push('/news-feed')
     },
 

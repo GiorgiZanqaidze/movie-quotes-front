@@ -107,8 +107,27 @@ export default {
   },
 
   methods: {
-    handleRegister() {
-      registerUser(this.formData)
+    async handleRegister() {
+      // registerUser(this.formData)
+
+      axios.defaults.withCredentials = true
+
+      await axios.get('http://localhost:8000/sanctum/csrf-cookie')
+
+      axios
+        .post('http://localhost:8000/api/register', this.formData, {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'X-Requested-With': 'XMLHttpRequest'
+        })
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
       this.modal.toggleModal('checkEmail', true)
     },
     handleInput(data) {

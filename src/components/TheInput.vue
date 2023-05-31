@@ -78,6 +78,12 @@ export default {
     },
     requiredIcon: {
       type: String
+    },
+    errors: {
+      type: String
+    },
+    error: {
+      type: String
     }
   }
 }
