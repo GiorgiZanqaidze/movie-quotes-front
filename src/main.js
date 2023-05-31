@@ -17,7 +17,6 @@ import TheModal from './components/TheModal.vue'
 import TheHeader from './components/TheHeader.vue'
 import ForgotPassword from './components/ForgotPassword.vue'
 import NewPassword from './components/NewPassword.vue'
-import TheInput from './components/TheInput.vue'
 import TheFeedback from './components/TheFeedback.vue'
 import TextInput from '@/components/TextInput.vue'
 import PasswordInput from '@/components/PasswordInput.vue'
@@ -31,7 +30,6 @@ app.component('the-modal', TheModal)
 app.component('the-header', TheHeader)
 app.component('forgot-password', ForgotPassword)
 app.component('new-password', NewPassword)
-app.component('the-input', TheInput)
 app.component('the-feedback', TheFeedback)
 app.component('text-input', TextInput)
 app.component('password-input', PasswordInput)

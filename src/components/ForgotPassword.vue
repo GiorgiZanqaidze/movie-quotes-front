@@ -14,7 +14,7 @@
       v-slot="{ errors, meta }"
     >
       <text-input
-        rules="required"
+        rules="required|email"
         id="email"
         type="email"
         name="email"
@@ -41,15 +41,13 @@
 
 <script>
 import { Form } from 'vee-validate'
-import TheInput from './TheInput.vue'
 import updatePassword from '@/services/updatePassword.js'
 
 import { useModalStore } from '../stores/modal'
 
 export default {
   components: {
-    Form,
-    TheInput
+    Form
   },
 
   data() {

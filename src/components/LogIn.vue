@@ -66,7 +66,6 @@
 
 <script>
 import { Form } from 'vee-validate'
-import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
 // import axios from '@/config/axios/index.js'
 import loginUser from '@/services/loginUser.js'
@@ -76,8 +75,7 @@ import axios from 'axios'
 
 export default {
   components: {
-    Form,
-    TheInput
+    Form
   },
   data() {
     return {

@@ -12,7 +12,7 @@
       v-slot="{ errors, meta }"
     >
       <text-input
-        rules="required"
+        rules="required|min:3|max:15|alpha"
         id="name"
         type="name"
         name="name"
@@ -38,7 +38,7 @@
       ></text-input>
 
       <password-input
-        rules="required"
+        rules="required|min:8|max:15|alpha"
         id="password"
         type="password"
         name="password"
@@ -51,7 +51,7 @@
       ></password-input>
 
       <password-input
-        rules="required"
+        rules="required|confirmed:@password"
         id="password_confirmation"
         type="password"
         name="password_confirmation"
@@ -90,14 +90,12 @@
 
 <script>
 import { Form } from 'vee-validate'
-import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
 import axios from '@/config/axios/index.js'
 import registerUser from '@/services/registerUser.js'
 export default {
   components: {
-    Form,
-    TheInput
+    Form
   },
 
   data() {

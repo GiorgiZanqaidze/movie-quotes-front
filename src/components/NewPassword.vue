@@ -16,7 +16,7 @@
       v-slot="{ errors, meta }"
     >
       <password-input
-        rules="required"
+        rules="required|min:8|max:15|alpha"
         id="password"
         type="password"
         name="password"
@@ -29,7 +29,7 @@
       ></password-input>
 
       <password-input
-        rules="required"
+        rules="required|confirmed:@password"
         id="password_confirmation"
         type="password"
         name="password_confirmation"

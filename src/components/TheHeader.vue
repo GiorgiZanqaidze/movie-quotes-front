@@ -8,10 +8,12 @@
             v-for="locale in $i18n.availableLocales"
             :key="`locale-${locale}`"
             :value="locale"
+            @click="setLocale(locale)"
           >
             {{ $t(`landing.${locale}`) }}
           </option>
         </select>
+        <button @click="setLocale('ka')" class="text-white">ქართული</button>
       </div>
       <div>
         <a
@@ -35,6 +37,7 @@
 
 <script>
 import { useModalStore } from '@/stores/modal'
+import { setLocale } from '@vee-validate/i18n'
 export default {
   setup() {
     const modal = useModalStore()
@@ -42,9 +45,10 @@ export default {
   },
 
   methods: {
-    toggleModal(signUp, show) {
-      this.modal.toggleModal(signUp, show)
-    }
+    toggleModal(type, show) {
+      this.modal.toggleModal(type, show)
+    },
+    setLocale
   }
 }
 </script>
