@@ -19,6 +19,9 @@ import ForgotPassword from './components/ForgotPassword.vue'
 import NewPassword from './components/NewPassword.vue'
 import TheInput from './components/TheInput.vue'
 import TheFeedback from './components/TheFeedback.vue'
+import TextInput from '@/components/TextInput.vue'
+import PasswordInput from '@/components/PasswordInput.vue'
+import CheckboxInput from '@/components/CheckboxInput.vue'
 
 const app = createApp(App)
 app.component('the-login', TheLogin)
@@ -30,6 +33,9 @@ app.component('forgot-password', ForgotPassword)
 app.component('new-password', NewPassword)
 app.component('the-input', TheInput)
 app.component('the-feedback', TheFeedback)
+app.component('text-input', TextInput)
+app.component('password-input', PasswordInput)
+app.component('checkbox-input', CheckboxInput)
 
 app.use(i18n)
 app.use(createPinia())

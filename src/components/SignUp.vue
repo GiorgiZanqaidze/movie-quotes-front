@@ -9,55 +9,60 @@
     <Form
       class="text-white mx-auto flex flex-col sm:gap-4 w-[340px] sm:w-[360px] gap-3 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleRegister"
+      v-slot="{ errors, meta }"
     >
-      <TheInput
+      <text-input
         rules="required"
         id="name"
         type="name"
         name="name"
         :label="$t('modals.sign_up.name')"
         :placeholder="$t('modals.sign_up.placeholder_name')"
-        InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
+        :errors="errors"
+        :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      />
-      <TheInput
-        rules="required"
+      ></text-input>
+
+      <text-input
+        rules="required|email"
         id="email"
         type="email"
         name="email"
         :label="$t('modals.sign_up.email')"
         :placeholder="$t('modals.sign_up.placeholder_email')"
-        InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
+        :errors="errors"
+        :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      />
-      <TheInput
+      ></text-input>
+
+      <password-input
         rules="required"
         id="password"
         type="password"
         name="password"
         :label="$t('modals.sign_up.password')"
         :placeholder="$t('modals.sign_up.placeholder_password')"
-        InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
+        :errors="errors"
+        :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      />
-      <TheInput
+      ></password-input>
+
+      <password-input
         rules="required"
         id="password_confirmation"
         type="password"
         name="password_confirmation"
         :label="$t('modals.sign_up.confirm_password')"
-        :placeholder="$t('modals.sign_up.placeholder_confirm_password')"
-        InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
+        :placeholder="$t('modals.sign_up.confirm_password')"
+        :errors="errors"
+        :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      />
+      ></password-input>
+
       <button class="w-full bg-darkRed sm:py-1 rounded my-1">
         {{ $t('modals.sign_up.get_started') }}
       </button>

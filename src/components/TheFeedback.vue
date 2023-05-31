@@ -50,9 +50,5 @@ export default {
       required: false
     }
   }
-
-  // created() {
-  //   console.log(this.linkTo)
-  // }
 }
 </script>

@@ -11,18 +11,21 @@
     <Form
       class="text-white w-[340px] sm:w-[360px] mx-auto flex flex-col gap-4 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleResetPassword"
+      v-slot="{ errors, meta }"
     >
-      <TheInput
+      <text-input
         rules="required"
         id="email"
         type="email"
         name="email"
         :label="$t('modals.forgot_password.email')"
         :placeholder="$t('modals.forgot_password.placeholder_email')"
-        InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
         @change-input="handleInput"
-      /><button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
+        :errors="errors"
+        :meta="meta"
+      >
+      </text-input>
+      <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.forgot_password.get_started') }}
       </button>
       <div disable class="bg-transparent sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
