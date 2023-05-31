@@ -8,12 +8,12 @@
             v-for="locale in $i18n.availableLocales"
             :key="`locale-${locale}`"
             :value="locale"
-            @click="setLocale(locale)"
           >
             {{ $t(`landing.${locale}`) }}
           </option>
         </select>
-        <button @click="setLocale('ka')" class="text-white">ქართული</button>
+        <!-- <button @click="setLocale('ka')" class="text-white">ქართ</button>
+        <button @click="setLocale('en')" class="text-white">en</button> -->
       </div>
       <div>
         <a

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[570px] sm:h-[704px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium flex flex-col pt-2"
+    class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[570px] sm:h-[750px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium flex flex-col pt-2"
   >
     <header class="flex flex-col items-center">
       <h1 class="text-white sm:mt-10 sm:text-3xl">{{ $t('modals.sign_up.title') }}</h1>
@@ -61,7 +61,9 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></password-input>
+      >
+      </password-input>
+      <span class="text-darkRed text-sm">{{ backendErrors }}</span>
 
       <button class="w-full bg-darkRed sm:py-1 rounded my-1">
         {{ $t('modals.sign_up.get_started') }}
@@ -92,7 +94,7 @@
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import axios from '@/config/axios/index.js'
-import registerUser from '@/services/registerUser.js'
+import axiosInstance from '@/config/axios/index'
 export default {
   components: {
     Form
@@ -105,33 +107,27 @@ export default {
         email: '',
         password: '',
         password_confirmation: ''
-      }
+      },
+      backendErrors: null
     }
   },
 
   methods: {
     async handleRegister() {
-      // registerUser(this.formData)
-
       axios.defaults.withCredentials = true
 
       await axios.get('http://localhost:8000/sanctum/csrf-cookie')
 
-      axios
-        .post('http://localhost:8000/api/register', this.formData, {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'X-Requested-With': 'XMLHttpRequest'
-        })
+      await axiosInstance
+        .post('/api/register', this.formData)
         .then((response) => {
-          console.log(response.data)
+          if (response.status === 200) {
+            this.modal.toggleModal('checkEmail', true)
+          }
         })
         .catch((error) => {
-          console.error(error)
+          this.backendErrors = error.response.data.message
         })
-
-      this.modal.toggleModal('checkEmail', true)
     },
     handleInput(data) {
       this.formData = {
@@ -143,7 +139,6 @@ export default {
 
   setup() {
     const modal = useModalStore()
-
     return { modal }
   }
 }
