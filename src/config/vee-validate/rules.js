@@ -6,12 +6,14 @@
 // ===============================================================================================
 // ===============================================================================================
 import { defineRule } from 'vee-validate' // npm install vee-validate --save
-import { required, email, min, alpha } from '@vee-validate/rules' // npm install @vee-validate/rules
+import { required, email, min, alpha, max, confirmed } from '@vee-validate/rules' // npm install @vee-validate/rules
 
 defineRule('required', required)
 defineRule('email', email)
 defineRule('min', min)
+defineRule('max', max)
 defineRule('alpha', alpha)
+defineRule('confirmed', confirmed)
 
 // ===============================================================================================
 // ===============================================================================================
@@ -39,12 +41,12 @@ defineRule('alpha', alpha)
 // ===============================================================================================
 //
 //
-//      defineRule('required', value => {
-//          if (!value || !value.length) {
-//              return 'This field is required';
-//          }
-//          return true;
-//      });
+defineRule('alpha', (value) => {
+  if (!/^[a-z0-9]+$/.test(value)) {
+    return 'This field must contain low register'
+  }
+  return true
+})
 //
 //      defineRule('min_length', (value, [limit]) => {
 //          // The field is empty so it should pass

@@ -12,6 +12,8 @@
             {{ $t(`landing.${locale}`) }}
           </option>
         </select>
+        <!-- <button @click="setLocale('ka')" class="text-white">ქართ</button>
+        <button @click="setLocale('en')" class="text-white">en</button> -->
       </div>
       <div>
         <a
@@ -35,6 +37,7 @@
 
 <script>
 import { useModalStore } from '@/stores/modal'
+import { setLocale } from '@vee-validate/i18n'
 export default {
   setup() {
     const modal = useModalStore()
@@ -42,9 +45,10 @@ export default {
   },
 
   methods: {
-    toggleModal(signUp, show) {
-      this.modal.toggleModal(signUp, show)
-    }
+    toggleModal(type, show) {
+      this.modal.toggleModal(type, show)
+    },
+    setLocale
   }
 }
 </script>

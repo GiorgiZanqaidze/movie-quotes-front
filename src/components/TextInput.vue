@@ -1,5 +1,5 @@
 <template>
-  <div :class="parentClass" class="relative" v-if="type !== 'checkbox'">
+  <div class="relative flex flex-col gap-1">
     <label :for="id"
       >{{ label }}
       <img
@@ -15,19 +15,19 @@
       :type="type"
       :name="name"
       :placeholder="placeholder"
-      :class="InputClass"
+      :class="errorClass()"
+      class="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 focus:outline border-2"
       @change="changeValue"
+      v-model="value"
     />
+    <div v-if="icon" class="absolute right-3 top-9">
+      <img v-if="icon === 'valid'" src="@/assets/icons/valid_icon.svg" alt="valid" />
+      <img v-if="icon === 'invalid'" src="@/assets/icons/invalid_icon.svg" alt="valid" />
+    </div>
     <ErrorMessage
       :name="name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
-  </div>
-  <div v-if="type === 'checkbox'">
-    <div class="flex gap-2 items-center">
-      <input :id="id" :type="type" :name="name" />
-      <label :for="id">{{ label }}</label>
-    </div>
   </div>
 </template>
 
@@ -40,9 +40,27 @@ export default {
     ErrorMessage
   },
 
+  data() {
+    return {
+      value: '',
+      icon: null
+    }
+  },
+
   methods: {
     changeValue(event) {
       this.$emit('change-input', event.target)
+    },
+    errorClass() {
+      if (!this.meta.touched && !this.errors[this.name]) {
+        return 'border-gray-500 border-2'
+      } else if (this.value && !this.errors[this.name]) {
+        this.icon = 'valid'
+        return 'border-green-500 border-2'
+      } else if (this.errors[this.name]) {
+        this.icon = 'invalid'
+        return 'border-red-500 border-2'
+      }
     }
   },
 
@@ -70,14 +88,14 @@ export default {
     rules: {
       type: String
     },
-    InputClass: {
-      type: String
-    },
-    parentClass: {
-      type: String
-    },
     requiredIcon: {
       type: String
+    },
+    errors: {
+      type: Object
+    },
+    meta: {
+      type: Object
     }
   }
 }

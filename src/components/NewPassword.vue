@@ -13,31 +13,33 @@
     <Form
       class="text-white mx-auto flex flex-col sm:gap-4 w-[340px] sm:w-[400px] gap-3 px-4 py-10 sm:px-0 sm:py-4"
       @submit="handleSubmit"
+      v-slot="{ errors, meta }"
     >
-      <the-input
-        rules="required"
+      <password-input
+        rules="required|min:8|max:15|alpha"
         id="password"
         type="password"
         name="password"
         :label="$t('modals.sign_up.password')"
         :placeholder="$t('modals.sign_up.placeholder_password')"
-        InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
+        :errors="errors"
+        :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></the-input>
-      <the-input
-        rules="required"
+      ></password-input>
+
+      <password-input
+        rules="required|confirmed:@password"
         id="password_confirmation"
         type="password"
         name="password_confirmation"
         :label="$t('modals.sign_up.confirm_password')"
-        :placeholder="$t('modals.sign_up.placeholder_confirm_password')"
-        InputClass="font-helventica_light text-[14px] sm:text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
+        :placeholder="$t('modals.sign_up.confirm_password')"
+        :errors="errors"
+        :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></the-input>
+      ></password-input>
       <button class="w-full bg-darkRed py-1 rounded my-1 text-sm sm:text-md">
         {{ $t('modals.new_password.button') }}
       </button>
@@ -52,7 +54,8 @@
 
 <script>
 import { Form } from 'vee-validate'
-import { useModalStore } from '../stores/modal'
+import { useModalStore } from '@/stores/modal'
+import resetPassword from '@/services/resetPassword'
 export default {
   components: {
     Form
@@ -63,13 +66,20 @@ export default {
       formData: {
         password: '',
         password_confirmation: ''
-      }
+      },
+      resetPasswordToken: ''
     }
+  },
+
+  created() {
+    this.resetPasswordToken = this.$route.query.reset_password_token
+
+    console.log(this.resetPasswordToken)
   },
 
   methods: {
     handleSubmit() {
-      console.log(this.formData)
+      resetPassword(this.formData, this.resetPasswordToken)
     },
     handleInput(data) {
       this.formData = {

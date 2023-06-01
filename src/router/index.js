@@ -10,14 +10,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: LandingPage,
-      beforeEnter: [guest]
+      component: LandingPage
+      // beforeEnter: [guest]
     },
     {
       path: '/news-feed',
       name: 'newsFeed',
-      component: NewsFeed,
-      beforeEnter: [isAuthenticated]
+      component: NewsFeed
+      // beforeEnter: [isAuthenticated]
     },
     {
       path: '/:notFoundPage',

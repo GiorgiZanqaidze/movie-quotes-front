@@ -9,37 +9,37 @@
     <Form
       class="text-white w-[340px] sm:w-[360px] mx-auto flex flex-col gap-4 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleLogin"
+      v-slot="{ errors, meta }"
     >
-      <TheInput
-        rules="required"
+      <text-input
+        rules="required|email"
         id="email"
         type="email"
         name="email"
         :label="$t('modals.login.email')"
+        :errors="errors"
+        :meta="meta"
         :placeholder="$t('modals.login.placeholder_email')"
-        InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
         @change-input="handleInput"
-      />
-      <TheInput
+      ></text-input>
+      <password-input
         rules="required"
         id="password"
         type="password"
         name="password"
+        :errors="errors"
+        :meta="meta"
         :label="$t('modals.login.password')"
         :placeholder="$t('modals.login.placeholder_password')"
-        InputClass="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 border-gray-500 focus:border-lightDark focus:outline-none focus:border-4"
-        parentClass="flex flex-col gap-1"
         @change-input="handleInput"
-      />
+      ></password-input>
       <div class="flex justify-between text-sm">
-        <TheInput
+        <checkbox-input
           id="remember_me"
           type="checkbox"
           name="remember_me"
           :label="$t('modals.login.remember_me')"
-          parentClass="flex gap-2 items-center"
-        />
+        ></checkbox-input>
         <a
           href="#"
           @click="modal.toggleModal('forgotPassword', true)"
@@ -66,16 +66,16 @@
 
 <script>
 import { Form } from 'vee-validate'
-import TheInput from './TheInput.vue'
 import { useModalStore } from '@/stores/modal'
-import { setToken } from '@/helpers/cookie_token/index.js'
-import axios from '@/config/axios/index.js'
+import axiosinstance from '@/config/axios/index.js'
 import loginUser from '@/services/loginUser.js'
+import { getToken } from '@/helpers/cookie_token/index'
+
+// import axios from 'axios'
 
 export default {
   components: {
-    Form,
-    TheInput
+    Form
   },
   data() {
     return {
@@ -88,7 +88,19 @@ export default {
   },
   methods: {
     async handleLogin() {
-      await loginUser(this.formData)
+      axiosinstance.defaults.withCredentials = true
+
+      await axiosinstance.get('/sanctum/csrf-cookie')
+
+      axiosinstance
+        .post('/api/login', this.formData)
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
       this.$router.push('/news-feed')
     },
 
