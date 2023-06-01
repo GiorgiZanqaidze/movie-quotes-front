@@ -67,11 +67,11 @@
 <script>
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
-// import axios from '@/config/axios/index.js'
+import axiosinstance from '@/config/axios/index.js'
 import loginUser from '@/services/loginUser.js'
 import { getToken } from '@/helpers/cookie_token/index'
 
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   components: {
@@ -88,19 +88,12 @@ export default {
   },
   methods: {
     async handleLogin() {
-      axios.defaults.withCredentials = true
+      axiosinstance.defaults.withCredentials = true
 
-      await axios.get('http://localhost:8000/sanctum/csrf-cookie')
+      await axiosinstance.get('/sanctum/csrf-cookie')
 
-      axios
-        .post('http://localhost:8000/api/login', this.formData, {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'X-Requested-With': 'XMLHttpRequest'
-          }
-        })
+      axiosinstance
+        .post('/api/login', this.formData)
         .then((response) => {
           console.log(response.data)
         })

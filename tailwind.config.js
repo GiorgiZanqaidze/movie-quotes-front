@@ -19,7 +19,8 @@ module.exports = {
         darkGray: '#222030',
         mediumGray: '#6C757D',
         lightDark: '#CED4DA',
-        mediumBlue: '#0D6EFD'
+        mediumBlue: '#0D6EFD',
+        mediumDark: '#181624'
       }
     }
   },

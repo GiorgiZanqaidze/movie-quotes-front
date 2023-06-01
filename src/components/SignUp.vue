@@ -114,9 +114,9 @@ export default {
 
   methods: {
     async handleRegister() {
-      axios.defaults.withCredentials = true
+      axiosInstance.defaults.withCredentials = true
 
-      await axios.get('http://localhost:8000/sanctum/csrf-cookie')
+      await axiosInstance.get('/sanctum/csrf-cookie')
 
       await axiosInstance
         .post('/api/register', this.formData)

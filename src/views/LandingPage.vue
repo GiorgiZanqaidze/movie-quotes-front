@@ -9,13 +9,14 @@
 import { useModalStore } from '@/stores/modal'
 import loginUser from '@/services/loginUser.js'
 import verifyUser from '@/services/verifyUser.js'
+import axiosInstance from '@/config/axios/index'
 export default {
   setup() {
     const modal = useModalStore()
     return { modal }
   },
 
-  created() {
+  async created() {
     const passwordToken = this.$route.query.reset_password_token
     if (passwordToken) {
       this.modal.toggleModal('newPassword', true)
@@ -25,6 +26,7 @@ export default {
 
     if (verifyToken) {
       this.modal.toggleModal('activatedEccount', true)
+
       verifyUser(verifyToken)
     }
   }
