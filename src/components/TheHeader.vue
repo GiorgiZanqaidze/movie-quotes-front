@@ -1,9 +1,9 @@
 <template>
-  <header class="flex mx-2 sm:m-5 justify-between items-center bg-black h-[38px]">
+  <header class="flex px-2 sm:p-8 justify-between items-center bg-gray h-[38px]">
     <h1 class="text-lightGrey text-sm sm:text-lg">{{ $t('landing.quotes') }}</h1>
     <div class="flex sm:gap-7 gap-3">
       <div class="flex items-center">
-        <select v-model="$i18n.locale" class="text-white bg-black text-sm sm:text-lg">
+        <select v-model="$i18n.locale" class="text-white bg-gray text-sm sm:text-lg">
           <option
             v-for="locale in $i18n.availableLocales"
             :key="`locale-${locale}`"

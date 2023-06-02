@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '../views/LandingPage.vue'
 import NotFoundPage from '../views/NotFoundPage.vue'
-import NewsFeed from '@/views/NewsFeed.vue'
+import TheNewsfeed from '@/views/TheNewsfeed.vue'
 import { isAuthenticated } from '@/router/guards.js'
 import { guest } from '@/router/guards.js'
 const router = createRouter({
@@ -16,7 +16,7 @@ const router = createRouter({
     {
       path: '/news-feed',
       name: 'newsFeed',
-      component: NewsFeed
+      component: TheNewsfeed
       // beforeEnter: [isAuthenticated]
     },
     {
