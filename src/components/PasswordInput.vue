@@ -34,6 +34,11 @@
       :name="name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
+    <span
+      v-if="backEndErrors"
+      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+      >{{ backEndErrors }}</span
+    >
   </div>
 </template>
 
@@ -107,6 +112,9 @@ export default {
     },
     meta: {
       type: Object
+    },
+    backEndErrors: {
+      type: String
     }
   }
 }

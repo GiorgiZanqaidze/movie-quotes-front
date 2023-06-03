@@ -3,7 +3,9 @@
     class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[400px] sm:h-[402px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium py-2 px-2"
   >
     <header class="flex flex-col items-center">
-      <h1 class="text-white sm:mt-8 sm:text-3xl mb-2">{{ $t('modals.forgot_password.title') }}</h1>
+      <h1 class="text-white sm:mt-8 sm:text-3xl mb-2">
+        {{ $t('modals.forgot_password.title') }}
+      </h1>
       <span class="text-mediumGray text-sm mb-2 text-center max-w-[360px]">{{
         $t('modals.forgot_password.welcome')
       }}</span>

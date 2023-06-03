@@ -12,7 +12,7 @@
       v-slot="{ errors, meta }"
     >
       <text-input
-        rules="required|email"
+        rules="required"
         id="email"
         type="email"
         name="email"
@@ -20,6 +20,7 @@
         :errors="errors"
         :meta="meta"
         :placeholder="$t('modals.login.placeholder_email')"
+        :backEndErrors="backEndErrors"
         @change-input="handleInput"
       ></text-input>
       <password-input
@@ -32,12 +33,15 @@
         :label="$t('modals.login.password')"
         :placeholder="$t('modals.login.placeholder_password')"
         @change-input="handleInput"
+        :backEndErrors="backEndErrors"
       ></password-input>
       <div class="flex justify-between text-sm">
         <checkbox-input
           id="remember_me"
           type="checkbox"
+          @change-input="handleInput"
           name="remember_me"
+          :value="true"
           :label="$t('modals.login.remember_me')"
         ></checkbox-input>
         <a
@@ -64,51 +68,48 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
-import axiosinstance from '@/config/axios/index.js'
 import loginUser from '@/services/loginUser.js'
+import { useRouter } from 'vue-router'
+import { ref, reactive } from 'vue'
 
-export default {
-  components: {
-    Form
-  },
-  data() {
-    return {
-      formData: {
-        email: '',
-        password: '',
-        device_name: 'browser'
-      }
+const modal = useModalStore()
+
+const route = useRouter()
+let formData = {
+  email: '',
+  password: '',
+  remember_me: false,
+  device_name: 'browser'
+}
+
+let backEndErrors = ''
+
+async function handleLogin() {
+  const response = await loginUser(formData)
+
+  if (response.status === 200) {
+    route.push('/news-feed')
+    modal.toggleModal('logIn', false)
+  } else {
+    backEndErrors = response.response.data.message
+    console.log(backEndErrors)
+  }
+}
+
+function handleInput(data) {
+  if (data.name === 'remember_me') {
+    formData = {
+      ...formData,
+      remember_me: !formData.remember_me
     }
-  },
-  methods: {
-    async handleLogin() {
-      await axiosinstance.get('/sanctum/csrf-cookie')
-
-      await axiosinstance
-        .post('/api/login', this.formData)
-        .then((response) => {
-          this.$router.push('/news-feed')
-          this.modal.toggleModal('logIn', false)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    },
-
-    handleInput(data) {
-      this.formData = {
-        ...this.formData,
-        [data.name]: data.value
-      }
+  } else {
+    formData = {
+      ...formData,
+      [data.name]: data.value
     }
-  },
-  setup() {
-    const modal = useModalStore()
-
-    return { modal }
   }
 }
 </script>
