@@ -34,20 +34,12 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import { useModalStore } from '@/stores/modal'
 import { setLocale } from '@vee-validate/i18n'
-export default {
-  setup() {
-    const modal = useModalStore()
-    return { modal }
-  },
+const modal = useModalStore()
 
-  methods: {
-    toggleModal(type, show) {
-      this.modal.toggleModal(type, show)
-    },
-    setLocale
-  }
+function toggleModal(type, show) {
+  this.modal.toggleModal(type, show)
 }
 </script>

@@ -23,6 +23,7 @@
         />
       </button>
       <button
+        @click="logOut"
         class="text-white border text-sm sm:text-lg sm:py-[3px] px-2 sm:px-3 py-1 rounded bg-transparent"
       >
         Log Out
@@ -31,17 +32,20 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import { useModalStore } from '@/stores/modal'
 import { setLocale } from '@vee-validate/i18n'
-export default {
-  setup() {
-    const modal = useModalStore()
-    return { modal }
-  },
+import logOutUser from '@/services/logOutUser.js'
+import axiosInstance from '@/config/axios/index'
+import { useRouter } from 'vue-router'
+const modal = useModalStore()
+const route = useRouter()
 
-  methods: {
-    setLocale
+async function logOut() {
+  const result = await logOutUser()
+
+  if (result.status === 200) {
+    route.push({ name: 'home' })
   }
 }
 </script>

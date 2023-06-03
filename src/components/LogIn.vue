@@ -85,14 +85,13 @@ export default {
   },
   methods: {
     async handleLogin() {
-      axiosinstance.defaults.withCredentials = true
-
       await axiosinstance.get('/sanctum/csrf-cookie')
 
       await axiosinstance
         .post('/api/login', this.formData)
         .then((response) => {
           this.$router.push('/news-feed')
+          this.modal.toggleModal('logIn', false)
         })
         .catch((error) => {
           console.error(error)
