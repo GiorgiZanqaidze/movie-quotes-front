@@ -18,7 +18,6 @@
       <div>
         <textarea
           @change="handleChange"
-          v-bind="field"
           placeholder="Start create new quote"
           class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2"
         ></textarea>
@@ -26,7 +25,6 @@
       <div>
         <textarea
           @change="handleChange"
-          v-bind="field"
           placeholder="Start create new quote"
           class="text-mediumGray bg-transparent border w-full h-[86px]"
         ></textarea>
@@ -36,7 +34,7 @@
 </template>
 
 <script>
-import { Form, Field } from 'vee-validate'
+import { Form } from 'vee-validate'
 
 export default {
   components: {

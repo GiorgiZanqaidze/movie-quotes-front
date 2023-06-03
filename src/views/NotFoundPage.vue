@@ -1,5 +1,7 @@
 <template>
-  <div class="text-white flex flex-col justify-center items-center min-h-screen gap-10 mx-auto">
+  <div
+    class="text-white flex flex-col justify-center items-center min-h-screen gap-10 mx-auto bg-darkGray"
+  >
     <div>
       <img src="@/assets/icons/not_found.svg" alt="not_found" />
       <h1 class="text-3xl text-center mt-4">{{ $t('not_found.not_found_page.title') }}!</h1>

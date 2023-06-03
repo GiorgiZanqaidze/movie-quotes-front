@@ -14,7 +14,6 @@ import TheLogin from '@/components/LogIn.vue'
 import SignUp from '@/components/SignUp.vue'
 import TheParalax from '@/components/TheParalax.vue'
 import TheModal from '@/components/TheModal.vue'
-import TheHeader from '@/components/TheHeader.vue'
 import ForgotPassword from '@/components/ForgotPassword.vue'
 import NewPassword from '@/components/NewPassword.vue'
 import TheFeedback from '@/components/TheFeedback.vue'
@@ -29,11 +28,14 @@ import TheComment from '@/components/TheComment.vue'
 import WriteQuote from '@/components/WriteQuote.vue'
 
 const app = createApp(App)
+app.use(i18n)
+app.use(createPinia())
+app.use(router)
+
 app.component('the-login', TheLogin)
 app.component('sign-up', SignUp)
 app.component('the-paralax', TheParalax)
 app.component('the-modal', TheModal)
-app.component('the-header', TheHeader)
 app.component('forgot-password', ForgotPassword)
 app.component('new-password', NewPassword)
 app.component('the-feedback', TheFeedback)
@@ -46,9 +48,5 @@ app.component('newsfeed-movie', NewsfeedMovie)
 app.component('profile-icon', ProfileIcon)
 app.component('the-comment', TheComment)
 app.component('write-quote', WriteQuote)
-
-app.use(i18n)
-app.use(createPinia())
-app.use(router)
 
 app.mount('#app')
