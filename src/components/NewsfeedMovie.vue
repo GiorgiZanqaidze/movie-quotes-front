@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-darkBlack w-[300px] sm:w-[930px] p-4 rounded-lg flex flex-col gap-4">
+  <div class="bg-darkBlack w-[300px] sm:w-[961px] p-4 rounded-lg flex flex-col gap-4">
     <header class="flex items-center gap-4">
       <profile-icon></profile-icon>
       <h2>Maia Nakashidze</h2>

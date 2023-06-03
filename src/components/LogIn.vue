@@ -69,9 +69,6 @@ import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import axiosinstance from '@/config/axios/index.js'
 import loginUser from '@/services/loginUser.js'
-import { getToken } from '@/helpers/cookie_token/index'
-
-// import axios from 'axios'
 
 export default {
   components: {
@@ -92,16 +89,14 @@ export default {
 
       await axiosinstance.get('/sanctum/csrf-cookie')
 
-      axiosinstance
+      await axiosinstance
         .post('/api/login', this.formData)
         .then((response) => {
-          console.log(response.data)
+          this.$router.push('/news-feed')
         })
         .catch((error) => {
           console.error(error)
         })
-
-      this.$router.push('/news-feed')
     },
 
     handleInput(data) {

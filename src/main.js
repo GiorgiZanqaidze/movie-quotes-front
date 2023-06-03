@@ -26,6 +26,7 @@ import NewsfeedMovies from '@/components/NewsfeedMovies.vue'
 import NewsfeedMovie from '@/components/NewsfeedMovie.vue'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import TheComment from '@/components/TheComment.vue'
+import WriteQuote from '@/components/WriteQuote.vue'
 
 const app = createApp(App)
 app.component('the-login', TheLogin)
@@ -44,6 +45,7 @@ app.component('newsfeed-movies', NewsfeedMovies)
 app.component('newsfeed-movie', NewsfeedMovie)
 app.component('profile-icon', ProfileIcon)
 app.component('the-comment', TheComment)
+app.component('write-quote', WriteQuote)
 
 app.use(i18n)
 app.use(createPinia())
