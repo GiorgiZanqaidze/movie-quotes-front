@@ -15,7 +15,7 @@
       @submit="handleSubmit"
       v-slot="{ errors, meta }"
     >
-      <password-input
+      <PasswordInput
         rules="required|min:8|max:15|alpha"
         id="password"
         type="password"
@@ -26,9 +26,9 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></password-input>
+      />
 
-      <password-input
+      <PasswordInput
         rules="required|confirmed:@password"
         id="password_confirmation"
         type="password"
@@ -39,7 +39,7 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></password-input>
+      />
       <button class="w-full bg-darkRed py-1 rounded my-1 text-sm sm:text-md">
         {{ $t('modals.new_password.button') }}
       </button>
@@ -56,9 +56,11 @@
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import resetPassword from '@/services/resetPassword'
+import PasswordInput from '@/components/PasswordInput.vue'
 export default {
   components: {
-    Form
+    Form,
+    PasswordInput
   },
 
   data() {

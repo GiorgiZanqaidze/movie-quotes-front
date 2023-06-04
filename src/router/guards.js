@@ -1,7 +1,13 @@
+import { userStore } from '@/stores/user'
+
 export function isAuthenticated() {
-  if (!token) {
-    return '/'
-  }
+  const user = userStore()
+
+  console.log(user.data)
+  // if (!token) {
+  //   return '/'
+  // }
+  return true
 }
 
 export function guest() {

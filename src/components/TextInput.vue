@@ -25,6 +25,7 @@
       <img v-if="icon === 'invalid'" src="@/assets/icons/invalid_icon.svg" alt="valid" />
     </div>
     <ErrorMessage
+      v-if="!backEndErrors"
       :name="name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
@@ -55,6 +56,7 @@ export default {
   methods: {
     changeValue(event) {
       this.$emit('change-input', event.target)
+      this.errorClass()
     },
     errorClass() {
       if (!this.meta.touched && !this.errors[this.name]) {
@@ -62,7 +64,7 @@ export default {
       } else if (this.value && !this.errors[this.name]) {
         this.icon = 'valid'
         return 'border-green-500 border-2'
-      } else if (this.errors[this.name]) {
+      } else if (this.errors[this.name] || this.backEndErrors) {
         this.icon = 'invalid'
         return 'border-red-500 border-2'
       }

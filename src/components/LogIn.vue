@@ -11,7 +11,7 @@
       @submit="handleLogin"
       v-slot="{ errors, meta }"
     >
-      <text-input
+      <TextInput
         rules="required"
         id="email"
         type="email"
@@ -22,8 +22,8 @@
         :placeholder="$t('modals.login.placeholder_email')"
         :backEndErrors="backEndErrors"
         @change-input="handleInput"
-      ></text-input>
-      <password-input
+      />
+      <PasswordInput
         rules="required"
         id="password"
         type="password"
@@ -34,16 +34,16 @@
         :placeholder="$t('modals.login.placeholder_password')"
         @change-input="handleInput"
         :backEndErrors="backEndErrors"
-      ></password-input>
+      />
       <div class="flex justify-between text-sm">
-        <checkbox-input
+        <CheckboxInput
           id="remember_me"
           type="checkbox"
           @change-input="handleInput"
           name="remember_me"
           :value="true"
           :label="$t('modals.login.remember_me')"
-        ></checkbox-input>
+        />
         <a
           href="#"
           @click="modal.toggleModal('forgotPassword', true)"
@@ -74,8 +74,13 @@ import { useModalStore } from '@/stores/modal'
 import loginUser from '@/services/loginUser.js'
 import { useRouter } from 'vue-router'
 import { ref, reactive } from 'vue'
+import TextInput from '@/components/TextInput.vue'
+import PasswordInput from '@/components/PasswordInput.vue'
+import CheckboxInput from '@/components/CheckboxInput.vue'
+import { userStore } from '@/stores/user.js'
 
 const modal = useModalStore()
+const user = userStore()
 
 const route = useRouter()
 let formData = {
@@ -91,6 +96,7 @@ async function handleLogin() {
   const response = await loginUser(formData)
 
   if (response.status === 200) {
+    user.setUser(response.data)
     route.push('/news-feed')
     modal.toggleModal('logIn', false)
   } else {

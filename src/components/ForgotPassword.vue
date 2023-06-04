@@ -15,7 +15,7 @@
       @submit="handleResetPassword"
       v-slot="{ errors, meta }"
     >
-      <text-input
+      <TextInput
         rules="required|email"
         id="email"
         type="email"
@@ -25,8 +25,8 @@
         @change-input="handleInput"
         :errors="errors"
         :meta="meta"
-      >
-      </text-input>
+      />
+
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.forgot_password.get_started') }}
       </button>
@@ -46,10 +46,12 @@ import { Form } from 'vee-validate'
 import updatePassword from '@/services/updatePassword.js'
 
 import { useModalStore } from '../stores/modal'
+import TextInput from '@/components/TextInput.vue'
 
 export default {
   components: {
-    Form
+    Form,
+    TextInput
   },
 
   data() {

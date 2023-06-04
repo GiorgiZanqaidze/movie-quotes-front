@@ -5,11 +5,11 @@
       class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px]"
       style="background: rgba(0, 0, 0, 0.54); backdrop-filter: blur(3px)"
     ></div>
-    <the-login v-if="modal.isVisible.name === 'logIn'"></the-login>
-    <sign-up v-if="modal.isVisible.name === 'signUp'"></sign-up>
-    <forgot-password v-if="modal.isVisible.name === 'forgotPassword'"></forgot-password>
-    <new-password v-if="modal.isVisible.name === 'newPassword'"></new-password>
-    <the-feedback
+    <TheLogin v-if="modal.isVisible.name === 'logIn'" />
+    <SignUp v-if="modal.isVisible.name === 'signUp'" />
+    <ForgotPassword v-if="modal.isVisible.name === 'forgotPassword'" />
+    <NewPassword v-if="modal.isVisible.name === 'newPassword'" />
+    <TheFeedback
       img-src="src/assets/icons/send_email.svg"
       :title="$t('modals.feedback.thank_msg')"
       :buttonText="$t('modals.feedback.check_email_button')"
@@ -17,38 +17,38 @@
       link-to="https://mail.google.com/"
       v-if="modal.isVisible.name === 'checkEmail'"
       blank="_blank"
-    ></the-feedback>
-    <the-feedback
+    />
+    <TheFeedback
       img-src="src/assets/icons/confirmed.svg"
       :title="$t('modals.feedback.thank_msg')"
       :buttonText="$t('modals.feedback.news_feed')"
       :text="$t('modals.feedback.activate_email')"
       v-if="modal.isVisible.name === 'activatedEccount'"
       link-to="/"
-    ></the-feedback>
-    <the-feedback
+    />
+    <TheFeedback
       img-src="src/assets/icons/confirmed.svg"
       :title="$t('modals.feedback.success')"
       :buttonText="$t('modals.sign_up.log_in')"
       :text="$t('modals.feedback.changed_password')"
       v-if="modal.isVisible.name === 'changedPassword'"
-    ></the-feedback>
-    <the-feedback
+    />
+    <TheFeedback
       img-src="src/assets/icons/link_expired.svg"
       :title="$t('modals.feedback.link_expired')"
       :buttonText="$t('modals.feedback.another_link')"
       :text="$t('modals.feedback.link_expired_desc')"
       v-if="modal.isVisible.name === 'linkExpired'"
-    ></the-feedback>
+    />
   </div>
 </template>
 
-<script>
+<script setup>
 import { useModalStore } from '@/stores/modal'
-export default {
-  setup() {
-    const modal = useModalStore()
-    return { modal }
-  }
-}
+import TheLogin from '@/components/LogIn.vue'
+import SignUp from '@/components/SignUp.vue'
+import ForgotPassword from '@/components/ForgotPassword.vue'
+import NewPassword from '@/components/NewPassword.vue'
+import TheFeedback from '@/components/TheFeedback.vue'
+const modal = useModalStore()
 </script>

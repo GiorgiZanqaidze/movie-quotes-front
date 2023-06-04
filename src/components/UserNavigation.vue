@@ -6,7 +6,7 @@
       <img src="@/assets/images/landing_image.svg" alt="" class="w-[60px]" />
     </div>
     <div class="justify-center">
-      <h3>Nino Tabagari</h3>
+      <h3>{{ userName }}</h3>
       <a href="#" class="text-sm">Edit your profile</a>
     </div>
     <div>
@@ -28,6 +28,10 @@
   </div>
 </template>
 
-<script>
-export default {}
+<script setup>
+import { onMounted, computed, onBeforeMount } from 'vue'
+import { userStore } from '@/stores/user.js'
+const user = userStore()
+
+const userName = computed(() => user.data.name)
 </script>
