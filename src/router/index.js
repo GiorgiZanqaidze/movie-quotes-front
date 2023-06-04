@@ -27,15 +27,27 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, _, next) => {
-  const store = userStore()
-  console.log(store)
-  if (to.meta.requiresAuth && !store.isVerified) {
-    next({ name: 'home' })
-  } else if (to.meta.requiresAuth && !store.isVerified) {
-    next()
-  }
-  next()
-})
+// router.beforeEach(async (to, _, next) => {
+//   const store = await userStore()
+//   console.log(store.data)
+//   if (to.meta.requiresAuth && !store.isVerified) {
+//     next({ name: 'home' })
+//   } else if (!to.meta.requiresAuth && store.isVerified) {
+//     next('/news-feed')
+//   }
+//   next()
+// })
+
+// router.beforeEach(async (to, from, next) => {
+//   const store = userStore()
+//   const userStore = pinia.useStore('user')
+//   console.log(userStore)
+//   if (to.meta.requiresAuth && !store.isVerified) {
+//     next({ name: 'home' })
+//   } else if (!to.meta.requiresAuth && store.isVerified) {
+//     next('/news-feed')
+//   }
+//   next()
+// })
 
 export default router

@@ -41,44 +41,25 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Form } from 'vee-validate'
 import updatePassword from '@/services/updatePassword.js'
 
 import { useModalStore } from '../stores/modal'
 import TextInput from '@/components/TextInput.vue'
 
-export default {
-  components: {
-    Form,
-    TextInput
-  },
+const modal = useModalStore()
+let formData = {
+  email: ''
+}
+function handleResetPassword() {
+  updatePassword(formData)
+}
 
-  data() {
-    return {
-      formData: {
-        email: ''
-      }
-    }
-  },
-
-  methods: {
-    handleResetPassword() {
-      updatePassword(this.formData)
-    },
-
-    handleInput(data) {
-      this.formData = {
-        ...this.formData,
-        [data.name]: data.value
-      }
-    }
-  },
-
-  setup() {
-    const modal = useModalStore()
-
-    return { modal }
+function handleInput(data) {
+  formData = {
+    ...formData,
+    [data.name]: data.value
   }
 }
 </script>

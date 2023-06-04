@@ -9,19 +9,8 @@
 
 <script>
 import { Field, ErrorMessage } from 'vee-validate'
+
 export default {
-  emits: ['change-input'],
-  components: {
-    Field,
-    ErrorMessage
-  },
-
-  methods: {
-    changeValue(event) {
-      this.$emit('change-input', event.target)
-    }
-  },
-
   props: {
     type: {
       type: String,
@@ -42,6 +31,12 @@ export default {
     value: {
       type: Boolean
     }
+  },
+  setup(props, { emit }) {
+    function changeValue(event) {
+      emit('change-input', event.target)
+    }
+    return { changeValue }
   }
 }
 </script>

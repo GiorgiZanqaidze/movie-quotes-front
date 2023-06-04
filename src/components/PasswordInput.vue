@@ -1,7 +1,7 @@
 <template>
   <div class="relative flex flex-col gap-1">
-    <label :for="id"
-      >{{ label }}
+    <label :for="id">
+      {{ label }}
       <img
         v-if="requiredIcon"
         src="@/assets/icons/required_star_icon.svg"
@@ -43,41 +43,13 @@
 </template>
 
 <script>
+import { defineProps, ref, watch } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
+
 export default {
-  emits: ['change-input'],
   components: {
     Field,
     ErrorMessage
-  },
-
-  data() {
-    return {
-      value: '',
-      icon: null,
-      showPassword: true
-    }
-  },
-
-  methods: {
-    changeValue(event) {
-      this.$emit('change-input', event.target)
-    },
-    togglePassword() {
-      this.showPassword = !this.showPassword
-    },
-
-    errorClass() {
-      if (!this.meta.touched && !this.errors[this.name]) {
-        return 'border-gray-500 border-2'
-      } else if (this.value && !this.errors[this.name]) {
-        this.icon = 'valid'
-        return 'border-green-500 border-2'
-      } else if (this.errors[this.name]) {
-        this.icon = 'invalid'
-        return 'border-red-500 border-2'
-      }
-    }
   },
 
   props: {
@@ -115,6 +87,51 @@ export default {
     },
     backEndErrors: {
       type: String
+    }
+  },
+
+  setup(props, { emit }) {
+    const value = ref('')
+    const icon = ref(null)
+    const showPassword = ref(true)
+
+    const changeValue = (event) => {
+      emit('change-input', event.target)
+      errorClass()
+    }
+
+    const togglePassword = () => {
+      showPassword.value = !showPassword.value
+    }
+
+    const errorClass = () => {
+      if (!props.meta.touched && !props.errors[props.name]) {
+        return 'border-gray-500 border-2'
+      } else if (value.value && !props.errors[props.name]) {
+        icon.value = 'valid'
+        return 'border-green-500 border-2'
+      } else if (props.errors[props.name]) {
+        icon.value = 'invalid'
+        return 'border-red-500 border-2'
+      }
+    }
+
+    watch(
+      () => props.meta.touched,
+      () => {
+        if (!props.meta.touched && !props.errors[props.name]) {
+          icon.value = null
+        }
+      }
+    )
+
+    return {
+      value,
+      icon,
+      showPassword,
+      changeValue,
+      togglePassword,
+      errorClass
     }
   }
 }

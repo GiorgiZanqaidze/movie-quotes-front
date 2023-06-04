@@ -52,49 +52,37 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import resetPassword from '@/services/resetPassword'
 import PasswordInput from '@/components/PasswordInput.vue'
-export default {
-  components: {
-    Form,
-    PasswordInput
-  },
+import { onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
-  data() {
-    return {
-      formData: {
-        password: '',
-        password_confirmation: ''
-      },
-      resetPasswordToken: ''
-    }
-  },
+const modal = useModalStore()
 
-  created() {
-    this.resetPasswordToken = this.$route.query.reset_password_token
+let formData = {
+  password: '',
+  password_confirmation: ''
+}
 
-    console.log(this.resetPasswordToken)
-  },
+const route = useRoute()
 
-  methods: {
-    handleSubmit() {
-      resetPassword(this.formData, this.resetPasswordToken)
-    },
-    handleInput(data) {
-      this.formData = {
-        ...this.formData,
-        [data.name]: data.value
-      }
-    }
-  },
+let resetPasswordToken = ''
 
-  setup() {
-    const modal = useModalStore()
+function handleSubmit() {
+  resetPassword(formData, resetPasswordToken)
+}
 
-    return { modal }
+function handleInput(data) {
+  formData = {
+    ...formData,
+    [data.name]: data.value
   }
 }
+
+onMounted(() => {
+  resetPasswordToken = route.query.reset_password_token
+})
 </script>

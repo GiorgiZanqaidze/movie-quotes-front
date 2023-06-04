@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { onMounted, computed, onBeforeMount } from 'vue'
+import { computed } from 'vue'
 import { userStore } from '@/stores/user.js'
 const user = userStore()
 

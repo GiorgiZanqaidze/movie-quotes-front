@@ -13,7 +13,12 @@ import { useRoute, useRouter } from 'vue-router'
 import getUser from '@/services/getUser'
 import { userStore } from '@/stores/user.js'
 
-const userData = userStore()
+const user = userStore()
 const route = useRoute()
 const router = useRouter()
+
+onMounted(() => {
+  user.fetchUserData()
+  const userData = user.data
+})
 </script>

@@ -17,18 +17,8 @@ const user = userStore()
 const route = useRoute()
 const router = useRouter()
 
-// async function createuser() {
-//   const response = await getUser()
-
-//   if (response.status === 200) {
-//     userData.setUser(response.data)
-//   }
-// }
-
 onMounted(() => {
   user.fetchUserData()
   const userData = user.data
-
-  console.log(userData)
 })
 </script>

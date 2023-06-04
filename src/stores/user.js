@@ -25,6 +25,6 @@ export const userStore = defineStore('user', {
     }
   },
   getters: {
-    isVerified: (state) => state.data
+    isVerified: (state) => state.data.email_verified_at
   }
 })

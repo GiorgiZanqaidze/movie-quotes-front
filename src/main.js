@@ -1,7 +1,6 @@
 import '@/assets/main.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createRouter, createWebHistory } from 'vue-router'
 
 import '@/config/vee-validate/rules'
 import '@/config/vee-validate/messages'
