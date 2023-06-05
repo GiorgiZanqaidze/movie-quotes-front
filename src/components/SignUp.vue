@@ -98,9 +98,10 @@ import registerUser from '@/services/registerUser.js'
 import TextInput from '@/components/TextInput.vue'
 import PasswordInput from '@/components/PasswordInput.vue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const modal = useModalStore()
-
+const router = useRouter()
 let formData = {
   name: '',
   email: '',
@@ -114,7 +115,7 @@ async function handleRegister() {
   const response = await registerUser(formData)
 
   if (response.status === 200) {
-    route.push('/news-feed')
+    router.push('/news-feed')
     modal.toggleModal('logIn', false)
   } else {
     backEndErrors.value = response.response.data.message

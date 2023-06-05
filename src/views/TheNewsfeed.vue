@@ -11,14 +11,4 @@ import axiosInstance from '@/config/axios/index'
 import { onMounted, onBeforeMount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { RouterView } from 'vue-router'
-import getUser from '@/services/getUser'
-
-const user = userStore()
-const route = useRoute()
-const router = useRouter()
-
-onMounted(() => {
-  user.fetchUserData()
-  const userData = user.data
-})
 </script>

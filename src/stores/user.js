@@ -23,8 +23,5 @@ export const userStore = defineStore('user', {
     setUserData(userData) {
       this.data = userData
     }
-  },
-  getters: {
-    isVerified: (state) => state.data.email_verified_at
   }
 })

@@ -10,15 +10,9 @@
 import { RouterView } from 'vue-router'
 import { onMounted, inject, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import getUser from '@/services/getUser'
 import { userStore } from '@/stores/user.js'
 
 const user = userStore()
 const route = useRoute()
 const router = useRouter()
-
-onMounted(() => {
-  user.fetchUserData()
-  const userData = user.data
-})
 </script>
