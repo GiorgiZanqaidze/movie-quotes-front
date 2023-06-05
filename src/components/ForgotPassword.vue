@@ -3,7 +3,9 @@
     class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[400px] sm:h-[402px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium py-2 px-2"
   >
     <header class="flex flex-col items-center">
-      <h1 class="text-white sm:mt-8 sm:text-3xl mb-2">{{ $t('modals.forgot_password.title') }}</h1>
+      <h1 class="text-white sm:mt-8 sm:text-3xl mb-2">
+        {{ $t('modals.forgot_password.title') }}
+      </h1>
       <span class="text-mediumGray text-sm mb-2 text-center max-w-[360px]">{{
         $t('modals.forgot_password.welcome')
       }}</span>
@@ -13,7 +15,7 @@
       @submit="handleResetPassword"
       v-slot="{ errors, meta }"
     >
-      <text-input
+      <TextInput
         rules="required|email"
         id="email"
         type="email"
@@ -23,8 +25,8 @@
         @change-input="handleInput"
         :errors="errors"
         :meta="meta"
-      >
-      </text-input>
+      />
+
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.forgot_password.get_started') }}
       </button>
@@ -39,42 +41,25 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Form } from 'vee-validate'
 import updatePassword from '@/services/updatePassword.js'
 
 import { useModalStore } from '../stores/modal'
+import TextInput from '@/components/TextInput.vue'
 
-export default {
-  components: {
-    Form
-  },
+const modal = useModalStore()
+let formData = {
+  email: ''
+}
+function handleResetPassword() {
+  updatePassword(formData)
+}
 
-  data() {
-    return {
-      formData: {
-        email: ''
-      }
-    }
-  },
-
-  methods: {
-    handleResetPassword() {
-      updatePassword(this.formData)
-    },
-
-    handleInput(data) {
-      this.formData = {
-        ...this.formData,
-        [data.name]: data.value
-      }
-    }
-  },
-
-  setup() {
-    const modal = useModalStore()
-
-    return { modal }
+function handleInput(data) {
+  formData = {
+    ...formData,
+    [data.name]: data.value
   }
 }
 </script>

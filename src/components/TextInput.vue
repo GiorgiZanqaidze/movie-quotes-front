@@ -1,7 +1,7 @@
 <template>
   <div class="relative flex flex-col gap-1">
-    <label :for="id"
-      >{{ label }}
+    <label :for="id">
+      {{ label }}
       <img
         v-if="requiredIcon"
         src="@/assets/icons/required_star_icon.svg"
@@ -15,7 +15,7 @@
       :type="type"
       :name="name"
       :placeholder="placeholder"
-      :class="errorClass()"
+      :class="errorClass"
       class="font-helventica_light text-sm h-[38px] rounded text-darkGray py-2 px-2 focus:outline border-2"
       @change="changeValue"
       v-model="value"
@@ -25,43 +25,26 @@
       <img v-if="icon === 'invalid'" src="@/assets/icons/invalid_icon.svg" alt="valid" />
     </div>
     <ErrorMessage
+      v-if="!backEndErrors"
       :name="name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
+    <span
+      v-if="backEndErrors"
+      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+      >{{ backEndErrors }}</span
+    >
   </div>
 </template>
 
 <script>
+import { defineProps, ref, watch } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
+import { computed } from 'vue'
 export default {
-  emits: ['change-input'],
   components: {
     Field,
     ErrorMessage
-  },
-
-  data() {
-    return {
-      value: '',
-      icon: null
-    }
-  },
-
-  methods: {
-    changeValue(event) {
-      this.$emit('change-input', event.target)
-    },
-    errorClass() {
-      if (!this.meta.touched && !this.errors[this.name]) {
-        return 'border-gray-500 border-2'
-      } else if (this.value && !this.errors[this.name]) {
-        this.icon = 'valid'
-        return 'border-green-500 border-2'
-      } else if (this.errors[this.name]) {
-        this.icon = 'invalid'
-        return 'border-red-500 border-2'
-      }
-    }
   },
 
   props: {
@@ -96,6 +79,46 @@ export default {
     },
     meta: {
       type: Object
+    },
+    backEndErrors: {
+      type: String
+    }
+  },
+
+  setup(props, { emit }) {
+    const value = ref('')
+    const icon = ref(null)
+
+    const changeValue = (event) => {
+      emit('change-input', event.target)
+    }
+
+    const errorClass = computed(() => {
+      if (!props.meta.touched && !props.errors[props.name]) {
+        return 'border-gray-500 border-2'
+      } else if (value.value && !props.errors[props.name]) {
+        icon.value = 'valid'
+        return 'border-green-500 border-2'
+      } else if (props.errors[props.name] || props.backEndErrors) {
+        icon.value = 'invalid'
+        return 'border-red-500 border-2'
+      }
+    })
+
+    watch(
+      () => props.meta.touched,
+      () => {
+        if (!props.meta.touched && !props.errors[props.name]) {
+          icon.value = null
+        }
+      }
+    )
+
+    return {
+      value,
+      icon,
+      changeValue,
+      errorClass
     }
   }
 }

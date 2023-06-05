@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="container first bg-black min-w-full flex flex-col items-center justify-center"
+      class="container first bg-mediumDark min-w-full flex flex-col items-center justify-center"
       style="min-height: 80vh"
     >
       <h1 class="w-[281px] sm:w-[703px] sm:text-6xl text-lightGrey font-medium text-center">

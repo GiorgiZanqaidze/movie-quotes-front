@@ -1,16 +1,16 @@
-import { getToken } from '@/helpers/cookie_token/index.js'
+import { userStore } from '@/stores/user'
 
 export function isAuthenticated() {
-  const token = getToken()
+  const user = userStore()
 
-  if (!token) {
-    return '/'
-  }
+  console.log(user.data)
+  // if (!token) {
+  //   return '/'
+  // }
+  return true
 }
 
 export function guest() {
-  const token = getToken()
-
   if (token) {
     return '/news-feed'
   }

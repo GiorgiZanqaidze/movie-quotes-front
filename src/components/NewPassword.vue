@@ -15,7 +15,7 @@
       @submit="handleSubmit"
       v-slot="{ errors, meta }"
     >
-      <password-input
+      <PasswordInput
         rules="required|min:8|max:15|alpha"
         id="password"
         type="password"
@@ -26,9 +26,9 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></password-input>
+      />
 
-      <password-input
+      <PasswordInput
         rules="required|confirmed:@password"
         id="password_confirmation"
         type="password"
@@ -39,7 +39,7 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></password-input>
+      />
       <button class="w-full bg-darkRed py-1 rounded my-1 text-sm sm:text-md">
         {{ $t('modals.new_password.button') }}
       </button>
@@ -52,47 +52,37 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import resetPassword from '@/services/resetPassword'
-export default {
-  components: {
-    Form
-  },
+import PasswordInput from '@/components/PasswordInput.vue'
+import { onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
-  data() {
-    return {
-      formData: {
-        password: '',
-        password_confirmation: ''
-      },
-      resetPasswordToken: ''
-    }
-  },
+const modal = useModalStore()
 
-  created() {
-    this.resetPasswordToken = this.$route.query.reset_password_token
+let formData = {
+  password: '',
+  password_confirmation: ''
+}
 
-    console.log(this.resetPasswordToken)
-  },
+const route = useRoute()
 
-  methods: {
-    handleSubmit() {
-      resetPassword(this.formData, this.resetPasswordToken)
-    },
-    handleInput(data) {
-      this.formData = {
-        ...this.formData,
-        [data.name]: data.value
-      }
-    }
-  },
+let resetPasswordToken = ''
 
-  setup() {
-    const modal = useModalStore()
+function handleSubmit() {
+  resetPassword(formData, resetPasswordToken)
+}
 
-    return { modal }
+function handleInput(data) {
+  formData = {
+    ...formData,
+    [data.name]: data.value
   }
 }
+
+onMounted(() => {
+  resetPasswordToken = route.query.reset_password_token
+})
 </script>

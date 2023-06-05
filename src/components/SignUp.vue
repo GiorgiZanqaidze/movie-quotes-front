@@ -11,7 +11,7 @@
       @submit="handleRegister"
       v-slot="{ errors, meta }"
     >
-      <text-input
+      <TextInput
         rules="required|min:3|max:15|alpha"
         id="name"
         type="name"
@@ -22,9 +22,9 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></text-input>
+      />
 
-      <text-input
+      <TextInput
         rules="required|email"
         id="email"
         type="email"
@@ -35,7 +35,8 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      ></text-input>
+        :backEndErrors="backEndErrors"
+      />
 
       <password-input
         rules="required|min:8|max:15|alpha"
@@ -50,7 +51,7 @@
         @change-input="handleInput"
       ></password-input>
 
-      <password-input
+      <PasswordInput
         rules="required|confirmed:@password"
         id="password_confirmation"
         type="password"
@@ -61,9 +62,7 @@
         :meta="meta"
         requiredIcon="true"
         @change-input="handleInput"
-      >
-      </password-input>
-      <span class="text-darkRed text-sm">{{ backendErrors }}</span>
+      />
 
       <button class="w-full bg-darkRed sm:py-1 rounded my-1">
         {{ $t('modals.sign_up.get_started') }}
@@ -90,56 +89,43 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import axios from '@/config/axios/index.js'
 import axiosInstance from '@/config/axios/index'
-export default {
-  components: {
-    Form
-  },
+import registerUser from '@/services/registerUser.js'
+import TextInput from '@/components/TextInput.vue'
+import PasswordInput from '@/components/PasswordInput.vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-  data() {
-    return {
-      formData: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: ''
-      },
-      backendErrors: null
-    }
-  },
+const modal = useModalStore()
+const router = useRouter()
+let formData = {
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: ''
+}
 
-  methods: {
-    async handleRegister() {
-      axiosInstance.defaults.withCredentials = true
+let backEndErrors = ref(null)
 
-      await axiosInstance.get('/sanctum/csrf-cookie')
+async function handleRegister() {
+  const response = await registerUser(formData)
 
-      await axiosInstance
-        .post('/api/register', this.formData)
-        .then((response) => {
-          if (response.status === 200) {
-            this.modal.toggleModal('checkEmail', true)
-          }
-        })
-        .catch((error) => {
-          this.backendErrors = error.response.data.message
-        })
-    },
-    handleInput(data) {
-      this.formData = {
-        ...this.formData,
-        [data.name]: data.value
-      }
-    }
-  },
+  if (response.status === 200) {
+    router.push('/news-feed')
+    modal.toggleModal('logIn', false)
+  } else {
+    backEndErrors.value = response.response.data.message
+  }
+}
 
-  setup() {
-    const modal = useModalStore()
-    return { modal }
+function handleInput(data) {
+  formData = {
+    ...formData,
+    [data.name]: data.value
   }
 }
 </script>

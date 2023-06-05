@@ -11,8 +11,8 @@
       @submit="handleLogin"
       v-slot="{ errors, meta }"
     >
-      <text-input
-        rules="required|email"
+      <TextInput
+        rules="required"
         id="email"
         type="email"
         name="email"
@@ -20,9 +20,10 @@
         :errors="errors"
         :meta="meta"
         :placeholder="$t('modals.login.placeholder_email')"
+        :backEndErrors="backEndErrors"
         @change-input="handleInput"
-      ></text-input>
-      <password-input
+      />
+      <PasswordInput
         rules="required"
         id="password"
         type="password"
@@ -32,14 +33,17 @@
         :label="$t('modals.login.password')"
         :placeholder="$t('modals.login.placeholder_password')"
         @change-input="handleInput"
-      ></password-input>
+        :backEndErrors="backEndErrors"
+      />
       <div class="flex justify-between text-sm">
-        <checkbox-input
+        <CheckboxInput
           id="remember_me"
           type="checkbox"
+          @change-input="handleInput"
           name="remember_me"
+          :value="true"
           :label="$t('modals.login.remember_me')"
-        ></checkbox-input>
+        />
         <a
           href="#"
           @click="modal.toggleModal('forgotPassword', true)"
@@ -64,57 +68,54 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
-import axiosinstance from '@/config/axios/index.js'
 import loginUser from '@/services/loginUser.js'
-import { getToken } from '@/helpers/cookie_token/index'
+import { useRouter } from 'vue-router'
+import { ref, reactive } from 'vue'
+import TextInput from '@/components/TextInput.vue'
+import PasswordInput from '@/components/PasswordInput.vue'
+import CheckboxInput from '@/components/CheckboxInput.vue'
+import { userStore } from '@/stores/user.js'
 
-// import axios from 'axios'
+const modal = useModalStore()
+const user = userStore()
 
-export default {
-  components: {
-    Form
-  },
-  data() {
-    return {
-      formData: {
-        email: '',
-        password: '',
-        device_name: 'browser'
-      }
+const route = useRouter()
+let formData = {
+  email: '',
+  password: '',
+  remember_me: false,
+  device_name: 'browser'
+}
+
+let backEndErrors = ''
+
+async function handleLogin() {
+  const response = await loginUser(formData)
+
+  if (response.status === 200) {
+    user.setUser(response.data)
+    route.push('/news-feed')
+    modal.toggleModal('logIn', false)
+  } else {
+    backEndErrors = response.response.data.message
+    console.log(backEndErrors)
+  }
+}
+
+function handleInput(data) {
+  if (data.name === 'remember_me') {
+    formData = {
+      ...formData,
+      remember_me: !formData.remember_me
     }
-  },
-  methods: {
-    async handleLogin() {
-      axiosinstance.defaults.withCredentials = true
-
-      await axiosinstance.get('/sanctum/csrf-cookie')
-
-      axiosinstance
-        .post('/api/login', this.formData)
-        .then((response) => {
-          console.log(response.data)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-
-      this.$router.push('/news-feed')
-    },
-
-    handleInput(data) {
-      this.formData = {
-        ...this.formData,
-        [data.name]: data.value
-      }
+  } else {
+    formData = {
+      ...formData,
+      [data.name]: data.value
     }
-  },
-  setup() {
-    const modal = useModalStore()
-
-    return { modal }
   }
 }
 </script>
