@@ -23,7 +23,7 @@ const router = createRouter({
       meta: { auth: true }
     },
 
-    { path: '/:notFound(.*)', component: NotFoundPage }
+    { path: '/:notFound(.*)', component: NotFoundPage, meta: { auth: true, guest: true } }
   ]
 })
 
