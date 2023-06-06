@@ -1,7 +1,7 @@
 <template>
   <div class="text-white bg-mediumDark min-h-screen">
-    <newsfeed-movies></newsfeed-movies>
-    <write-quote></write-quote>
+    <!-- <newsfeed-movies></newsfeed-movies>
+    <TheModal /> -->
   </div>
 </template>
 
@@ -11,4 +11,5 @@ import axiosInstance from '@/config/axios/index'
 import { onMounted, onBeforeMount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { RouterView } from 'vue-router'
+import TheModal from '@/components/TheModal.vue'
 </script>
