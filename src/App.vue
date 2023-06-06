@@ -7,12 +7,7 @@
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router'
-import { onMounted, inject, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { userStore } from '@/stores/user.js'
+import { useModalStore } from '@/stores/modal.js'
 
-const user = userStore()
-const route = useRoute()
-const router = useRouter()
+const modal = useModalStore()
 </script>

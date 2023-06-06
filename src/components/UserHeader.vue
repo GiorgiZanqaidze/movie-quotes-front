@@ -1,17 +1,17 @@
 <template>
-  <header class="flex px-2 sm:p-8 justify-between items-center bg-gray h-[38px]">
-    <h1 class="text-lightGrey text-sm sm:text-lg">{{ $t('landing.quotes') }}</h1>
+  <header class="flex p-8 justify-between items-center bg-gray h-[38px] px-4 sm:px-2">
+    <h1 class="text-lightGrey text-sm sm:text-lg hidden sm:block">
+      {{ $t('landing.quotes') }}
+    </h1>
+    <div class="block sm:hidden cursor-pointer" @click="modal.toggleModal('userNavigation', true)">
+      <img src="@/assets/icons/burger_btn.svg" alt="burger_button" />
+    </div>
     <div class="flex sm:gap-5 gap-3">
       <div class="flex items-center">
-        <select v-model="$i18n.locale" class="text-white bg-gray text-sm sm:text-lg">
-          <option
-            v-for="locale in $i18n.availableLocales"
-            :key="`locale-${locale}`"
-            :value="locale"
-          >
-            {{ $t(`landing.${locale}`) }}
-          </option>
-        </select>
+        <LanguageDropdown />
+      </div>
+      <div class="flex sm:hidden items-center">
+        <img src="@/assets/icons/search.svg" alt="search" />
       </div>
       <button
         class="text-white text-sm sm:text-lg sm:py-[3px] px-2 py-1 sm:px-3 rounded cursor-default"
@@ -19,7 +19,7 @@
         <img
           src="@/assets/icons/notification.svg"
           alt="notification"
-          class="cursor-pointer w-[30px]"
+          class="cursor-pointer w-[24px] sm:w-[30px]"
         />
       </button>
       <button
@@ -38,6 +38,7 @@ import { setLocale } from '@vee-validate/i18n'
 import logOutUser from '@/services/logOutUser.js'
 import axiosInstance from '@/config/axios/index'
 import { useRouter } from 'vue-router'
+import LanguageDropdown from '@/components/LanguageDropdown.vue'
 const modal = useModalStore()
 const route = useRouter()
 
