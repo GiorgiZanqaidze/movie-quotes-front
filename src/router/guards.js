@@ -1,17 +1,18 @@
 import { userStore } from '@/stores/user'
 
-export function isAuthenticated() {
-  const user = userStore()
+export default function navigationGuards() {}
+router.beforeEach(async (to, from, next) => {
+  const store = userStore()
 
-  console.log(user.data)
-  // if (!token) {
-  //   return '/'
-  // }
-  return true
-}
+  await store.fetchUserData()
 
-export function guest() {
-  if (token) {
-    return '/news-feed'
+  if (to.meta.guest && !store.data) {
+    next()
+  } else if (to.meta.auth && store.data) {
+    next()
+  } else if (to.meta.auth && !store.data) {
+    next({ name: 'home' })
+  } else if (to.meta.guest && store.data) {
+    next({ name: 'newsFeed' })
   }
-}
+})

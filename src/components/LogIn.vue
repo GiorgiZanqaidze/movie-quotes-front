@@ -54,10 +54,8 @@
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.login.sign_in') }}
       </button>
-      <button class="w-full bg-transparent border sm:py-1 rounded text-sm sm:text-md py-1">
-        <img src="@/assets/icons/google_icon.svg" alt="google" class="inline-block w-[20px] mr-1" />
-        {{ $t('modals.login.google') }}
-      </button>
+
+      <GoogleButton />
       <span class="text-sm sm:text-[16px] text-center text-mediumGray"
         >{{ $t('modals.login.have_account') }}
         <a href="#" @click="modal.toggleModal('signUp', true)" class="text-mediumBlue underline">
@@ -78,6 +76,8 @@ import TextInput from '@/components/TextInput.vue'
 import PasswordInput from '@/components/PasswordInput.vue'
 import CheckboxInput from '@/components/CheckboxInput.vue'
 import { userStore } from '@/stores/user.js'
+import axiosInstance from '@/config/axios/index'
+import GoogleButton from '@/components/GoogleButton.vue'
 
 const modal = useModalStore()
 const user = userStore()

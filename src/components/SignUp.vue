@@ -67,14 +67,8 @@
       <button class="w-full bg-darkRed sm:py-1 rounded my-1">
         {{ $t('modals.sign_up.get_started') }}
       </button>
-      <button class="w-full bg-transparent border sm:py-1 rounded sm:text-md text-sm py-1">
-        <img
-          src="@/assets/icons/google_icon.svg"
-          alt="google"
-          class="inline-block sm:w-[20px] mr-1"
-        />
-        {{ $t('modals.sign_up.google') }}
-      </button>
+
+      <GoogleButton />
       <span class="sm:text-md text-sm text-center text-mediumGray"
         >{{ $t('modals.sign_up.have_account') }}
         <a
@@ -99,6 +93,7 @@ import TextInput from '@/components/TextInput.vue'
 import PasswordInput from '@/components/PasswordInput.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import GoogleButton from '@/components/GoogleButton.vue'
 
 const modal = useModalStore()
 const router = useRouter()
@@ -115,8 +110,7 @@ async function handleRegister() {
   const response = await registerUser(formData)
 
   if (response.status === 200) {
-    router.push('/news-feed')
-    modal.toggleModal('logIn', false)
+    modal.toggleModal('checkEmail', true)
   } else {
     backEndErrors.value = response.response.data.message
   }
