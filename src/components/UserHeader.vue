@@ -21,6 +21,9 @@
           alt="notification"
           class="cursor-pointer w-[24px] sm:w-[30px]"
         />
+        <div class="relative">
+          <img src="@/assets/icons/arrow.svg" alt="arrow" class="absolute top-3 scale-[1.5]" />
+        </div>
         <NotificationsModal />
       </button>
       <button
