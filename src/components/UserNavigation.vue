@@ -6,7 +6,7 @@
     style="background: rgba(0, 0, 0, 0.54); backdrop-filter: blur(3px)"
   ></div>
   <div
-    class="text-white fixed sm:top-[150px] top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
+    class="text-white fixed sm:top-[150px] z-50 top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">

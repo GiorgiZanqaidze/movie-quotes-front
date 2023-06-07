@@ -1,5 +1,5 @@
 <template>
-  <header class="flex p-8 justify-between items-center bg-gray h-[38px] px-4 sm:px-2">
+  <header class="flex p-8 justify-between items-center bg-gray h-[38px] px-4 sm:px-2 relative">
     <h1 class="text-lightGrey text-sm sm:text-lg hidden sm:block">
       {{ $t('landing.quotes') }}
     </h1>
@@ -21,6 +21,7 @@
           alt="notification"
           class="cursor-pointer w-[24px] sm:w-[30px]"
         />
+        <NotificationsModal />
       </button>
       <button
         @click="logOut"
@@ -39,7 +40,10 @@ import logOutUser from '@/services/logOutUser.js'
 import axiosInstance from '@/config/axios/index'
 import { useRouter } from 'vue-router'
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
+import NotificationsModal from '@/components/NotificationsModal.vue'
+
 const modal = useModalStore()
+
 const route = useRouter()
 
 async function logOut() {

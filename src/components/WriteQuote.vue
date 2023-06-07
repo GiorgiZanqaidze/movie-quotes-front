@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md"
+    class="fixed top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full"
   >
     <header class="p-5 relative border-b-2 border-darkGray">
       <h3 class="text-center">Write New Quote</h3>
@@ -14,7 +14,7 @@
     <div class="mt-4 mb-6 px-6">
       <div class="flex items-center gap-3">
         <profile-icon></profile-icon>
-        <h1>Nino Tabagari</h1>
+        <h1 class="text-[20px]">Nino Tabagari</h1>
       </div>
     </div>
     <Form class="mt-4 flex flex-col gap-3 pb-2 px-6">
@@ -32,29 +32,34 @@
           class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2"
         ></textarea>
       </div>
-      <div class="w-full bg-transparent border border-mediumGray rounded h-[86px]">
+      <div class="sm:w-full bg-transparent border border-mediumGray rounded h-[86px]">
         <div
-          class="w-full cursor-pointer h-full flex justify-start gap-5 ml-5 items-center"
+          class="sm:w-full cursor-pointer h-full flex justify-start gap-5 ml-5 items-center"
           @dragover="dragOver"
           @drop="drop"
         >
           <div>
             <img src="@/assets/icons/drag_and_drop.svg" alt="camera" />
           </div>
-          <h3>Drag & drop your image here or</h3>
-          <Field name="file" v-slot="{ uploadImage }" class="relative bg-red-500">
-            <input type="file" accept="image/*" @change="uploadImage" />
+          <h3 class="hidden sm:inline">Drag & drop your image here or</h3>
+          <p class="inline sm:hidden text-[16px]">upload Image</p>
+          <Field name="file" v-slot="{ uploadImage }" class="relative">
+            <input id="file" type="file" accept="image/*" @change="uploadImage" class="hidden" />
+            <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]"
+              >choose file</label
+            >
           </Field>
         </div>
       </div>
-      <div class="w-full border-mediumGray rounded overflow-hidden h-[86px] relative">
+      <div class="w-full border-mediumGray rounded overflow-hidden h-[86px] relative text-[20px]">
         <Field
           v-slot="{ value }"
           name="drink"
+          id="ganres"
           as="select"
-          class="w-full bg-black h-full overflow-hidden pl-10"
+          class="w-full bg-black h-full overflow-hidden sm:pl-10 pl-16"
         >
-          <option value="" disabled>Select a drink</option>
+          <option value="" disabled>Choose Movie</option>
           <option
             v-for="type in state.types"
             :key="type"
@@ -64,11 +69,10 @@
             {{ type }}
           </option>
         </Field>
-        <span class="dropdown-arrow"></span>
         <img
           src="@/assets/icons/choose_movie.svg"
           alt="ganres"
-          class="absolute top-1/2 translate-y-[-50%] left-2"
+          class="absolute top-1/2 translate-y-[-50%] sm:left-2 left-5"
         />
       </div>
       <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">Post</button>

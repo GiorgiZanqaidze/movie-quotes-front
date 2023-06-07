@@ -23,7 +23,8 @@ module.exports = {
         mediumDark: '#181624',
         gray: '#24222F',
         darkBlack: '#11101A',
-        light: '#EFEFEF4D'
+        light: '#EFEFEF4D',
+        mediumRed: '#9747FF66'
       }
     }
   },
