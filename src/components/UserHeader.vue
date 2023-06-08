@@ -44,7 +44,7 @@
 
 <script setup>
 import { useModalStore } from '@/stores/modal'
-import { setLocale } from '@vee-validate/i18n'
+
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
 import NotificationsModal from '@/components/NotificationsModal.vue'
 import SearchBar from '@/components/SearchBar.vue'

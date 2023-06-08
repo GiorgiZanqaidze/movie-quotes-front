@@ -3,15 +3,7 @@
     <h1 class="text-lightGrey text-sm sm:text-lg">{{ $t('landing.quotes') }}</h1>
     <div class="flex sm:gap-7 gap-3">
       <div class="flex items-center">
-        <select v-model="$i18n.locale" class="text-white bg-gray text-sm sm:text-lg">
-          <option
-            v-for="locale in $i18n.availableLocales"
-            :key="`locale-${locale}`"
-            :value="locale"
-          >
-            {{ $t(`landing.${locale}`) }}
-          </option>
-        </select>
+        <LanguageDropdown />
       </div>
       <div>
         <button
@@ -37,6 +29,7 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { setLocale } from '@vee-validate/i18n'
+import LanguageDropdown from '@/components/LanguageDropdown.vue'
 const modal = useModalStore()
 
 function toggleModal(type, show) {

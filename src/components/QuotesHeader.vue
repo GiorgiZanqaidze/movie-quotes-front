@@ -14,8 +14,8 @@
 </template>
 
 <script setup>
-import { useModalStore } from '@/stores/modal'
 import SearchBar from '@/components/SearchBar.vue'
 
+import { useModalStore } from '@/stores/modal'
 const modal = useModalStore()
 </script>
