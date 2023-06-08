@@ -13,19 +13,27 @@
       <div class="flex sm:hidden items-center">
         <img src="@/assets/icons/search.svg" alt="search" />
       </div>
-      <button
+      <div
         class="text-white text-sm sm:text-lg sm:py-[3px] px-2 py-1 sm:px-3 rounded cursor-default"
       >
-        <img
-          src="@/assets/icons/notification.svg"
-          alt="notification"
-          class="cursor-pointer w-[24px] sm:w-[30px]"
-        />
-        <div class="relative">
-          <img src="@/assets/icons/arrow.svg" alt="arrow" class="absolute top-3 scale-[1.5]" />
+        <button class="flex items-center justify-center" @click="modal.toggleNotifications()">
+          <img
+            src="@/assets/icons/notification.svg"
+            alt="notification"
+            class="cursor-pointer w-[24px] sm:w-[30px]"
+          />
+        </button>
+        <div v-if="modal.notifications">
+          <div class="relative">
+            <img src="@/assets/icons/arrow.svg" alt="arrow" class="absolute top-4 scale-[2] z-50" />
+          </div>
+          <div
+            @click="modal.toggleNotifications()"
+            class="fixed top-[80px] left-[-10px] right-[-10px] bottom-[-10px] z-50"
+          ></div>
+          <NotificationsModal />
         </div>
-        <NotificationsModal />
-      </button>
+      </div>
       <button
         @click="logOut"
         class="text-white border text-sm sm:text-lg sm:py-[3px] px-2 sm:px-3 py-1 rounded bg-transparent"
@@ -44,7 +52,6 @@ import axiosInstance from '@/config/axios/index'
 import { useRouter } from 'vue-router'
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
 import NotificationsModal from '@/components/NotificationsModal.vue'
-
 const modal = useModalStore()
 
 const route = useRouter()

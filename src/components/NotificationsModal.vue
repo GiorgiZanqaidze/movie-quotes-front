@@ -1,14 +1,17 @@
 <template>
   <div
-    class="text-white absolute w-screen left-[0] top-[80px] min-h-[200px] px-5 pt-3 bg-black sm:right-10 sm:left-auto z-40 sm:w-[960px] rounded-md"
+    class="text-white absolute z-50 w-screen left-[0] top-[80px] min-h-[200px] px-5 pt-3 bg-black sm:right-10 sm:left-auto sm:w-[960px] rounded-md"
   >
     <div class="flex justify-between">
       <h1 class="sm:text-[32px]">Notifications</h1>
       <button class="underline text-[20px]">Mark as all read</button>
     </div>
     <div class="mt-5 flex flex-col gap-4 pb-4">
-      <TheNotification condition="new" />
-      <TheNotification condition="old" />
+      <TheNotification condition="new" type="comment" />
+      <TheNotification condition="new" type="like" />
+      <TheNotification condition="old" type="like" />
+      <TheNotification condition="old" type="comment" />
+      <TheNotification condition="old" type="comment" />
     </div>
   </div>
 </template>
