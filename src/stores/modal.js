@@ -7,7 +7,8 @@ export const useModalStore = defineStore('modal', {
         condition: false,
         name: null
       },
-      notifications: false
+      notifications: false,
+      searchModal: false
     }
   },
   actions: {
@@ -19,6 +20,9 @@ export const useModalStore = defineStore('modal', {
     },
     toggleNotifications() {
       this.notifications = !this.notifications
+    },
+    toggleSearchModal() {
+      this.searchModal = !this.searchModal
     }
   }
 })
