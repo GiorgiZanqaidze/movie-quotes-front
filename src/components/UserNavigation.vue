@@ -19,7 +19,7 @@
       </div>
       <div class="flex justify-center items-start flex-col">
         <h3 v-if="user.name" class="text-[20px]">{{ user.name }}</h3>
-        <a href="#" class="sm:text-sm text-[14px]">Edit your profile</a>
+        <a href="#" class="sm:text-sm text-[14px]">{{ $t('news_feed.edit_profile') }}</a>
       </div>
       <div class="flex justify-center items-start">
         <a href="#">
@@ -27,7 +27,7 @@
         </a>
       </div>
       <div>
-        <h3>News feed</h3>
+        <h3>{{ $t('news_feed.news_feed') }}</h3>
       </div>
       <div class="flex justify-center items-start">
         <a href="#">
@@ -35,8 +35,12 @@
         </a>
       </div>
       <div>
-        <h3>News feed</h3>
+        <h3>{{ $t('news_feed.movies_list') }}</h3>
       </div>
+    </div>
+    <div class="sm:hidden flex gap-3 justify-center items-center w-2/3">
+      <LanguageDropdown />
+      <LogOutButton />
     </div>
   </div>
 </template>
@@ -45,6 +49,8 @@
 import { computed } from 'vue'
 import { userStore } from '@/stores/user.js'
 import { useModalStore } from '@/stores/modal.js'
+import LanguageDropdown from '@/components/LanguageDropdown.vue'
+import LogOutButton from '@/components/LogOutButton.vue'
 
 const userData = userStore()
 

@@ -6,7 +6,7 @@
         @click="modal.toggleModal('writeQuote', true)"
       >
         <img src="@/assets/icons/write_quote.svg" alt="write_quote" class="inline-block mr-2" />
-        write new quote
+        {{ $t('news_feed.write_quote.title') }}
       </button>
     </div>
     <SearchBar />

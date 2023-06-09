@@ -1,7 +1,7 @@
 <template>
   <select
     v-model="currentLocale"
-    class="text-white bg-gray text-sm sm:text-lg"
+    class="text-white bg-gray text-sm sm:text-lg w-12"
     @change="changeLocale(currentLocale)"
   >
     <option
@@ -10,7 +10,6 @@
       :value="locale"
       :selected="currentLocale === locale"
     >
-      {{ currentLocale === locale }}
       {{ $t(`landing.${locale}`) }}
     </option>
   </select>
@@ -32,7 +31,14 @@ export default {
       this.$i18n.locale = locale
       setLocale(locale)
       this.currentLocale = locale
+      localStorage.setItem('locale', locale)
     }
+  },
+
+  created() {
+    this.currentLocale = localStorage.getItem('locale')
+    this.$i18n.locale = localStorage.getItem('locale')
+    setLocale(localStorage.getItem('locale'))
   }
 }
 </script>

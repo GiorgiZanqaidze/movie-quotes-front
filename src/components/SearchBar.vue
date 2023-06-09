@@ -21,11 +21,17 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+console.log(t)
+
 const toggle = reactive({ input: '', placeholder: 'Search by' })
 
 const openInput = () => {
   toggle.input = 'sm:w-[200%]'
-  toggle.placeholder = 'Enter @ to search movies, Enter # to search quotes '
+  toggle.placeholder = 'Enter @ to search movies, Enter # to search quotes'
 }
 
 const closeInput = () => {

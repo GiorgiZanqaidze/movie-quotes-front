@@ -3,7 +3,7 @@
     @click="logOut"
     class="text-white border text-sm sm:text-lg sm:py-[3px] px-2 sm:px-3 py-1 rounded bg-transparent"
   >
-    Log Out
+    {{ $t('news_feed.log_out') }}
   </button>
 </template>
 

@@ -32,7 +32,7 @@
         <input
           type="text"
           name="comment"
-          placeholder="Write a comment"
+          :placeholder="$t('news_feed.write_a_comment')"
           class="py-2 px-3 rounded-md bg-gray sm:text-[20px] text-[16px]"
         />
       </div>

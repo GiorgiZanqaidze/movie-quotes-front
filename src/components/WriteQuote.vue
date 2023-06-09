@@ -3,7 +3,7 @@
     class="fixed top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full"
   >
     <header class="p-5 relative border-b-2 border-darkGray">
-      <h3 class="text-center">Write New Quote</h3>
+      <h3 class="text-center">{{ $t('news_feed.write_quote.title') }}</h3>
       <button
         class="absolute top-1/2 right-4 translate-y-[-50%]"
         @click="modal.toggleModal('writeQuote', false)"
@@ -41,13 +41,15 @@
           <div>
             <img src="@/assets/icons/drag_and_drop.svg" alt="camera" />
           </div>
-          <h3 class="hidden sm:inline">Drag & drop your image here or</h3>
+          <h3 class="hidden sm:inline">
+            {{ $t('news_feed.write_quote.drag_and_drop') }}
+          </h3>
           <p class="inline sm:hidden text-[16px]">upload Image</p>
           <Field name="file" v-slot="{ uploadImage }" class="relative">
             <input id="file" type="file" accept="image/*" @change="uploadImage" class="hidden" />
-            <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]"
-              >choose file</label
-            >
+            <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]">{{
+              $t('news_feed.write_quote.choose_file')
+            }}</label>
           </Field>
         </div>
       </div>
@@ -59,7 +61,9 @@
           as="select"
           class="w-full bg-black h-full overflow-hidden sm:pl-10 pl-16"
         >
-          <option value="" disabled>Choose Movie</option>
+          <option value="" disabled>
+            {{ $t('news_feed.write_quote.choose_movie') }}
+          </option>
           <option
             v-for="type in state.types"
             :key="type"
@@ -75,7 +79,9 @@
           class="absolute top-1/2 translate-y-[-50%] sm:left-2 left-5"
         />
       </div>
-      <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">Post</button>
+      <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">
+        {{ $t('news_feed.write_quote.post') }}
+      </button>
     </Form>
   </div>
 </template>
