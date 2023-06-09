@@ -4,10 +4,12 @@
   "edit_profile": "Edit your profile",
   "movies_list": "List of movies",
   "notifications": "Notifications",
-  "mark_all": "Mark  as all read",
+  "mark_all": "Mark as all read",
   "commented_on": "Commented to your movie quote",
   "reacted_on": "Reacted to your quote",
   "write_a_comment": "Write a comment",
+  "search_placeholder": "Enter @ to search movies, Enter # to search quotes",
+  "search": "Search by",
   "new": "New",
   "write_quote": {
     "title": "Write New Quote",

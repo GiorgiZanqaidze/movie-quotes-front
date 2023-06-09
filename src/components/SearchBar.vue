@@ -25,17 +25,17 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-console.log(t)
+console.log(t('news_feed.news_feed'))
 
-const toggle = reactive({ input: '', placeholder: 'Search by' })
+const toggle = reactive({ input: '', placeholder: t('news_feed.search') })
 
 const openInput = () => {
   toggle.input = 'sm:w-[200%]'
-  toggle.placeholder = 'Enter @ to search movies, Enter # to search quotes'
+  toggle.placeholder = t('news_feed.search_placeholder')
 }
 
 const closeInput = () => {
   toggle.input = 'sm:w-1/5'
-  toggle.placeholder = 'Search by'
+  toggle.placeholder = t('news_feed.search')
 }
 </script>
