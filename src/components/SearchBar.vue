@@ -25,8 +25,6 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-console.log(t('news_feed.news_feed'))
-
 const toggle = reactive({ input: '', placeholder: t('news_feed.search') })
 
 const openInput = () => {

@@ -2,12 +2,17 @@
   <div class="flex flex-col sm:items-center gap-4 pb-10">
     <QuotesHeader />
     <div class="flex flex-col items-center gap-4 w-full">
-      <newsfeed-movie></newsfeed-movie>
-      <newsfeed-movie></newsfeed-movie>
+      <li v-for="(quote, index) in quotes.data" :key="index" class="list-none">
+        <newsfeed-movie :quote="quote"></newsfeed-movie>
+      </li>
     </div>
   </div>
 </template>
 
 <script setup>
 import QuotesHeader from '@/components/QuotesHeader.vue'
+import { useQuoteStore } from '@/stores/quote.js'
+import { onMounted } from 'vue'
+
+const quotes = useQuoteStore()
 </script>

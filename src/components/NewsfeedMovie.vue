@@ -4,7 +4,7 @@
       <profile-icon></profile-icon>
       <h2>Maia Nakashidze</h2>
     </header>
-    <h1>“Follow your dream.”movie- Billy Elliot. (2000)</h1>
+    <h1>“{{ quote.name }}”movie- {{ quote.movie.title }} ({{ quote.movie.year }})</h1>
     <div class="rounded-lg overflow-hidden">
       <img src="@/assets/images/news_feed.svg" alt="movie" />
     </div>
@@ -22,8 +22,11 @@
         </button>
       </div>
     </div>
-    <the-comment></the-comment>
-    <the-comment></the-comment>
+    <ul>
+      <li v-for="(comment, index) in quote.comments" :key="index">
+        <the-comment :text="comment.text"></the-comment>
+      </li>
+    </ul>
     <div class="flex items-center gap-4 mt-4">
       <div class="rounded-full overflow-hidden sm:max-w-[52px] max-w-[40px]">
         <img src="@/assets/images/landing_image.svg" alt="" class="" />
@@ -41,5 +44,12 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    quote: {
+      type: Object,
+      required: true
+    }
+  }
+}
 </script>

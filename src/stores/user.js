@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import axiosInstance from '@/config/axios/index'
 import getUser from '@/services/getUser'
 export const userStore = defineStore('user', {
   state() {

@@ -6,15 +6,18 @@
     </div>
 
     <div class="flex flex-col gap-2 border-b-[1px] border-light pb-4">
-      <p class="sm:pl-14 text-[16px] sm:text-[20px]">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nunc vel massa
-        facilisis consequat elit morbi convallis convallis. Volutpat vitae et nisl et. Adipiscing
-        enim integer mi leo nisl. Arcu vitae mauris odio eget.
-      </p>
+      <p class="sm:pl-14 text-[16px] sm:text-[20px]">{{ text }}</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    text: {
+      type: String,
+      required: true
+    }
+  }
+}
 </script>

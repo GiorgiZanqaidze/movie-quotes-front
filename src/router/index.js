@@ -6,6 +6,7 @@ import UserNavigation from '@/components/UserNavigation.vue'
 import LandingHeader from '@/components/LandingHeader.vue'
 import UserHeader from '@/components/UserHeader.vue'
 import { userStore } from '@/stores/user'
+import { useQuoteStore } from '@/stores/quote.js'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -28,17 +29,21 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  const store = userStore()
+  const user = userStore()
+  await user.fetchUserData()
 
-  await store.fetchUserData()
+  const quotes = useQuoteStore()
 
-  if (to.meta.guest && !store.data) {
+  if (to.meta.guest && !user.data) {
     next()
-  } else if (to.meta.auth && store.data) {
+  } else if (to.meta.auth && user.data) {
+    if (to.name === 'newsFeed') {
+      await quotes.getQuotes()
+    }
     next()
-  } else if (to.meta.auth && !store.data) {
+  } else if (to.meta.auth && !user.data) {
     next({ name: 'home' })
-  } else if (to.meta.guest && store.data) {
+  } else if (to.meta.guest && user.data) {
     next({ name: 'newsFeed' })
   }
 })
