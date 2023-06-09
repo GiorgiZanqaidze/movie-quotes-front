@@ -6,7 +6,9 @@ export const useModalStore = defineStore('modal', {
       isVisible: {
         condition: false,
         name: null
-      }
+      },
+      notifications: false,
+      searchModal: false
     }
   },
   actions: {
@@ -15,6 +17,12 @@ export const useModalStore = defineStore('modal', {
         condition: showModal,
         name: modalName
       }
+    },
+    toggleNotifications() {
+      this.notifications = !this.notifications
+    },
+    toggleSearchModal() {
+      this.searchModal = !this.searchModal
     }
   }
 })

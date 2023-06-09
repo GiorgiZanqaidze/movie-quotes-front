@@ -1,29 +1,46 @@
 <template>
   <div
-    class="text-white absolute top-[150px] width-[200px] height-[200px] grid grid-cols-2 gap-y-6 place-items-center"
+    @click="modal.toggleModal('null', false)"
+    v-if="modal.isVisible.condition"
+    class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px]"
+    style="background: rgba(0, 0, 0, 0.54); backdrop-filter: blur(3px)"
+  ></div>
+  <div
+    class="text-white absolute sm:top-[150px] z-[30] top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
+    :class="showNavBar ? 'block' : 'hidden'"
   >
-    <div class="rounded-full overflow-hidden w-[52px]">
-      <img src="@/assets/images/landing_image.svg" alt="" class="w-[60px]" />
+    <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
+      <div class="flex justify-center items-center">
+        <img
+          src="@/assets/images/landing_image.svg"
+          alt=""
+          class="sm:w-[52px] w-[40px] sm:h-[52px] h-[40px] rounded-full overflow-hidden"
+        />
+      </div>
+      <div class="flex justify-center items-start flex-col">
+        <h3 v-if="user.name" class="text-[20px]">{{ user.name }}</h3>
+        <a href="#" class="sm:text-sm text-[14px]">{{ $t('news_feed.edit_profile') }}</a>
+      </div>
+      <div class="flex justify-center items-start">
+        <a href="#">
+          <img src="@/assets/icons/home_red.svg" alt="home" class="w-[24px] sm:w-auto" />
+        </a>
+      </div>
+      <div>
+        <h3>{{ $t('news_feed.news_feed') }}</h3>
+      </div>
+      <div class="flex justify-center items-start">
+        <a href="#">
+          <img src="@/assets/icons/movies_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
+        </a>
+      </div>
+      <div>
+        <h3>{{ $t('news_feed.movies_list') }}</h3>
+      </div>
     </div>
-    <div class="justify-center">
-      <h3>{{ userName }}</h3>
-      <a href="#" class="text-sm">Edit your profile</a>
-    </div>
-    <div>
-      <a href="#">
-        <img src="@/assets/icons/home_red.svg" alt="home" />
-      </a>
-    </div>
-    <div>
-      <h3>News feed</h3>
-    </div>
-    <div>
-      <a href="#">
-        <img src="@/assets/icons/movies_white.svg" alt="home" />
-      </a>
-    </div>
-    <div>
-      <h3>News feed</h3>
+    <div class="sm:hidden flex gap-3 justify-center items-center w-2/3">
+      <LanguageDropdown />
+      <LogOutButton />
     </div>
   </div>
 </template>
@@ -31,7 +48,15 @@
 <script setup>
 import { computed } from 'vue'
 import { userStore } from '@/stores/user.js'
-const user = userStore()
+import { useModalStore } from '@/stores/modal.js'
+import LanguageDropdown from '@/components/LanguageDropdown.vue'
+import LogOutButton from '@/components/LogOutButton.vue'
 
-const userName = computed(() => user.data.name)
+const userData = userStore()
+
+const modal = useModalStore()
+
+const user = computed(() => userData.data)
+
+const showNavBar = computed(() => modal.isVisible.name === 'userNavigation')
 </script>

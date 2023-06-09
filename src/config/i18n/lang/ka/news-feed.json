@@ -1,0 +1,19 @@
+{
+  "log_out": "გასვლა",
+  "news_feed": "სიახლეები",
+  "edit_profile": "შეცვალე შენი პროფილი",
+  "movies_list": "ფილმების სია",
+  "notifications": "შეტყობინებები",
+  "mark_all": "ყველას მონიშვნა",
+  "commented_on": "დააკომენტარა ციტატაზე",
+  "reacted_on": "მოიწონა ციტატა",
+  "write_a_comment": "დაწერე კომენტარი",
+  "new": "ახალი",
+  "write_quote": {
+    "title": "დაწერე ახალი ციტატა",
+    "drag_and_drop": "ჩააგდე ფოტო ან",
+    "choose_file": "აირჩიე ფაილი",
+    "choose_movie": "აირჩიე ფილმი",
+    "post": "გამოქვეყნება"
+  }
+}

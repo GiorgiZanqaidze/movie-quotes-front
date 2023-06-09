@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-darkBlack w-[300px] sm:w-[961px] p-4 rounded-lg flex flex-col gap-4">
+  <div class="bg-darkBlack sm:w-[961px] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
     <header class="flex items-center gap-4">
       <profile-icon></profile-icon>
       <h2>Maia Nakashidze</h2>
@@ -12,28 +12,28 @@
       <div class="flex gap-2 items-center just">
         <p>1</p>
         <button>
-          <img src="@/assets/icons/comment.svg" alt="comment" />
+          <img src="@/assets/icons/comment.svg" alt="comment" class="w-[24px]" />
         </button>
       </div>
       <div class="flex gap-2 items-center just">
         <p>1</p>
         <button>
-          <img src="@/assets/icons/likes.svg" alt="likes" />
+          <img src="@/assets/icons/likes.svg" alt="likes" class="w-[24px]" />
         </button>
       </div>
     </div>
     <the-comment></the-comment>
     <the-comment></the-comment>
     <div class="flex items-center gap-4 mt-4">
-      <div class="rounded-full overflow-hidden max-w-[52px]">
+      <div class="rounded-full overflow-hidden sm:max-w-[52px] max-w-[40px]">
         <img src="@/assets/images/landing_image.svg" alt="" class="" />
       </div>
       <div class="flex flex-col gap-2 w-full">
         <input
           type="text"
           name="comment"
-          placeholder="Write a comment"
-          class="py-2 px-3 rounded-md bg-gray sm:text-[20px]"
+          :placeholder="$t('news_feed.write_a_comment')"
+          class="py-2 px-3 rounded-md bg-gray sm:text-[20px] text-[16px]"
         />
       </div>
     </div>

@@ -19,11 +19,14 @@ module.exports = {
         darkGray: '#222030',
         mediumGray: '#6C757D',
         lightDark: '#CED4DA',
-        mediumBlue: '#0D6EFD',
         mediumDark: '#181624',
+        mediumBlue: '#0D6EFD',
         gray: '#24222F',
         darkBlack: '#11101A',
-        light: '#EFEFEF4D'
+        light: '#EFEFEF4D',
+        mediumRed: '#9747FF66',
+        lightBlue: '#198754',
+        lightBlack: '#12101A'
       }
     }
   },

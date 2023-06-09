@@ -40,6 +40,7 @@
       :text="$t('modals.feedback.link_expired_desc')"
       v-if="modal.isVisible.name === 'linkExpired'"
     />
+    <WriteQuote v-if="modal.isVisible.name === 'writeQuote'" />
   </div>
 </template>
 
@@ -50,5 +51,7 @@ import SignUp from '@/components/SignUp.vue'
 import ForgotPassword from '@/components/ForgotPassword.vue'
 import NewPassword from '@/components/NewPassword.vue'
 import TheFeedback from '@/components/TheFeedback.vue'
+import WriteQuote from '@/components/WriteQuote.vue'
+import UserNavigation from '@/components/UserNavigation.vue'
 const modal = useModalStore()
 </script>

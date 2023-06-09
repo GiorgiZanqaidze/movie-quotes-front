@@ -1,0 +1,19 @@
+{
+  "log_out": "Log Out",
+  "news_feed": "News Feed",
+  "edit_profile": "Edit your profile",
+  "movies_list": "List of movies",
+  "notifications": "Notifications",
+  "mark_all": "Mark  as all read",
+  "commented_on": "Commented to your movie quote",
+  "reacted_on": "Reacted to your quote",
+  "write_a_comment": "Write a comment",
+  "new": "New",
+  "write_quote": {
+    "title": "Write New Quote",
+    "drag_and_drop": "Drag & drop your image here or",
+    "choose_file": "choose file",
+    "choose_movie": "Choose Movie",
+    "post": "Post"
+  }
+}

@@ -6,13 +6,25 @@
   </div>
 </template>
 
-<script setup>
-import { RouterView } from 'vue-router'
-import { onMounted, inject, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { userStore } from '@/stores/user.js'
+<style>
+body::-webkit-scrollbar {
+  width: 10px;
+}
 
-const user = userStore()
-const route = useRoute()
-const router = useRouter()
-</script>
+body::-webkit-scrollbar-track {
+  background: #0d0b14;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: #fff;
+  background-image: -webkit-linear-gradient(
+    90deg,
+    rgb(18, 16, 26) 0%,
+    rgb(121, 111, 161) 20%,
+    white 50%,
+    rgb(121, 111, 161) 80%,
+    rgb(18, 16, 26) 100%
+  );
+}
+</style>
