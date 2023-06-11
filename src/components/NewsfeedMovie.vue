@@ -2,21 +2,21 @@
   <div class="bg-darkBlack sm:w-[961px] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
     <header class="flex items-center gap-4">
       <profile-icon></profile-icon>
-      <h2>Maia Nakashidze</h2>
+      <h2>{{ quote.author.name }}</h2>
     </header>
     <h1>“{{ quote.name }}”movie- {{ quote.movie.title }} ({{ quote.movie.year }})</h1>
     <div class="rounded-lg overflow-hidden">
-      <img src="@/assets/images/news_feed.svg" alt="movie" />
+      <img :src="quote.image" alt="movie" />
     </div>
     <div class="flex gap-4 mt-4 border-b-2 border-light pb-4">
       <div class="flex gap-2 items-center just">
-        <p>1</p>
+        <p>{{ quote.comments.length }}</p>
         <button>
           <img src="@/assets/icons/comment.svg" alt="comment" class="w-[24px]" />
         </button>
       </div>
       <div class="flex gap-2 items-center just">
-        <p>1</p>
+        <p>{{ quote.likes.length }}</p>
         <button>
           <img src="@/assets/icons/likes.svg" alt="likes" class="w-[24px]" />
         </button>
@@ -24,7 +24,7 @@
     </div>
     <ul>
       <li v-for="(comment, index) in quote.comments" :key="index">
-        <the-comment :text="comment.text"></the-comment>
+        <the-comment :text="comment.text" :author="comment.author"></the-comment>
       </li>
     </ul>
     <div class="flex items-center gap-4 mt-4">
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { computed } from 'vue'
 export default {
   props: {
     quote: {
