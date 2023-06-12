@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-start gap-4 mt-4 flex-col">
     <div class="flex items-center gap-3">
-      <profile-icon></profile-icon>
+      <profile-icon :path="profileIconPath"></profile-icon>
       <h1>{{ author.name }}</h1>
     </div>
 
@@ -12,6 +12,9 @@
 </template>
 
 <script>
+import imageUrl from '@/config/images/path.js'
+import { computed } from 'vue'
+
 export default {
   props: {
     text: {
@@ -22,6 +25,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+  setup(props) {
+    const profileIconPath = computed(() => `${imageUrl}${props.author.image}`)
+
+    return { profileIconPath }
   }
 }
 </script>

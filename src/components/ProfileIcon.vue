@@ -1,6 +1,10 @@
 <template>
-  <div class="rounded-full overflow-hidden sm:max-w-[52px] max-w-[40px]" :class="[width, border]">
-    <img src="@/assets/images/landing_image.svg" alt="" class="" />
+  <div class="flex justify-center items-center">
+    <img
+      :src="path"
+      alt="profile"
+      class="sm:w-[52px] w-[40px] sm:h-[52px] h-[40px] rounded-full overflow-hidden"
+    />
   </div>
 </template>
 
@@ -15,6 +19,10 @@ export default {
     border: {
       type: String,
       required: false
+    },
+    path: {
+      type: String,
+      required: true
     }
   }
 }
