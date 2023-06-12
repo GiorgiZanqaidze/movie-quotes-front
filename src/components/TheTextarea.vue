@@ -3,6 +3,7 @@
     <Field
       rules="required|min:3"
       class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2"
+      :placeholder="placeholder"
       :class="{
         'border-darkRed': errors,
         'border-green-500': modelValue && !errors,
@@ -10,7 +11,6 @@
       }"
       :name="name"
       as="textarea"
-      placeholder="Start create new quote"
       :value="modelValue"
       @blur="$emit('update:modelValue', $event.target.value)"
     />
@@ -38,6 +38,10 @@ defineProps({
     required: true
   },
   modelValue: {
+    type: String,
+    required: true
+  },
+  placeholder: {
     type: String,
     required: true
   }

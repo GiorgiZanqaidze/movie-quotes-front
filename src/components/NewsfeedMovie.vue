@@ -27,38 +27,31 @@
       </div>
     </div>
     <ul>
-      <li v-for="(comment, index) in quote.comments" :key="index">
-        <the-comment :text="comment.text" :author="comment.author"></the-comment>
-      </li>
+      <the-comment
+        v-for="(comment, index) in quote.comments"
+        :key="index"
+        :text="comment.text"
+        :author="comment.author"
+      ></the-comment>
     </ul>
-    <div class="flex items-center gap-4 mt-4">
-      <!-- <div class="rounded-full overflow-hidden sm:max-w-[52px] max-w-[40px]">
-        <img src="@/assets/images/landing_image.svg" alt="" class="" />
-      </div> -->
-      <profile-icon :path="authUserIconPath"></profile-icon>
-      <div class="flex flex-col gap-2 w-full">
-        <input
-          type="text"
-          name="comment"
-          :placeholder="$t('news_feed.write_a_comment')"
-          class="py-2 px-3 rounded-md bg-gray sm:text-[20px] text-[16px]"
-        />
-      </div>
-    </div>
+    <PostComment :quote_id="quote.id" />
   </div>
 </template>
 
 <script>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, defineAsyncComponent } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
-
+import PostComment from '@/components/PostComment.vue'
 export default {
   props: {
     quote: {
       type: Object,
       required: true
     }
+  },
+  components: {
+    PostComment
   },
   setup(props) {
     const authUser = userStore()

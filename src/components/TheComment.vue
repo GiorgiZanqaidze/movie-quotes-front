@@ -1,11 +1,11 @@
 <template>
-  <div class="flex items-start gap-4 mt-4 flex-col">
+  <div class="flex items-start gap-0 mt-4 flex-col">
     <div class="flex items-center gap-3">
       <profile-icon :path="profileIconPath"></profile-icon>
       <h1>{{ author.name }}</h1>
     </div>
 
-    <div class="flex flex-col gap-2 border-b-[1px] border-light pb-4">
+    <div class="flex flex-col border-b-[1px] border-light pb-4 w-full">
       <p class="sm:pl-14 text-[16px] sm:text-[20px]">{{ text }}</p>
     </div>
   </div>

@@ -18,6 +18,14 @@ export const useQuoteStore = defineStore('quote', {
     },
     setQuotes(quotes) {
       this.data = quotes
+    },
+    addComment(quote) {
+      this.data = this.data.map((item) => {
+        if (item.id === quote.id) {
+          return quote
+        }
+        return item
+      })
     }
   }
 })

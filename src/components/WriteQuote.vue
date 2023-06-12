@@ -13,8 +13,8 @@
     </header>
     <div class="mt-4 mb-6 px-6">
       <div class="flex items-center gap-3">
-        <profile-icon></profile-icon>
-        <h1 class="text-[20px]">Nino Tabagari</h1>
+        <profile-icon :path="user.authUserIcon"></profile-icon>
+        <h1 class="text-[20px]">{{ user.data.name }}</h1>
       </div>
     </div>
     <Form
@@ -27,12 +27,14 @@
         :errors="errors.quote_en"
         v-model="state.quote_en"
         @update:modelValue="(newValue) => (state.quote_en = newValue)"
+        placeholder="Start create new quote"
       />
       <TheTextarea
         name="quote_ka"
         :errors="errors.quote_ka"
         v-model="state.quote_ka"
         @update:modelValue="(newValue) => (state.quote_ka = newValue)"
+        placeholder="ახალი ციტატა"
       />
 
       <div
@@ -157,6 +159,7 @@ const handleSubmit = async () => {
 
   try {
     const response = await axiosInstance.post('api/quote/store', formData)
+    modal.toggleModal('writeQuote', false)
     console.log(response)
   } catch (error) {
     console.log(error)
