@@ -22,7 +22,20 @@
       <div class="flex gap-2 items-center just">
         <p>{{ quote.likes.length }}</p>
         <button>
-          <img src="@/assets/icons/likes.svg" alt="likes" class="w-[24px]" />
+          <img
+            v-if="!liked"
+            @click="likeQuote"
+            src="@/assets/icons/likes.svg"
+            alt="likes"
+            class="w-[24px]"
+          />
+          <img
+            v-if="liked"
+            @click="unlikePost"
+            src="@/assets/icons/heart_fill.svg"
+            alt="likes"
+            class="w-[24px]"
+          />
         </button>
       </div>
     </div>
@@ -43,6 +56,8 @@ import { computed, onMounted, ref, defineAsyncComponent } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
+import axiosInstance from '@/config/axios/index'
+
 export default {
   props: {
     quote: {
@@ -56,11 +71,38 @@ export default {
   setup(props) {
     const authUser = userStore()
 
+    const liked = ref(false)
+
+    liked.value = props.quote.likes.some((like) => like.user_id === authUser.data.id)
+
+    function likeQuote() {
+      axiosInstance
+        .post('/api/like/quote', { user_id: authUser.data.id, quote_id: props.quote.id })
+        .then((response) => {
+          console.log(response.data.message)
+          liked.value = true
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+    function unlikePost() {
+      axiosInstance
+        .post('/api/dislike/quote', { user_id: authUser.data.id, quote_id: props.quote.id })
+        .then((response) => {
+          console.log(response.data.message)
+          liked.value = false
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+
     const imageUrl = `${imagePath}${props.quote.image}`
     const profileIconUrl = `${imagePath}${props.quote.author.image}`
     const authUserIconPath = `${imagePath}${authUser.data.image}`
 
-    return { imageUrl, profileIconUrl, authUserIconPath }
+    return { imageUrl, profileIconUrl, authUserIconPath, liked, likeQuote, unlikePost }
   }
 }
 </script>
