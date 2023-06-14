@@ -15,47 +15,37 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { userStore } from '@/stores/user'
 import TextInput from '@/components/TextInput.vue'
 import { Form, Field } from 'vee-validate'
 import axiosInstance from '@/config/axios/index'
 import postComment from '@/services/postComment.js'
 import { useCommentStore } from '@/stores/comment.js'
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
 
-export default {
-  components: {
-    TextInput,
-    Form,
-    Field
-  },
-  props: {
-    quote_id: {
-      type: Number,
-      required: true
-    }
-  },
-  setup(props) {
-    const authUser = userStore()
-
-    const comment = useCommentStore()
-
-    const text = ref('')
-
-    const handleSubmit = async () => {
-      const commentData = {
-        text: text.value,
-        user_id: authUser.data.id,
-        quote_id: props.quote_id
-      }
-
-      const response = await comment.postComment(commentData)
-
-      text.value = ''
-    }
-
-    return { authUser, text, handleSubmit }
+const props = defineProps({
+  quote_id: {
+    type: Number,
+    required: true
   }
+})
+
+const authUser = userStore()
+
+const comment = useCommentStore()
+
+const text = ref('')
+
+const handleSubmit = async () => {
+  const commentData = {
+    text: text.value,
+    user_id: authUser.data.id,
+    quote_id: props.quote_id
+  }
+
+  const response = await comment.postComment(commentData)
+
+  text.value = ''
 }
 </script>

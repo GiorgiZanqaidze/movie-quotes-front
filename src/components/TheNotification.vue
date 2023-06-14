@@ -3,7 +3,7 @@
     <div>
       <div class="flex gap-3">
         <div class="w-10 flex items-center justify-center">
-          <ProfileIcon width="max-w-[60px]" :border="borderClass" />
+          <!-- <ProfileIcon width="max-w-[60px]" :border="borderClass" /> -->
         </div>
         <div class="flex flex-col justify-start">
           <h1 class="text-left">giorgi zankaidze</h1>
@@ -35,42 +35,33 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ProfileIcon from '@/components/ProfileIcon.vue'
-import { computed } from 'vue'
+import { computed, defineProps } from 'vue'
 
-export default {
-  components: {
-    ProfileIcon
+const props = defineProps({
+  condition: {
+    type: String,
+    required: true
   },
-  props: {
-    condition: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      required: true
-    }
-  },
-
-  setup(props) {
-    const newNotification = computed(() => {
-      return props.condition === 'new'
-    })
-    const borderClass = computed(() => {
-      if (newNotification.value) {
-        return 'border-2 border-lightBlue'
-      } else {
-        return ''
-      }
-    })
-
-    const comment = computed(() => props.type === 'comment')
-
-    const like = computed(() => props.type === 'like')
-
-    return { newNotification, borderClass, comment, like }
+  type: {
+    type: String,
+    required: true
   }
-}
+})
+
+const newNotification = computed(() => {
+  return props.condition === 'new'
+})
+const borderClass = computed(() => {
+  if (newNotification.value) {
+    return 'border-2 border-lightBlue'
+  } else {
+    return ''
+  }
+})
+
+const comment = computed(() => props.type === 'comment')
+
+const like = computed(() => props.type === 'like')
 </script>
