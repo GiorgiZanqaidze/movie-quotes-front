@@ -15,8 +15,8 @@ export const useCommentStore = defineStore('comment', {
 
         const quotes = useQuoteStore()
 
-        quotes.addComment(response.data.quote[0])
-        console.log(response.data.quote[0])
+        quotes.modifyQuote(response.data.quote)
+        console.log(response.data.quote)
       } catch (error) {
         console.error(error)
       }

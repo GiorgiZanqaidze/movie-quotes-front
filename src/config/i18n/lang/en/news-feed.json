@@ -8,7 +8,8 @@
   "commented_on": "Commented to your movie quote",
   "reacted_on": "Reacted to your quote",
   "write_a_comment": "Write a comment",
-  "search_placeholder": "Enter @ to search movies, Enter # to search quotes",
+  "enter": "Enter",
+  "search_placeholder": "to search movies, Enter # to search quotes",
   "search": "Search by",
   "new": "New",
   "write_quote": {

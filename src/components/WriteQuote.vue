@@ -160,7 +160,8 @@ const handleSubmit = async () => {
   try {
     const response = await axiosInstance.post('api/quote/store', formData)
     modal.toggleModal('writeQuote', false)
-    console.log(response)
+    console.log(response.data.quote)
+    quotes.addQuote(response.data.quote)
   } catch (error) {
     console.log(error)
   }
