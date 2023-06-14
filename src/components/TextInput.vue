@@ -22,7 +22,7 @@
     />
     <div v-if="icon" class="absolute right-3 top-9">
       <img v-if="icon === 'valid'" src="@/assets/icons/valid_icon.svg" alt="valid" />
-      <img v-if="icon === 'invalid'" src="@/assets/icons/invalid_icon.svg" alt="valid" />
+      <img v-if="icon === 'invalid'" src="@/assets/icons/invalid_icon.svg" alt="invalid" />
     </div>
     <ErrorMessage
       v-if="!backEndErrors"

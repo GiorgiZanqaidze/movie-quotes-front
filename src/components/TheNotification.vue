@@ -13,14 +13,12 @@
               alt="comment"
               class="inline mr-1 w-[24px]"
             />
-            Commented to your movie quote
+            {{ $t('news_feed.commented_on') }}
           </p>
           <p v-else class="text-[14px] sm:text-[20px]">
-            <img
-              src="@/assets/icons/like_notify.svg"
-              alt="like"
-              class="inline mr-1 w-[24px]"
-            />Reacted to your quote
+            <img src="@/assets/icons/like_notify.svg" alt="like" class="inline mr-1 w-[24px]" />{{
+              $t('news_feed.reacted_on')
+            }}
           </p>
         </div>
       </div>
@@ -29,7 +27,9 @@
       class="flex gap-3 items-center sm:gap-0 sm:flex-col"
       :class="{ 'sm:flex-col-reverse': newNotification }"
     >
-      <p v-if="newNotification" class="text-[14px] text-center w-10 text-lightBlue">New</p>
+      <p v-if="newNotification" class="text-[14px] text-center w-10 text-lightBlue">
+        {{ $t('news_feed.new') }}
+      </p>
       <p :class="{ 'ml-[60px]': !newNotification }" class="text-[14px]">5 minutes ago</p>
     </div>
   </div>

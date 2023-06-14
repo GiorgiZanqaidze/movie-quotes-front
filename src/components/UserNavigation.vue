@@ -10,13 +10,7 @@
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
-      <div class="flex justify-center items-center">
-        <img
-          src="@/assets/images/landing_image.svg"
-          alt=""
-          class="sm:w-[52px] w-[40px] sm:h-[52px] h-[40px] rounded-full overflow-hidden"
-        />
-      </div>
+      <ProfileIcon :path="imageUrl" />
       <div class="flex justify-center items-start flex-col">
         <h3 v-if="user.name" class="text-[20px]">{{ user.name }}</h3>
         <a href="#" class="sm:text-sm text-[14px]">{{ $t('news_feed.edit_profile') }}</a>
@@ -46,17 +40,21 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
 import { userStore } from '@/stores/user.js'
 import { useModalStore } from '@/stores/modal.js'
-import LanguageDropdown from '@/components/LanguageDropdown.vue'
-import LogOutButton from '@/components/LogOutButton.vue'
+import imagePath from '@/config/images/path'
+const LanguageDropdown = defineAsyncComponent(() => import('@/components/LanguageDropdown.vue'))
+const LogOutButton = defineAsyncComponent(() => import('@/components/LogOutButton.vue'))
+const ProfileIcon = defineAsyncComponent(() => import('@/components/ProfileIcon.vue'))
 
 const userData = userStore()
 
 const modal = useModalStore()
 
 const user = computed(() => userData.data)
+
+const imageUrl = computed(() => `${imagePath}${userData.data.image}`)
 
 const showNavBar = computed(() => modal.isVisible.name === 'userNavigation')
 </script>

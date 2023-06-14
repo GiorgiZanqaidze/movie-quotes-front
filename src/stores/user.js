@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import axiosInstance from '@/config/axios/index'
 import getUser from '@/services/getUser'
+import imagePath from '@/config/images/path.js'
 export const userStore = defineStore('user', {
   state() {
     return {
@@ -23,5 +23,8 @@ export const userStore = defineStore('user', {
     setUserData(userData) {
       this.data = userData
     }
+  },
+  getters: {
+    authUserIcon: (state) => `${imagePath}${state.data.image}`
   }
 })

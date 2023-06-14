@@ -5,14 +5,15 @@
         <button class="mx-3" @click="modal.toggleSearchModal">
           <img src="@/assets/icons/back_arrow.svg" alt="arrow" />
         </button>
-        <div>
+        <form @submit.prevent="handleSubmit">
           <input
             type="text"
-            name="search"
-            class="h-full text-white bg-transparent focus:bg-black"
+            name="search_movie"
+            class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none"
             placeholder="Search"
+            v-model="searchValue"
           />
-        </div>
+        </form>
       </div>
       <div class="mx-10">
         <p class="text-lightDark w-[250px]">Enter @ to search movies Enter # to search quotes</p>
@@ -23,5 +24,13 @@
 
 <script setup>
 import { useModalStore } from '@/stores/modal'
+import { useQuerySearchStore } from '@/stores/querySearch'
+import { ref } from 'vue'
 const modal = useModalStore()
+const query = useQuerySearchStore()
+const searchValue = ref('')
+
+function handleSubmit() {
+  query.setSearchQuery(searchValue.value)
+}
 </script>
