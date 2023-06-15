@@ -5,7 +5,9 @@ import TheNewsfeed from '@/views/TheNewsfeed.vue'
 import UserNavigation from '@/components/UserNavigation.vue'
 import LandingHeader from '@/components/LandingHeader.vue'
 import UserHeader from '@/components/UserHeader.vue'
+import MoviesList from '@/views/MoviesList.vue'
 import { userStore } from '@/stores/user'
+import MovieDescription from '@/views/MovieDescription.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -20,6 +22,18 @@ const router = createRouter({
       path: '/news-feed',
       name: 'newsFeed',
       components: { default: TheNewsfeed, navigation: UserNavigation, header: UserHeader },
+      meta: { auth: true }
+    },
+    {
+      path: '/movies-list',
+      name: 'moviesList',
+      components: { default: MoviesList, navigation: UserNavigation, header: UserHeader },
+      meta: { auth: true }
+    },
+    {
+      path: '/movies-list/movie/:id',
+      name: 'movie',
+      components: { default: MovieDescription, navigation: UserNavigation, header: UserHeader },
       meta: { auth: true }
     },
 

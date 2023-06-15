@@ -2,8 +2,8 @@
   <div
     class="w-full h-[86px] relative text-[20px] border rounded"
     :class="{
-      'border-darkRed': errors,
-      'border-green-500': modelValue && !errors,
+      'border-darkRed': props.errors,
+      'border-green-500': props.modelValue && !props.errors,
       'border-mediumGray': !modelValue && !errors
     }"
   >
@@ -20,8 +20,13 @@
       <option value="" disabled>
         {{ $t('news_feed.write_quote.choose_movie') }}
       </option>
-      <option v-for="(movie, index) in movies" :key="index" :value="movie.id">
-        {{ movie.title[this.$i18n.locale] }}
+      <option
+        v-for="(movie, index) in props.movies"
+        :key="index"
+        :value="movie.id"
+        class="text-white"
+      >
+        {{ movie.title }}
       </option>
     </Field>
 
@@ -41,7 +46,7 @@
 import { computed, defineProps, watch } from 'vue'
 import { Form, Field, ErrorMessage, useField } from 'vee-validate'
 
-defineProps({
+const props = defineProps({
   name: {
     type: String,
     required: true
