@@ -21,7 +21,7 @@
           <div>
             <img :src="`${imagePath}${movie.image}`" alt="movie" class="w-full max-h-[250px]" />
           </div>
-          <h3>{{ movie.title }} ({{ movie.year }})</h3>
+          <h3>{{ movie.title[this.$i18n.locale] }} ({{ movie.year }})</h3>
           <p>
             {{ movies.data.length }}
             <img src="@/assets/icons/quotes.svg" alt="quotes" class="inline-block ml-2 w-[32px]" />
