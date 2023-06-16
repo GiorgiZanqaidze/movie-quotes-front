@@ -112,6 +112,7 @@ const quotes = useQuoteStore()
 
 onMounted(async () => {
   await movies.getMovies()
+  console.log(movies.data)
 })
 
 const state = reactive({

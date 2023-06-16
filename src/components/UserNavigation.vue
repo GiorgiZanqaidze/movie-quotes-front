@@ -11,24 +11,24 @@
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
       <ProfileIcon :path="imageUrl" />
-      <div class="flex justify-center items-start flex-col">
+      <div class="flex justify-center items-start flex-col w-[200px]">
         <h3 v-if="user.name" class="text-[20px]">{{ user.name }}</h3>
         <a href="#" class="sm:text-sm text-[14px]">{{ $t('news_feed.edit_profile') }}</a>
       </div>
       <div class="flex justify-center items-start">
-        <a href="#">
-          <img src="@/assets/icons/home_red.svg" alt="home" class="w-[24px] sm:w-auto" />
+        <a href="/news-feed">
+          <img :src="homeIcon" alt="home" class="w-[24px] sm:w-auto" />
         </a>
       </div>
       <div>
         <h3>{{ $t('news_feed.news_feed') }}</h3>
       </div>
       <div class="flex justify-center items-start">
-        <a href="#">
-          <img src="@/assets/icons/movies_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
+        <a href="/movies-list">
+          <img :src="moviesIcon" alt="movies" class="w-[24px] sm:w-auto" />
         </a>
       </div>
-      <div>
+      <div class="w-[200px]">
         <h3>{{ $t('news_feed.movies_list') }}</h3>
       </div>
     </div>
@@ -41,6 +41,7 @@
 
 <script setup>
 import { computed, defineAsyncComponent } from 'vue'
+import { useRoute } from 'vue-router'
 import { userStore } from '@/stores/user.js'
 import { useModalStore } from '@/stores/modal.js'
 import imagePath from '@/config/images/path'
@@ -52,9 +53,21 @@ const userData = userStore()
 
 const modal = useModalStore()
 
+const route = useRoute()
+
 const user = computed(() => userData.data)
 
 const imageUrl = computed(() => `${imagePath}${userData.data.image}`)
 
 const showNavBar = computed(() => modal.isVisible.name === 'userNavigation')
+
+const homeIcon = computed(() =>
+  route.name === 'newsFeed' ? 'src/assets/icons/home_red.svg' : 'src/assets/icons/home_white.svg'
+)
+
+const moviesIcon = computed(() =>
+  route.name !== 'newsFeed'
+    ? 'src/assets/icons/movies_red.svg'
+    : 'src/assets/icons/movies_white.svg'
+)
 </script>
