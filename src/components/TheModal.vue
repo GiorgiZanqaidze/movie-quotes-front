@@ -41,6 +41,7 @@
       v-if="modal.isVisible.name === 'linkExpired'"
     />
     <WriteQuote v-if="modal.isVisible.name === 'writeQuote'" />
+    <ViewQuoteModal v-if="modal.isVisible.name === 'viewQuoteModal'" />
   </div>
 </template>
 
@@ -53,5 +54,6 @@ import NewPassword from '@/components/NewPassword.vue'
 import TheFeedback from '@/components/TheFeedback.vue'
 import WriteQuote from '@/components/WriteQuote.vue'
 import UserNavigation from '@/components/UserNavigation.vue'
+import ViewQuoteModal from '@/components/ViewQuoteModal.vue'
 const modal = useModalStore()
 </script>

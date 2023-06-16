@@ -30,7 +30,7 @@
         <h2>Quotes (Total 7)</h2>
         <div class="bg-mediumGray w-[1px] h-6"></div>
         <button class="bg-darkRed rounded py-1 px-2 flex items-center gap-2">
-          <img src="@/assets/icons/add_movie.svg" alt="" class="inline-block" />
+          <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
           <span>Add Quote</span>
         </button>
       </div>

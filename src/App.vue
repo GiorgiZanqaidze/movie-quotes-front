@@ -3,8 +3,13 @@
     <RouterView name="header" />
     <RouterView name="navigation" />
     <RouterView />
+    <TheModal />
   </div>
 </template>
+
+<script setup>
+import TheModal from '@/components/TheModal.vue'
+</script>
 
 <style>
 body::-webkit-scrollbar {

@@ -12,20 +12,20 @@
           <img src="@/assets/icons/three_dots.svg" alt="dots" />
         </button>
         <div
-          class="flex flex-col gap-2 bg-gray pl-3 pr-10 absolute w-32 py-4 rounded-md"
+          class="flex flex-col gap-3 bg-gray pl-3 pr-10 absolute w-32 py-4 rounded-md justify-start"
           v-if="showDiv"
         >
-          <button>
+          <button @click="modal.toggleModal('viewQuoteModal', true)" class="flex justify-start">
             <img src="@/assets/icons/visible.svg" alt="visible" class="inline-block mr-1" />
             <span class="text-xs">View Quote</span>
           </button>
-          <button>
+          <button class="flex justify-start">
             <img src="@/assets/icons/pencil.svg" alt="edit" class="inline-block mr-1" />
-            <span class="text-xs">View Quote</span>
+            <span class="text-xs">Edit</span>
           </button>
-          <button>
+          <button class="flex justify-start">
             <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1" />
-            <span class="text-xs">View Quote</span>
+            <span class="text-xs">Delete</span>
           </button>
         </div>
       </div>
@@ -45,6 +45,9 @@
 
 <script setup>
 import { defineProps, ref } from 'vue'
+import { useModalStore } from '@/stores/modal'
+
+const modal = useModalStore()
 
 const props = defineProps({
   quote: {

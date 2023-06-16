@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full"
+    class="fixed top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white"
   >
     <header class="p-5 relative border-b-2 border-darkGray">
       <h3 class="text-center">{{ $t('news_feed.write_quote.title') }}</h3>
