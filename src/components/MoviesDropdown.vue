@@ -26,7 +26,7 @@
         :value="movie.id"
         class="text-white"
       >
-        {{ movie.title }}
+        {{ movie.title[this.$i18n.locale] }}
       </option>
     </Field>
 

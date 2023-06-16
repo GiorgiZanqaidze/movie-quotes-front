@@ -6,25 +6,22 @@
       </div>
       <div class="flex gap-6">
         <div class="min-w-[800px] rounded-md overflow-hidden">
-          <img src="@/assets/images/landing_image_1.png" alt="movie" class="w-full" />
+          <img :src="`${imagePath}${movie.data.image}`" alt="movie" class="w-full" />
         </div>
         <div class="flex flex-col gap-5">
           <div>
-            <h1>COMMITMENT HASAN (1999)</h1>
+            <h1>{{ movie.data.title }} ({{ movie.data.year }})</h1>
           </div>
           <div class="flex gap-3">
             <span class="bg-mediumGray py-1 px-2 rounded">ROMANCE</span>
             <span class="bg-mediumGray py-1 px-2 rounded">COMEDY</span>
           </div>
           <div>
-            <h3>directore: NICK CASSAVETES</h3>
+            <h3>directore: {{ movie.data.director }}</h3>
           </div>
           <div>
             <p>
-              In a nursing home, resident Duke reads a romance story to an old woman who has senile
-              dementia with memory loss. In the late 1930s, wealthy seventeen year-old Allie
-              Hamilton is spending summer vacation in Seabrook. Local worker Noah Calhoun meets
-              Allie at a carnival
+              {{ movie.data.description }}
             </p>
           </div>
         </div>
@@ -38,55 +35,24 @@
         </button>
       </div>
       <div class="w-[800px] mt-10 flex flex-col gap-6">
-        <div class="bg-darkBlack rounded-md">
-          <div class="flex justify-between p-5">
-            <div class="w-56">
-              <img src="@/assets/images/landing_image_1.png" alt="quote" />
-            </div>
-            <div class="flex items-center">
-              <h1>"Frankly, my dear, I don'tgive a damn."</h1>
-            </div>
-            <div class="mt-2 mr-2">
-              <img src="@/assets/icons/three_dots.svg" alt="dots" />
-            </div>
-          </div>
-          <div class="flex border-t mx-5 py-5 gap-3">
-            <div class="flex gap-3">
-              <p>10</p>
-              <span><img src="@/assets/icons/comment.svg" alt="comment" /></span>
-            </div>
-            <div class="flex gap-3">
-              <p>10</p>
-              <button><img src="@/assets/icons/likes.svg" alt="likes" /></button>
-            </div>
-          </div>
-        </div>
-        <div class="bg-darkBlack rounded-md">
-          <div class="flex justify-between p-5">
-            <div class="w-56">
-              <img src="@/assets/images/landing_image_1.png" alt="quote" />
-            </div>
-            <div class="flex items-center">
-              <h1>"Frankly, my dear, I don'tgive a damn."</h1>
-            </div>
-            <div class="mt-2 mr-2">
-              <img src="@/assets/icons/three_dots.svg" alt="dots" />
-            </div>
-          </div>
-          <div class="flex border-t mx-5 py-5 gap-3">
-            <div class="flex gap-3">
-              <p>10</p>
-              <span><img src="@/assets/icons/comment.svg" alt="comment" /></span>
-            </div>
-            <div class="flex gap-3">
-              <p>10</p>
-              <button><img src="@/assets/icons/likes.svg" alt="likes" /></button>
-            </div>
-          </div>
-        </div>
+        <QuoteContainer v-for="(quote, index) in movie.data.quotes" :key="index" :quote="quote" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useSingleMovieStore } from '@/stores/singleMovie.js'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import imagePath from '@/config/images/path.js'
+import QuoteContainer from '@/components/QuoteContainer.vue'
+
+const route = useRoute()
+
+const movie = useSingleMovieStore()
+
+onMounted(async () => {
+  await movie.getMovie(route.params.id)
+})
+</script>

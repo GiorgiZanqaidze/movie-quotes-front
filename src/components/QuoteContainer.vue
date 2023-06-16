@@ -1,0 +1,61 @@
+<template>
+  <div class="bg-darkBlack rounded-md">
+    <div class="flex justify-between p-5">
+      <div class="w-56">
+        <img src="@/assets/images/landing_image_1.png" alt="quote" />
+      </div>
+      <div class="flex items-center">
+        <h1>"{{ quote.name[this.$i18n.locale] }}"</h1>
+      </div>
+      <div class="relative">
+        <button class="mt-2 mr-2 cursor-pointer" @click="showContainer">
+          <img src="@/assets/icons/three_dots.svg" alt="dots" />
+        </button>
+        <div
+          class="flex flex-col gap-2 bg-gray pl-3 pr-10 absolute w-32 py-4 rounded-md"
+          v-if="showDiv"
+        >
+          <button>
+            <img src="@/assets/icons/visible.svg" alt="visible" class="inline-block mr-1" />
+            <span class="text-xs">View Quote</span>
+          </button>
+          <button>
+            <img src="@/assets/icons/pencil.svg" alt="edit" class="inline-block mr-1" />
+            <span class="text-xs">View Quote</span>
+          </button>
+          <button>
+            <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1" />
+            <span class="text-xs">View Quote</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="flex border-t mx-5 py-5 gap-3">
+      <div class="flex gap-3">
+        <p>{{ quote.likes.length }}</p>
+        <span><img src="@/assets/icons/comment.svg" alt="comment" /></span>
+      </div>
+      <div class="flex gap-3">
+        <p>{{ quote.comments.length }}</p>
+        <button><img src="@/assets/icons/likes.svg" alt="likes" /></button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { defineProps, ref } from 'vue'
+
+const props = defineProps({
+  quote: {
+    type: Object,
+    required: true
+  }
+})
+
+const showDiv = ref(false)
+
+function showContainer() {
+  showDiv.value = !showDiv.value
+}
+</script>
