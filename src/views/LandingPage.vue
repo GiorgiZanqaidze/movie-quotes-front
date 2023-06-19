@@ -1,12 +1,10 @@
 <template>
   <main>
     <TheParalax />
-    <TheModal v-if="modal.isVisible.condition" />
   </main>
 </template>
 
 <script setup>
-import TheModal from '@/components/TheModal.vue'
 import { useModalStore } from '@/stores/modal'
 import verifyUser from '@/services/verifyUser.js'
 import TheParalax from '@/components/TheParalax.vue'

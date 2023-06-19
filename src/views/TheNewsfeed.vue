@@ -1,13 +1,11 @@
 <template>
   <div class="text-white bg-mediumDark min-h-screen">
     <newsfeed-movies></newsfeed-movies>
-    <TheModal />
   </div>
 </template>
 
 <script setup>
 import axiosInstance from '@/config/axios/index'
-import TheModal from '@/components/TheModal.vue'
 import { useQuoteStore } from '@/stores/quote.js'
 import { useQuerySearchStore } from '@/stores/querySearch.js'
 import { onMounted, onUnmounted, ref, watch } from 'vue'

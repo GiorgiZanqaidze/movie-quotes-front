@@ -1,92 +1,50 @@
 <template>
   <div class="text-white bg-mediumDark min-h-screen pb-10">
-    <div class="ml-[400px]">
-      <div class="py-6 text-2xl">
+    <div class="sm:ml-[400px]">
+      <div class="py-6 text-2xl hidden sm:block">
         <h1>Movie discription</h1>
       </div>
-      <div class="flex gap-6">
-        <div class="min-w-[800px] rounded-md overflow-hidden">
-          <img src="@/assets/images/landing_image_1.png" alt="movie" class="w-full" />
-        </div>
-        <div class="flex flex-col gap-5">
-          <div>
-            <h1>COMMITMENT HASAN (1999)</h1>
-          </div>
-          <div class="flex gap-3">
-            <span class="bg-mediumGray py-1 px-2 rounded">ROMANCE</span>
-            <span class="bg-mediumGray py-1 px-2 rounded">COMEDY</span>
-          </div>
-          <div>
-            <h3>directore: NICK CASSAVETES</h3>
-          </div>
-          <div>
-            <p>
-              In a nursing home, resident Duke reads a romance story to an old woman who has senile
-              dementia with memory loss. In the late 1930s, wealthy seventeen year-old Allie
-              Hamilton is spending summer vacation in Seabrook. Local worker Noah Calhoun meets
-              Allie at a carnival
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="flex gap-3 my-6 items-center">
-        <h2>Quotes (Total 7)</h2>
-        <div class="bg-mediumGray w-[1px] h-6"></div>
-        <button class="bg-darkRed rounded py-1 px-2 flex items-center gap-2">
-          <img src="@/assets/icons/add_movie.svg" alt="" class="inline-block" />
+      <MovieContainer />
+      <div
+        class="flex gap-3 my-2 sm:items-center px-8 sm:py-3 sm:px-0 text-sm flex-col-reverse sm:flex-row items-start"
+      >
+        <h2 class="text-xl">Quotes <span class="text-sm">(Total 7)</span></h2>
+        <div class="bg-mediumGray sm:w-[1px] sm:h-6 w-full h-[1px]"></div>
+        <button
+          @click="addQuoteModal"
+          class="bg-darkRed rounded py-1 px-2 flex items-center gap-2 text-sm"
+        >
+          <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
           <span>Add Quote</span>
         </button>
       </div>
-      <div class="w-[800px] mt-10 flex flex-col gap-6">
-        <div class="bg-darkBlack rounded-md">
-          <div class="flex justify-between p-5">
-            <div class="w-56">
-              <img src="@/assets/images/landing_image_1.png" alt="quote" />
-            </div>
-            <div class="flex items-center">
-              <h1>"Frankly, my dear, I don'tgive a damn."</h1>
-            </div>
-            <div class="mt-2 mr-2">
-              <img src="@/assets/icons/three_dots.svg" alt="dots" />
-            </div>
-          </div>
-          <div class="flex border-t mx-5 py-5 gap-3">
-            <div class="flex gap-3">
-              <p>10</p>
-              <span><img src="@/assets/icons/comment.svg" alt="comment" /></span>
-            </div>
-            <div class="flex gap-3">
-              <p>10</p>
-              <button><img src="@/assets/icons/likes.svg" alt="likes" /></button>
-            </div>
-          </div>
-        </div>
-        <div class="bg-darkBlack rounded-md">
-          <div class="flex justify-between p-5">
-            <div class="w-56">
-              <img src="@/assets/images/landing_image_1.png" alt="quote" />
-            </div>
-            <div class="flex items-center">
-              <h1>"Frankly, my dear, I don'tgive a damn."</h1>
-            </div>
-            <div class="mt-2 mr-2">
-              <img src="@/assets/icons/three_dots.svg" alt="dots" />
-            </div>
-          </div>
-          <div class="flex border-t mx-5 py-5 gap-3">
-            <div class="flex gap-3">
-              <p>10</p>
-              <span><img src="@/assets/icons/comment.svg" alt="comment" /></span>
-            </div>
-            <div class="flex gap-3">
-              <p>10</p>
-              <button><img src="@/assets/icons/likes.svg" alt="likes" /></button>
-            </div>
-          </div>
-        </div>
+      <div class="sm:w-[800px] mt-10 flex flex-col gap-6">
+        <QuoteContainer v-for="(quote, index) in movie.data?.quotes" :key="index" :quote="quote" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useSingleMovieStore } from '@/stores/singleMovie.js'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import imagePath from '@/config/images/path.js'
+import QuoteContainer from '@/components/QuoteContainer.vue'
+import { useModalStore } from '@/stores/modal'
+import MovieContainer from '@/components/MovieContainer.vue'
+
+const modal = useModalStore()
+
+const movie = useSingleMovieStore()
+
+onMounted(async () => {
+  const route = await useRoute()
+  const id = route.params.id
+  await movie.getMovie(id)
+})
+
+function addQuoteModal() {
+  modal.toggleModal('addQuoteModal', true)
+}
+</script>

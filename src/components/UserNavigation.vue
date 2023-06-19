@@ -6,7 +6,7 @@
     style="background: rgba(0, 0, 0, 0.54); backdrop-filter: blur(3px)"
   ></div>
   <div
-    class="text-white absolute sm:top-[150px] z-[30] top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
+    class="text-white absolute sm:top-[150px] z-30 top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
@@ -17,7 +17,13 @@
       </div>
       <div class="flex justify-center items-start">
         <a href="/news-feed">
-          <img :src="homeIcon" alt="home" class="w-[24px] sm:w-auto" />
+          <img
+            v-if="route.name === 'newsFeed'"
+            src="@/assets/icons/home_red.svg"
+            alt="movies"
+            class="w-[24px] sm:w-auto"
+          />
+          <img v-else src="@/assets/icons/home_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
         </a>
       </div>
       <div>
@@ -25,7 +31,18 @@
       </div>
       <div class="flex justify-center items-start">
         <a href="/movies-list">
-          <img :src="moviesIcon" alt="movies" class="w-[24px] sm:w-auto" />
+          <img
+            v-if="route.name !== 'newsFeed'"
+            src="@/assets/icons/movies_red.svg"
+            alt="movies"
+            class="w-[24px] sm:w-auto"
+          />
+          <img
+            v-else
+            src="@/assets/icons/movies_white.svg"
+            alt="movies"
+            class="w-[24px] sm:w-auto"
+          />
         </a>
       </div>
       <div class="w-[200px]">
@@ -60,14 +77,4 @@ const user = computed(() => userData.data)
 const imageUrl = computed(() => `${imagePath}${userData.data.image}`)
 
 const showNavBar = computed(() => modal.isVisible.name === 'userNavigation')
-
-const homeIcon = computed(() =>
-  route.name === 'newsFeed' ? 'src/assets/icons/home_red.svg' : 'src/assets/icons/home_white.svg'
-)
-
-const moviesIcon = computed(() =>
-  route.name !== 'newsFeed'
-    ? 'src/assets/icons/movies_red.svg'
-    : 'src/assets/icons/movies_white.svg'
-)
 </script>
