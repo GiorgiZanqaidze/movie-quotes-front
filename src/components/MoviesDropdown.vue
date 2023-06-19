@@ -9,7 +9,6 @@
   >
     <Field
       rules="required"
-      v-slot="{ value }"
       name="movie"
       :value="modelValue"
       @blur="$emit('update:modelValue', $event.target.value)"
@@ -43,8 +42,8 @@
 </template>
 
 <script setup>
-import { computed, defineProps, watch } from 'vue'
-import { Form, Field, ErrorMessage, useField } from 'vee-validate'
+import { defineProps } from 'vue'
+import { Field, ErrorMessage } from 'vee-validate'
 
 const props = defineProps({
   name: {

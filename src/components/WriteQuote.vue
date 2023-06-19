@@ -18,11 +18,7 @@
         <h1 class="text-[20px]">{{ user.data.name }}</h1>
       </div>
     </div>
-    <Form
-      @submit="handleSubmit"
-      class="mt-4 flex flex-col gap-4 pb-2 px-6"
-      v-slot="{ errors, meta }"
-    >
+    <Form @submit="handleSubmit" class="mt-4 flex flex-col gap-4 pb-2 px-6" v-slot="{ errors }">
       <slot></slot>
       <TheTextarea
         name="quote_en"

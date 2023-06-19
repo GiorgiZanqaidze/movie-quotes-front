@@ -26,8 +26,8 @@
 </template>
 
 <script setup>
-import { computed, defineProps, watch } from 'vue'
-import { Form, Field, ErrorMessage, useField } from 'vee-validate'
+import { defineProps } from 'vue'
+import { Field, ErrorMessage } from 'vee-validate'
 
 defineProps({
   name: {

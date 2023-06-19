@@ -27,9 +27,8 @@
 
 <script setup>
 import { useSingleMovieStore } from '@/stores/singleMovie.js'
-import { onMounted, ref, computed } from 'vue'
+import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import imagePath from '@/config/images/path.js'
 import QuoteContainer from '@/components/QuoteContainer.vue'
 import { useModalStore } from '@/stores/modal'
 import MovieContainer from '@/components/MovieContainer.vue'

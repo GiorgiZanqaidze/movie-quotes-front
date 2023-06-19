@@ -86,17 +86,13 @@
 <script setup>
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
-import axios from '@/config/axios/index.js'
-import axiosInstance from '@/config/axios/index'
 import registerUser from '@/services/registerUser.js'
 import TextInput from '@/components/TextInput.vue'
 import PasswordInput from '@/components/PasswordInput.vue'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import GoogleButton from '@/components/GoogleButton.vue'
 
 const modal = useModalStore()
-const router = useRouter()
 let formData = {
   name: '',
   email: '',

@@ -3,7 +3,7 @@
     <div>
       <div class="flex gap-3">
         <div class="w-10 flex items-center justify-center">
-          <!-- <ProfileIcon width="max-w-[60px]" :border="borderClass" /> -->
+          <ProfileIcon width="max-w-[60px]" :border="borderClass" />
         </div>
         <div class="flex flex-col justify-start">
           <h1 class="text-left">giorgi zankaidze</h1>
@@ -62,6 +62,4 @@ const borderClass = computed(() => {
 })
 
 const comment = computed(() => props.type === 'comment')
-
-const like = computed(() => props.type === 'like')
 </script>

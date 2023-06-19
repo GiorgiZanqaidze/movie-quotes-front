@@ -70,8 +70,7 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
-import { useQuoteStore } from '@/stores/quote'
-import { onMounted, ref, reactive } from 'vue'
+import { ref } from 'vue'
 import imagePath from '@/config/images/path'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import PostComment from '@/components/PostComment.vue'

@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { onMounted } from 'vue'
 import { useMovieStore } from '@/stores/movie'
 import { useRouter } from 'vue-router'
 import imagePath from '@/config/images/path'

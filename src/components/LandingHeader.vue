@@ -28,11 +28,10 @@
 
 <script setup>
 import { useModalStore } from '@/stores/modal'
-import { setLocale } from '@vee-validate/i18n'
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
 const modal = useModalStore()
 
 function toggleModal(type, show) {
-  this.modal.toggleModal(type, show)
+  modal.toggleModal(type, show)
 }
 </script>

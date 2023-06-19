@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import deleteQuote from '@/services/deleteQuote'
 import { defineProps } from 'vue'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 const props = defineProps({

@@ -51,11 +51,10 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, defineAsyncComponent, defineProps } from 'vue'
+import { ref, defineProps } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
-import { useQuoteStore } from '@/stores/quote'
 import { useLikeStore } from '@/stores/likes'
 
 const props = defineProps({
@@ -66,8 +65,6 @@ const props = defineProps({
 })
 
 const authUser = userStore()
-
-const quote = useQuoteStore()
 
 const likesLength = ref(props.quote.likes.length)
 
@@ -83,7 +80,7 @@ const likeData = {
 liked.value = props.quote.likes.some((like) => like.user_id === authUser.data.id)
 
 async function likeQuote() {
-  const response = await like.likeQuote(likeData)
+  await like.likeQuote(likeData)
   likesLength.value++
   liked.value = true
 }
@@ -96,5 +93,4 @@ async function unlikePost() {
 
 const imageUrl = `${imagePath}${props.quote.image}`
 const profileIconUrl = `${imagePath}${props.quote.author.image}`
-const authUserIconPath = `${imagePath}${authUser.data.image}`
 </script>
