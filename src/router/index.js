@@ -32,7 +32,7 @@ const router = createRouter({
     },
     {
       path: '/movies-list/movie/:id',
-      name: 'movie',
+      name: 'movieDescription',
       components: { default: MovieDescription, navigation: UserNavigation, header: UserHeader },
       meta: { auth: true }
     },

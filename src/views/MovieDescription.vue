@@ -7,25 +7,25 @@
       <div class="flex gap-6 sm:flex-row flex-col p-8 sm:p-0">
         <div class="sm:min-w-[800px] rounded-md overflow-hidden flex justify-center">
           <img
-            :src="`${imagePath}${movie.data.image}`"
+            :src="`${imagePath}${movie?.data?.image}`"
             alt="movie"
             class="sm:w-full w-[30rem] rounded-md"
           />
         </div>
         <div class="flex flex-col gap-5">
           <div>
-            <h1>{{ movie.data.title }} ({{ movie.data.year }})</h1>
+            <h1>{{ movie?.data?.title?.[this.$i18n.locale] }} ({{ movie.data?.year }})</h1>
           </div>
           <div class="flex gap-3">
             <span class="bg-mediumGray py-1 px-2 rounded">ROMANCE</span>
             <span class="bg-mediumGray py-1 px-2 rounded">COMEDY</span>
           </div>
           <div>
-            <h3>directore: {{ movie.data.director }}</h3>
+            <h3>directore: {{ movie.data?.director?.[this.$i18n.locale] }}</h3>
           </div>
           <div>
             <p>
-              {{ movie.data.description }}
+              {{ movie.data?.description?.[this.$i18n.locale] }}
             </p>
           </div>
         </div>
@@ -36,7 +36,7 @@
         <h2 class="text-xl">Quotes <span class="text-sm">(Total 7)</span></h2>
         <div class="bg-mediumGray sm:w-[1px] sm:h-6 w-full h-[1px]"></div>
         <button
-          @click="modal.toggleModal('addQuoteModal', true)"
+          @click="addQuoteModal"
           class="bg-darkRed rounded py-1 px-2 flex items-center gap-2 text-sm"
         >
           <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
@@ -44,7 +44,7 @@
         </button>
       </div>
       <div class="sm:w-[800px] mt-10 flex flex-col gap-6">
-        <QuoteContainer v-for="(quote, index) in movie.data.quotes" :key="index" :quote="quote" />
+        <QuoteContainer v-for="(quote, index) in movie.data?.quotes" :key="index" :quote="quote" />
       </div>
     </div>
   </div>
@@ -60,11 +60,15 @@ import { useModalStore } from '@/stores/modal'
 
 const modal = useModalStore()
 
-const route = useRoute()
-
 const movie = useSingleMovieStore()
 
 onMounted(async () => {
-  await movie.getMovie(route.params.id)
+  const route = await useRoute()
+  const id = route.params.id
+  await movie.getMovie(id)
 })
+
+function addQuoteModal() {
+  modal.toggleModal('addQuoteModal', true)
+}
 </script>

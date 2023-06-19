@@ -12,14 +12,12 @@ export const useSingleMovieStore = defineStore('singleMovie', {
     async getMovie(id) {
       try {
         const response = await getSingleMovie(id)
-        this.setMovie(response.data.data)
+        this.data = response.data.data
       } catch (error) {
         console.error('Error fetching user data:', error)
       }
     },
-    setMovie(movie) {
-      this.data = movie
-    },
+
     rememberQuoteId(id) {
       this.currentQuoteId = id
     }
