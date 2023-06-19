@@ -6,7 +6,7 @@
       >
         <h1>
           My list of movies
-          <span class="block sm:inline text-xs sm:text-md">(Total {{ movies.data.length }})</span>
+          <span class="block sm:inline text-xs sm:text-md">(Total {{ movies.data?.length }})</span>
         </h1>
         <div class="flex gap-5">
           <input

@@ -4,32 +4,7 @@
       <div class="py-6 text-2xl hidden sm:block">
         <h1>Movie discription</h1>
       </div>
-      <div class="flex gap-6 sm:flex-row flex-col p-8 sm:p-0">
-        <div class="sm:min-w-[800px] rounded-md overflow-hidden flex justify-center">
-          <img
-            :src="`${imagePath}${movie?.data?.image}`"
-            alt="movie"
-            class="sm:w-full w-[30rem] rounded-md"
-          />
-        </div>
-        <div class="flex flex-col gap-5">
-          <div>
-            <h1>{{ movie?.data?.title?.[this.$i18n.locale] }} ({{ movie.data?.year }})</h1>
-          </div>
-          <div class="flex gap-3">
-            <span class="bg-mediumGray py-1 px-2 rounded">ROMANCE</span>
-            <span class="bg-mediumGray py-1 px-2 rounded">COMEDY</span>
-          </div>
-          <div>
-            <h3>directore: {{ movie.data?.director?.[this.$i18n.locale] }}</h3>
-          </div>
-          <div>
-            <p>
-              {{ movie.data?.description?.[this.$i18n.locale] }}
-            </p>
-          </div>
-        </div>
-      </div>
+      <MovieContainer />
       <div
         class="flex gap-3 my-2 sm:items-center px-8 sm:py-3 sm:px-0 text-sm flex-col-reverse sm:flex-row items-start"
       >
@@ -57,6 +32,7 @@ import { useRoute } from 'vue-router'
 import imagePath from '@/config/images/path.js'
 import QuoteContainer from '@/components/QuoteContainer.vue'
 import { useModalStore } from '@/stores/modal'
+import MovieContainer from '@/components/MovieContainer.vue'
 
 const modal = useModalStore()
 

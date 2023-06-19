@@ -1,6 +1,7 @@
 <template>
   <div
-    class="fixed top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white"
+    class="absolute top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white"
+    :class="{ 'top-[20rem] sm:top-1/2': addQuoteModal }"
   >
     <header class="p-5 relative border-b-2 border-darkGray">
       <h3 class="text-center">{{ $t('news_feed.write_quote.title') }}</h3>
@@ -22,6 +23,7 @@
       class="mt-4 flex flex-col gap-4 pb-2 px-6"
       v-slot="{ errors, meta }"
     >
+      <slot></slot>
       <TheTextarea
         name="quote_en"
         :errors="errors.quote_en"
@@ -77,6 +79,7 @@
         />
       </div>
       <MoviesDropdown
+        v-if="!props?.movie_id"
         name="movie"
         :errors="errors.movie"
         v-model="state.movie"
@@ -92,7 +95,7 @@
 
 <script setup>
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { reactive, computed, defineAsyncComponent, onMounted } from 'vue'
+import { reactive, computed, defineAsyncComponent, onMounted, defineProps } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import { userStore } from '@/stores/user.js'
 import axiosInstance from '@/config/axios/index'
@@ -101,6 +104,12 @@ import { useMovieStore } from '@/stores/movie.js'
 
 const TheTextarea = defineAsyncComponent(() => import('@/components/TheTextarea.vue'))
 const MoviesDropdown = defineAsyncComponent(() => import('@/components/MoviesDropdown.vue'))
+
+const props = defineProps({
+  movie_id: {
+    required: false
+  }
+})
 
 const modal = useModalStore()
 
@@ -112,7 +121,6 @@ const quotes = useQuoteStore()
 
 onMounted(async () => {
   await movies.getMovies()
-  console.log(movies.data)
 })
 
 const state = reactive({
@@ -120,7 +128,7 @@ const state = reactive({
   modal: true,
   quote_en: '',
   quote_ka: '',
-  movie: '',
+  movie: props.movie_id ?? null,
   imageValidator: 'required'
 })
 
@@ -167,4 +175,6 @@ const handleSubmit = async () => {
     console.log(error)
   }
 }
+
+const addQuoteModal = computed(() => modal.isVisible.name === 'addQuoteModal')
 </script>
