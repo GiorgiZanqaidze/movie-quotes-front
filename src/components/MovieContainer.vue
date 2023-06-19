@@ -55,8 +55,4 @@ const movie = useSingleMovieStore()
 const modal = useModalStore()
 
 const quoteModal = computed(() => modal.isVisible.name === 'addQuoteModal')
-
-console.log(quoteModal)
-
-console.log(modal.isVisible)
 </script>

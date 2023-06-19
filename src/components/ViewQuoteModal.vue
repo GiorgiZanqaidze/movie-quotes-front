@@ -5,9 +5,7 @@
     <div>
       <header class="flex justify-between border-b border-gray p-6 pb-4 items-center">
         <div class="flex gap-4 items-center">
-          <button class="flex justify-start">
-            <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1" />
-          </button>
+          <DeleteButton :quote_id="quote.id"></DeleteButton>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
           <button class="flex justify-start">
             <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
@@ -77,6 +75,7 @@ import { onMounted, ref, reactive } from 'vue'
 import imagePath from '@/config/images/path'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import PostComment from '@/components/PostComment.vue'
+import DeleteButton from '@/components/DeleteButton.vue'
 const modal = useModalStore()
 
 const movie = useSingleMovieStore()

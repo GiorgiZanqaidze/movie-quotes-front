@@ -23,10 +23,8 @@
             <img src="@/assets/icons/pencil.svg" alt="edit" class="inline-block mr-1" />
             <span class="text-xs">Edit</span>
           </button>
-          <button class="flex justify-start">
-            <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1" />
-            <span class="text-xs">Delete</span>
-          </button>
+
+          <DeleteButton :quote_id="props.quote.id">delete</DeleteButton>
         </div>
       </div>
     </div>
@@ -48,6 +46,8 @@ import { defineProps, ref } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import imagePath from '@/config/images/path'
+import DeleteButton from '@/components/DeleteButton.vue'
+
 const modal = useModalStore()
 
 const props = defineProps({
