@@ -10,16 +10,16 @@
 <script setup>
 import deleteQuote from '@/services/deleteQuote'
 import { defineProps } from 'vue'
-
+import { useSingleMovieStore } from '@/stores/singleMovie'
 const props = defineProps({
   quote_id: {
     type: Number
   }
 })
 
-async function deleteQuoteById() {
-  const response = await deleteQuote(props.quote_id)
+const movie = useSingleMovieStore()
 
-  console.log(response)
+async function deleteQuoteById() {
+  await movie.deleteMovieQuote(props.quote_id)
 }
 </script>

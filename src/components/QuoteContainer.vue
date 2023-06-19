@@ -24,7 +24,7 @@
             <span class="text-xs">Edit</span>
           </button>
 
-          <DeleteButton :quote_id="props.quote.id">delete</DeleteButton>
+          <DeleteButton :quote_id="props.quote.id" @click="deleteQuote">delete</DeleteButton>
         </div>
       </div>
     </div>
@@ -68,6 +68,10 @@ const movieStore = useSingleMovieStore()
 function showViewQuoteModal() {
   movieStore.rememberQuoteId(props.quote.id)
   modal.toggleModal('viewQuoteModal', true)
+  showDiv.value = false
+}
+
+function deleteQuote() {
   showDiv.value = false
 }
 </script>
