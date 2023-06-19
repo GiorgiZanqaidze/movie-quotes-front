@@ -11,9 +11,6 @@ export const useQuoteStore = defineStore('quote', {
     async getQuotes() {
       try {
         const response = await getQuotes()
-
-        console.log(response.data)
-
         this.setQuotes(response.data.data)
       } catch (error) {
         console.error('Error fetching user data:', error)
@@ -32,6 +29,9 @@ export const useQuoteStore = defineStore('quote', {
     },
     addQuote(quote) {
       this.data.unshift(quote)
+    },
+    rememberQuoteId(id) {
+      this.currentQuoteId = id
     }
   }
 })

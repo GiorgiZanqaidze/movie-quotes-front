@@ -3,8 +3,8 @@ module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     screens: {
-      sm: '428px',
-      md: '1024px',
+      sm: '700px',
+      md: '1224px',
       lg: '1920px'
     },
     fontFamily: {

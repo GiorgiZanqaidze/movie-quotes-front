@@ -1,21 +1,21 @@
 <template>
   <div class="bg-darkBlack rounded-md">
-    <div class="flex justify-between p-5">
-      <div class="w-56">
-        <img src="@/assets/images/landing_image_1.png" alt="quote" />
+    <div class="flex sm:justify-start items-center p-5 sm:flex-row flex-col relative gap-3">
+      <div class="sm:w-56 w-full px-3">
+        <img :src="`${imagePath}${quote.image}`" alt="quote" />
       </div>
       <div class="flex items-center">
         <h1>"{{ quote.name[this.$i18n.locale] }}"</h1>
       </div>
-      <div class="relative">
+      <div class="absolute bottom-[-50px] right-10 sm:top-0 sm:right-4">
         <button class="mt-2 mr-2 cursor-pointer" @click="showContainer">
-          <img src="@/assets/icons/three_dots.svg" alt="dots" />
+          <img src="@/assets/icons/three_dots.svg" alt="dots" class="min-w-6" />
         </button>
         <div
-          class="flex flex-col gap-3 bg-gray pl-3 pr-10 absolute w-32 py-4 rounded-md justify-start"
+          class="flex flex-col gap-3 bg-gray pl-3 pr-10 absolute right-5 bottom-5 sm:-right-28 sm:bottom-16 w-32 py-4 rounded-md justify-start"
           v-if="showDiv"
         >
-          <button @click="modal.toggleModal('viewQuoteModal', true)" class="flex justify-start">
+          <button @click="showViewQuoteModal" class="flex justify-start">
             <img src="@/assets/icons/visible.svg" alt="visible" class="inline-block mr-1" />
             <span class="text-xs">View Quote</span>
           </button>
@@ -46,7 +46,8 @@
 <script setup>
 import { defineProps, ref } from 'vue'
 import { useModalStore } from '@/stores/modal'
-
+import { useSingleMovieStore } from '@/stores/singleMovie'
+import imagePath from '@/config/images/path'
 const modal = useModalStore()
 
 const props = defineProps({
@@ -60,5 +61,13 @@ const showDiv = ref(false)
 
 function showContainer() {
   showDiv.value = !showDiv.value
+}
+
+const movieStore = useSingleMovieStore()
+
+function showViewQuoteModal() {
+  movieStore.rememberQuoteId(props.quote.id)
+  modal.toggleModal('viewQuoteModal', true)
+  showDiv.value = false
 }
 </script>

@@ -4,7 +4,8 @@ import getSingleMovie from '@/services/getSingleMovie.js'
 export const useSingleMovieStore = defineStore('singleMovie', {
   state() {
     return {
-      data: ''
+      data: '',
+      currentQuoteId: null
     }
   },
   actions: {
@@ -18,6 +19,12 @@ export const useSingleMovieStore = defineStore('singleMovie', {
     },
     setMovie(movie) {
       this.data = movie
+    },
+    rememberQuoteId(id) {
+      this.currentQuoteId = id
     }
+  },
+  getters: {
+    getCurrentQuote: (state) => state.data.quotes.find((item) => item.id === state.currentQuoteId)
   }
 })
