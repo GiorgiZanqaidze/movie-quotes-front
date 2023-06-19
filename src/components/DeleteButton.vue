@@ -1,7 +1,7 @@
 <template>
   <button class="flex justify-start" @click="deleteQuoteById">
     <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1" />
-    <span class="text-xs">
+    <span class="text-xs text-white">
       <slot> </slot>
     </span>
   </button>
