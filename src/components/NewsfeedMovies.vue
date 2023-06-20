@@ -12,7 +12,6 @@
 <script setup>
 import QuotesHeader from '@/components/QuotesHeader.vue'
 import { useQuoteStore } from '@/stores/quote.js'
-import { onMounted } from 'vue'
 
 const quotes = useQuoteStore()
 </script>

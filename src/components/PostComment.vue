@@ -17,10 +17,7 @@
 
 <script setup>
 import { userStore } from '@/stores/user'
-import TextInput from '@/components/TextInput.vue'
 import { Form, Field } from 'vee-validate'
-import axiosInstance from '@/config/axios/index'
-import postComment from '@/services/postComment.js'
 import { useCommentStore } from '@/stores/comment.js'
 import { ref, defineProps } from 'vue'
 
@@ -44,7 +41,7 @@ const handleSubmit = async () => {
     quote_id: props.quote_id
   }
 
-  const response = await comment.postComment(commentData)
+  await comment.postComment(commentData)
 
   text.value = ''
 }

@@ -6,15 +6,20 @@
     }"
   >
     <div
-      class="sm:min-w-[800px] rounded-md overflow-hidden flex justify-center items-center"
-      :class="{ 'sm:min-w-[200px]': quoteModal }"
+      class=""
+      :class="{
+        'sm:min-w-[200px]': quoteModal,
+        'sm:min-w-[800px] rounded-md overflow-hidden flex justify-center items-center': !quoteModal
+      }"
     >
       <div>
         <img
           :src="`${imagePath}${movie.data?.image}`"
           alt="movie"
-          class="sm:w-full w-[30rem] rounded-md"
-          :class="{ 'sm:w-[10rem] w-[5rem] min-w-[5rem]': quoteModal }"
+          :class="{
+            'sm:w-[10rem] w-[5rem] min-w-[5rem]': quoteModal,
+            'sm:w-full w-[30rem] rounded-md': !quoteModal
+          }"
         />
       </div>
     </div>
@@ -45,7 +50,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'

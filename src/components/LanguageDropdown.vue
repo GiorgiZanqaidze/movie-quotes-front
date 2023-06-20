@@ -17,7 +17,6 @@
 
 <script>
 import { setLocale } from '@vee-validate/i18n'
-import { ref } from 'vue'
 
 export default {
   data() {

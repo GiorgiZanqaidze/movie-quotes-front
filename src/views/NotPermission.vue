@@ -1,5 +1,5 @@
 <template>
-  <div class="text-white flex flex-col justify-center items-center min-h-screen gap-10">
+  <div class="text-white flex flex-col justify-center items-center min-h-screen gap-10 bg-darkGray">
     <div>
       <img src="@/assets/icons/permission.svg" alt="permission" />
       <h1 class="text-3xl text-center">{{ $t('not_found.not_permited.title') }}!</h1>

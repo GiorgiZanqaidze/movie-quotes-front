@@ -14,7 +14,7 @@ import { useRoute } from 'vue-router'
 const modal = useModalStore()
 const route = useRoute()
 
-onMounted(() => {
+onMounted(async () => {
   const passwordToken = route.query.reset_password_token
   if (passwordToken) {
     modal.toggleModal('newPassword', true)
@@ -25,7 +25,13 @@ onMounted(() => {
   if (verifyToken) {
     modal.toggleModal('activatedEccount', true)
 
-    verifyUser(verifyToken)
+    const response = await verifyUser(verifyToken)
+
+    if (response.response.status >= 400) {
+      modal.toggleModal('linkExpired', true)
+    }
+
+    console.log(response.response.status)
   }
 })
 </script>

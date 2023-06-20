@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { defineProps, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
 
 export default {

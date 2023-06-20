@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { defineProps, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
 import { computed } from 'vue'
 export default {
@@ -97,11 +97,11 @@ export default {
       if (!props.meta.touched && !props.errors[props.name]) {
         return 'border-gray-500 border-2'
       } else if (value.value && !props.errors[props.name]) {
-        icon.value = 'valid'
         return 'border-green-500 border-2'
       } else if (props.errors[props.name] || props.backEndErrors) {
-        icon.value = 'invalid'
         return 'border-red-500 border-2'
+      } else {
+        return ''
       }
     })
 

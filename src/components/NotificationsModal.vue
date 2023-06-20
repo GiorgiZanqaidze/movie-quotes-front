@@ -17,6 +17,5 @@
 </template>
 
 <script setup>
-import ProfileIcon from '@/components/ProfileIcon.vue'
 import TheNotification from '@/components/TheNotification.vue'
 </script>

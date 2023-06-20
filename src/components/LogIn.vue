@@ -71,12 +71,10 @@ import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import loginUser from '@/services/loginUser.js'
 import { useRouter } from 'vue-router'
-import { ref, reactive } from 'vue'
 import TextInput from '@/components/TextInput.vue'
 import PasswordInput from '@/components/PasswordInput.vue'
 import CheckboxInput from '@/components/CheckboxInput.vue'
 import { userStore } from '@/stores/user.js'
-import axiosInstance from '@/config/axios/index'
 import GoogleButton from '@/components/GoogleButton.vue'
 
 const modal = useModalStore()

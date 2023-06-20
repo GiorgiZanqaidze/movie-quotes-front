@@ -7,7 +7,7 @@
         <div class="flex gap-4 items-center">
           <DeleteButton :quote_id="quote.id"></DeleteButton>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
-          <button class="flex justify-start">
+          <button class="flex justify-start" @click="modal.toggleModal('editQuoteModal', true)">
             <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
           </button>
         </div>
@@ -70,8 +70,7 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
-import { useQuoteStore } from '@/stores/quote'
-import { onMounted, ref, reactive } from 'vue'
+import { ref } from 'vue'
 import imagePath from '@/config/images/path'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import PostComment from '@/components/PostComment.vue'
