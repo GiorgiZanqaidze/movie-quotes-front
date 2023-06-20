@@ -9,12 +9,10 @@ import { useModalStore } from '@/stores/modal'
 import verifyUser from '@/services/verifyUser.js'
 import TheParalax from '@/components/TheParalax.vue'
 import { onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const modal = useModalStore()
 const route = useRoute()
-
-const router = useRouter()
 
 onMounted(async () => {
   const passwordToken = route.query.reset_password_token

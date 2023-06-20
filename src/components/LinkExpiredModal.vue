@@ -18,7 +18,7 @@
 
 <script setup>
 import axiosInstance from '@/config/axios/index'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
