@@ -7,7 +7,7 @@
         <div class="flex gap-4 items-center">
           <DeleteButton :quote_id="quote.id"></DeleteButton>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
-          <button class="flex justify-start">
+          <button class="flex justify-start" @click="modal.toggleModal('editQuoteModal', true)">
             <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
           </button>
         </div>

@@ -6,9 +6,9 @@
       <header class="text-white flex justify-between p-5 border-b border-mediumGray">
         <DeleteButton :quote_id="currentQuote.id">Delete</DeleteButton>
         <h1>Edit Quote</h1>
-        <div>
+        <button @click="modal.toggleModal('null', false)">
           <img src="@/assets/icons/close.svg" alt="close" />
-        </div>
+        </button>
       </header>
       <div class="text-white p-5">
         <div class="flex items-center gap-2">
@@ -46,7 +46,7 @@
                 class="hidden"
               />
               <div for="file relative">
-                <img :src="`${imagePath}${state.uploadedImage}`" alt="quote" />
+                <img :src="state.displayImage || state.uploadedImage" alt="quote" />
                 <label for="file" class="absolute top-1/2 left-1/2 cursor-pointer opacity-90">
                   <div
                     class="flex flex-col gap-3 bg-slate-800 rounded-md p-3 translate-x-[-50%] translate-y-[50%]"
@@ -79,8 +79,10 @@ import { userStore } from '@/stores/user'
 import imagePath from '@/config/images/path'
 import TheTextarea from '@/components/TheTextarea.vue'
 import { reactive } from 'vue'
-import { Form, Field, ErrorMessage } from 'vee-validate'
-import updateQuote from '@/services/updateQuote'
+import { Form, Field } from 'vee-validate'
+import { useModalStore } from '@/stores/modal'
+
+const modal = useModalStore()
 
 const authUser = userStore()
 
@@ -89,7 +91,9 @@ const singleMovieStore = useSingleMovieStore()
 const currentQuote = singleMovieStore.getCurrentQuote
 
 const state = reactive({
-  uploadedImage: currentQuote.image,
+  uploadedImage: `${imagePath}${currentQuote.image}`,
+  displayImage: null,
+  newImage: null,
   modal: true,
   quote_en: currentQuote.name.en,
   quote_ka: currentQuote.name.ka,
@@ -104,7 +108,14 @@ function handleSubmit() {
 
 const uploadImageFile = (file) => {
   if (file && file.target.files[0].type.startsWith('image/')) {
-    state.uploadedImage = file.target.files[0]
+    state.newImage = file.target.files[0]
+
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      const imageUrl = event.target.result
+      state.displayImage = imageUrl
+    }
+    reader.readAsDataURL(file.target.files[0])
   }
 }
 
@@ -112,7 +123,7 @@ async function handleEdit() {
   const data = {
     name_ka: state.quote_ka,
     name_en: state.quote_en,
-    image: state.uploadedImage,
+    image: state.newImage,
     movie_id: state.movie,
     quote_id: state.quote,
     user_id: authUser.data.id
@@ -124,10 +135,8 @@ async function handleEdit() {
     formData.append(key, value)
   })
 
-  console.log(data)
+  await singleMovieStore.editMovieQuote(currentQuote.id, formData)
 
-  const response = await updateQuote(currentQuote.id, formData)
-
-  console.log(response)
+  modal.toggleModal('null', false)
 }
 </script>

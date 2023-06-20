@@ -2,7 +2,7 @@
   <div class="bg-darkBlack rounded-md">
     <div class="flex sm:justify-start items-center p-5 sm:flex-row flex-col relative gap-3">
       <div class="sm:w-56 w-full px-3">
-        <img :src="`${imagePath}${quote.image}`" alt="quote" />
+        <img :src="`${imagePath}${quote?.image}`" alt="quote" />
       </div>
       <div class="flex items-center">
         <h1>"{{ quote?.name?.[this.$i18n.locale] }}"</h1>
@@ -31,17 +31,17 @@
             <span class="text-xs">Edit</span>
           </button>
 
-          <DeleteButton :quote_id="props.quote.id" @click="deleteQuote">delete</DeleteButton>
+          <DeleteButton :quote_id="props?.quote?.id" @click="deleteQuote">delete</DeleteButton>
         </div>
       </div>
     </div>
     <div class="flex border-t mx-5 py-5 gap-3">
       <div class="flex gap-3">
-        <p>{{ props.quote.comments.length }}</p>
+        <p>{{ props?.quote?.comments?.length }}</p>
         <span><img src="@/assets/icons/comment.svg" alt="comment" /></span>
       </div>
       <div class="flex gap-3">
-        <p>{{ props.quote.likes.length }}</p>
+        <p>{{ props?.quote?.likes?.length }}</p>
         <button><img src="@/assets/icons/likes.svg" alt="likes" /></button>
       </div>
     </div>
@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref, onMounted } from 'vue'
+import { defineProps, ref } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import imagePath from '@/config/images/path'

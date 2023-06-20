@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import getMovies from '@/services/getMovies.js'
+
 export const useMovieStore = defineStore('movie', {
   state() {
     return {
@@ -16,6 +17,7 @@ export const useMovieStore = defineStore('movie', {
         console.error('Error fetching user data:', error)
       }
     },
+
     setMovies(movies) {
       this.data = movies
     }
