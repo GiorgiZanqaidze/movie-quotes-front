@@ -17,6 +17,7 @@
           />
           <button
             class="py-1 px-2 rounded bg-red-600 flex justify-center items-center gap-0 sm:gap-2 text-[0.8rem] sm:text-md"
+            @click="modal.toggleModal('addMovieModal', true)"
           >
             <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
             <span>Add movie</span>
@@ -53,6 +54,9 @@ import { onMounted } from 'vue'
 import { useMovieStore } from '@/stores/movie'
 import { useRouter } from 'vue-router'
 import imagePath from '@/config/images/path'
+import { useModalStore } from '@/stores/modal'
+
+const modal = useModalStore()
 
 const movies = useMovieStore()
 

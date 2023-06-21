@@ -8,6 +8,7 @@ import UserHeader from '@/components/UserHeader.vue'
 import MoviesList from '@/views/MoviesList.vue'
 import { userStore } from '@/stores/user'
 import MovieDescription from '@/views/MovieDescription.vue'
+import NotPermission from '@/views/NotPermission.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -36,6 +37,12 @@ const router = createRouter({
       components: { default: MovieDescription, navigation: UserNavigation, header: UserHeader },
       meta: { auth: true }
     },
+    {
+      path: '/not-permited-user',
+      name: 'notPermited',
+      components: { default: NotPermission },
+      meta: { guest: true }
+    },
 
     { path: '/:notFound(.*)', component: NotFoundPage, meta: { auth: true, guest: true } }
   ]
@@ -50,7 +57,7 @@ router.beforeEach(async (to, from, next) => {
   } else if (to.meta.auth && user.data) {
     next()
   } else if (to.meta.auth && !user.data) {
-    next({ name: 'home' })
+    next({ name: 'notPermited' })
   } else if (to.meta.guest && user.data) {
     next({ name: 'newsFeed' })
   }

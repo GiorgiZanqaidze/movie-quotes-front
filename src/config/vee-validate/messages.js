@@ -14,7 +14,8 @@ configure({
         min: '{field} must have at least 0:{min} symbols',
         max: '{field} must have maximum 0:{max} symbols',
         alpha: 'This field must contain low register',
-        confirmed: 'must be the same as password'
+        confirmed: 'must be the same as password',
+        integer: 'field must be number'
       },
       names: {
         name: 'The name',
@@ -29,7 +30,8 @@ configure({
         min: '{field} ველი უნდა შეიცავდეს მინიმუმ 0:{min} სიმბოლოს',
         max: '{field} ველი უნდა შეიცავდეს მაქსიმუმ 0:{max} სიმბოლოს',
         alpha: 'უნდა შეიცავდეს მხოლოდ დაბალი რეგისტრის ლათინურ სიმბოლოებს და რიცხვებს',
-        confirmed: 'უნდა ემთხვეოდეს პაროლის ველს'
+        confirmed: 'უნდა ემთხვეოდეს პაროლის ველს',
+        integer: 'არ აკმაყოფილებს ფორმატს'
       },
       names: {
         password: 'პაროლი',
