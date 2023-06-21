@@ -8,7 +8,9 @@
       <div
         class="flex gap-3 my-2 sm:items-center px-8 sm:py-3 sm:px-0 text-sm flex-col-reverse sm:flex-row items-start"
       >
-        <h2 class="text-xl">Quotes <span class="text-sm">(Total 7)</span></h2>
+        <h2 class="text-xl">
+          Quotes <span class="text-sm">(Total {{ movie?.data?.quotes?.length }})</span>
+        </h2>
         <div class="bg-mediumGray sm:w-[1px] sm:h-6 w-full h-[1px]"></div>
         <button
           @click="addQuoteModal"

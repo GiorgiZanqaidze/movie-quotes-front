@@ -33,18 +33,14 @@
       :text="$t('modals.feedback.changed_password')"
       v-if="modal.isVisible.name === 'changedPassword'"
     />
-    <!-- <TheFeedback
-      img-src="src/assets/icons/link_expired.svg"
-      :title="$t('modals.feedback.link_expired')"
-      :buttonText="$t('modals.feedback.another_link')"
-      :text="$t('modals.feedback.link_expired_desc')"
-      v-if="modal.isVisible.name === 'linkExpired'"
-    /> -->
+
     <WriteQuote v-if="modal.isVisible.name === 'writeQuote'" />
     <ViewQuoteModal v-if="modal.isVisible.name === 'viewQuoteModal'" />
     <AddQuote v-if="modal.isVisible.name === 'addQuoteModal'" />
     <EditQuoteModal v-if="modal.isVisible.name === 'editQuoteModal'" />
     <LinkExpiredModal v-if="modal.isVisible.name === 'linkExpired'" />
+    <AddMovieModal v-if="modal.isVisible.name === 'addMovieModal'" />
+    <EditMovieModal v-if="modal.isVisible.name === 'editMovieModal'" />
   </div>
 </template>
 
@@ -60,5 +56,7 @@ import ViewQuoteModal from '@/components/ViewQuoteModal.vue'
 import AddQuote from '@/components/AddQuote.vue'
 import EditQuoteModal from '@/components/EditQuoteModal.vue'
 import LinkExpiredModal from '@/components/LinkExpiredModal.vue'
+import AddMovieModal from '@/components/AddMovieModal.vue'
+import EditMovieModal from '@/components/EditMovieModal.vue'
 const modal = useModalStore()
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <button class="flex justify-start" @click="deleteQuoteById">
+  <button class="flex justify-start" @click="deleteItem">
     <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1" />
     <span class="text-xs text-white">
       <slot> </slot>
@@ -10,15 +10,32 @@
 <script setup>
 import { defineProps } from 'vue'
 import { useSingleMovieStore } from '@/stores/singleMovie'
+import deleteMovie from '@/services/deleteMovie'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 const props = defineProps({
   quote_id: {
+    type: Number
+  },
+  movie_id: {
     type: Number
   }
 })
 
 const movie = useSingleMovieStore()
 
-async function deleteQuoteById() {
-  await movie.deleteMovieQuote(props.quote_id)
+async function deleteItem() {
+  if (props.quote_id) {
+    await movie.deleteMovieQuote(props.quote_id)
+  }
+
+  if (props.movie_id) {
+    const response = await deleteMovie(props.movie_id)
+
+    if (response.status === 200) {
+      router.push({ name: 'moviesList' })
+    }
+  }
 }
 </script>
