@@ -54,7 +54,6 @@ const props = defineProps({
     required: true
   },
   modelValue: {
-    type: [Number, String],
     required: true
   },
   movies: {

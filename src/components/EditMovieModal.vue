@@ -52,7 +52,7 @@
               class="list-none py-1 px-2 rounded-md bg-mediumGray flex gap-2 items-center"
             >
               <span>
-                {{ state.genres[genre - 1]?.name?.[this.$i18n.locale] }}
+                {{ state.genres?.[genre.id]?.name?.[this.$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
                 <img src="@/assets/icons/close.svg" alt="delete" class="inline-block w-3" />
@@ -74,7 +74,7 @@
             <option
               v-for="(genre, index) in state.genres"
               :key="index"
-              :value="genre.genre_id"
+              :value="genre"
               class="text-white"
             >
               {{ genre?.name?.[this.$i18n.locale] }}
@@ -126,7 +126,7 @@
           rules="required|integer"
         />
         <div
-          class="sm:w-full bg-transparent border rounded h-[86px]"
+          class="sm:w-full bg-transparent border rounded h-[10rem]"
           :class="{
             'border-darkRed': errors.image,
             'border-green-500': state.uploadedImage && !errors.image,
@@ -138,8 +138,8 @@
             @dragover="dragOver"
             @drop="drop"
           >
-            <div>
-              <img src="@/assets/icons/drag_and_drop.svg" alt="camera" />
+            <div class="h-full m-3 flex items-center">
+              <img :src="state.displayImage || state.uploadedImage" alt="quote" class="h-2/3" />
             </div>
             <h3 class="hidden sm:inline">
               {{ $t('news_feed.write_quote.drag_and_drop') }}
@@ -181,39 +181,52 @@ import imagePath from '@/config/images/path'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import TheTextarea from '@/components/TheTextarea.vue'
 import TextField from '@/components/TextField.vue'
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
+import getGentes from '@/services/getGenres'
 
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()
 const authUser = userStore()
 
-console.log(movie.data)
-
 const state = reactive({
   uploadedImage: `${imagePath}${movie.data.image}`,
   modal: true,
-  title_en: movie.data.title_en,
-  title_ka: movie.data.title_ka,
-  director_en: movie.data.director_en,
-  director_ka: movie.data.director_ka,
-  description_en: movie.data.description_en,
-  description_ka: movie.data.description_ka,
+  title_en: movie.data.title.en,
+  title_ka: movie.data.title.ka,
+  director_en: movie.data.director.en,
+  director_ka: movie.data.director.ka,
+  description_en: movie.data.description.en,
+  description_ka: movie.data.description.ka,
   year: movie.data.year,
   imageValidator: 'required',
   choosenGenre: null,
-  choosenGenres: [],
+  choosenGenres: movie.data.genres,
   genres: [],
-  genresValidator: 'required'
+  genresValidator: 'required',
+  displayImage: null,
+  newImage: null
 })
+
+const dragOver = (event) => {
+  event.preventDefault()
+}
 
 const drop = (event) => {
   event.preventDefault()
   const files = event.dataTransfer.files
   if (files.length > 0) {
     state.uploadedImage = files[0]
+
+    const reader = new FileReader()
+    reader.onload = (event_2) => {
+      const imageUrl = event_2.target.result
+      state.displayImage = imageUrl
+    }
+    reader.readAsDataURL(event.dataTransfer.files[0])
+
     state.imageValidator = ''
   }
 }
@@ -221,6 +234,13 @@ const drop = (event) => {
 const uploadImageFile = (file) => {
   if (file && file.target.files[0].type.startsWith('image/')) {
     state.uploadedImage = file.target.files[0]
+
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      const imageUrl = event.target.result
+      state.displayImage = imageUrl
+    }
+    reader.readAsDataURL(file.target.files[0])
   }
 }
 
@@ -235,7 +255,7 @@ const handleSubmit = async () => {
     year: state.year,
     image: state.uploadedImage,
     user_id: authUser.data.id,
-    genres: state.choosenGenres
+    genres: [1, 2]
   }
 
   let formData = new FormData()
@@ -243,6 +263,10 @@ const handleSubmit = async () => {
   Object.entries(data).forEach(([key, value]) => {
     formData.append(key, value)
   })
+
+  console.log(data)
+
+  const response = await movie.editMovie(movie.data.id, formData)
 }
 
 function handleGenres() {
@@ -252,4 +276,25 @@ function handleGenres() {
 
   state.choosenGenres = uniqueArray
 }
+
+function handleGenreDelere(e) {
+  state.choosenGenres = state.choosenGenres.filter((item) => item !== e)
+
+  if (state.choosenGenres.length < 1) {
+    state.choosenGenre = null
+  }
+}
+
+onMounted(async () => {
+  const response = await getGentes()
+
+  const genres = response.data
+
+  genres.forEach((genre) => {
+    state.genres.push({
+      genre_id: genre.id,
+      name: JSON.parse(genre.name)
+    })
+  })
+})
 </script>
