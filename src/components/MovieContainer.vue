@@ -27,8 +27,15 @@
       class="flex flex-col gap-1 text-xs sm:text-base"
       :class="{ 'w-[10rem] sm:w-[20rem]': quoteModal }"
     >
-      <div>
+      <div class="flex justify-between sm:w-[20rem]">
         <h1>{{ movie.data?.title?.[this.$i18n.locale] }} ({{ movie.data.year }})</h1>
+        <div v-if="!quoteModal" class="flex gap-4 items-center bg-darkGray py-2 px-3 rounded-md">
+          <DeleteButton :movie_id="movie.data.id"></DeleteButton>
+          <div class="w-[1px] h-4 bg-mediumGray"></div>
+          <button class="flex justify-start" @click="modal.toggleModal('editMovieModal', true)">
+            <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
+          </button>
+        </div>
       </div>
       <div class="flex gap-3">
         <span
@@ -52,18 +59,14 @@
 </template>
 
 <script setup>
-import { computed, onMounted, defineProps } from 'vue'
+import { computed } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
-
+import DeleteButton from '@/components/DeleteButton.vue'
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()
-
-let genresArray = []
-
-// movie.data.genres.forEach((genre) => genresArray.push(JSON.parse(genre.name)))
 
 const quoteModal = computed(() => modal.isVisible.name === 'addQuoteModal')
 </script>

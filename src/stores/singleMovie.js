@@ -6,7 +6,7 @@ import updateQuote from '@/services/updateQuote'
 export const useSingleMovieStore = defineStore('singleMovie', {
   state() {
     return {
-      data: '',
+      data: [],
       currentQuoteId: null
     }
   },

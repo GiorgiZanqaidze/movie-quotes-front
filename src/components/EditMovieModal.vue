@@ -1,12 +1,12 @@
 <template>
   <div
-    class="absolute top-[30rem] left-1/2 bg-darkBlack sm:w-[961px] min-h-[20rem] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white z-100"
+    class="absolute sm:top-[4rem] top-0 left-1/2 bg-darkBlack sm:w-[50rem] w-full sm:min-h-[30rem] translate-x-[-50%] pb-5 rounded-md"
   >
-    <div>
+    <div class="text-white">
       <header
         class="p-5 relative flex justify-center items-center text-xl border-b border-darkGray pb-3"
       >
-        <h1>add movie</h1>
+        <h1>Edit movie</h1>
         <button
           class="flex justify-start absolute right-5 top-5"
           @click="modal.toggleModal('null', false)"
@@ -164,8 +164,10 @@
             class="text-darkRed text-[14px] sm:text-sm bottom-[-22px] sm:bottom-[-15px] left-2"
           />
         </div>
-
-        <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">
+        <button
+          class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4"
+          @click="handleSubmit"
+        >
           {{ $t('news_feed.write_quote.post') }}
         </button>
       </Form>
@@ -174,41 +176,38 @@
 </template>
 
 <script setup>
-import { useModalStore } from '@/stores/modal'
 import { userStore } from '@/stores/user'
 import imagePath from '@/config/images/path'
-import TheTextarea from '@/components/TheTextarea.vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { reactive, onMounted } from 'vue'
+import TheTextarea from '@/components/TheTextarea.vue'
 import TextField from '@/components/TextField.vue'
-import getGentes from '@/services/getGenres'
-import postMovie from '@/services/postMovie'
-import { useMovieStore } from '@/stores/movie'
+import { reactive } from 'vue'
+import { useModalStore } from '@/stores/modal'
+import { useSingleMovieStore } from '@/stores/singleMovie'
 
-const movie = useMovieStore()
+const movie = useSingleMovieStore()
 
+const modal = useModalStore()
 const authUser = userStore()
 
+console.log(movie.data)
+
 const state = reactive({
-  uploadedImage: null,
+  uploadedImage: `${imagePath}${movie.data.image}`,
   modal: true,
-  title_en: '',
-  title_ka: '',
-  director_en: '',
-  director_ka: '',
-  description_en: '',
-  description_ka: '',
-  year: '',
+  title_en: movie.data.title_en,
+  title_ka: movie.data.title_ka,
+  director_en: movie.data.director_en,
+  director_ka: movie.data.director_ka,
+  description_en: movie.data.description_en,
+  description_ka: movie.data.description_ka,
+  year: movie.data.year,
   imageValidator: 'required',
   choosenGenre: null,
   choosenGenres: [],
   genres: [],
   genresValidator: 'required'
 })
-
-const dragOver = (event) => {
-  event.preventDefault()
-}
 
 const drop = (event) => {
   event.preventDefault()
@@ -224,7 +223,6 @@ const uploadImageFile = (file) => {
     state.uploadedImage = file.target.files[0]
   }
 }
-const modal = useModalStore()
 
 const handleSubmit = async () => {
   const data = {
@@ -245,27 +243,7 @@ const handleSubmit = async () => {
   Object.entries(data).forEach(([key, value]) => {
     formData.append(key, value)
   })
-
-  const response = await postMovie(formData)
-
-  if (response.status === 200) {
-    modal.toggleModal('null', false)
-    movie.updateMovies(response.data)
-  }
 }
-
-onMounted(async () => {
-  const response = await getGentes()
-
-  const genres = response.data
-
-  genres.forEach((genre) => {
-    state.genres.push({
-      genre_id: genre.id,
-      name: JSON.parse(genre.name)
-    })
-  })
-})
 
 function handleGenres() {
   state.choosenGenres.push(state.choosenGenre)
@@ -273,13 +251,5 @@ function handleGenres() {
   const uniqueArray = [...new Set(state.choosenGenres)]
 
   state.choosenGenres = uniqueArray
-}
-
-function handleGenreDelere(e) {
-  state.choosenGenres = state.choosenGenres.filter((item) => item !== e)
-
-  if (state.choosenGenres.length < 1) {
-    state.choosenGenre = null
-  }
 }
 </script>

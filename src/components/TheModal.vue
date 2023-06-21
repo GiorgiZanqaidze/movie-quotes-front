@@ -40,6 +40,7 @@
     <EditQuoteModal v-if="modal.isVisible.name === 'editQuoteModal'" />
     <LinkExpiredModal v-if="modal.isVisible.name === 'linkExpired'" />
     <AddMovieModal v-if="modal.isVisible.name === 'addMovieModal'" />
+    <EditMovieModal v-if="modal.isVisible.name === 'editMovieModal'" />
   </div>
 </template>
 
@@ -56,5 +57,6 @@ import AddQuote from '@/components/AddQuote.vue'
 import EditQuoteModal from '@/components/EditQuoteModal.vue'
 import LinkExpiredModal from '@/components/LinkExpiredModal.vue'
 import AddMovieModal from '@/components/AddMovieModal.vue'
+import EditMovieModal from '@/components/EditMovieModal.vue'
 const modal = useModalStore()
 </script>
