@@ -34,7 +34,9 @@
         <span
           class="bg-mediumGray py-1 px-2 rounded"
           :class="{ ' py-[2px] px-[0.5rem]': quoteModal }"
-          >ROMANCE</span
+          v-for="(genre, index) in movie?.data?.genres"
+          :key="index"
+          >{{ JSON.parse(genre.name)?.[this.$i18n.locale] }}</span
         >
       </div>
       <div>
@@ -50,7 +52,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, defineProps } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
@@ -58,6 +60,10 @@ import { useSingleMovieStore } from '@/stores/singleMovie'
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()
+
+let genresArray = []
+
+// movie.data.genres.forEach((genre) => genresArray.push(JSON.parse(genre.name)))
 
 const quoteModal = computed(() => modal.isVisible.name === 'addQuoteModal')
 </script>

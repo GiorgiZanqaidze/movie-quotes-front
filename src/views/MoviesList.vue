@@ -40,7 +40,7 @@
           </div>
           <h3>{{ movie.title[this.$i18n.locale] }} ({{ movie.year }})</h3>
           <p>
-            {{ movies.data.length }}
+            {{ movie?.quotes?.length || 0 }}
             <img src="@/assets/icons/quotes.svg" alt="quotes" class="inline-block ml-2 w-[32px]" />
           </p>
         </div>

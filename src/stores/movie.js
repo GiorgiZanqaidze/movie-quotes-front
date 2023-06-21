@@ -18,6 +18,10 @@ export const useMovieStore = defineStore('movie', {
       }
     },
 
+    updateMovies(data) {
+      this.data.push(data)
+    },
+
     setMovies(movies) {
       this.data = movies
     }

@@ -184,6 +184,10 @@ import TextField from '@/components/TextField.vue'
 import MoviesDropdown from '@/components/MoviesDropdown.vue'
 import getGentes from '@/services/getGenres'
 import postMovie from '@/services/postMovie'
+import { useMovieStore } from '@/stores/movie'
+
+const movie = useMovieStore()
+
 const authUser = userStore()
 
 const state = reactive({
@@ -221,6 +225,7 @@ const uploadImageFile = (file) => {
     state.uploadedImage = file.target.files[0]
   }
 }
+const modal = useModalStore()
 
 const handleSubmit = async () => {
   const genresArr = state.choosenGenres
@@ -244,9 +249,12 @@ const handleSubmit = async () => {
     formData.append(key, value)
   })
 
-  console.log(data)
+  const response = await postMovie(formData)
 
-  await postMovie(formData)
+  if (response.status === 200) {
+    modal.toggleModal('null', false)
+    movie.updateMovies(response.data)
+  }
 }
 
 onMounted(async () => {
@@ -269,8 +277,6 @@ function handleGenres() {
 
   state.choosenGenres = uniqueArray
 }
-
-const modal = useModalStore()
 
 function handleGenreDelere(e) {
   state.choosenGenres = state.choosenGenres.filter((item) => item !== e)
