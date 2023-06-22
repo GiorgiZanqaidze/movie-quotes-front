@@ -19,9 +19,9 @@ jobs:
         run: npm run lint
       - name: Set ssh key
         run: |
-          chmod 600 ~/.ssh/id_rsa
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
       - name: Deploy to Server
         if: ${{ success() }}
         run: |
