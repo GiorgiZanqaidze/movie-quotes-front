@@ -10,43 +10,40 @@
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
-      <ProfileIcon :path="imageUrl" />
-      <div class="flex justify-center items-start flex-col w-[200px]">
+      <ProfileIcon :border="state.border" :path="imageUrl" />
+      <div class="flex justify-center items-start flex-col w-[250px]">
         <h3 v-if="user.name" class="text-[20px]">{{ user.name }}</h3>
-        <a href="#" class="sm:text-sm text-[14px]">{{ $t('news_feed.edit_profile') }}</a>
+        <a href="/user-profile" class="sm:text-sm text-[14px] w-full">{{
+          $t('news_feed.edit_profile')
+        }}</a>
       </div>
       <div class="flex justify-center items-start">
-        <a href="/news-feed">
-          <img
-            v-if="route.name === 'newsFeed'"
-            src="@/assets/icons/home_red.svg"
-            alt="movies"
-            class="w-[24px] sm:w-auto"
-          />
-          <img v-else src="@/assets/icons/home_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
-        </a>
+        <img
+          v-if="route.name === 'newsFeed'"
+          src="@/assets/icons/home_red.svg"
+          alt="movies"
+          class="w-[24px] sm:w-auto"
+        />
+        <img v-else src="@/assets/icons/home_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
       </div>
       <div>
-        <h3>{{ $t('news_feed.news_feed') }}</h3>
-      </div>
-      <div class="flex justify-center items-start">
-        <a href="/movies-list">
-          <img
-            v-if="route.name !== 'newsFeed'"
-            src="@/assets/icons/movies_red.svg"
-            alt="movies"
-            class="w-[24px] sm:w-auto"
-          />
-          <img
-            v-else
-            src="@/assets/icons/movies_white.svg"
-            alt="movies"
-            class="w-[24px] sm:w-auto"
-          />
+        <a href="/news-feed">
+          <h3>{{ $t('news_feed.news_feed') }}</h3>
         </a>
       </div>
+      <div class="flex justify-center items-start">
+        <img
+          v-if="route.name === 'moviesList'"
+          src="@/assets/icons/movies_red.svg"
+          alt="movies"
+          class="w-[24px] sm:w-auto"
+        />
+        <img v-else src="@/assets/icons/movies_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
+      </div>
       <div class="w-[200px]">
-        <h3>{{ $t('news_feed.movies_list') }}</h3>
+        <a href="/movies-list">
+          <h3>{{ $t('news_feed.movies_list') }}</h3>
+        </a>
       </div>
     </div>
     <div class="sm:hidden flex gap-3 justify-center items-center w-2/3">
@@ -57,7 +54,7 @@
 </template>
 
 <script setup>
-import { computed, defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent, reactive, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { userStore } from '@/stores/user.js'
 import { useModalStore } from '@/stores/modal.js'
@@ -71,6 +68,16 @@ const userData = userStore()
 const modal = useModalStore()
 
 const route = useRoute()
+
+const state = reactive({
+  border: ''
+})
+
+onMounted(() => {
+  if (route.name === 'userProfile') {
+    state.border = 'border border-red-600'
+  }
+})
 
 const user = computed(() => userData.data)
 

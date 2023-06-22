@@ -4,6 +4,7 @@
       :src="props.path"
       alt="profile"
       class="sm:w-[52px] w-[40px] sm:h-[52px] h-[40px] rounded-full overflow-hidden"
+      :class="props.border"
     />
   </div>
 </template>
@@ -16,13 +17,13 @@ const props = defineProps({
     type: String,
     required: false
   },
-  border: {
-    type: String,
-    required: false
-  },
+
   path: {
     type: String,
     required: true
+  },
+  border: {
+    type: String
   }
 })
 </script>

@@ -266,7 +266,7 @@ const handleSubmit = async () => {
 
   console.log(data)
 
-  const response = await movie.editMovie(movie.data.id, formData)
+  await movie.editMovie(movie.data.id, formData)
 }
 
 function handleGenres() {
