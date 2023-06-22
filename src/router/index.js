@@ -9,6 +9,7 @@ import MoviesList from '@/views/MoviesList.vue'
 import { userStore } from '@/stores/user'
 import MovieDescription from '@/views/MovieDescription.vue'
 import NotPermission from '@/views/NotPermission.vue'
+import UserProfile from '@/views/UserProfile.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,6 +36,12 @@ const router = createRouter({
       path: '/movies-list/movie/:id',
       name: 'movieDescription',
       components: { default: MovieDescription, navigation: UserNavigation, header: UserHeader },
+      meta: { auth: true }
+    },
+    {
+      path: '/user-profile',
+      name: 'userProfile',
+      components: { default: UserProfile, navigation: UserNavigation, header: UserHeader },
       meta: { auth: true }
     },
     {

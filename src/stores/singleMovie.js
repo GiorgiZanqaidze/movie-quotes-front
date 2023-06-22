@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import getSingleMovie from '@/services/getSingleMovie.js'
 import deleteQuote from '@/services/deleteQuote'
 import updateQuote from '@/services/updateQuote'
+import updateMovie from '@/services/updateMovie'
 
 export const useSingleMovieStore = defineStore('singleMovie', {
   state() {
@@ -36,6 +37,15 @@ export const useSingleMovieStore = defineStore('singleMovie', {
         const quotes = this.data.quotes.map((item) => (item.id === id ? response.data.data : item))
         this.data.quotes = quotes
         console.log(quotes)
+        console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async editMovie(id, data) {
+      try {
+        const response = await updateMovie(id, data)
         console.log(response)
       } catch (error) {
         console.error(error)

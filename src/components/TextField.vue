@@ -42,7 +42,6 @@ const props = defineProps({
     required: true
   },
   modelValue: {
-    type: String,
     required: true
   },
   placeholder: {
