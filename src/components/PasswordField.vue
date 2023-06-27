@@ -11,16 +11,21 @@
         'sm:bg-lightDark bg-transparent': props.updateUser,
         'bg-transparent': !props.updateUser
       }"
-      type="text"
+      :type="showPassword ? 'password' : 'text'"
       :name="props.name"
       :value="props.modelValue"
       @blur="$emit('update:modelValue', $event.target.value)"
     />
+    <div class="absolute top-1/2 translate-y-[-50%] right-2">
+      <div @click="togglePassword" class="cursor-pointer">
+        <img src="@/assets/icons/show_password.svg" alt="show" />
+      </div>
+    </div>
     <ErrorMessage
       :name="props.name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
-    <div class="absolute right-3 top-4">
+    <div class="absolute right-6 top-3">
       <img
         v-if="props.modelValue && !props.errors"
         src="@/assets/icons/valid_icon.svg"
@@ -32,7 +37,7 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
 
 const props = defineProps({
@@ -58,4 +63,10 @@ const props = defineProps({
     type: Boolean
   }
 })
+
+const showPassword = ref(true)
+
+const togglePassword = () => {
+  showPassword.value = !showPassword.value
+}
 </script>
