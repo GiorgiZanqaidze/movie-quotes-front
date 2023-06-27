@@ -3,7 +3,7 @@
     <div class="mx-auto my-0 sm:w-[50rem] pt-[1rem]">
       <header class="text-xl pl-4">
         <h1 class="hidden sm:inline">My Profile</h1>
-        <a href="/news-feed">
+        <a href="/news-feed" class="block sm:hidden">
           <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" />
         </a>
       </header>
@@ -60,7 +60,7 @@
                       name="name"
                       :errors="errors.name"
                       v-model="state.username"
-                      @update:modelValue="(newValue) => (state.title_en = newValue)"
+                      @update:modelValue="(newValue) => (state.username = newValue)"
                       placeholder="name"
                       rules="required|min:3"
                       :updateUser="true"
@@ -90,40 +90,105 @@
                     <span class="cursor-pointer" @click="addPasswordDiv">Edit</span>
                   </div>
                 </div>
-                <div class="mr-9 flex flex-col gap-2" v-if="state.showPasswordDiv">
-                  <div class="gap-4">
-                    <div class="w-full border p-4 flex flex-col gap-3 rounded border-mediumGray">
-                      <h3>Password should contain</h3>
-                      <ul class="text-xs list-disc pl-4">
-                        <li>8 or more characters</li>
-                        <li>15 lowercase characters</li>
-                      </ul>
-                    </div>
-                    <div class="relative flex flex-col gap-2 mt-2">
-                      <label for="password">New Password</label>
-                      <PasswordField
-                        name="password"
-                        :errors="errors.password"
-                        v-model="state.newPassword"
-                        @update:modelValue="(newValue) => (state.director_ka = newValue)"
-                        placeholder="password"
-                        rules="required"
-                        :updateUser="true"
-                      />
-                    </div>
-                    <div class="relative flex flex-col gap-2 mt-2">
-                      <label for="password_confirmation">Confirm New Password</label>
+                <div
+                  class="absolute sm:static top-14 left-0 right-0 bottom-0 sm:block sm:bg-transparent bg-black h-[50rem] sm:h-auto"
+                  v-if="state.showPasswordDiv"
+                >
+                  <div class="block sm:hidden">
+                    <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="addPasswordDiv" />
+                  </div>
+                  <div
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[15rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-10"
+                  >
+                    <div class="gap-4">
+                      <div class="w-full border p-4 flex flex-col gap-3 rounded border-mediumGray">
+                        <h3>Password should contain</h3>
+                        <ul class="text-xs list-disc pl-4">
+                          <li>8 or more characters</li>
+                          <li>15 lowercase characters</li>
+                        </ul>
+                      </div>
+                      <div class="relative flex flex-col gap-2 mt-2">
+                        <label for="password">New Password</label>
+                        <PasswordField
+                          name="password"
+                          :errors="errors.password"
+                          v-model="state.newPassword"
+                          @update:modelValue="(newValue) => (state.director_ka = newValue)"
+                          placeholder="password"
+                          rules="required"
+                          :updateUser="true"
+                        />
+                      </div>
+                      <div class="relative flex flex-col gap-2 mt-2">
+                        <label for="password_confirmation">Confirm New Password</label>
 
-                      <PasswordField
-                        name="password_confirmation"
-                        :errors="errors.password_confirmation"
-                        v-model="state.newPasswordConfirmation"
-                        @update:modelValue="(newValue) => (state.director_ka = newValue)"
-                        placeholder="Confirm new Password"
-                        rules="required|confirmed:@password"
-                        :updateUser="true"
-                      />
+                        <PasswordField
+                          name="password_confirmation"
+                          :errors="errors.password_confirmation"
+                          v-model="state.newPasswordConfirmation"
+                          @update:modelValue="(newValue) => (state.director_ka = newValue)"
+                          placeholder="Confirm new Password"
+                          rules="required|confirmed:@password"
+                          :updateUser="true"
+                        />
+                      </div>
+                      <div
+                        class="justify-between w-[400px] items-center flex gap-10 mt-3 bottom-[-3rem] absolute sm:hidden"
+                      >
+                        <span @click="cancellConfirm">Cancell</span>
+                        <label
+                          @click="showConfirmModal"
+                          class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                          >save changes</label
+                        >
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-col gap-2 text-sm sm:text-base">
+                  <p>password</p>
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
+                    >
+                      <h3 class="h-full flex items-center ml-3">{{ state.email }}</h3>
+                    </div>
+                    <span class="cursor-pointer" @click="addEmailDiv">Edit</span>
+                  </div>
+                </div>
+                <div
+                  class="absolute sm:static top-14 left-0 right-0 bottom-0 sm:block sm:bg-transparent bg-black h-[50rem] sm:h-auto"
+                  v-if="state.showEmailDiv"
+                >
+                  <div class="block sm:hidden">
+                    <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="addPasswordDiv" />
+                  </div>
+                  <div
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-10"
+                  >
+                    <label for="name">Email</label>
+                    <TextField
+                      name="email"
+                      :errors="errors.email"
+                      v-model="state.email"
+                      @update:modelValue="(newValue) => (state.email = newValue)"
+                      placeholder="Email"
+                      rules="required|email"
+                      :updateUser="true"
+                    />
+                  </div>
+                  <div
+                    class="justify-between px-10 items-center flex w-full gap-2 mt-3 top-1/3 absolute sm:hidden"
+                  >
+                    <span @click="closeEmailDiv">Cancell</span>
+                    <label
+                      @click="showConfirmModal"
+                      class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                      >save changes</label
+                    >
                   </div>
                 </div>
               </div>
@@ -155,11 +220,21 @@
         </Form>
       </div>
       <div class="hidden justify-end items-center gap-2 mt-3 sm:flex">
-        <span class="cursor-pointer">Cancell</span>
+        <span class="cursor-pointer" @click="cancellAddDiv">Cancell</span>
         <label for="submit" class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
           >save changes</label
         >
       </div>
+    </div>
+    <div
+      class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] sm:hidden p-5 flex w-[20rem] justify-between rounded-md"
+      v-if="state.changesUpdated"
+    >
+      <div class="flex justify-start gap-2">
+        <ConfirmedBtn />
+        <h1 class="text-green-500">changes updated</h1>
+      </div>
+      <CloseBtn @click="closeChangesModal" />
     </div>
   </div>
 </template>
@@ -168,12 +243,15 @@
 import imagePath from '@/config/images/path'
 import { userStore } from '@/stores/user'
 import { Field, Form } from 'vee-validate'
-import { computed, reactive } from 'vue'
+import { computed, reactive, onMounted } from 'vue'
 import updateUserAvatar from '@/services/updateUserAvatar'
 import PasswordField from '@/components/PasswordField.vue'
 import updateUser from '@/services/updateUser'
 import TextField from '@/components/TextField.vue'
 import BackArrow from '@/components/images/back.vue'
+import { useRoute } from 'vue-router'
+import CloseBtn from '@/components/images/close.vue'
+import ConfirmedBtn from '@/components/images/confirm.vue'
 
 const authUser = userStore()
 const imageUrl = computed(() => `${imagePath}${authUser.data.image}`)
@@ -190,8 +268,13 @@ const state = reactive({
   newPasswordConfirmation: null,
   showPassword: null,
   showPasswordConfirm: null,
-  confirmModal: false
+  confirmModal: false,
+  email: authUser.data.email,
+  showEmailDiv: false,
+  changesUpdated: false
 })
+
+console.log(state.email)
 
 const handleAvatar = async (file) => {
   if (file && file.target.files[0].type.startsWith('image/')) {
@@ -217,20 +300,45 @@ const addUsernameDiv = () => {
   state.showUsernameDiv = !state.showUsernameDiv
 }
 
+const closeUsernameDiv = () => {
+  state.showUsernameDiv = false
+}
+
+const addEmailDiv = () => {
+  state.showEmailDiv = !state.showEmailDiv
+}
+
+const closeEmailDiv = () => {
+  state.showEmailDiv = false
+}
+
 const addPasswordDiv = () => {
   state.showPasswordDiv = !state.showPasswordDiv
 }
 
+const closePasswordDiv = () => {
+  state.showPasswordDiv = false
+}
+
+const cancellAddDiv = () => {
+  closeUsernameDiv()
+  closeEmailDiv()
+  closePasswordDiv()
+}
+
 const handleSubmit = async () => {
-  console.log('fsafs')
   const data = {
     name: state.username,
     password: state.newPassword,
-    password_confirmation: state.newPasswordConfirmation
+    password_confirmation: state.newPasswordConfirmation,
+    email: state.email
   }
   const response = await updateUser(authUser.data.id, data)
 
-  console.log(response)
+  if (response.status === 200) {
+    state.changesUpdated = true
+    authUser.setUserData(response.data)
+  }
 }
 
 const togglePassword = () => {
@@ -244,12 +352,32 @@ const showConfirmModal = () => {
 
 const cancellConfirm = () => {
   console.log('fdfds')
-  addUsernameDiv()
+  closeUsernameDiv()
+  closePasswordDiv()
 }
 
 const confirmData = () => {
   handleSubmit()
   showConfirmModal()
-  addUsernameDiv()
+  closeUsernameDiv()
+  closePasswordDiv()
+}
+
+const route = useRoute()
+
+import updateEmail from '@/services/updateEmail'
+
+onMounted(async () => {
+  if (route.query.update_email) {
+    state.changesUpdated = true
+    const email = { email: route.query.update_email }
+    const token = route.query.email_verify_token
+    await updateEmail(token, email)
+  }
+  console.log(route.query)
+})
+
+const closeChangesModal = () => {
+  state.changesUpdated = false
 }
 </script>
