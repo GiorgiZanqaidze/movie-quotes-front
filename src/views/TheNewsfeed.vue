@@ -42,7 +42,7 @@ async function getQuotes() {
         searchType: query.type
       }
     })
-    quotes.setQuotes(response.data.data)
+    quotes.setQuotes(response.data)
     console.log(response.data)
   } catch (error) {
     console.log(error)

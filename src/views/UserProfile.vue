@@ -78,7 +78,7 @@
                   </div>
                 </div>
               </div>
-              <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-4" v-if="!authUser?.data?.google_id">
                 <div class="flex flex-col gap-2 text-sm sm:text-base">
                   <p>password</p>
                   <div class="flex items-center gap-2">
@@ -147,9 +147,9 @@
                   </div>
                 </div>
               </div>
-              <div>
+              <div v-if="!authUser?.data?.google_id">
                 <div class="flex flex-col gap-2 text-sm sm:text-base">
-                  <p>password</p>
+                  <p>Email</p>
                   <div class="flex items-center gap-2">
                     <div
                       class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
@@ -169,7 +169,7 @@
                   <div
                     class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-10"
                   >
-                    <label for="name">Email</label>
+                    <label for="email">Email</label>
                     <TextField
                       name="email"
                       :errors="errors.email"
@@ -292,7 +292,9 @@ const handleAvatar = async (file) => {
     reader.readAsDataURL(file.target.files[0])
     const response = await updateUserAvatar(authUser.data.id, formData)
 
-    console.log(response)
+    if (response.status === 200) {
+      authUser.setUserData(response.data)
+    }
   }
 }
 
@@ -374,7 +376,6 @@ onMounted(async () => {
     const token = route.query.email_verify_token
     await updateEmail(token, email)
   }
-  console.log(route.query)
 })
 
 const closeChangesModal = () => {

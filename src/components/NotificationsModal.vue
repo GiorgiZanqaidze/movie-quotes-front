@@ -18,4 +18,9 @@
 
 <script setup>
 import TheNotification from '@/components/TheNotification.vue'
+import { userStore } from '@/stores/user'
+
+const userData = userStore()
+
+console.log(userData.data.received_notifications)
 </script>

@@ -2,18 +2,18 @@
   <div class="bg-darkBlack sm:w-[961px] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
     <header class="flex items-center gap-4">
       <profile-icon :path="profileIconUrl"></profile-icon>
-      <h2>{{ props.quote.author.name }}</h2>
+      <h2>{{ props?.quote?.author?.name }}</h2>
     </header>
     <h1>
-      “{{ props.quote.name[this.$i18n.locale] }}”movie-
-      {{ props.quote.movie.title[this.$i18n.locale] }} ({{ props.quote.movie.year }})
+      “{{ props?.quote?.name?.[this.$i18n.locale] }}”movie-
+      {{ props?.quote?.movie?.title?.[this.$i18n.locale] }} ({{ props?.quote?.movie?.year }})
     </h1>
     <div class="rounded-lg overflow-hidden">
       <img :src="imageUrl" alt="movie" class="mx-auto" />
     </div>
     <div class="flex gap-4 mt-4 border-b-2 border-light pb-4">
       <div class="flex gap-2 items-center just">
-        <p>{{ props.quote.comments.length }}</p>
+        <p>{{ props?.quote?.comments?.length }}</p>
         <button>
           <img src="@/assets/icons/comment.svg" alt="comment" class="w-[24px]" />
         </button>
@@ -40,13 +40,13 @@
     </div>
     <ul>
       <the-comment
-        v-for="(comment, index) in props.quote.comments"
+        v-for="(comment, index) in props?.quote?.comments"
         :key="index"
         :text="comment.text"
         :author="comment.author"
       ></the-comment>
     </ul>
-    <PostComment :quote_id="props.quote.id" />
+    <PostComment :quote_id="props?.quote?.id" />
   </div>
 </template>
 
@@ -74,7 +74,8 @@ const liked = ref(false)
 
 const likeData = {
   user_id: authUser.data.id,
-  quote_id: props.quote.id
+  quote_id: props.quote.id,
+  receiver_id: props.quote.author.id
 }
 
 liked.value = props.quote.likes.some((like) => like.user_id === authUser.data.id)
