@@ -8,7 +8,7 @@ module.exports = {
       lg: '1920px'
     },
     fontFamily: {
-      helventica_bold: ['helventica_eng_bold', 'helventica_geo_bold'],
+      helventica_bold: ['helventica_eng_light', 'helventica_geo_bold'],
       helventica_light: ['helventica_eng_light', 'helventica_geo_light']
     },
 
@@ -26,7 +26,8 @@ module.exports = {
         light: '#EFEFEF4D',
         mediumRed: '#9747FF66',
         lightBlue: '#198754',
-        lightBlack: '#12101A'
+        lightBlack: '#12101A',
+        cyan: '#D1E7DD'
       }
     }
   },

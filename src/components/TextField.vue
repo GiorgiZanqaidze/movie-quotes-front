@@ -2,12 +2,14 @@
   <div class="relative">
     <Field
       :rules="props.rules"
-      class="text-mediumGray bg-transparent border w-full rounded p-2"
+      class="text-mediumGray border w-full rounded p-2"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors,
         'border-green-500': props.modelValue && !props.errors,
-        'border-mediumGray': !props.modelValue && !props.errors
+        'border-mediumGray': !props.modelValue && !props.errors,
+        'sm:bg-lightDark bg-transparent': props.updateUser,
+        'bg-transparent': !props.updateUser
       }"
       type="text"
       :name="props.name"
@@ -51,6 +53,9 @@ const props = defineProps({
   rules: {
     type: String,
     required: false
+  },
+  updateUser: {
+    type: Boolean
   }
 })
 </script>

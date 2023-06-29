@@ -1,22 +1,26 @@
 <template>
   <div class="relative">
-    <Field
-      rules="required|min:3"
-      class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2"
-      :placeholder="props.placeholder"
+    <div
+      class="flex items-start text-mediumGray bg-transparent border w-full rounded p-2"
       :class="{
         'border-darkRed': props.errors,
         'border-green-500': props.modelValue && !props.errors,
         'border-mediumGray': !props.modelValue && !props.errors
       }"
-      :name="name"
-      as="textarea"
-      :value="props.modelValue"
-      @blur="$emit('update:modelValue', $event.target.value)"
-    />
-    <span v-if="props.edit" class="text-xs relative bottom-8 left-2 text-mediumGray"
-      >{{ props.placeholder }}:</span
     >
+      <span class="text-xs text-mediumGray whitespace-nowrap mr-2 mt-3"
+        >{{ props.placeholder }}:</span
+      >
+      <Field
+        rules="required|min:3"
+        class="text-mediumGray bg-transparent w-full h-[86px] rounded p-2"
+        :placeholder="props.placeholder"
+        :name="name"
+        as="textarea"
+        :value="props.modelValue"
+        @blur="$emit('update:modelValue', $event.target.value)"
+      />
+    </div>
     <ErrorMessage
       :name="props.name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-15px] left-2"
@@ -50,9 +54,6 @@ const props = defineProps({
   placeholder: {
     type: String,
     required: true
-  },
-  edit: {
-    required: false
   }
 })
 </script>

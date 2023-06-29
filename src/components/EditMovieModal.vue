@@ -21,7 +21,7 @@
         </div>
       </div>
       <Form @submit="handleSubmit" class="mt-4 flex flex-col gap-6 pb-2 px-6" v-slot="{ errors }">
-        <TextField
+        <EditTextInput
           name="title_en"
           :errors="errors.title_en"
           v-model="state.title_en"
@@ -29,7 +29,7 @@
           placeholder="Movie name"
           rules="required|min:3"
         />
-        <TextField
+        <EditTextInput
           name="title_ka"
           :errors="errors.title_ka"
           v-model="state.title_ka"
@@ -52,7 +52,7 @@
               class="list-none py-1 px-2 rounded-md bg-mediumGray flex gap-2 items-center"
             >
               <span>
-                {{ state.genres?.[genre.id]?.name?.[this.$i18n.locale] }}
+                {{ genre?.name?.[this.$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
                 <img src="@/assets/icons/close.svg" alt="delete" class="inline-block w-3" />
@@ -85,7 +85,7 @@
             class="text-darkRed text-xs sm:text-sm top-[80px] sm:bottom-[-15px] left-2 absolute"
           />
         </div>
-        <TextField
+        <EditTextInput
           name="director_en"
           :errors="errors.director_en"
           v-model="state.director_en"
@@ -93,7 +93,7 @@
           placeholder="Director"
           rules="required|min:3"
         />
-        <TextField
+        <EditTextInput
           name="director_ka"
           :errors="errors.director_ka"
           v-model="state.director_ka"
@@ -101,7 +101,7 @@
           placeholder="რეჟისორი"
           rules="required|min:3"
         />
-        <TheTextarea
+        <EditTextarea
           name="description_en"
           :errors="errors.description_en"
           v-model="state.description_en"
@@ -109,7 +109,7 @@
           placeholder="Movie Descrioption"
           rules="required|min:3"
         />
-        <TheTextarea
+        <EditTextarea
           name="description_ka"
           :errors="errors.description_ka"
           v-model="state.description_ka"
@@ -117,7 +117,7 @@
           placeholder="ფილმის აღწერა"
           rules="required|min:3"
         />
-        <TextField
+        <EditTextInput
           name="year"
           :errors="errors.year"
           v-model="state.year"
@@ -179,13 +179,12 @@
 import { userStore } from '@/stores/user'
 import imagePath from '@/config/images/path'
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import TheTextarea from '@/components/TheTextarea.vue'
-import TextField from '@/components/TextField.vue'
 import { reactive, onMounted } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import getGentes from '@/services/getGenres'
-
+import EditTextInput from '@/components/EditTextInput.vue'
+import EditTextarea from '@/components/EditTextarea.vue'
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()
@@ -203,7 +202,7 @@ const state = reactive({
   year: movie.data.year,
   imageValidator: 'required',
   choosenGenre: null,
-  choosenGenres: movie.data.genres,
+  choosenGenres: [],
   genres: [],
   genresValidator: 'required',
   displayImage: null,
@@ -245,6 +244,8 @@ const uploadImageFile = (file) => {
 }
 
 const handleSubmit = async () => {
+  const genresArr = state.choosenGenres.map((genre) => genre.genre_id)
+
   const data = {
     title_en: state.title_en,
     title_ka: state.title_en,
@@ -255,26 +256,31 @@ const handleSubmit = async () => {
     year: state.year,
     image: state.uploadedImage,
     user_id: authUser.data.id,
-    genres: [1, 2]
+    genres: genresArr
   }
-
-  let formData = new FormData()
-
-  Object.entries(data).forEach(([key, value]) => {
-    formData.append(key, value)
-  })
 
   console.log(data)
 
-  await movie.editMovie(movie.data.id, formData)
+  // let formData = new FormData()
+
+  // Object.entries(data).forEach(([key, value]) => {
+  //   formData.append(key, value)
+  // })
+
+  // console.log(data)
+
+  // await movie.editMovie(movie.data.id, formData)
 }
 
 function handleGenres() {
-  state.choosenGenres.push(state.choosenGenre)
+  // console.log(state.choosenGenres)
 
-  const uniqueArray = [...new Set(state.choosenGenres)]
+  console.log(state.choosenGenre)
+  // state.choosenGenres.push(state.choosenGenre)
 
-  state.choosenGenres = uniqueArray
+  // const uniqueArray = [...new Set(state.choosenGenres)]
+
+  // state.choosenGenres = uniqueArray
 }
 
 function handleGenreDelere(e) {
@@ -296,5 +302,18 @@ onMounted(async () => {
       name: JSON.parse(genre.name)
     })
   })
+
+  console.log(state.genres)
+
+  const movieGenres = movie.data.genres
+
+  movieGenres.forEach((genre) => {
+    state.choosenGenres.push({
+      genre_id: genre.id,
+      name: JSON.parse(genre.name)
+    })
+  })
+
+  console.log(state.choosenGenres)
 })
 </script>
