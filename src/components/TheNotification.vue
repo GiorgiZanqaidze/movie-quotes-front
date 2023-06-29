@@ -3,7 +3,7 @@
     <div>
       <div class="flex gap-3">
         <div class="w-10 flex items-center justify-center">
-          <ProfileIcon width="max-w-[60px]" :border="borderClass" />
+          <ProfileIcon width="max-w-[60px]" :border="borderClass" :path="userImage" />
         </div>
         <div class="flex flex-col justify-start">
           <h1 class="text-left">giorgi zankaidze</h1>
@@ -25,12 +25,12 @@
     </div>
     <div
       class="flex gap-3 items-center sm:gap-0 sm:flex-col"
-      :class="{ 'sm:flex-col-reverse': newNotification }"
+      :class="{ 'sm:flex-col-reverse': !newNotification }"
     >
-      <p v-if="newNotification" class="text-[14px] text-center w-10 text-lightBlue">
+      <p v-if="!newNotification" class="text-[14px] text-center w-10 text-lightBlue">
         {{ $t('news_feed.new') }}
       </p>
-      <p :class="{ 'ml-[60px]': !newNotification }" class="text-[14px]">5 minutes ago</p>
+      <p :class="{ 'ml-[60px]': newNotification }" class="text-[14px]">5 minutes ago</p>
     </div>
   </div>
 </template>
@@ -38,23 +38,27 @@
 <script setup>
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import { computed, defineProps } from 'vue'
-
+import ImageSrc from '@/config/images/path'
 const props = defineProps({
   condition: {
-    type: String,
     required: true
   },
   type: {
     type: String,
     required: true
+  },
+  data: {
+    type: Object,
+    required: true
   }
 })
 
 const newNotification = computed(() => {
-  return props.condition === 'new'
+  return props.condition
 })
+
 const borderClass = computed(() => {
-  if (newNotification.value) {
+  if (!newNotification.value) {
     return 'border-2 border-lightBlue'
   } else {
     return ''
@@ -62,4 +66,6 @@ const borderClass = computed(() => {
 })
 
 const comment = computed(() => props.type === 'comment')
+
+const userImage = computed(() => `${ImageSrc}${props.data.sender.image}`)
 </script>

@@ -22,8 +22,8 @@ import { useCommentStore } from '@/stores/comment.js'
 import { ref, defineProps } from 'vue'
 
 const props = defineProps({
-  quote_id: {
-    type: Number,
+  quote: {
+    type: Object,
     required: true
   }
 })
@@ -38,7 +38,8 @@ const handleSubmit = async () => {
   const commentData = {
     text: text.value,
     user_id: authUser.data.id,
-    quote_id: props.quote_id
+    quote_id: props.quote.id,
+    receiver_id: props.quote.author.id
   }
 
   await comment.postComment(commentData)
