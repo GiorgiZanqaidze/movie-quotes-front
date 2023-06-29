@@ -43,7 +43,7 @@
           :class="{ ' py-[2px] px-[0.5rem]': quoteModal }"
           v-for="(genre, index) in movie?.data?.genres"
           :key="index"
-          >{{ JSON.parse(genre.name)?.[this.$i18n.locale] }}</span
+          >{{ genre.name?.[this.$i18n.locale] }}</span
         >
       </div>
       <div>

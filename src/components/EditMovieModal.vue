@@ -66,7 +66,8 @@
             @change="handleGenres"
             id="genres"
             as="select"
-            class="w-full bg-black h-10 rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none"
+            multiple
+            class="w-full bg-black rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none"
           >
             <option value="" disabled>
               {{ $t('news_feed.write_quote.choose_movie') }}
@@ -244,7 +245,7 @@ const uploadImageFile = (file) => {
 }
 
 const handleSubmit = async () => {
-  const genresArr = state.choosenGenres.map((genre) => genre.genre_id)
+  const newGenresArr = state.choosenGenres.map((genre) => genre.id)
 
   const data = {
     title_en: state.title_en,
@@ -256,31 +257,28 @@ const handleSubmit = async () => {
     year: state.year,
     image: state.uploadedImage,
     user_id: authUser.data.id,
-    genres: genresArr
+    genres: newGenresArr
   }
 
-  console.log(data)
+  let formData = new FormData()
 
-  // let formData = new FormData()
+  Object.entries(data).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
 
-  // Object.entries(data).forEach(([key, value]) => {
-  //   formData.append(key, value)
-  // })
-
-  // console.log(data)
-
-  // await movie.editMovie(movie.data.id, formData)
+  await movie.editMovie(movie.data.id, formData)
 }
 
 function handleGenres() {
-  // console.log(state.choosenGenres)
+  const isDuplicate = state.choosenGenres.some((genre) => {
+    return genre.id === state.choosenGenre[0].id
+  })
 
-  console.log(state.choosenGenre)
-  // state.choosenGenres.push(state.choosenGenre)
+  if (!isDuplicate) {
+    state.choosenGenres.push(state.choosenGenre[0])
+  }
 
-  // const uniqueArray = [...new Set(state.choosenGenres)]
-
-  // state.choosenGenres = uniqueArray
+  console.log(state.choosenGenres)
 }
 
 function handleGenreDelere(e) {
@@ -294,26 +292,12 @@ function handleGenreDelere(e) {
 onMounted(async () => {
   const response = await getGentes()
 
-  const genres = response.data
-
-  genres.forEach((genre) => {
-    state.genres.push({
-      genre_id: genre.id,
-      name: JSON.parse(genre.name)
-    })
-  })
+  state.genres = response.data
 
   console.log(state.genres)
 
-  const movieGenres = movie.data.genres
-
-  movieGenres.forEach((genre) => {
-    state.choosenGenres.push({
-      genre_id: genre.id,
-      name: JSON.parse(genre.name)
-    })
+  movie.data.genres.map((genre) => {
+    state.choosenGenres.push({ ...genre })
   })
-
-  console.log(state.choosenGenres)
 })
 </script>
