@@ -26,5 +26,39 @@
     "total": "სულ",
     "search": "ძებნა",
     "add_movie": "დამატება"
+  },
+  "movie_description": {
+    "title": "ფილმის აღწერა",
+    "quotes": "ციტატები",
+    "total": "სულ",
+    "add_quote": "ციტატის დამატება",
+    "directore": "რეჟისორი",
+    "view": "ნახვა",
+    "edit": "შეცვლა",
+    "delete": "წაშლა",
+    "view_quote": "ციტატა",
+    "edit_quote": "ციტატის ცვლილება",
+    "change_photo": "ფოტოს შეცვლა"
+  },
+  "my_profile": {
+    "title": "ჩემი პროფილი",
+    "upload_photo": "ფოტოს ატვირთვა",
+    "username": "სახელი",
+    "new_username": "ახალი სახელი",
+    "password": "პაროლი",
+    "password_confirmation": "გაიმეორე ახალი პაროლი",
+    "should_contain": "პაროლი უნდა შეიცავდეს",
+    "characters": "8 ან მეტ სიმბოლოს",
+    "lowercase": "15 დაბალი რანგის სიმბოლოს",
+    "email": "ელ-ფოსტა",
+    "new_email": "ახალი ელ-ფოსტა",
+    "new_password": "ახალი პაროლი",
+    "confirm_new_password": "გაიმეორე ახალი პაროლი",
+    "save_changes": "შენახვა",
+    "cancell": "გაუქმება",
+    "changes_updated": "ცვლილებები განახლდა",
+    "confirm": "დასტური",
+    "edit": "შეცვლა",
+    "make_changes": "დარწმუნებული ხარ?"
   }
 }

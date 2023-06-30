@@ -5,8 +5,10 @@
         class="h-20 flex sm:justify-between justify-between items-center mb-4 gap-10 sm:w-auto w-[300px] mx-auto"
       >
         <h1>
-          My list of movies
-          <span class="block sm:inline text-xs sm:text-md">(Total {{ movies.data?.length }})</span>
+          {{ $t('landing.my_movies.my_list') }}
+          <span class="block sm:inline text-xs sm:text-md"
+            >({{ $t('landing.my_movies.total') }} {{ movies.data?.length }})</span
+          >
         </h1>
         <div class="flex gap-10 justify-between">
           <form
@@ -17,7 +19,7 @@
               type="text"
               name="search_movie"
               class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none"
-              placeholder="search"
+              :placeholder="$t('landing.my_movies.search')"
               v-model="state.searchValue"
             />
             <img
@@ -31,7 +33,7 @@
             @click="modal.toggleModal('addMovieModal', true)"
           >
             <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
-            <span>Add movie</span>
+            <span>{{ $t('landing.my_movies.add_movie') }}</span>
           </button>
         </div>
       </div>

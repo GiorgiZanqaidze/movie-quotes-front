@@ -26,5 +26,39 @@
     "total": "Total",
     "search": "Search",
     "add_movie": "Add Movie"
+  },
+  "movie_description": {
+    "title": "Movie description",
+    "quotes": "Quotes",
+    "total": "Total",
+    "add_quote": "Add Quote",
+    "directore": "Directore",
+    "view": "View Quote",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view_quote": "View Quote",
+    "edit_quote": "Edit Quote",
+    "change_photo": "Change photo"
+  },
+  "my_profile": {
+    "title": "My Profile",
+    "upload_photo": "Upload new photo",
+    "username": "Username",
+    "new_username": "New Username",
+    "password": "Password",
+    "password_confirmation": "Confirm New Password",
+    "should_contain": "Password should contain",
+    "characters": "8 or more characters",
+    "lowercase": "15 lowercase characters",
+    "email": "Email",
+    "new_email": "New Email",
+    "new_password": "New Password",
+    "confirm_new_password": "Confirm New Password",
+    "save_changes": "Save Changes",
+    "cancell": "Cancell",
+    "changes_updated": "Changes Updated",
+    "confirm": "Confirm",
+    "edit": "Edit",
+    "make_changes": "are you sure to make changes?"
   }
 }

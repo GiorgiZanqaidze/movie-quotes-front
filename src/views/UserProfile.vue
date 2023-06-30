@@ -2,7 +2,7 @@
   <div class="text-white bg-darkBlack sm:bg-mediumDark min-h-screen pb-10">
     <div class="mx-auto my-0 sm:w-[50rem] pt-[1rem]">
       <header class="text-xl pl-4">
-        <h1 class="hidden sm:inline">My Profile</h1>
+        <h1 class="hidden sm:inline">{{ $t('landing.my_profile.title') }}</h1>
         <a href="/news-feed" class="block sm:hidden">
           <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" />
         </a>
@@ -13,7 +13,7 @@
             <img
               :src="state.displayImage ?? imageUrl"
               alt="profile"
-              class="w-[10rem] h-[10rem] sm:w-[6rem] sm:h-[6rem] rounded-full overflow-hidden"
+              class="w-[10rem] h-[10rem] sm:w-[10rem] sm:h-[rem] rounded-full overflow-hidden"
             />
             <Field
               id="file"
@@ -26,7 +26,7 @@
             />
 
             <label for="file" class="py-1 px-2 cursor-pointer text-[20px] text-center">
-              upload new photo
+              {{ $t('landing.my_profile.upload_photo') }}
             </label>
           </div>
         </div>
@@ -35,14 +35,16 @@
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-4">
                 <div class="flex flex-col gap-2 text-sm sm:text-base">
-                  <p>Username</p>
+                  <p>{{ $t('landing.my_profile.username') }}</p>
                   <div class="flex items-center gap-2">
                     <div
                       class="text-mediumGray sm:bg-lightDark border-b sm:border w-full rounded h-10 overflow-hidden"
                     >
                       <h3 class="h-full flex items-center ml-3">{{ authUser.data.name }}</h3>
                     </div>
-                    <span class="cursor-pointer" @click="addUsernameDiv">Edit</span>
+                    <span class="cursor-pointer" @click="addUsernameDiv">{{
+                      $t('landing.my_profile.edit')
+                    }}</span>
                   </div>
                 </div>
                 <div
@@ -55,7 +57,7 @@
                   <div
                     class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
                   >
-                    <label for="name">New username</label>
+                    <label for="name">{{ $t('landing.my_profile.new_username') }}</label>
                     <TextField
                       name="name"
                       :errors="errors.name"
@@ -69,25 +71,27 @@
                   <div
                     class="justify-between px-10 items-center flex w-full gap-2 mt-3 top-1/3 absolute sm:hidden"
                   >
-                    <span @click="cancellConfirm">Cancell</span>
+                    <span @click="cancellConfirm">{{ $t('landing.my_profile.cancell') }}</span>
                     <label
                       @click="showConfirmModal"
                       class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
-                      >save changes</label
+                      >{{ $t('landing.my_profile.save_changes') }}</label
                     >
                   </div>
                 </div>
               </div>
               <div class="flex flex-col gap-4" v-if="!authUser?.data?.google_id">
                 <div class="flex flex-col gap-2 text-sm sm:text-base">
-                  <p>password</p>
+                  <p>{{ $t('landing.my_profile.password') }}</p>
                   <div class="flex items-center gap-2">
                     <div
                       class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
                     >
                       <h3 class="h-full flex items-center ml-3">*************</h3>
                     </div>
-                    <span class="cursor-pointer" @click="addPasswordDiv">Edit</span>
+                    <span class="cursor-pointer" @click="addPasswordDiv">{{
+                      $t('landing.my_profile.edit')
+                    }}</span>
                   </div>
                 </div>
                 <div
@@ -102,45 +106,45 @@
                   >
                     <div class="gap-4">
                       <div class="w-full border p-4 flex flex-col gap-3 rounded border-mediumGray">
-                        <h3>Password should contain</h3>
+                        <h3>{{ $t('landing.my_profile.should_contain') }}</h3>
                         <ul class="text-xs list-disc pl-4">
-                          <li>8 or more characters</li>
-                          <li>15 lowercase characters</li>
+                          <li>{{ $t('landing.my_profile.characters') }}</li>
+                          <li>{{ $t('landing.my_profile.lowercase') }}</li>
                         </ul>
                       </div>
-                      <div class="relative flex flex-col gap-2 mt-2">
-                        <label for="password">New Password</label>
+                      <div class="relative flex flex-col gap-2 mt-2 mb-4">
+                        <label for="password">{{ $t('landing.my_profile.new_password') }}</label>
                         <PasswordField
                           name="password"
                           :errors="errors.password"
                           v-model="state.newPassword"
                           @update:modelValue="(newValue) => (state.director_ka = newValue)"
-                          placeholder="password"
+                          :placeholder="$t('landing.my_profile.new_password')"
                           rules="required|alpha|min:15"
                           :updateUser="true"
                         />
                       </div>
                       <div class="relative flex flex-col gap-2 mt-2">
-                        <label for="password_confirmation">Confirm New Password</label>
+                        <label for="password_confirmation">{{
+                          $t('landing.my_profile.confirm_new_password')
+                        }}</label>
 
                         <PasswordField
                           name="password_confirmation"
                           :errors="errors.password_confirmation"
                           v-model="state.newPasswordConfirmation"
                           @update:modelValue="(newValue) => (state.director_ka = newValue)"
-                          placeholder="Confirm new Password"
+                          :placeholder="$t('landing.my_profile.confirm_new_password')"
                           rules="required|confirmed:@password"
                           :updateUser="true"
                         />
                       </div>
-                      <div
-                        class="justify-between w-[400px] items-center flex gap-10 mt-3 bottom-[-3rem] absolute sm:hidden"
-                      >
-                        <span @click="cancellConfirm">Cancell</span>
+                      <div class="items-center flex gap-20 mt-3 bottom-[-3rem] absolute sm:hidden">
+                        <span @click="cancellConfirm">{{ $t('landing.my_profile.cancell') }}</span>
                         <label
                           @click="showConfirmModal"
                           class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
-                          >save changes</label
+                          >{{ $t('landing.my_profile.save_changes') }}</label
                         >
                       </div>
                     </div>
@@ -149,14 +153,16 @@
               </div>
               <div v-if="!authUser?.data?.google_id">
                 <div class="flex flex-col gap-2 text-sm sm:text-base">
-                  <p>Email</p>
+                  <p>{{ $t('landing.my_profile.email') }}</p>
                   <div class="flex items-center gap-2">
                     <div
                       class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
                     >
                       <h3 class="h-full flex items-center ml-3">{{ state.email }}</h3>
                     </div>
-                    <span class="cursor-pointer" @click="addEmailDiv">Edit</span>
+                    <span class="cursor-pointer" @click="addEmailDiv">{{
+                      $t('landing.my_profile.edit')
+                    }}</span>
                   </div>
                 </div>
                 <div
@@ -169,7 +175,7 @@
                   <div
                     class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
                   >
-                    <label for="email">Email</label>
+                    <label for="email">{{ $t('landing.my_profile.new_email') }}</label>
                     <TextField
                       name="email"
                       :errors="errors.email"
@@ -183,11 +189,11 @@
                   <div
                     class="justify-between px-10 items-center flex w-full gap-2 mt-3 top-1/3 absolute sm:hidden"
                   >
-                    <span @click="closeEmailDiv">Cancell</span>
+                    <span @click="closeEmailDiv">{{ $t('landing.my_profile.cancell') }}</span>
                     <label
                       @click="showConfirmModal"
                       class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
-                      >save changes</label
+                      >{{ $t('landing.my_profile.save_changes') }}</label
                     >
                   </div>
                 </div>
@@ -202,15 +208,17 @@
               class="mx-auto bg-gradient-to-br from-black to-mediumGray w-3/4 mt-20 rounded-md h-[15rem] flex justify-center"
             >
               <div class="flex flex-col items-center justify-center pb-10 gap-16">
-                <div>are you sure to make changes?</div>
+                <div>{{ $t('landing.my_profile.make_changes') }}</div>
                 <div class="flex gap-5">
-                  <span class="text-[20px] py-2 px-3" @click="showConfirmModal">Cancell</span>
+                  <span class="text-[20px] py-2 px-3" @click="showConfirmModal">{{
+                    $t('landing.my_profile.cancell')
+                  }}</span>
                   <button
                     @click="confirmData"
                     type="submit"
                     class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
                   >
-                    confirm
+                    {{ $t('landing.my_profile.confirm') }}
                   </button>
                 </div>
               </div>
@@ -220,19 +228,21 @@
         </Form>
       </div>
       <div class="hidden justify-end items-center gap-2 mt-3 sm:flex">
-        <span class="cursor-pointer" @click="cancellAddDiv">Cancell</span>
-        <label for="submit" class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
-          >save changes</label
-        >
+        <span class="cursor-pointer" @click="cancellAddDiv">{{
+          $t('landing.my_profile.cancell')
+        }}</span>
+        <label for="submit" class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer">{{
+          $t('landing.my_profile.save_changes')
+        }}</label>
       </div>
     </div>
     <div class="fixed top-0 bottom-0 left-0 right-0" v-if="state.changesUpdated">
       <div
-        class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] p-5 flex w-[20rem] justify-between rounded-md"
+        class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] p-5 flex text-xs sm:text-base w-[15rem] sm:w-[20rem] justify-between rounded-md"
       >
         <div class="flex justify-start gap-2">
           <ConfirmedBtn />
-          <h1 class="text-green-500">changes updated</h1>
+          <h1 class="text-green-500">{{ $t('landing.my_profile.changes_updated') }}</h1>
         </div>
         <CloseBtn @click="closeChangesModal" class="cursor-pointer" />
       </div>

@@ -11,7 +11,9 @@
             <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
           </button>
         </div>
-        <h1 class="text-white sm:text-2xl text-md">View quote</h1>
+        <h1 class="text-white sm:text-2xl text-md">
+          {{ $t('landing.movie_description.view_quote') }}
+        </h1>
         <div>
           <button class="" @click="modal.toggleModal('viewQuoteModal', false)">
             <img src="@/assets/icons/close.svg" alt="close" />

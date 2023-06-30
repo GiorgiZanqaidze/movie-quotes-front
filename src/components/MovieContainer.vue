@@ -47,7 +47,10 @@
         >
       </div>
       <div>
-        <h3>directore: {{ movie.data?.director?.[this.$i18n.locale] }}</h3>
+        <h3>
+          {{ $t('landing.movie_description.directore') }}:
+          {{ movie.data?.director?.[this.$i18n.locale] }}
+        </h3>
       </div>
       <div>
         <p v-if="!quoteModal">
