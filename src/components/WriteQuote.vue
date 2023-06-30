@@ -97,7 +97,7 @@ import { userStore } from '@/stores/user.js'
 import axiosInstance from '@/config/axios/index'
 import { useQuoteStore } from '@/stores/quote.js'
 import { useMovieStore } from '@/stores/movie.js'
-
+import { useSingleMovieStore } from '@/stores/singleMovie'
 const TheTextarea = defineAsyncComponent(() => import('@/components/TheTextarea.vue'))
 const MoviesDropdown = defineAsyncComponent(() => import('@/components/MoviesDropdown.vue'))
 
@@ -114,6 +114,8 @@ const movies = useMovieStore()
 const user = userStore()
 
 const quotes = useQuoteStore()
+
+const singleMovie = useSingleMovieStore()
 
 onMounted(async () => {
   await movies.getMovies()
@@ -167,6 +169,7 @@ const handleSubmit = async () => {
     modal.toggleModal('null', false)
     console.log(response.data)
     quotes.addQuote(response.data)
+    singleMovie.addMovieQuote(response.data)
   } catch (error) {
     console.log(error)
   }

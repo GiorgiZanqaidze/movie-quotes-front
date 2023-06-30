@@ -29,12 +29,11 @@
 
 <script setup>
 import { useSingleMovieStore } from '@/stores/singleMovie.js'
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import QuoteContainer from '@/components/QuoteContainer.vue'
 import { useModalStore } from '@/stores/modal'
 import MovieContainer from '@/components/MovieContainer.vue'
-
 const modal = useModalStore()
 
 const movie = useSingleMovieStore()

@@ -8,9 +8,9 @@ export const useMovieStore = defineStore('movie', {
     }
   },
   actions: {
-    async getMovies() {
+    async getMovies(query) {
       try {
-        const response = await getMovies()
+        const response = await getMovies(query)
         console.log(response)
         this.setMovies(response.data.data)
       } catch (error) {

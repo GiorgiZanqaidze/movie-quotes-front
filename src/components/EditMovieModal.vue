@@ -266,7 +266,15 @@ const handleSubmit = async () => {
     formData.append(key, value)
   })
 
-  await movie.editMovie(movie.data.id, formData)
+  const response = await movie.editMovie(movie.data.id, formData)
+
+  console.log(response)
+
+  if (response.status === 200) {
+    console.log(response.data)
+    movie.setMovie(response.data)
+    modal.toggleModal('null', false)
+  }
 }
 
 function handleGenres() {

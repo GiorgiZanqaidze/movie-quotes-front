@@ -4,7 +4,7 @@
   >
     <div>
       <header class="text-white flex justify-between p-5 border-b border-mediumGray">
-        <DeleteButton :quote_id="currentQuote.id">Delete</DeleteButton>
+        <DeleteButton :quote_id="currentQuote.id" @click="deleteQuote">Delete</DeleteButton>
         <h1>Edit Quote</h1>
         <button @click="modal.toggleModal('null', false)">
           <img src="@/assets/icons/close.svg" alt="close" />
@@ -137,6 +137,10 @@ async function handleEdit() {
 
   await singleMovieStore.editMovieQuote(currentQuote.id, formData)
 
+  modal.toggleModal('null', false)
+}
+
+const deleteQuote = () => {
   modal.toggleModal('null', false)
 }
 </script>

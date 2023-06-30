@@ -15,10 +15,18 @@ export const useSingleMovieStore = defineStore('singleMovie', {
     async getMovie(id) {
       try {
         const response = await getSingleMovie(id)
-        this.data = response.data.data
+        this.setMovie(response.data.data)
       } catch (error) {
         console.error('Error fetching user data:', error)
       }
+    },
+
+    setMovie(data) {
+      this.data = data
+    },
+
+    addMovieQuote(newQuote) {
+      this.data.quotes = [newQuote, ...this.data.quotes]
     },
 
     rememberQuoteId(id) {
@@ -46,7 +54,7 @@ export const useSingleMovieStore = defineStore('singleMovie', {
     async editMovie(id, data) {
       try {
         const response = await updateMovie(id, data)
-        console.log(response)
+        return response
       } catch (error) {
         console.error(error)
       }

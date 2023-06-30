@@ -3,6 +3,7 @@ export const useQuerySearchStore = defineStore('query', {
   state() {
     return {
       searchQuery: '',
+      moviesSearchQuery: '',
       type: ''
     }
   },
@@ -28,6 +29,10 @@ export const useQuerySearchStore = defineStore('query', {
       toArray.shift()
       const searchText = toArray.join('')
       this.searchQuery = searchText
+    },
+
+    setMovieQuery(text) {
+      this.moviesSearchQuery = text
     }
   }
 })

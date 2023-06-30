@@ -5,7 +5,7 @@
     <div>
       <header class="flex justify-between border-b border-gray p-6 pb-4 items-center">
         <div class="flex gap-4 items-center">
-          <DeleteButton :quote_id="quote.id"></DeleteButton>
+          <DeleteButton :quote_id="quote.id" @click="deleteQuote"></DeleteButton>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
           <button class="flex justify-start" @click="modal.toggleModal('editQuoteModal', true)">
             <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
@@ -61,7 +61,7 @@
             :author="comment.author"
           ></the-comment>
         </ul>
-        <PostComment :quote_id="quote.id" />
+        <PostComment :quote="quote" />
       </div>
     </div>
   </div>
@@ -82,4 +82,8 @@ const movie = useSingleMovieStore()
 const liked = ref(false)
 
 const quote = movie.getCurrentQuote
+
+const deleteQuote = () => {
+  modal.toggleModal('null', false)
+}
 </script>

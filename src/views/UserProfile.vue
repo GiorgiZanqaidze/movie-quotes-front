@@ -53,7 +53,7 @@
                     <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="addUsernameDiv" />
                   </div>
                   <div
-                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-10"
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
                   >
                     <label for="name">New username</label>
                     <TextField
@@ -98,7 +98,7 @@
                     <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="addPasswordDiv" />
                   </div>
                   <div
-                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[15rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-10"
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[15rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
                   >
                     <div class="gap-4">
                       <div class="w-full border p-4 flex flex-col gap-3 rounded border-mediumGray">
@@ -116,7 +116,7 @@
                           v-model="state.newPassword"
                           @update:modelValue="(newValue) => (state.director_ka = newValue)"
                           placeholder="password"
-                          rules="required"
+                          rules="required|alpha|min:15"
                           :updateUser="true"
                         />
                       </div>
@@ -164,10 +164,10 @@
                   v-if="state.showEmailDiv"
                 >
                   <div class="block sm:hidden">
-                    <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="addPasswordDiv" />
+                    <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="closeEmailDiv" />
                   </div>
                   <div
-                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-10"
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
                   >
                     <label for="email">Email</label>
                     <TextField
@@ -226,15 +226,16 @@
         >
       </div>
     </div>
-    <div
-      class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] sm:hidden p-5 flex w-[20rem] justify-between rounded-md"
-      v-if="state.changesUpdated"
-    >
-      <div class="flex justify-start gap-2">
-        <ConfirmedBtn />
-        <h1 class="text-green-500">changes updated</h1>
+    <div class="fixed top-0 bottom-0 left-0 right-0" v-if="state.changesUpdated">
+      <div
+        class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] p-5 flex w-[20rem] justify-between rounded-md"
+      >
+        <div class="flex justify-start gap-2">
+          <ConfirmedBtn />
+          <h1 class="text-green-500">changes updated</h1>
+        </div>
+        <CloseBtn @click="closeChangesModal" class="cursor-pointer" />
       </div>
-      <CloseBtn @click="closeChangesModal" />
     </div>
   </div>
 </template>
@@ -338,6 +339,7 @@ const handleSubmit = async () => {
   const response = await updateUser(authUser.data.id, data)
 
   if (response.status === 200) {
+    cancellAddDiv()
     state.changesUpdated = true
     authUser.setUserData(response.data)
   }
@@ -353,7 +355,6 @@ const showConfirmModal = () => {
 }
 
 const cancellConfirm = () => {
-  console.log('fdfds')
   closeUsernameDiv()
   closePasswordDiv()
 }

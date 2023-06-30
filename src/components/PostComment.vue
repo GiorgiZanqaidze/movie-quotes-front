@@ -19,7 +19,7 @@
 import { userStore } from '@/stores/user'
 import { Form, Field } from 'vee-validate'
 import { useCommentStore } from '@/stores/comment.js'
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, reactive } from 'vue'
 
 const props = defineProps({
   quote: {
@@ -32,7 +32,13 @@ const authUser = userStore()
 
 const comment = useCommentStore()
 
+// const state = reactive({
+//   quote
+// })
+
 const text = ref('')
+
+console.log(props.quote)
 
 const handleSubmit = async () => {
   const commentData = {
@@ -42,7 +48,9 @@ const handleSubmit = async () => {
     receiver_id: props.quote.author.id
   }
 
-  await comment.postComment(commentData)
+  const response = await comment.postComment(commentData)
+
+  console.log(response)
 
   text.value = ''
 }
