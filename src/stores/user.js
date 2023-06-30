@@ -14,7 +14,7 @@ export const userStore = defineStore('user', {
     async fetchUserData() {
       try {
         const response = await getUser()
-        const userData = response.data.data
+        const userData = response.data
         this.setUserData(userData)
       } catch (error) {
         console.error('Error fetching user data:', error)

@@ -4,8 +4,10 @@
   >
     <div>
       <header class="text-white flex justify-between p-5 border-b border-mediumGray">
-        <DeleteButton :quote_id="currentQuote.id">Delete</DeleteButton>
-        <h1>Edit Quote</h1>
+        <DeleteButton :quote_id="currentQuote.id" @click="deleteQuote">{{
+          $t('landing.movie_description.delete')
+        }}</DeleteButton>
+        <h1>{{ $t('landing.movie_description.edit_quote') }}</h1>
         <button @click="modal.toggleModal('null', false)">
           <img src="@/assets/icons/close.svg" alt="close" />
         </button>
@@ -54,7 +56,7 @@
                     <div>
                       <img src="@/assets/icons/drag_and_drop.svg" alt="camera" class="mx-auto" />
                     </div>
-                    <h4>Change photo</h4>
+                    <h4>{{ $t('landing.movie_description.change_photo') }}</h4>
                   </div>
                 </label>
               </div>
@@ -137,6 +139,10 @@ async function handleEdit() {
 
   await singleMovieStore.editMovieQuote(currentQuote.id, formData)
 
+  modal.toggleModal('null', false)
+}
+
+const deleteQuote = () => {
   modal.toggleModal('null', false)
 }
 </script>

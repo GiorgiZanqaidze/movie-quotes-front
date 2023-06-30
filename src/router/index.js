@@ -50,7 +50,6 @@ const router = createRouter({
       components: { default: NotPermission },
       meta: { guest: true }
     },
-
     { path: '/:notFound(.*)', component: NotFoundPage, meta: { auth: true, guest: true } }
   ]
 })

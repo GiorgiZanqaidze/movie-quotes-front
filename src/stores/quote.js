@@ -10,7 +10,7 @@ export const useQuoteStore = defineStore('quote', {
   actions: {
     async getQuotes() {
       try {
-        const response = await getQuotes()
+        const response = await getQuotes(query)
         this.setQuotes(response.data.data)
       } catch (error) {
         console.error('Error fetching user data:', error)

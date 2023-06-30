@@ -79,7 +79,7 @@
         name="movie"
         :errors="errors.movie"
         v-model="state.movie"
-        :movies="movies.data"
+        :movies="movies.allMovieData"
         @update:modelValue="(newValue) => (state.movie = newValue)"
       />
       <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">
@@ -97,7 +97,7 @@ import { userStore } from '@/stores/user.js'
 import axiosInstance from '@/config/axios/index'
 import { useQuoteStore } from '@/stores/quote.js'
 import { useMovieStore } from '@/stores/movie.js'
-
+import { useSingleMovieStore } from '@/stores/singleMovie'
 const TheTextarea = defineAsyncComponent(() => import('@/components/TheTextarea.vue'))
 const MoviesDropdown = defineAsyncComponent(() => import('@/components/MoviesDropdown.vue'))
 
@@ -115,8 +115,10 @@ const user = userStore()
 
 const quotes = useQuoteStore()
 
+const singleMovie = useSingleMovieStore()
+
 onMounted(async () => {
-  await movies.getMovies()
+  await movies.getAll()
 })
 
 const state = reactive({
@@ -167,6 +169,7 @@ const handleSubmit = async () => {
     modal.toggleModal('null', false)
     console.log(response.data)
     quotes.addQuote(response.data)
+    singleMovie.addMovieQuote(response.data)
   } catch (error) {
     console.log(error)
   }

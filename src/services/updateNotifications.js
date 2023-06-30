@@ -1,8 +1,8 @@
 import axiosInstance from '@/config/axios/index'
 
-export default async function getMovies(query) {
+export default async function updateNotifications() {
   try {
-    const response = await axiosInstance.get(`api/user-movies?query=${query}`)
+    const response = await axiosInstance.get('/api/notifications/mark-as-read')
     console.log(response)
     return response
   } catch (error) {

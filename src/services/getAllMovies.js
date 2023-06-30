@@ -1,8 +1,8 @@
 import axiosInstance from '@/config/axios/index'
 
-export default async function getMovies(query) {
+export default async function getAllMovies() {
   try {
-    const response = await axiosInstance.get(`api/user-movies?query=${query}`)
+    const response = await axiosInstance.get('api/all-movies')
     console.log(response)
     return response
   } catch (error) {

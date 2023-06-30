@@ -46,12 +46,12 @@
         :author="comment.author"
       ></the-comment>
     </ul>
-    <PostComment :quote_id="props?.quote?.id" />
+    <PostComment :quote="props?.quote" />
   </div>
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, reactive } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
@@ -64,21 +64,21 @@ const props = defineProps({
   }
 })
 
+const state = reactive({})
+
 const authUser = userStore()
 
 const likesLength = ref(props.quote.likes.length)
 
 const like = useLikeStore()
 
-const liked = ref(false)
+const liked = ref(props.quote.likes.some((like) => like.author.id === authUser.data.id))
 
 const likeData = {
   user_id: authUser.data.id,
   quote_id: props.quote.id,
   receiver_id: props.quote.author.id
 }
-
-liked.value = props.quote.likes.some((like) => like.user_id === authUser.data.id)
 
 async function likeQuote() {
   await like.likeQuote(likeData)

@@ -52,7 +52,7 @@
               class="list-none py-1 px-2 rounded-md bg-mediumGray flex gap-2 items-center"
             >
               <span>
-                {{ state.genres[genre - 1]?.name?.[this.$i18n.locale] }}
+                {{ genre[0]?.name?.[this.$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
                 <img src="@/assets/icons/close.svg" alt="delete" class="inline-block w-3" />
@@ -66,7 +66,8 @@
             @change="handleGenres"
             id="genres"
             as="select"
-            class="w-full bg-black h-10 rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none"
+            multiple
+            class="w-full bg-black rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none"
           >
             <option value="" disabled>
               {{ $t('news_feed.write_quote.choose_movie') }}
@@ -74,7 +75,7 @@
             <option
               v-for="(genre, index) in state.genres"
               :key="index"
-              :value="genre.genre_id"
+              :value="genre"
               class="text-white"
             >
               {{ genre?.name?.[this.$i18n.locale] }}
@@ -227,6 +228,8 @@ const uploadImageFile = (file) => {
 const modal = useModalStore()
 
 const handleSubmit = async () => {
+  const newGenres = state.genres.map((item) => item.id)
+
   const data = {
     title_en: state.title_en,
     title_ka: state.title_en,
@@ -237,7 +240,7 @@ const handleSubmit = async () => {
     year: state.year,
     image: state.uploadedImage,
     user_id: authUser.data.id,
-    genres: state.choosenGenres
+    genres: newGenres
   }
 
   let formData = new FormData()
@@ -259,23 +262,20 @@ onMounted(async () => {
 
   const genres = response.data
 
-  genres.forEach((genre) => {
-    state.genres.push({
-      genre_id: genre.id,
-      name: JSON.parse(genre.name)
-    })
-  })
+  state.genres = genres
 })
 
-function handleGenres() {
-  state.choosenGenres.push(state.choosenGenre)
+function handleGenres(e) {
+  const isDuplicate = state.choosenGenres.some((genre) => {
+    return genre[0].id === state.choosenGenre[0].id
+  })
 
-  const uniqueArray = [...new Set(state.choosenGenres)]
-
-  state.choosenGenres = uniqueArray
+  if (!isDuplicate) {
+    state.choosenGenres.push({ ...state.choosenGenre })
+  }
 }
 
-function handleGenreDelere(e) {
+function handleGenreDelere() {
   state.choosenGenres = state.choosenGenres.filter((item) => item !== e)
 
   if (state.choosenGenres.length < 1) {

@@ -17,12 +17,15 @@
       <div
         class="text-white text-sm sm:text-lg sm:py-[3px] px-2 py-1 sm:px-3 rounded cursor-default"
       >
-        <button class="flex" @click="modal.toggleNotifications()">
+        <button class="flex relative" @click="modal.toggleNotifications()">
           <img
             src="@/assets/icons/notification.svg"
             alt="notification"
             class="cursor-pointer w-[24px] sm:w-[30px]"
           />
+          <span class="absolute top-[-5px] right-0 bg-darkRed rounded-full px-1 text-xs">{{
+            user?.data?.received_notifications?.length
+          }}</span>
         </button>
         <div v-if="modal.notifications">
           <div class="relative">
@@ -49,6 +52,9 @@ import LanguageDropdown from '@/components/LanguageDropdown.vue'
 import NotificationsModal from '@/components/NotificationsModal.vue'
 import LogOutButton from '@/components/LogOutButton.vue'
 import QuotesSearchModal from '@/components/QuotesSearchModal.vue'
+import { userStore } from '@/stores/user'
+
+const user = userStore()
 
 const modal = useModalStore()
 </script>
