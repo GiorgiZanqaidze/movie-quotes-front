@@ -32,13 +32,7 @@ const authUser = userStore()
 
 const comment = useCommentStore()
 
-// const state = reactive({
-//   quote
-// })
-
 const text = ref('')
-
-console.log(props.quote)
 
 const handleSubmit = async () => {
   const commentData = {

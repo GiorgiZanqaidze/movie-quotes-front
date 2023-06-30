@@ -79,7 +79,7 @@
         name="movie"
         :errors="errors.movie"
         v-model="state.movie"
-        :movies="movies.data"
+        :movies="movies.allMovieData"
         @update:modelValue="(newValue) => (state.movie = newValue)"
       />
       <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">
@@ -118,7 +118,7 @@ const quotes = useQuoteStore()
 const singleMovie = useSingleMovieStore()
 
 onMounted(async () => {
-  await movies.getMovies()
+  await movies.getAll()
 })
 
 const state = reactive({
