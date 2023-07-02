@@ -12,11 +12,7 @@ export const useLikeStore = defineStore('like', {
   actions: {
     async likeQuote(data) {
       try {
-        const response = await postLike(data)
-
-        const quotes = useQuoteStore()
-
-        quotes.modifyQuote(response.data.modified_quote)
+        await postLike(data)
       } catch (error) {
         console.error(error)
       }
@@ -24,11 +20,7 @@ export const useLikeStore = defineStore('like', {
 
     async dislikeQuote(data) {
       try {
-        const response = await postDislike(data)
-
-        const quotes = useQuoteStore()
-
-        quotes.modifyQuote(response.data.modified_quote)
+        await postDislike(data)
       } catch (error) {
         console.error(error)
       }

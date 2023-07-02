@@ -19,7 +19,7 @@
         </button>
       </div>
       <div class="flex gap-2 items-center just">
-        <p>{{ likesLength }}</p>
+        <p>{{ likes.length }}</p>
         <button>
           <img
             v-if="!liked"
@@ -40,7 +40,7 @@
     </div>
     <ul>
       <the-comment
-        v-for="(comment, index) in props?.quote?.comments"
+        v-for="(comment, index) in comments"
         :key="index"
         :text="comment.text"
         :author="comment.author"
@@ -51,11 +51,12 @@
 </template>
 
 <script setup>
-import { ref, defineProps, reactive } from 'vue'
+import { ref, defineProps, reactive, onMounted } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
 import { useLikeStore } from '@/stores/likes'
+import instantiatePusher from '@/helpers/instantiatePusher'
 
 const props = defineProps({
   quote: {
@@ -64,15 +65,36 @@ const props = defineProps({
   }
 })
 
+onMounted(async () => {
+  instantiatePusher()
+
+  window.Echo.channel('comment').listen('PostComment', (data) => {
+    comments.value.push(data.comment)
+  })
+
+  window.Echo.channel('like').listen('PostLike', (data) => {
+    likes.value.push(data)
+  })
+
+  window.Echo.channel('dislike').listen('PostDislike', (data) => {
+    liked.value = false
+    likes.value.length--
+  })
+})
+
+const comments = ref(props.quote.comments)
+
 const state = reactive({})
 
 const authUser = userStore()
 
-const likesLength = ref(props.quote.likes.length)
+const likes = ref(props.quote.likes)
+
+const likesLength = likes.value.length
 
 const like = useLikeStore()
 
-const liked = ref(props.quote.likes.some((like) => like.author.id === authUser.data.id))
+const liked = ref(likes.value.some((like) => like.author.id === authUser.data.id))
 
 const likeData = {
   user_id: authUser.data.id,
@@ -82,13 +104,11 @@ const likeData = {
 
 async function likeQuote() {
   await like.likeQuote(likeData)
-  likesLength.value++
   liked.value = true
 }
 
 async function unlikePost() {
   await like.dislikeQuote(likeData)
-  likesLength.value--
   liked.value = false
 }
 
