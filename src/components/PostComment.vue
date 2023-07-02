@@ -39,7 +39,9 @@ const handleSubmit = async () => {
     text: text.value,
     user_id: authUser.data.id,
     quote_id: props.quote.id,
-    receiver_id: props.quote.author.id
+    receiver_id: props.quote.author.id,
+    type: 'comment',
+    sender_id: authUser.data.id
   }
 
   const response = await comment.postComment(commentData)

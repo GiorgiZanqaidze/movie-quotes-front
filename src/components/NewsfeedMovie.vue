@@ -38,7 +38,7 @@
         </button>
       </div>
     </div>
-    <ul>
+    <ul class="max-h-[20rem]" :class="{ 'overflow-y-scroll': comments.length > 2 }">
       <the-comment
         v-for="(comment, index) in comments"
         :key="index"
@@ -77,7 +77,7 @@ onMounted(async () => {
   })
 
   window.Echo.channel('dislike').listen('PostDislike', (data) => {
-    liked.value = false
+    likes.value = likes.value.filter((like) => like.id !== data.like.id)
     likes.value.length--
   })
 })
@@ -99,7 +99,9 @@ const liked = ref(likes.value.some((like) => like.author.id === authUser.data.id
 const likeData = {
   user_id: authUser.data.id,
   quote_id: props.quote.id,
-  receiver_id: props.quote.author.id
+  receiver_id: props.quote.author.id,
+  type: 'like',
+  sender_id: authUser.data.id
 }
 
 async function likeQuote() {

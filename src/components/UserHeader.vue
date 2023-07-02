@@ -23,9 +23,11 @@
             alt="notification"
             class="cursor-pointer w-[24px] sm:w-[30px]"
           />
-          <span class="absolute top-[-5px] right-0 bg-darkRed rounded-full px-1 text-xs">{{
-            user?.data?.received_notifications?.length
-          }}</span>
+          <span
+            v-if="news.length > 0"
+            class="absolute top-[-5px] right-0 bg-darkRed rounded-full px-1 text-xs"
+            >{{ news.length }}</span
+          >
         </button>
         <div v-if="modal.notifications">
           <div class="relative">
@@ -35,7 +37,7 @@
             @click="modal.toggleNotifications()"
             class="fixed top-[80px] left-[-10px] right-[-10px] bottom-[-10px] z-50"
           ></div>
-          <NotificationsModal />
+          <NotificationsModal @clear-notifications="clearNewNotifications" />
         </div>
       </div>
       <LanguageDropdown class="hidden sm:block" />
@@ -53,8 +55,22 @@ import NotificationsModal from '@/components/NotificationsModal.vue'
 import LogOutButton from '@/components/LogOutButton.vue'
 import QuotesSearchModal from '@/components/QuotesSearchModal.vue'
 import { userStore } from '@/stores/user'
-
+import { ref, computed } from 'vue'
 const user = userStore()
 
 const modal = useModalStore()
+
+const notifications = ref(user.data.received_notifications)
+
+const news = ref([])
+
+const newNotification = computed(
+  () => (news.value = notifications.value.filter((notification) => notification.read_at === null))
+)
+
+const clearNewNotifications = (data) => {
+  news.value = []
+}
+
+console.log(newNotification.value)
 </script>
