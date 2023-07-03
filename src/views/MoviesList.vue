@@ -68,7 +68,6 @@ import { useMovieStore } from '@/stores/movie'
 import { useRouter, useRoute } from 'vue-router'
 import imagePath from '@/config/images/path'
 import { useModalStore } from '@/stores/modal'
-import axiosInstance from '@/config/axios/index'
 const modal = useModalStore()
 
 const movies = useMovieStore()

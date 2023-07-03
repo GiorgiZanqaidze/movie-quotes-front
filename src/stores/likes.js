@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import postLike from '@/services/postLike'
 import postDislike from '@/services/postDislike'
-import { useQuoteStore } from '@/stores/quote.js'
 
 export const useLikeStore = defineStore('like', {
   state() {

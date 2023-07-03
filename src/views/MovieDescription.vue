@@ -32,7 +32,7 @@
 
 <script setup>
 import { useSingleMovieStore } from '@/stores/singleMovie.js'
-import { onMounted, computed } from 'vue'
+import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import QuoteContainer from '@/components/QuoteContainer.vue'
 import { useModalStore } from '@/stores/modal'

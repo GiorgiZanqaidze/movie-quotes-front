@@ -24,7 +24,7 @@
         >
           <button @click="showViewQuoteModal" class="flex justify-start">
             <img src="@/assets/icons/visible.svg" alt="visible" class="inline-block mr-1" />
-            <span class="text-xs">{{ $t('landing.movie_description.view') }}</span>
+            <span class="text-[13px]">{{ $t('landing.movie_description.view') }}</span>
           </button>
           <button class="flex justify-start" @click="editQuoteModal">
             <img src="@/assets/icons/pencil.svg" alt="edit" class="inline-block mr-1" />

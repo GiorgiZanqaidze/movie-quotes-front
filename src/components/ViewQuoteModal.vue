@@ -57,7 +57,7 @@
         </div>
         <ul>
           <the-comment
-            v-for="(comment, index) in quote.comments"
+            v-for="(comment, index) in comments"
             :key="index"
             :text="comment.text"
             :author="comment.author"
@@ -72,18 +72,29 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import imagePath from '@/config/images/path'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import PostComment from '@/components/PostComment.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
+import instantiatePusher from '@/helpers/instantiatePusher'
 const modal = useModalStore()
+
+onMounted(() => {
+  instantiatePusher()
+
+  window.Echo.channel('comment').listen('PostComment', (data) => {
+    comments.value.push(data.comment)
+  })
+})
 
 const movie = useSingleMovieStore()
 
 const liked = ref(false)
 
 const quote = movie.getCurrentQuote
+
+const comments = ref(quote.comments)
 
 const deleteQuote = () => {
   modal.toggleModal('null', false)

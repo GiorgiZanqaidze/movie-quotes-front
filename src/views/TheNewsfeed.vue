@@ -25,7 +25,7 @@ onMounted(async () => {
 
   instantiatePusher()
 
-  window.Echo.private(`notification.${136}`).listen('SendNotifications', (data) => {
+  window.Echo.private(`notification.${authUser.data.id}`).listen('SendNotifications', (data) => {
     console.log(data)
   })
 })

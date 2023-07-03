@@ -265,7 +265,7 @@ onMounted(async () => {
   state.genres = genres
 })
 
-function handleGenres(e) {
+function handleGenres() {
   const isDuplicate = state.choosenGenres.some((genre) => {
     return genre[0].id === state.choosenGenre[0].id
   })
@@ -275,7 +275,7 @@ function handleGenres(e) {
   }
 }
 
-function handleGenreDelere() {
+function handleGenreDelere(e) {
   state.choosenGenres = state.choosenGenres.filter((item) => item !== e)
 
   if (state.choosenGenres.length < 1) {

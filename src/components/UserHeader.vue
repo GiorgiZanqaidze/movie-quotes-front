@@ -55,22 +55,16 @@ import NotificationsModal from '@/components/NotificationsModal.vue'
 import LogOutButton from '@/components/LogOutButton.vue'
 import QuotesSearchModal from '@/components/QuotesSearchModal.vue'
 import { userStore } from '@/stores/user'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 const user = userStore()
 
 const modal = useModalStore()
 
 const notifications = ref(user.data.received_notifications)
 
-const news = ref([])
+const news = ref(notifications.value.filter((notification) => notification.read_at === null))
 
-const newNotification = computed(
-  () => (news.value = notifications.value.filter((notification) => notification.read_at === null))
-)
-
-const clearNewNotifications = (data) => {
+const clearNewNotifications = () => {
   news.value = []
 }
-
-console.log(newNotification.value)
 </script>

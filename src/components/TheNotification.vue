@@ -39,7 +39,7 @@
 
 <script setup>
 import ProfileIcon from '@/components/ProfileIcon.vue'
-import { computed, defineProps, ref } from 'vue'
+import { computed, defineProps } from 'vue'
 import ImageSrc from '@/config/images/path'
 const props = defineProps({
   condition: {
@@ -54,8 +54,6 @@ const props = defineProps({
     required: true
   }
 })
-
-const timeAgo = ref(null)
 
 const timeAgoCompute = computed(() => {
   const now = new Date()

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import postComment from '@/services/postComment.js'
-import { useQuoteStore } from '@/stores/quote.js'
 
 export const useCommentStore = defineStore('comment', {
   state() {

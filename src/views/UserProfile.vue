@@ -355,10 +355,6 @@ const handleSubmit = async () => {
   }
 }
 
-const togglePassword = () => {
-  state.showPassword = !state.showPassword
-}
-
 const showConfirmModal = () => {
   console.log('ffasfd')
   state.confirmModal = !state.confirmModal

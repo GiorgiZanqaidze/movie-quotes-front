@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, reactive, onMounted } from 'vue'
+import { ref, defineProps, onMounted } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
@@ -84,13 +84,9 @@ onMounted(async () => {
 
 const comments = ref(props.quote.comments)
 
-const state = reactive({})
-
 const authUser = userStore()
 
 const likes = ref(props.quote.likes)
-
-const likesLength = likes.value.length
 
 const like = useLikeStore()
 
