@@ -1,6 +1,6 @@
 <template>
   <header class="flex px-2 sm:p-8 justify-between items-center bg-gray h-[38px]">
-    <h1 class="text-lightGrey text-sm sm:text-lg">{{ $t('landing.quotes') }}</h1>
+    <h1 class="text-lightGrey text-xs sm:text-lg">{{ $t('landing.quotes') }}</h1>
     <div class="flex sm:gap-7 gap-3">
       <div class="flex items-center">
         <LanguageDropdown />
@@ -9,7 +9,7 @@
         <button
           @click="toggleModal('signUp', true)"
           href="#"
-          class="text-white text-sm sm:text-lg sm:py-[3px] px-2 py-1 sm:px-3 rounded bg-darkRed"
+          class="text-white text-xs sm:text-lg sm:py-[3px] px-2 py-1 sm:px-3 rounded bg-darkRed"
         >
           {{ $t('landing.sign_up') }}
         </button>
@@ -17,7 +17,7 @@
       <div>
         <button
           @click="toggleModal('logIn', true)"
-          class="text-white border text-sm sm:text-lg sm:py-[3px] px-2 sm:px-3 py-1 rounded bg-transparent"
+          class="text-white border text-xs sm:text-lg sm:py-[3px] px-2 sm:px-3 py-1 rounded bg-transparent"
         >
           {{ $t('landing.log_in') }}
         </button>

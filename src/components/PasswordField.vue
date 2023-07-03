@@ -1,14 +1,24 @@
 <template>
   <div class="relative">
+    <label v-if="label" :for="id">
+      {{ label }}
+      <img
+        v-if="requiredIcon"
+        src="@/assets/icons/required_star_icon.svg"
+        alt="required"
+        class="inline-block"
+      />
+    </label>
     <Field
       :rules="props.rules"
-      class="text-mediumGray border w-full rounded p-2"
+      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors,
         'border-green-500': props.modelValue && !props.errors,
         'border-mediumGray': !props.modelValue && !props.errors,
         'sm:bg-lightDark bg-transparent': props.updateUser,
+        'bg-lightDark': props.signUp,
         'bg-transparent': !props.updateUser
       }"
       :type="showPassword ? 'password' : 'text'"
@@ -16,16 +26,16 @@
       :value="props.modelValue"
       @blur="$emit('update:modelValue', $event.target.value)"
     />
-    <div class="absolute top-1/2 translate-y-[-50%] right-2">
+    <div class="absolute top-1/2 translate-y-[-50%] right-2" :class="{ 'top-10': props.signUp }">
       <div @click="togglePassword" class="cursor-pointer">
         <img src="@/assets/icons/show_password.svg" alt="show" />
       </div>
     </div>
     <ErrorMessage
       :name="props.name"
-      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+      class="text-darkRed text-[12px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
-    <div class="absolute right-6 top-3">
+    <div class="absolute right-6 top-3" :class="{ 'top-9': props.signUp }">
       <img
         v-if="props.modelValue && !props.errors"
         src="@/assets/icons/valid_icon.svg"
@@ -60,6 +70,18 @@ const props = defineProps({
     required: false
   },
   updateUser: {
+    type: Boolean
+  },
+  label: {
+    type: String
+  },
+  requiredIcon: {
+    type: String
+  },
+  id: {
+    type: String
+  },
+  signUp: {
     type: Boolean
   }
 })

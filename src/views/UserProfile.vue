@@ -118,7 +118,7 @@
                           name="password"
                           :errors="errors.password"
                           v-model="state.newPassword"
-                          @update:modelValue="(newValue) => (state.director_ka = newValue)"
+                          @update:modelValue="(newValue) => (state.password = newValue)"
                           :placeholder="$t('landing.my_profile.new_password')"
                           rules="required|alpha|min:15"
                           :updateUser="true"
@@ -133,7 +133,9 @@
                           name="password_confirmation"
                           :errors="errors.password_confirmation"
                           v-model="state.newPasswordConfirmation"
-                          @update:modelValue="(newValue) => (state.director_ka = newValue)"
+                          @update:modelValue="
+                            (newValue) => (state.password_confirmation = newValue)
+                          "
                           :placeholder="$t('landing.my_profile.confirm_new_password')"
                           rules="required|confirmed:@password"
                           :updateUser="true"
@@ -282,7 +284,8 @@ const state = reactive({
   confirmModal: false,
   email: authUser.data.email,
   showEmailDiv: false,
-  changesUpdated: false
+  changesUpdated: false,
+  password_confirmation: ''
 })
 
 console.log(state.email)

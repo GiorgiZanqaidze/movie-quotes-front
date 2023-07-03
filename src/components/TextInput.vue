@@ -27,11 +27,11 @@
     <ErrorMessage
       v-if="!backEndErrors"
       :name="name"
-      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+      class="text-darkRed text-[12px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
     <span
       v-if="backEndErrors"
-      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+      class="text-darkRed text-[12px] sm:text-sm bottom-[-22px] sm:bottom-[-25px] left-2"
       >{{ backEndErrors }}</span
     >
   </div>

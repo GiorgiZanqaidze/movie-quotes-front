@@ -16,7 +16,7 @@ const quotes = useQuoteStore()
 
 const query = useQuerySearchStore()
 
-const perPage = ref(10)
+const perPage = ref(2)
 
 onMounted(async () => {
   await getQuotes()
