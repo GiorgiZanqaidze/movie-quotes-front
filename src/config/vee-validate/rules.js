@@ -42,12 +42,28 @@ defineRule('integer', integer)
 // ===============================================================================================
 //
 //
+
 defineRule('alpha', (value) => {
   if (!/^[a-z0-9]+$/.test(value)) {
-    return 'This field must contain low register'
+    return false
   }
   return true
 })
+
+defineRule('georgianWords', (value) => {
+  if (!/^[\u10D0-\u10FF\s]+$/u.test(value)) {
+    return false
+  }
+  return true
+})
+
+defineRule('englishWords', (value) => {
+  if (!/^[a-zA-Z\s]+$/.test(value)) {
+    return false
+  }
+  return true
+})
+
 //
 //      defineRule('min_length', (value, [limit]) => {
 //          // The field is empty so it should pass

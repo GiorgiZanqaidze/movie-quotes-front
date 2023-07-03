@@ -80,6 +80,10 @@ onMounted(async () => {
     likes.value = likes.value.filter((like) => like.id !== data.like.id)
     likes.value.length--
   })
+
+  // window.Echo.private(`notification.${authUser.data.id}`).listen('SendNotifications', (data) => {
+  //   console.log(data)
+  // })
 })
 
 const comments = ref(props.quote.comments)

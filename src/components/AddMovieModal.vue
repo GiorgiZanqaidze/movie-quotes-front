@@ -27,7 +27,8 @@
           v-model="state.title_en"
           @update:modelValue="(newValue) => (state.title_en = newValue)"
           placeholder="Movie name"
-          rules="required|min:3"
+          rules="required|englishWords"
+          language="en"
         />
         <TextField
           name="title_ka"
@@ -35,7 +36,8 @@
           v-model="state.title_ka"
           @update:modelValue="(newValue) => (state.title_ka = newValue)"
           placeholder="ფილმის სახელი"
-          rules="required|min:3"
+          rules="required|georgianWords"
+          language="ka"
         />
         <div
           class="flex flex-col gap-2 border p-2 rounded-md relative"
@@ -83,7 +85,7 @@
           </Field>
           <ErrorMessage
             name="genres"
-            class="text-darkRed text-xs sm:text-sm top-[80px] sm:bottom-[-15px] left-2 absolute"
+            class="text-darkRed text-xs sm:text-sm top-[80px] sm:top-[6.4rem] left-2 absolute"
           />
         </div>
         <TextField
@@ -92,7 +94,8 @@
           v-model="state.director_en"
           @update:modelValue="(newValue) => (state.director_en = newValue)"
           placeholder="Director"
-          rules="required|min:3"
+          rules="required|englishWords"
+          language="en"
         />
         <TextField
           name="director_ka"
@@ -100,7 +103,8 @@
           v-model="state.director_ka"
           @update:modelValue="(newValue) => (state.director_ka = newValue)"
           placeholder="რეჟისორი"
-          rules="required|min:3"
+          rules="required|georgianWords"
+          language="ka"
         />
         <TheTextarea
           name="description_en"
@@ -108,7 +112,8 @@
           v-model="state.description_en"
           @update:modelValue="(newValue) => (state.description_en = newValue)"
           placeholder="Movie Descrioption"
-          rules="required|min:3"
+          rules="required|englishWords"
+          language="en"
         />
         <TheTextarea
           name="description_ka"
@@ -116,7 +121,8 @@
           v-model="state.description_ka"
           @update:modelValue="(newValue) => (state.description_ka = newValue)"
           placeholder="ფილმის აღწერა"
-          rules="required|min:3"
+          rules="required|georgianWords"
+          language="ka"
         />
         <TextField
           name="year"

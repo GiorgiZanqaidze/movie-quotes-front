@@ -15,7 +15,9 @@ configure({
         max: '{field} must have maximum 0:{max} symbols',
         alpha: 'This field must contain low register',
         confirmed: 'must be the same as password',
-        integer: 'field must be number'
+        integer: 'field must be number',
+        georgianWords: 'Must contain only Georgian letters',
+        englishWords: 'This field must contain only English words'
       },
       names: {
         name: 'The name',
@@ -31,7 +33,9 @@ configure({
         max: '{field} ველი უნდა შეიცავდეს მაქსიმუმ 0:{max} სიმბოლოს',
         alpha: 'უნდა შეიცავდეს მხოლოდ დაბალი რეგისტრის ლათინურ სიმბოლოებს და რიცხვებს',
         confirmed: 'უნდა ემთხვეოდეს პაროლის ველს',
-        integer: 'არ აკმაყოფილებს ფორმატს'
+        integer: 'არ აკმაყოფილებს ფორმატს',
+        georgianWords: 'ეს ველი უნდა შეიცავდეს მხოლოდ ქართულ სიტყვებს',
+        englishWords: 'ეს ველი უნდა შეიცავდეს მხოლოდ ინგლისურ ასოებს'
       },
       names: {
         password: 'პაროლი',

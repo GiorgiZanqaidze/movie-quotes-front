@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <Field
-      rules="required|min:3"
+      :rules="rules"
       class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2"
       :placeholder="props.placeholder"
       :class="{
@@ -21,7 +21,7 @@
       :name="props.name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-15px] left-2"
     />
-    <div class="absolute right-3 top-9">
+    <div class="absolute right-4 top-7" :class="{ 'right-14': lang }">
       <img
         v-if="props.modelValue && !props.errors"
         src="@/assets/icons/valid_icon.svg"
@@ -29,11 +29,14 @@
       />
       <img v-if="props.errors" src="@/assets/icons/invalid_icon.svg" alt="invalid" />
     </div>
+    <div v-if="lang" class="translate-y-[-50%] text-mediumGray absolute right-3 top-9">
+      <h1>{{ lang }}</h1>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
 
 const props = defineProps({
@@ -53,6 +56,22 @@ const props = defineProps({
   },
   edit: {
     required: false
+  },
+  rules: {
+    type: String
+  },
+  language: {
+    type: String
+  }
+})
+
+const lang = computed(() => {
+  if (props.language === 'en') {
+    return 'ENG'
+  } else if (props.language === 'ka') {
+    return 'ქარ'
+  } else {
+    return false
   }
 })
 </script>

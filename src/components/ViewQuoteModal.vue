@@ -47,10 +47,22 @@
               </button>
             </div>
             <div class="flex gap-2 items-center">
-              <p>{{ quote.likes.length }}</p>
+              <p>{{ likes.length }}</p>
               <button>
-                <img v-if="!liked" src="@/assets/icons/likes.svg" alt="likes" class="w-[24px]" />
-                <img v-else src="@/assets/icons/heart_fill.svg" alt="likes" class="w-[24px]" />
+                <img
+                  v-if="!liked"
+                  @click="likeQuote"
+                  src="@/assets/icons/likes.svg"
+                  alt="likes"
+                  class="w-[24px]"
+                />
+                <img
+                  v-if="liked"
+                  @click="unlikePost"
+                  src="@/assets/icons/heart_fill.svg"
+                  alt="likes"
+                  class="w-[24px]"
+                />
               </button>
             </div>
           </div>
@@ -78,6 +90,8 @@ import ProfileIcon from '@/components/ProfileIcon.vue'
 import PostComment from '@/components/PostComment.vue'
 import DeleteButton from '@/components/DeleteButton.vue'
 import instantiatePusher from '@/helpers/instantiatePusher'
+import { useLikeStore } from '@/stores/likes'
+import { userStore } from '@/stores/user'
 const modal = useModalStore()
 
 onMounted(() => {
@@ -86,11 +100,18 @@ onMounted(() => {
   window.Echo.channel('comment').listen('PostComment', (data) => {
     comments.value.push(data.comment)
   })
+
+  window.Echo.channel('like').listen('PostLike', (data) => {
+    likes.value.push(data)
+  })
+
+  window.Echo.channel('dislike').listen('PostDislike', (data) => {
+    likes.value = likes.value.filter((like) => like.id !== data.like.id)
+    likes.value.length--
+  })
 })
 
 const movie = useSingleMovieStore()
-
-const liked = ref(false)
 
 const quote = movie.getCurrentQuote
 
@@ -98,5 +119,31 @@ const comments = ref(quote.comments)
 
 const deleteQuote = () => {
   modal.toggleModal('null', false)
+}
+
+const authUser = userStore()
+
+const likes = ref(quote.likes)
+
+const like = useLikeStore()
+
+const liked = ref(likes.value.some((like) => like.author.id === authUser.data.id))
+
+const likeData = {
+  user_id: authUser.data.id,
+  quote_id: quote.id,
+  receiver_id: quote.author.id,
+  type: 'like',
+  sender_id: authUser.data.id
+}
+
+async function likeQuote() {
+  await like.likeQuote(likeData)
+  liked.value = true
+}
+
+async function unlikePost() {
+  await like.dislikeQuote(likeData)
+  liked.value = false
 }
 </script>
