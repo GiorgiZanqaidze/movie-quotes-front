@@ -10,7 +10,6 @@ import { useQuoteStore } from '@/stores/quote.js'
 import { useQuerySearchStore } from '@/stores/querySearch.js'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { userStore } from '@/stores/user'
-import instantiatePusher from '@/helpers/instantiatePusher'
 const authUser = userStore()
 
 const quotes = useQuoteStore()
@@ -22,12 +21,6 @@ const perPage = ref(10)
 onMounted(async () => {
   await getQuotes()
   window.addEventListener('scroll', handleScroll)
-
-  instantiatePusher()
-
-  window.Echo.private(`notification.${authUser.data.id}`).listen('SendNotifications', (data) => {
-    console.log(data)
-  })
 })
 
 onUnmounted(() => {

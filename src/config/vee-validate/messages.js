@@ -17,7 +17,8 @@ configure({
         confirmed: 'must be the same as password',
         integer: 'field must be number',
         georgianWords: 'Must contain only Georgian letters',
-        englishWords: 'This field must contain only English words'
+        englishWords: 'Must contain only English words',
+        year: 'It is not valid year'
       },
       names: {
         name: 'The name',
@@ -34,8 +35,9 @@ configure({
         alpha: 'უნდა შეიცავდეს მხოლოდ დაბალი რეგისტრის ლათინურ სიმბოლოებს და რიცხვებს',
         confirmed: 'უნდა ემთხვეოდეს პაროლის ველს',
         integer: 'არ აკმაყოფილებს ფორმატს',
-        georgianWords: 'ეს ველი უნდა შეიცავდეს მხოლოდ ქართულ სიტყვებს',
-        englishWords: 'ეს ველი უნდა შეიცავდეს მხოლოდ ინგლისურ ასოებს'
+        georgianWords: 'მხოლოდ ქართული ასოები',
+        englishWords: 'მხოლოდ ინგლისური ასოები',
+        year: 'არ არის ვალიდური'
       },
       names: {
         password: 'პაროლი',

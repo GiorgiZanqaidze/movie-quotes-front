@@ -50,6 +50,13 @@ defineRule('alpha', (value) => {
   return true
 })
 
+defineRule('year', (value) => {
+  if (!/^(19|20)\d{2}$/.test(value)) {
+    return false
+  }
+  return true
+})
+
 defineRule('georgianWords', (value) => {
   if (!/^[\u10D0-\u10FF\s]+$/u.test(value)) {
     return false

@@ -36,7 +36,7 @@
     />
     <ErrorMessage
       :name="name"
-      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-15px] left-2 z-40"
+      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-1.3rem] left-2 z-40"
     />
   </div>
 </template>

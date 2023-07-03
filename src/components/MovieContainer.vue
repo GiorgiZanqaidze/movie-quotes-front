@@ -27,13 +27,19 @@
       class="flex flex-col gap-1 text-xs sm:text-base"
       :class="{ 'w-[10rem] sm:w-[20rem]': quoteModal }"
     >
-      <div class="flex justify-between sm:w-[20rem]">
+      <div class="flex justify-between sm:w-[25rem]">
         <h1>{{ movie.data?.title?.[this.$i18n.locale] }} ({{ movie.data.year }})</h1>
         <div v-if="!quoteModal" class="flex gap-4 items-center bg-darkGray py-2 px-3 rounded-md">
-          <DeleteButton :movie_id="movie.data.id"></DeleteButton>
+          <div>
+            <DeleteButton :movie_id="movie.data.id"></DeleteButton>
+          </div>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
           <button class="flex justify-start" @click="modal.toggleModal('editMovieModal', true)">
-            <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
+            <img
+              src="@/assets/icons/pencil.svg"
+              alt="delete"
+              class="inline-block mr-1 min-w-[0.5rem]"
+            />
           </button>
         </div>
       </div>

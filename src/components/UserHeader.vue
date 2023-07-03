@@ -55,7 +55,9 @@ import NotificationsModal from '@/components/NotificationsModal.vue'
 import LogOutButton from '@/components/LogOutButton.vue'
 import QuotesSearchModal from '@/components/QuotesSearchModal.vue'
 import { userStore } from '@/stores/user'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import instantiatePusher from '@/helpers/instantiatePusher'
+
 const user = userStore()
 
 const modal = useModalStore()
@@ -67,4 +69,12 @@ const news = ref(notifications.value.filter((notification) => notification.read_
 const clearNewNotifications = () => {
   news.value = []
 }
+
+onMounted(() => {
+  instantiatePusher()
+
+  window.Echo.private(`notification.${user.data.id}`).listen('SendNotifications', (data) => {
+    console.log(data)
+  })
+})
 </script>

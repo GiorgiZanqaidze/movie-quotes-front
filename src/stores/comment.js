@@ -10,9 +10,7 @@ export const useCommentStore = defineStore('comment', {
   actions: {
     async postComment(data) {
       try {
-        const response = await postComment(data)
-
-        console.log(response.data.quote)
+        await postComment(data)
       } catch (error) {
         console.error(error)
       }

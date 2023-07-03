@@ -40,7 +40,7 @@
       />
 
       <div
-        class="sm:w-full bg-transparent border rounded h-[86px]"
+        class="sm:w-full bg-transparent border rounded h-[86px] relative"
         :class="{
           'border-darkRed': errors.image,
           'border-green-500': state.uploadedImage && !errors.image,
@@ -69,13 +69,15 @@
             class="hidden"
           />
 
-          <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]">{{
-            $t('news_feed.write_quote.choose_file')
-          }}</label>
+          <label
+            for="file"
+            class="bg-mediumRed py-1 px-2 cursor-pointer text-[11px] sm:text-[20px]"
+            >{{ $t('news_feed.write_quote.choose_file') }}</label
+          >
         </div>
         <ErrorMessage
           name="image"
-          class="text-darkRed text-[14px] sm:text-sm bottom-[-22px] sm:bottom-[-15px] left-2"
+          class="text-darkRed text-[14px] sm:text-sm absolute sm:bottom-[-15px] left-2"
         />
       </div>
       <MoviesDropdown

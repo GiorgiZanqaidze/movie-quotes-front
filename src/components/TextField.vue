@@ -28,7 +28,10 @@
       />
       <img v-if="props.errors" src="@/assets/icons/invalid_icon.svg" alt="invalid" />
     </div>
-    <div v-if="lang" class="translate-y-[-50%] text-mediumGray absolute right-3 top-1/2">
+    <div
+      v-if="lang"
+      class="translate-y-[-50%] text-mediumGray absolute right-3 top-1/2 sm:text-md text-sm"
+    >
       <h1>{{ lang }}</h1>
     </div>
   </div>

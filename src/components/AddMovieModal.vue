@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute top-[30rem] left-1/2 bg-darkBlack sm:w-[961px] min-h-[20rem] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white z-100"
+    class="absolute top-[35rem] left-1/2 bg-darkBlack sm:w-[961px] min-h-[20rem] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white z-100"
   >
     <div>
       <header
@@ -47,7 +47,7 @@
             'border-mediumGray': !state.choosenGenres.length && !errors.genres
           }"
         >
-          <ul class="flex gap-2 items-center">
+          <ul class="flex flex-wrap gap-2 items-center">
             <li
               v-for="(genre, index) in state.choosenGenres"
               :key="index"
@@ -69,7 +69,7 @@
             id="genres"
             as="select"
             multiple
-            class="w-full bg-black rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none"
+            class="w-full bg-black rounded overflow-hidden sm:pl-10 pl-0 focus:outline-none"
           >
             <option value="" disabled>
               {{ $t('news_feed.write_quote.choose_movie') }}
@@ -85,7 +85,7 @@
           </Field>
           <ErrorMessage
             name="genres"
-            class="text-darkRed text-xs sm:text-sm top-[80px] sm:top-[6.4rem] left-2 absolute"
+            class="text-darkRed text-xs sm:text-sm top-[6.5rem] sm:top-[6.4rem] left-2 absolute"
           />
         </div>
         <TextField
@@ -130,7 +130,7 @@
           v-model="state.year"
           @update:modelValue="(newValue) => (state.year = newValue)"
           placeholder="წელი/year"
-          rules="required|integer"
+          rules="required|year"
         />
         <div
           class="sm:w-full bg-transparent border rounded h-[86px]"
@@ -162,9 +162,11 @@
               class="hidden"
             />
 
-            <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]">{{
-              $t('news_feed.write_quote.choose_file')
-            }}</label>
+            <label
+              for="file"
+              class="bg-mediumRed py-1 px-2 cursor-pointer text-[11px] sm:text-[20px]"
+              >{{ $t('news_feed.write_quote.choose_file') }}</label
+            >
           </div>
           <ErrorMessage
             name="image"

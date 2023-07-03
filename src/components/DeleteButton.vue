@@ -1,6 +1,8 @@
 <template>
   <button class="flex justify-start" @click="deleteItem">
-    <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1" />
+    <div>
+      <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1 min-w-[0.5rem]" />
+    </div>
     <span class="text-xs text-white">
       <slot> </slot>
     </span>
