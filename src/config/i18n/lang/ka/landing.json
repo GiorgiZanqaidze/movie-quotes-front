@@ -25,7 +25,8 @@
     "my_list": "ფილმების სია",
     "total": "სულ",
     "search": "ძებნა",
-    "add_movie": "დამატება"
+    "add_movie": "დამატება",
+    "upload_image": "ატვირთე ფოტო"
   },
   "movie_description": {
     "title": "ფილმის აღწერა",

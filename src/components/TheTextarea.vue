@@ -2,7 +2,7 @@
   <div class="relative">
     <Field
       :rules="rules"
-      class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2"
+      class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2 text-sm sm:text-md pr-10"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors,
@@ -21,7 +21,7 @@
       :name="props.name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-0.5rem] sm:bottom-[-15px] left-2"
     />
-    <div class="absolute right-4 top-7" :class="{ 'right-14': lang }">
+    <div class="absolute right-4 top-9" :class="{ 'right-14': lang }">
       <img
         v-if="props.modelValue && !props.errors"
         src="@/assets/icons/valid_icon.svg"
@@ -31,7 +31,7 @@
     </div>
     <div
       v-if="lang"
-      class="translate-y-[-50%] text-mediumGray absolute right-3 top-9 sm:text-md text-sm"
+      class="translate-y-[-50%] text-mediumGray absolute right-3 top-4 sm:text-md text-sm"
     >
       <h1>{{ lang }}</h1>
     </div>

@@ -14,7 +14,7 @@
       @blur="$emit('update:modelValue', $event.target.value)"
       id="movie"
       as="select"
-      class="w-full bg-black h-full rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none"
+      class="w-full bg-black h-full rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none text-sm sm:text-md"
     >
       <option value="" disabled>
         {{ $t('news_feed.write_quote.choose_movie') }}

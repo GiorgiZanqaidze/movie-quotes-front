@@ -2,7 +2,7 @@
   <div class="text-white bg-mediumDark min-h-screen">
     <div class="sm:ml-[400px] max-w-[1200px]">
       <div
-        class="h-20 flex sm:justify-between justify-between items-center mb-4 gap-10 sm:w-auto w-[300px] mx-auto"
+        class="h-20 flex sm:justify-between justify-between items-center mb-0 sm:mb-4 gap-0 sm:gap-10 sm:w-auto w-[300px] mx-auto"
       >
         <h1>
           {{ $t('landing.my_movies.my_list') }}
@@ -29,7 +29,7 @@
             />
           </form>
           <button
-            class="py-1 px-2 rounded bg-red-600 flex justify-center items-center gap-0 sm:gap-2 text-[0.8rem] sm:text-md"
+            class="py-2 px-3 rounded bg-darkRed flex justify-center items-center gap-1 sm:gap-2 text-xs sm:text-md"
             @click="modal.toggleModal('addMovieModal', true)"
           >
             <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
@@ -39,7 +39,7 @@
       </div>
       <div class="grid sm:grid-cols-3 gap-4 place-items-center">
         <div
-          class="sm:w-[400px] w-[300px] h-[370px] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
+          class="sm:w-[400px] w-[300px] sm:h-[370px] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
           v-for="(movie, index) in movies.data"
           :key="index"
           @click="handleRoute(movie.id)"
@@ -48,13 +48,19 @@
             <img
               :src="`${imagePath}${movie.image}`"
               alt="movie"
-              class="sm:w-full sm:max-h-[250px] max-h-[200px] rounded-md"
+              class="w-full sm:max-h-[250px] max-h-[200px] rounded-md"
             />
           </div>
-          <h3>{{ movie?.title?.[this.$i18n.locale] }} ({{ movie.year }})</h3>
-          <p>
+          <h3 class="text-md sm:text-md">
+            {{ movie?.title?.[this.$i18n.locale] }} ({{ movie.year }})
+          </h3>
+          <p class="text-sm sm:text-md">
             {{ movie?.quotes?.length || 0 }}
-            <img src="@/assets/icons/quotes.svg" alt="quotes" class="inline-block ml-2 w-[32px]" />
+            <img
+              src="@/assets/icons/quotes.svg"
+              alt="quotes"
+              class="inline-block ml-2 w-5 sm:w-[32px]"
+            />
           </p>
         </div>
       </div>

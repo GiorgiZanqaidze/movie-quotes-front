@@ -6,7 +6,7 @@
       <header
         class="p-5 relative flex justify-center items-center text-xl border-b border-darkGray pb-3"
       >
-        <h1>add movie</h1>
+        <h1>{{ $t('landing.my_movies.add_movie') }}</h1>
         <button
           class="flex justify-start absolute right-5 top-5"
           @click="modal.toggleModal('null', false)"
@@ -17,7 +17,7 @@
       <div class="mt-4 mb-6 px-6">
         <div class="flex items-center gap-3">
           <profile-icon :path="`${imagePath}${authUser?.data?.image}`"></profile-icon>
-          <h1 class="text-[20px]">{{ authUser?.data?.name }}</h1>
+          <h1 class="text-sm sm:text-md">{{ authUser?.data?.name }}</h1>
         </div>
       </div>
       <Form @submit="handleSubmit" class="mt-4 flex flex-col gap-6 pb-2 px-6" v-slot="{ errors }">
@@ -53,7 +53,7 @@
               :key="index"
               class="list-none py-1 px-2 rounded-md bg-mediumGray flex gap-2 items-center"
             >
-              <span>
+              <span class="text-sm sm:text-md">
                 {{ genre[0]?.name?.[this.$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
@@ -71,14 +71,14 @@
             multiple
             class="w-full bg-black rounded overflow-hidden sm:pl-10 pl-0 focus:outline-none"
           >
-            <option value="" disabled>
+            <option value="" disabled class="text-sm md-text-md">
               {{ $t('news_feed.write_quote.choose_movie') }}
             </option>
             <option
               v-for="(genre, index) in state.genres"
               :key="index"
               :value="genre"
-              class="text-white"
+              class="text-white text-sm md-text-md"
             >
               {{ genre?.name?.[this.$i18n.locale] }}
             </option>
@@ -141,7 +141,7 @@
           }"
         >
           <div
-            class="sm:w-full cursor-pointer h-full flex justify-start gap-5 ml-5 items-center"
+            class="sm:w-full cursor-pointer h-full flex justify-start gap-1 sm:gap-5 ml-5 items-center"
             @dragover="dragOver"
             @drop="drop"
           >
@@ -151,7 +151,7 @@
             <h3 class="hidden sm:inline">
               {{ $t('news_feed.write_quote.drag_and_drop') }}
             </h3>
-            <p class="inline sm:hidden text-[16px]">upload Image</p>
+            <p class="inline sm:hidden text-xs">{{ $t('landing.my_movies.upload_image') }}</p>
             <Field
               :rules="state.imageValidator"
               id="file"
@@ -164,7 +164,7 @@
 
             <label
               for="file"
-              class="bg-mediumRed py-1 px-2 cursor-pointer text-[11px] sm:text-[20px]"
+              class="bg-mediumRed py-1 px-2 cursor-pointer text-xs sm:text-[20px]"
               >{{ $t('news_feed.write_quote.choose_file') }}</label
             >
           </div>
@@ -175,7 +175,7 @@
         </div>
 
         <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">
-          {{ $t('news_feed.write_quote.post') }}
+          {{ $t('landing.my_movies.add_movie') }}
         </button>
       </Form>
     </div>

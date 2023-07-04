@@ -1,17 +1,17 @@
 <template>
   <div class="bg-darkBlack sm:w-[961px] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
-    <header class="flex items-center gap-4">
+    <header class="flex items-center gap-4 text-sm sm:text-md">
       <profile-icon :path="profileIconUrl"></profile-icon>
       <h2>{{ props?.quote?.author?.name }}</h2>
     </header>
-    <h1>
+    <h1 class="text-sm sm:text-md" style="word-break: break-word">
       “{{ props?.quote?.name?.[this.$i18n.locale] }}”movie-
       {{ props?.quote?.movie?.title?.[this.$i18n.locale] }} ({{ props?.quote?.movie?.year }})
     </h1>
     <div class="rounded-lg overflow-hidden">
       <img :src="imageUrl" alt="movie" class="mx-auto" />
     </div>
-    <div class="flex gap-4 mt-4 border-b-2 border-light pb-4">
+    <div class="flex gap-4 mt-2 sm:mt-4 border-b-2 border-light pb-2 sm:pb-4">
       <div class="flex gap-2 items-center just">
         <p>{{ props?.quote?.comments?.length }}</p>
         <button>
@@ -38,7 +38,10 @@
         </button>
       </div>
     </div>
-    <ul class="max-h-[20rem]" :class="{ 'overflow-y-scroll': comments.length > 2 }">
+    <ul
+      class="sm:max-h-[20rem] max-h-[10rem]"
+      :class="{ 'overflow-y-scroll': comments.length > 2 }"
+    >
       <the-comment
         v-for="(comment, index) in comments"
         :key="index"

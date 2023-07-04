@@ -15,7 +15,7 @@
     <div class="mt-4 mb-6 px-6">
       <div class="flex items-center gap-3">
         <profile-icon :path="user.authUserIcon"></profile-icon>
-        <h1 class="text-[20px]">{{ user.data.name }}</h1>
+        <h1 class="text-sm sm:text-md">{{ user.data.name }}</h1>
       </div>
     </div>
     <Form @submit="handleSubmit" class="mt-4 flex flex-col gap-4 pb-2 px-6" v-slot="{ errors }">

@@ -11,7 +11,7 @@
     </label>
     <Field
       :rules="props.rules"
-      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md"
+      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md pr-16"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors || props.backEndErrors,
@@ -36,7 +36,7 @@
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
       >{{ props.backEndErrors }}</span
     >
-    <div class="absolute right-3 top-4" :class="{ 'right-14': lang, 'top-8': props.signUp }">
+    <div class="absolute right-6 top-3" :class="{ 'right-12': lang, 'top-8': props.signUp }">
       <img
         v-if="props.modelValue && !props.errors && !props.backEndErrors"
         src="@/assets/icons/valid_icon.svg"

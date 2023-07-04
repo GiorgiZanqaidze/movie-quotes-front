@@ -1,7 +1,6 @@
 <template>
-  <div class="flex items-center gap-4 mt-4">
+  <div class="flex items-center gap-4 mt-0 sm:mt-4">
     <profile-icon :path="authUser.authUserIcon"></profile-icon>
-
     <Form @submit="handleSubmit" class="flex flex-col gap-2 w-full">
       <Field
         rules="required"
