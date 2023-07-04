@@ -261,10 +261,10 @@ import updateUserAvatar from '@/services/updateUserAvatar'
 import PasswordField from '@/components/PasswordField.vue'
 import updateUser from '@/services/updateUser'
 import TextField from '@/components/TextField.vue'
-import BackArrow from '@/components/images/back.vue'
+import BackArrow from '@/components/images/backSVG.vue'
 import { useRoute } from 'vue-router'
-import CloseBtn from '@/components/images/close.vue'
-import ConfirmedBtn from '@/components/images/confirm.vue'
+import CloseBtn from '@/components/images/closeSVG.vue'
+import ConfirmedBtn from '@/components/images/confirmSVG.vue'
 
 const authUser = userStore()
 const imageUrl = computed(() => `${imagePath}${authUser.data.image}`)

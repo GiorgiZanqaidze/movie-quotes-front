@@ -13,18 +13,20 @@
     <Form
       class="text-white w-[340px] sm:w-[360px] mx-auto flex flex-col gap-4 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleResetPassword"
-      v-slot="{ errors, meta }"
+      v-slot="{ errors }"
     >
-      <TextInput
-        rules="required|email"
+      <TextField
         id="email"
-        type="email"
         name="email"
-        :label="$t('modals.forgot_password.email')"
-        :placeholder="$t('modals.forgot_password.placeholder_email')"
-        @change-input="handleInput"
-        :errors="errors"
-        :meta="meta"
+        requiredIcon="true"
+        :errors="errors.email"
+        v-model="state.email"
+        @update:modelValue="(newValue) => (state.email = newValue)"
+        :label="$t('modals.login.email')"
+        :placeholder="$t('modals.login.placeholder_email')"
+        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
+        rules="required|email"
+        :signUp="true"
       />
 
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
@@ -44,22 +46,25 @@
 <script setup>
 import { Form } from 'vee-validate'
 import updatePassword from '@/services/updatePassword.js'
-
+import TextField from '@/components/TextField.vue'
 import { useModalStore } from '../stores/modal'
-import TextInput from '@/components/TextInput.vue'
+import { reactive, ref } from 'vue'
 
 const modal = useModalStore()
-let formData = {
-  email: ''
-}
-function handleResetPassword() {
-  updatePassword(formData)
-}
 
-function handleInput(data) {
-  formData = {
-    ...formData,
-    [data.name]: data.value
+const backEndErrors = ref('')
+
+const state = reactive({
+  email: ''
+})
+
+async function handleResetPassword() {
+  const response = await updatePassword({ email: state.email })
+
+  if (response.status === 200) {
+    modal.toggleModal('null', false)
+  } else {
+    backEndErrors.value = JSON.parse(response.response.data.message)
   }
 }
 </script>

@@ -14,12 +14,12 @@
       class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md"
       :placeholder="props.placeholder"
       :class="{
-        'border-darkRed': props.errors,
-        'border-green-500': props.modelValue && !props.errors,
+        'border-darkRed': props.errors || props.backEndErrors,
+        'border-green-500': props.modelValue && !props.errors && !props.backEndErrors,
         'border-mediumGray': !props.modelValue && !props.errors,
         'sm:bg-lightDark bg-transparent': props.updateUser,
         'bg-lightDark': props.signUp,
-        'bg-transparent': !props.updateUser
+        'bg-transparent': !props.updateUser && !props.signUp
       }"
       :type="showPassword ? 'password' : 'text'"
       :name="props.name"
@@ -35,13 +35,22 @@
       :name="props.name"
       class="text-darkRed text-[12px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
+    <span
+      v-if="props.backEndErrors"
+      class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+      >{{ props.backEndErrors }}</span
+    >
     <div class="absolute right-6 top-3" :class="{ 'top-9': props.signUp }">
       <img
-        v-if="props.modelValue && !props.errors"
+        v-if="props.modelValue && !props.errors && !props.backEndErrors"
         src="@/assets/icons/valid_icon.svg"
         alt="valid"
       />
-      <img v-if="props.errors" src="@/assets/icons/invalid_icon.svg" alt="invalid" />
+      <img
+        v-if="props.errors || props.backEndErrors"
+        src="@/assets/icons/invalid_icon.svg"
+        alt="invalid"
+      />
     </div>
   </div>
 </template>
@@ -83,6 +92,9 @@ const props = defineProps({
   },
   signUp: {
     type: Boolean
+  },
+  backEndErrors: {
+    type: String
   }
 })
 

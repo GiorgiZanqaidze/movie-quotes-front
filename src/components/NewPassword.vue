@@ -13,33 +13,34 @@
     <Form
       class="text-white mx-auto flex flex-col sm:gap-4 w-[340px] sm:w-[400px] gap-3 px-4 py-10 sm:px-0 sm:py-4"
       @submit="handleSubmit"
-      v-slot="{ errors, meta }"
+      v-slot="{ errors }"
     >
-      <PasswordInput
-        rules="required|min:8|max:15|alpha"
+      <PasswordField
         id="password"
-        type="password"
         name="password"
         :label="$t('modals.sign_up.password')"
-        :placeholder="$t('modals.sign_up.placeholder_password')"
-        :errors="errors"
-        :meta="meta"
+        :errors="errors.password"
+        v-model="state.password"
+        @update:modelValue="(newValue) => (state.password = newValue)"
+        :placeholder="$t('landing.my_profile.new_password')"
+        rules="required|alpha|min:8|max:15"
+        :signUp="true"
         requiredIcon="true"
-        @change-input="handleInput"
       />
 
-      <PasswordInput
-        rules="required|confirmed:@password"
+      <PasswordField
         id="password_confirmation"
-        type="password"
         name="password_confirmation"
         :label="$t('modals.sign_up.confirm_password')"
+        :errors="errors.password_confirmation"
+        v-model="state.password_confirmation"
+        @update:modelValue="(newValue) => (state.password_confirmation = newValue)"
         :placeholder="$t('modals.sign_up.confirm_password')"
-        :errors="errors"
-        :meta="meta"
+        rules="required|confirmed:@password"
+        :signUp="true"
         requiredIcon="true"
-        @change-input="handleInput"
       />
+
       <button class="w-full bg-darkRed py-1 rounded my-1 text-sm sm:text-md">
         {{ $t('modals.new_password.button') }}
       </button>
@@ -56,33 +57,34 @@
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import resetPassword from '@/services/resetPassword'
-import PasswordInput from '@/components/PasswordInput.vue'
-import { onMounted } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
+import PasswordField from '@/components/PasswordField.vue'
 
 const modal = useModalStore()
 
-let formData = {
+const state = reactive({
   password: '',
   password_confirmation: ''
-}
+})
 
 const route = useRoute()
 
 let resetPasswordToken = ''
 
-function handleSubmit() {
-  resetPassword(formData, resetPasswordToken)
-}
-
-function handleInput(data) {
-  formData = {
-    ...formData,
-    [data.name]: data.value
-  }
-}
-
 onMounted(() => {
   resetPasswordToken = route.query.reset_password_token
 })
+
+async function handleSubmit() {
+  let formData = {
+    password: state.password,
+    password_confirmation: state.password_confirmation
+  }
+  const response = await resetPassword(formData, resetPasswordToken)
+
+  if (response.status === 200) {
+    modal.toggleModal('logIn', true)
+  }
+}
 </script>

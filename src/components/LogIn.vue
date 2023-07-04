@@ -9,33 +9,37 @@
     <Form
       class="text-white w-[340px] sm:w-[360px] mx-auto flex flex-col gap-4 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleLogin"
-      v-slot="{ errors, meta }"
+      v-slot="{ errors }"
     >
-      <TextInput
-        rules="required"
+      <TextField
         id="email"
-        type="email"
         name="email"
+        requiredIcon="true"
+        :errors="errors.email"
+        v-model="state.email"
+        @update:modelValue="(newValue) => (state.email = newValue)"
         :label="$t('modals.login.email')"
-        :errors="errors"
-        :meta="meta"
         :placeholder="$t('modals.login.placeholder_email')"
-        :backEndErrors="backEndErrors"
-        @change-input="handleInput"
-      />
-      <PasswordInput
+        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
         rules="required"
-        id="password"
-        type="password"
-        name="password"
-        :errors="errors"
-        :meta="meta"
-        :label="$t('modals.login.password')"
-        :placeholder="$t('modals.login.placeholder_password')"
-        @change-input="handleInput"
-        :backEndErrors="backEndErrors"
+        :signUp="true"
       />
-      <div class="flex justify-between text-sm">
+
+      <PasswordField
+        id="password"
+        name="password"
+        :label="$t('modals.sign_up.password')"
+        :errors="errors.password"
+        v-model="state.newPassword"
+        @update:modelValue="(newValue) => (state.password = newValue)"
+        :placeholder="$t('landing.my_profile.new_password')"
+        rules="required|alpha|min:8|max:15"
+        :signUp="true"
+        requiredIcon="true"
+        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
+      />
+
+      <div class="flex justify-between text-xs sm:text-md">
         <CheckboxInput
           id="remember_me"
           type="checkbox"
@@ -44,12 +48,13 @@
           :value="true"
           :label="$t('modals.login.remember_me')"
         />
-        <a
+        <button
           href="#"
           @click="modal.toggleModal('forgotPassword', true)"
-          class="text-mediumBlue underline"
-          >{{ $t('modals.login.forgot_password') }}</a
+          class="text-mediumBlue underline text-xs sm:text-md"
         >
+          {{ $t('modals.login.forgot_password') }}
+        </button>
       </div>
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.login.sign_in') }}
@@ -71,34 +76,40 @@ import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import loginUser from '@/services/loginUser.js'
 import { useRouter } from 'vue-router'
-import TextInput from '@/components/TextInput.vue'
-import PasswordInput from '@/components/PasswordInput.vue'
 import CheckboxInput from '@/components/CheckboxInput.vue'
 import { userStore } from '@/stores/user.js'
 import GoogleButton from '@/components/GoogleButton.vue'
+import TextField from '@/components/TextField.vue'
+import { reactive, ref } from 'vue'
+import PasswordField from '@/components/PasswordField.vue'
 
 const modal = useModalStore()
+
 const user = userStore()
 
 const route = useRouter()
-let formData = {
+
+const state = reactive({
   email: '',
-  password: '',
+  password: ''
+})
+
+let formData = {
   remember_me: false,
   device_name: 'browser'
 }
 
-let backEndErrors = ''
+let backEndErrors = ref('')
 
 async function handleLogin() {
-  const response = await loginUser(formData)
+  const response = await loginUser({ ...formData, email: state.email, password: state.password })
 
   if (response.status === 200) {
     user.setUser(response.data)
     route.push('/news-feed')
     modal.toggleModal('logIn', false)
   } else {
-    backEndErrors = response.response.data.message
+    backEndErrors.value = JSON.parse(response.response.data.message)
     console.log(backEndErrors)
   }
 }

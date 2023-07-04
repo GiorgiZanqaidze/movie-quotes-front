@@ -9,8 +9,6 @@ import axiosInstance from '@/config/axios/index'
 import { useQuoteStore } from '@/stores/quote.js'
 import { useQuerySearchStore } from '@/stores/querySearch.js'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
-import { userStore } from '@/stores/user'
-const authUser = userStore()
 
 const quotes = useQuoteStore()
 

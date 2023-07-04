@@ -19,7 +19,7 @@
         'border-mediumGray': !props.modelValue && !props.errors,
         'sm:bg-lightDark bg-transparent': props.updateUser,
         'bg-lightDark': props.signUp,
-        'bg-transparent': !props.updateUser
+        'bg-transparent': !props.updateUser && !props.signUp
       }"
       type="text"
       :name="props.name"
@@ -27,6 +27,7 @@
       @blur="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage
+      v-if="!backEndErrors"
       :name="props.name"
       class="text-darkRed text-[12px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
     />
@@ -58,7 +59,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed, watch, ref } from 'vue'
+import { defineProps, computed } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
 
 const props = defineProps({
@@ -102,17 +103,6 @@ const props = defineProps({
     type: String
   }
 })
-
-const backError = ref(null)
-
-watch(
-  () => props.backEndErrors,
-  (newErrors, oldErrors) => {
-    // Perform your desired action here
-    backError.value = newErrors
-    console.log('backEndErrors changed:', newErrors)
-  }
-)
 
 const lang = computed(() => {
   if (props.language === 'en') {

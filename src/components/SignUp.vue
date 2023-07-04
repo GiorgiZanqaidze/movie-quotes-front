@@ -9,7 +9,7 @@
     <Form
       class="text-white mx-auto flex flex-col sm:gap-4 w-[340px] sm:w-[360px] gap-3 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleRegister"
-      v-slot="{ errors, meta }"
+      v-slot="{ errors }"
     >
       <TextField
         id="name"
@@ -47,7 +47,6 @@
         @update:modelValue="(newValue) => (state.password = newValue)"
         :placeholder="$t('landing.my_profile.new_password')"
         rules="required|alpha|min:8|max:15"
-        :updateUser="true"
         :signUp="true"
         requiredIcon="true"
       />
@@ -61,7 +60,6 @@
         @update:modelValue="(newValue) => (state.password_confirmation = newValue)"
         :placeholder="$t('modals.sign_up.confirm_password')"
         rules="required|confirmed:@password"
-        :updateUser="true"
         :signUp="true"
         requiredIcon="true"
       />
@@ -89,8 +87,6 @@
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import registerUser from '@/services/registerUser.js'
-import TextInput from '@/components/TextInput.vue'
-import PasswordInput from '@/components/PasswordInput.vue'
 import PasswordField from '@/components/PasswordField.vue'
 import { ref, reactive } from 'vue'
 import GoogleButton from '@/components/GoogleButton.vue'
