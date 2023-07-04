@@ -164,6 +164,8 @@ const handleSubmit = async () => {
     user_id: user.data.id
   }
 
+  console.log(data)
+
   let formData = new FormData()
 
   Object.entries(data).forEach(([key, value]) => {

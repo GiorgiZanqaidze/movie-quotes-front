@@ -42,7 +42,7 @@
       </div>
       <LanguageDropdown class="hidden sm:block" />
       <LogOutButton class="hidden sm:block" />
-      <QuotesSearchModal v-if="modal.searchModal" />
+      <QuotesSearchModal class="fixed sm:hidden" v-if="modal.searchModal" />
     </div>
   </header>
 </template>
@@ -83,7 +83,6 @@ onMounted(() => {
       created_at: data.notification.created_at
     }
 
-    console.log(data)
     newsLength.value++
 
     notifications.value.unshift(notification)

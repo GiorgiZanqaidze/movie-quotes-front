@@ -16,7 +16,9 @@
         </form>
       </div>
       <div class="mx-10">
-        <p class="text-lightDark w-[250px]">Enter @ to search movies Enter # to search quotes</p>
+        <p class="text-lightDark w-[250px] text-sm" v-if="newsFeed">
+          {{ $t('news_feed.enter') }} @ {{ $t('news_feed.search_placeholder') }}
+        </p>
       </div>
     </div>
   </div>
@@ -25,12 +27,31 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { useQuerySearchStore } from '@/stores/querySearch'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useMovieStore } from '@/stores/movie'
 const modal = useModalStore()
-const query = useQuerySearchStore()
-const searchValue = ref('')
 
-function handleSubmit() {
-  query.setSearchQuery(searchValue.value)
+const query = useQuerySearchStore()
+
+const route = useRoute()
+
+const searchValue = ref(route.query.query)
+
+const router = useRouter()
+
+const movies = useMovieStore()
+
+const newsFeed = ref(route.name === 'newsFeed')
+
+async function handleSubmit() {
+  if (newsFeed.value) {
+    console.log(searchValue)
+    router.push({ path: '/news-feed', query: { query: searchValue.value } })
+    await query.setSearchQuery(searchValue.value)
+  } else {
+    router.push({ path: '/movies-list', query: { query: searchValue.value } })
+    await movies.getMovies(searchValue.value)
+  }
 }
 </script>

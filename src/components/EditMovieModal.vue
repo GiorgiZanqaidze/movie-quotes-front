@@ -27,7 +27,7 @@
           v-model="state.title_en"
           @update:modelValue="(newValue) => (state.title_en = newValue)"
           placeholder="Movie name"
-          rules="required|min:3"
+          rules="required|englishWords"
         />
         <EditTextInput
           name="title_ka"
@@ -35,7 +35,7 @@
           v-model="state.title_ka"
           @update:modelValue="(newValue) => (state.title_ka = newValue)"
           placeholder="ფილმის სახელი"
-          rules="required|min:3"
+          rules="required|georgianWords"
         />
         <div
           class="flex flex-col gap-2 border p-2 rounded-md relative"
@@ -45,7 +45,7 @@
             'border-mediumGray': !state.choosenGenres.length && !errors.genres
           }"
         >
-          <ul class="flex gap-2 items-center">
+          <ul class="flex flex-wrap gap-2 items-center">
             <li
               v-for="(genre, index) in state.choosenGenres"
               :key="index"
@@ -92,7 +92,7 @@
           v-model="state.director_en"
           @update:modelValue="(newValue) => (state.director_en = newValue)"
           placeholder="Director"
-          rules="required|min:3"
+          rules="required|englishWords"
         />
         <EditTextInput
           name="director_ka"
@@ -100,7 +100,7 @@
           v-model="state.director_ka"
           @update:modelValue="(newValue) => (state.director_ka = newValue)"
           placeholder="რეჟისორი"
-          rules="required|min:3"
+          rules="required|georgianWords"
         />
         <EditTextarea
           name="description_en"
@@ -108,7 +108,7 @@
           v-model="state.description_en"
           @update:modelValue="(newValue) => (state.description_en = newValue)"
           placeholder="Movie Descrioption"
-          rules="required|min:3"
+          rules="required|englishWords"
         />
         <EditTextarea
           name="description_ka"
@@ -116,7 +116,7 @@
           v-model="state.description_ka"
           @update:modelValue="(newValue) => (state.description_ka = newValue)"
           placeholder="ფილმის აღწერა"
-          rules="required|min:3"
+          rules="required|georgianWords"
         />
         <EditTextInput
           name="year"
@@ -124,7 +124,7 @@
           v-model="state.year"
           @update:modelValue="(newValue) => (state.year = newValue)"
           placeholder="წელი/year"
-          rules="required|integer"
+          rules="required|year"
         />
         <div
           class="sm:w-full bg-transparent border rounded h-[10rem]"

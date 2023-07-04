@@ -1,6 +1,13 @@
 <template>
   <div class="text-white bg-mediumDark min-h-screen">
-    <newsfeed-movies></newsfeed-movies>
+    <div class="flex flex-col sm:items-center gap-4 pb-10">
+      <QuotesHeader />
+      <div class="flex flex-col items-center gap-4 w-full">
+        <li v-for="(quote, index) in quotes.data" :key="index" class="list-none">
+          <newsfeed-movie :quote="quote"></newsfeed-movie>
+        </li>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,6 +16,7 @@ import axiosInstance from '@/config/axios/index'
 import { useQuoteStore } from '@/stores/quote.js'
 import { useQuerySearchStore } from '@/stores/querySearch.js'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
+import QuotesHeader from '@/components/QuotesHeader.vue'
 
 const quotes = useQuoteStore()
 

@@ -10,7 +10,6 @@ import App from '@/App.vue'
 import router from '@/router'
 
 import UserNavigation from '@/components/UserNavigation.vue'
-import NewsfeedMovies from '@/components/NewsfeedMovies.vue'
 import NewsfeedMovie from '@/components/NewsfeedMovie.vue'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import TheComment from '@/components/TheComment.vue'
@@ -24,7 +23,6 @@ app.use(router)
 app.use(i18n)
 
 app.component('user-navigation', UserNavigation)
-app.component('newsfeed-movies', NewsfeedMovies)
 app.component('newsfeed-movie', NewsfeedMovie)
 app.component('profile-icon', ProfileIcon)
 app.component('the-comment', TheComment)

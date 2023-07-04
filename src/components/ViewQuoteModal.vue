@@ -106,8 +106,7 @@ onMounted(() => {
   })
 
   window.Echo.channel('dislike').listen('PostDislike', (data) => {
-    likes.value = likes.value.filter((like) => like.id !== data.like.id)
-    likes.value.length--
+    likes.value.pop()
   })
 })
 
