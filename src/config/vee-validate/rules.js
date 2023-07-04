@@ -50,8 +50,17 @@ defineRule('alpha', (value) => {
   return true
 })
 
+defineRule('lowerCase', (value) => {
+  const lowercaseCount = (value.match(/[a-zა-ჰ0-9]/gi) || []).length
+
+  if (lowercaseCount >= 15) {
+    return true
+  }
+  return false
+})
+
 defineRule('year', (value) => {
-  if (!/^(19|20)\d{2}$/.test(value)) {
+  if (!/^(18|19|20)\d{2}$/.test(value)) {
     return false
   }
   return true

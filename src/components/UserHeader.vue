@@ -24,9 +24,9 @@
             class="cursor-pointer w-[24px] sm:w-[30px]"
           />
           <span
-            v-if="news.length > 0"
+            v-if="newsLength > 0"
             class="absolute top-[-5px] right-0 bg-darkRed rounded-full px-1 text-xs"
-            >{{ news.length }}</span
+            >{{ newsLength }}</span
           >
         </button>
         <div v-if="modal.notifications">
@@ -66,15 +66,27 @@ const notifications = ref(user.data.received_notifications)
 
 const news = ref(notifications.value.filter((notification) => notification.read_at === null))
 
+const newsLength = ref(news.value.length)
+
 const clearNewNotifications = () => {
   news.value = []
+  newsLength.value = null
 }
 
 onMounted(() => {
   instantiatePusher()
 
   window.Echo.private(`notification.${user.data.id}`).listen('SendNotifications', (data) => {
+    const notification = {
+      sender: data.notification.from,
+      type: data.notification.type,
+      created_at: data.notification.created_at
+    }
+
     console.log(data)
+    newsLength.value++
+
+    notifications.value.unshift(notification)
   })
 })
 </script>

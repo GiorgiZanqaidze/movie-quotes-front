@@ -81,9 +81,13 @@ onMounted(() => {
 
 const user = computed(() => userData.data)
 
-const imageUrl = computed(() => `${imagePath}${userData.data.image}`)
+const imageUrl = computed(() => {
+  if (userData.data.image) {
+    return `${imagePath}${userData.data.image}`
+  } else {
+    return '/src/assets/icons/default_profile.svg'
+  }
+})
 
 const showNavBar = computed(() => modal.isVisible.name === 'userNavigation')
-
-console.log(modal.isVisible.condition)
 </script>

@@ -14,7 +14,7 @@ export default function instantiatePusher() {
         authorize: (socketId, callback) => {
           axiosInstance
             .post(
-              '/api/broadcasting/auth',
+              '/broadcasting/auth',
               {
                 socket_id: socketId,
                 channel_name: channel.name
