@@ -8,7 +8,10 @@
     </div>
 
     <div class="flex sm:gap-5 gap-0">
-      <div class="flex sm:hidden items-center mr-3 sm:mr-0">
+      <div
+        class="flex sm:hidden items-center mr-3 sm:mr-0"
+        v-if="route.name !== 'movieDescription' && route.name !== 'userProfile'"
+      >
         <button @click="modal.toggleSearchModal">
           <img src="@/assets/icons/search.svg" alt="search" />
         </button>
@@ -57,6 +60,9 @@ import QuotesSearchModal from '@/components/QuotesSearchModal.vue'
 import { userStore } from '@/stores/user'
 import { ref, onMounted } from 'vue'
 import instantiatePusher from '@/helpers/instantiatePusher'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const user = userStore()
 

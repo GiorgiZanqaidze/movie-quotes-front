@@ -2,10 +2,10 @@
   <div class="bg-darkBlack rounded-md">
     <div class="flex sm:justify-start items-center p-5 sm:flex-row flex-col relative gap-3">
       <div class="sm:w-56 w-full px-3">
-        <img :src="`${imagePath}${quote?.image}`" alt="quote" />
+        <img :src="`${imagePath}${quote?.image}`" alt="quote" class="w-full" />
       </div>
       <div class="flex items-center">
-        <h1>"{{ quote?.name?.[this.$i18n.locale] }}"</h1>
+        <h1 class="break-all">"{{ quote?.name?.[this.$i18n.locale] }}"</h1>
       </div>
       <div class="absolute bottom-[-50px] right-10 sm:top-0 sm:right-4">
         <button

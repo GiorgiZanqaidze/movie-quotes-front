@@ -23,14 +23,16 @@
       <div class="p-5 text-white flex flex-col gap-9">
         <div class="flex justify-start gap-2 items-center">
           <ProfileIcon :path="`${imagePath}${quote.author.image}`" />
-          <p>{{ quote.author.name }}</p>
+          <p class="text-sm sm:text-md">{{ quote.author.name }}</p>
         </div>
         <div class="flex flex-col gap-2 text-sm">
           <h1 class="border p-2 flex justify-between border-mediumGray rounded-sm">
-            <span>"{{ quote.name.en }}"</span><span class="text-mediumGray ml-1">ENG</span>
+            <span class="break-all">"{{ quote.name.en }}"</span
+            ><span class="text-mediumGray ml-1">ENG</span>
           </h1>
           <h1 class="border p-2 flex justify-between border-mediumGray rounded-sm">
-            <span>"{{ quote.name.ka }}"</span><span class="text-mediumGray ml-1">ქარ</span>
+            <span class="break-all">"{{ quote.name.ka }}"</span
+            ><span class="text-mediumGray ml-1">ქარ</span>
           </h1>
         </div>
         <div class="flex justify-center">
@@ -67,7 +69,7 @@
             </div>
           </div>
         </div>
-        <ul>
+        <ul class="max-h-[10rem] overflow-y-scroll">
           <the-comment
             v-for="(comment, index) in comments"
             :key="index"
