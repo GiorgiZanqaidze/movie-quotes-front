@@ -8,7 +8,10 @@
     </div>
 
     <div class="flex sm:gap-5 gap-0">
-      <div class="flex sm:hidden items-center mr-3 sm:mr-0">
+      <div
+        class="flex sm:hidden items-center mr-3 sm:mr-0"
+        v-if="route.name !== 'movieDescription' && route.name !== 'userProfile'"
+      >
         <button @click="modal.toggleSearchModal">
           <img src="@/assets/icons/search.svg" alt="search" />
         </button>
@@ -23,9 +26,11 @@
             alt="notification"
             class="cursor-pointer w-[24px] sm:w-[30px]"
           />
-          <span class="absolute top-[-5px] right-0 bg-darkRed rounded-full px-1 text-xs">{{
-            user?.data?.received_notifications?.length
-          }}</span>
+          <span
+            v-if="newsLength > 0"
+            class="absolute top-[-5px] right-0 bg-darkRed rounded-full px-1 text-xs"
+            >{{ newsLength }}</span
+          >
         </button>
         <div v-if="modal.notifications">
           <div class="relative">
@@ -35,12 +40,12 @@
             @click="modal.toggleNotifications()"
             class="fixed top-[80px] left-[-10px] right-[-10px] bottom-[-10px] z-50"
           ></div>
-          <NotificationsModal />
+          <NotificationsModal @clear-notifications="clearNewNotifications" />
         </div>
       </div>
       <LanguageDropdown class="hidden sm:block" />
       <LogOutButton class="hidden sm:block" />
-      <QuotesSearchModal v-if="modal.searchModal" />
+      <QuotesSearchModal class="fixed sm:hidden" v-if="modal.searchModal" />
     </div>
   </header>
 </template>
@@ -53,8 +58,40 @@ import NotificationsModal from '@/components/NotificationsModal.vue'
 import LogOutButton from '@/components/LogOutButton.vue'
 import QuotesSearchModal from '@/components/QuotesSearchModal.vue'
 import { userStore } from '@/stores/user'
+import { ref, onMounted } from 'vue'
+import instantiatePusher from '@/helpers/instantiatePusher'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const user = userStore()
 
 const modal = useModalStore()
+
+const notifications = ref(user.data.received_notifications)
+
+const news = ref(notifications.value.filter((notification) => notification.read_at === null))
+
+const newsLength = ref(news.value.length)
+
+const clearNewNotifications = () => {
+  news.value = []
+  newsLength.value = null
+}
+
+onMounted(() => {
+  instantiatePusher()
+
+  window.Echo.private(`notification.${user.data.id}`).listen('SendNotifications', (data) => {
+    const notification = {
+      sender: data.notification.from,
+      type: data.notification.type,
+      created_at: data.notification.created_at
+    }
+
+    newsLength.value++
+
+    notifications.value.unshift(notification)
+  })
+})
 </script>

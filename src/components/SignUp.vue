@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[570px] sm:h-[750px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium flex flex-col pt-2"
+    class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[30rem] sm:h-[750px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium flex flex-col pt-2"
   >
     <header class="flex flex-col items-center">
       <h1 class="text-white sm:mt-10 sm:text-3xl">{{ $t('modals.sign_up.title') }}</h1>
@@ -9,59 +9,59 @@
     <Form
       class="text-white mx-auto flex flex-col sm:gap-4 w-[340px] sm:w-[360px] gap-3 px-4 py-4 sm:px-0 sm:py-4"
       @submit="handleRegister"
-      v-slot="{ errors, meta }"
+      v-slot="{ errors }"
     >
-      <TextInput
-        rules="required|min:3|max:15|alpha"
+      <TextField
         id="name"
-        type="name"
         name="name"
+        requiredIcon="true"
+        :errors="errors.name"
+        v-model="state.name"
+        @update:modelValue="(newValue) => (state.name = newValue)"
         :label="$t('modals.sign_up.name')"
         :placeholder="$t('modals.sign_up.placeholder_name')"
-        :errors="errors"
-        :meta="meta"
-        requiredIcon="true"
-        @change-input="handleInput"
+        rules="required|min:3|max:15|alpha"
+        :signUp="true"
       />
 
-      <TextInput
-        rules="required|email"
+      <TextField
         id="email"
-        type="email"
         name="email"
+        requiredIcon="true"
+        :errors="errors.email"
+        v-model="state.email"
+        @update:modelValue="(newValue) => (state.email = newValue)"
         :label="$t('modals.sign_up.email')"
         :placeholder="$t('modals.sign_up.placeholder_email')"
-        :errors="errors"
-        :meta="meta"
-        requiredIcon="true"
-        @change-input="handleInput"
-        :backEndErrors="backEndErrors"
+        rules="required|email"
+        :signUp="true"
+        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
       />
 
-      <password-input
-        rules="required|min:8|max:15|alpha"
+      <PasswordField
         id="password"
-        type="password"
         name="password"
         :label="$t('modals.sign_up.password')"
-        :placeholder="$t('modals.sign_up.placeholder_password')"
-        :errors="errors"
-        :meta="meta"
+        :errors="errors.password"
+        v-model="state.newPassword"
+        @update:modelValue="(newValue) => (state.password = newValue)"
+        :placeholder="$t('landing.my_profile.new_password')"
+        rules="required|alpha|min:8|max:15"
+        :signUp="true"
         requiredIcon="true"
-        @change-input="handleInput"
-      ></password-input>
+      />
 
-      <PasswordInput
-        rules="required|confirmed:@password"
+      <PasswordField
         id="password_confirmation"
-        type="password"
         name="password_confirmation"
         :label="$t('modals.sign_up.confirm_password')"
+        :errors="errors.password_confirmation"
+        v-model="state.password_confirmation"
+        @update:modelValue="(newValue) => (state.password_confirmation = newValue)"
         :placeholder="$t('modals.sign_up.confirm_password')"
-        :errors="errors"
-        :meta="meta"
+        rules="required|confirmed:@password"
+        :signUp="true"
         requiredIcon="true"
-        @change-input="handleInput"
       />
 
       <button class="w-full bg-darkRed sm:py-1 rounded my-1">
@@ -87,35 +87,34 @@
 import { Form } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import registerUser from '@/services/registerUser.js'
-import TextInput from '@/components/TextInput.vue'
-import PasswordInput from '@/components/PasswordInput.vue'
-import { ref } from 'vue'
+import PasswordField from '@/components/PasswordField.vue'
+import { ref, reactive } from 'vue'
 import GoogleButton from '@/components/GoogleButton.vue'
+import TextField from '@/components/TextField.vue'
 
-const modal = useModalStore()
-let formData = {
+const state = reactive({
   name: '',
   email: '',
   password: '',
   password_confirmation: ''
-}
+})
+
+const modal = useModalStore()
 
 let backEndErrors = ref(null)
 
 async function handleRegister() {
-  const response = await registerUser(formData)
+  const response = await registerUser({
+    name: state.name,
+    email: state.email,
+    password: state.password,
+    password_confirmation: state.password_confirmation
+  })
 
   if (response.status === 200) {
     modal.toggleModal('checkEmail', true)
   } else {
-    backEndErrors.value = response.response.data.message
-  }
-}
-
-function handleInput(data) {
-  formData = {
-    ...formData,
-    [data.name]: data.value
+    backEndErrors.value = JSON.parse(response.response.data.errors.email)
   }
 }
 </script>

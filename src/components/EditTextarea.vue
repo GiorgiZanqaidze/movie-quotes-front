@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div
-      class="flex items-start text-mediumGray bg-transparent border w-full rounded p-2"
+      class="flex flex-col sm:flex-row items-start text-mediumGray bg-transparent border w-full rounded p-2"
       :class="{
         'border-darkRed': props.errors,
         'border-green-500': props.modelValue && !props.errors,
@@ -12,7 +12,7 @@
         >{{ props.placeholder }}:</span
       >
       <Field
-        rules="required|min:3"
+        :rules="props.rules"
         class="text-mediumGray bg-transparent w-full h-[86px] rounded p-2"
         :placeholder="props.placeholder"
         :name="name"
@@ -54,6 +54,9 @@ const props = defineProps({
   placeholder: {
     type: String,
     required: true
+  },
+  rules: {
+    type: String
   }
 })
 </script>

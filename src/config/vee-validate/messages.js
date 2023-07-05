@@ -11,11 +11,15 @@ configure({
       messages: {
         required: 'This field is required',
         email: 'This input is not in email format',
-        min: '{field} must have at least 0:{min} symbols',
-        max: '{field} must have maximum 0:{max} symbols',
+        min: 'must have at least 0:{min} symbols',
+        max: 'must have maximum 0:{max} symbols',
         alpha: 'This field must contain low register',
         confirmed: 'must be the same as password',
-        integer: 'field must be number'
+        integer: 'field must be number',
+        georgianWords: 'Must contain only Georgian letters',
+        englishWords: 'Must contain only English words',
+        year: 'It is not valid year',
+        lowerCase: 'must contain minimun 15 lower case symbols'
       },
       names: {
         name: 'The name',
@@ -27,11 +31,15 @@ configure({
       messages: {
         required: 'გთხოვთ შეავსოთ მოცემული ველი',
         email: 'არ აკმაყოფილებს მეილის ფორმატს',
-        min: '{field} ველი უნდა შეიცავდეს მინიმუმ 0:{min} სიმბოლოს',
-        max: '{field} ველი უნდა შეიცავდეს მაქსიმუმ 0:{max} სიმბოლოს',
-        alpha: 'უნდა შეიცავდეს მხოლოდ დაბალი რეგისტრის ლათინურ სიმბოლოებს და რიცხვებს',
+        min: 'ველი უნდა შეიცავდეს მინიმუმ 0:{min} სიმბოლოს',
+        max: 'ველი უნდა შეიცავდეს მაქსიმუმ 0:{max} სიმბოლოს',
+        alpha: 'მხოლოდ დაბალი რანგის ლათინური სიმბოლოები',
         confirmed: 'უნდა ემთხვეოდეს პაროლის ველს',
-        integer: 'არ აკმაყოფილებს ფორმატს'
+        integer: 'არ აკმაყოფილებს ფორმატს',
+        georgianWords: 'მხოლოდ ქართული ასოები',
+        englishWords: 'მხოლოდ ინგლისური ასოები',
+        year: 'არ არის ვალიდური',
+        lowerCase: 'უნდა შეიცავდეს 15 დაბალი რანგის სიმბოლოს'
       },
       names: {
         password: 'პაროლი',

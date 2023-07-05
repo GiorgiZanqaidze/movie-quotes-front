@@ -30,7 +30,9 @@
       <p v-if="!newNotification" class="text-[14px] text-center w-10 text-lightBlue">
         {{ $t('news_feed.new') }}
       </p>
-      <p :class="{ 'ml-[60px]': newNotification }" class="text-[14px]">5 minutes ago</p>
+      <p :class="{ 'ml-[60px]': newNotification }" class="text-[14px]">
+        {{ timeAgoCompute }} {{ $t('news_feed.minutes_ago') }}
+      </p>
     </div>
   </div>
 </template>
@@ -51,6 +53,14 @@ const props = defineProps({
     type: Object,
     required: true
   }
+})
+
+const timeAgoCompute = computed(() => {
+  const now = new Date()
+  const createdAt = new Date(props.data.created_at)
+  const diff = Math.floor((now - createdAt) / (1000 * 60))
+
+  return diff
 })
 
 const newNotification = computed(() => {

@@ -4,7 +4,7 @@
       <div class="py-6 text-2xl hidden sm:block">
         <h1>{{ $t('landing.movie_description.title') }}</h1>
       </div>
-      <MovieContainer />
+      <MovieContainer class="w-full" />
       <div
         class="flex gap-3 my-2 sm:items-center px-8 sm:py-3 sm:px-0 text-sm flex-col-reverse sm:flex-row items-start"
       >
@@ -32,7 +32,7 @@
 
 <script setup>
 import { useSingleMovieStore } from '@/stores/singleMovie.js'
-import { onMounted, computed } from 'vue'
+import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import QuoteContainer from '@/components/QuoteContainer.vue'
 import { useModalStore } from '@/stores/modal'

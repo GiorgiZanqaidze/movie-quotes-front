@@ -27,7 +27,8 @@ module.exports = {
         mediumRed: '#9747FF66',
         lightBlue: '#198754',
         lightBlack: '#12101A',
-        cyan: '#D1E7DD'
+        cyan: '#D1E7DD',
+        lightGray: '#D9D9D9'
       }
     }
   },

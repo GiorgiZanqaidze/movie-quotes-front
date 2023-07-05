@@ -9,7 +9,7 @@
       @blur="closeInput"
       type="text"
       name="search_movie"
-      class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none"
+      class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none text-sm sm:text-md"
       :placeholder="toggle.placeholder"
       v-model="searchValue"
     />

@@ -25,17 +25,21 @@
           >
             <TheTextarea
               name="quote_en"
+              rules="required|englishWords"
               :errors="errors.quote_en"
               v-model="state.quote_en"
               @update:modelValue="(newValue) => (state.quote_en = newValue)"
               placeholder="Start create new quote"
+              language="en"
             />
             <TheTextarea
               name="quote_ka"
+              rules="required|georgianWords"
               :errors="errors.quote_ka"
               v-model="state.quote_ka"
               @update:modelValue="(newValue) => (state.quote_ka = newValue)"
               placeholder="ახალი ციტატა"
+              language="ka"
             />
             <div class="sm:w-full bg-transparent rounded">
               <Field

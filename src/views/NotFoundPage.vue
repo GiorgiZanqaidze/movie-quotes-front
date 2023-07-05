@@ -10,5 +10,10 @@
       <p class="text-center">{{ $t('not_found.not_permited.text') }}</p>
       <a href="/" class="bg-red-500 rounded px-2 py-1">{{ $t('not_found.return_home') }}</a>
     </div>
+    <LanguageDropdown class="hidden" />
   </div>
 </template>
+
+<script setup>
+import LanguageDropdown from '@/components/LanguageDropdown.vue'
+</script>

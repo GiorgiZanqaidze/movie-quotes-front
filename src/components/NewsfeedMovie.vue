@@ -1,17 +1,17 @@
 <template>
   <div class="bg-darkBlack sm:w-[961px] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
-    <header class="flex items-center gap-4">
+    <header class="flex items-center gap-4 text-sm sm:text-md">
       <profile-icon :path="profileIconUrl"></profile-icon>
       <h2>{{ props?.quote?.author?.name }}</h2>
     </header>
-    <h1>
+    <h1 class="text-sm sm:text-md" style="word-break: break-word">
       “{{ props?.quote?.name?.[this.$i18n.locale] }}”movie-
       {{ props?.quote?.movie?.title?.[this.$i18n.locale] }} ({{ props?.quote?.movie?.year }})
     </h1>
     <div class="rounded-lg overflow-hidden">
       <img :src="imageUrl" alt="movie" class="mx-auto" />
     </div>
-    <div class="flex gap-4 mt-4 border-b-2 border-light pb-4">
+    <div class="flex gap-4 mt-2 sm:mt-4 border-b-2 border-light pb-2 sm:pb-4">
       <div class="flex gap-2 items-center just">
         <p>{{ props?.quote?.comments?.length }}</p>
         <button>
@@ -19,7 +19,7 @@
         </button>
       </div>
       <div class="flex gap-2 items-center just">
-        <p>{{ likesLength }}</p>
+        <p>{{ likes.length }}</p>
         <button>
           <img
             v-if="!liked"
@@ -38,9 +38,12 @@
         </button>
       </div>
     </div>
-    <ul>
+    <ul
+      class="sm:max-h-[20rem] max-h-[10rem]"
+      :class="{ 'overflow-y-scroll': comments.length > 2 }"
+    >
       <the-comment
-        v-for="(comment, index) in props?.quote?.comments"
+        v-for="(comment, index) in comments"
         :key="index"
         :text="comment.text"
         :author="comment.author"
@@ -51,11 +54,12 @@
 </template>
 
 <script setup>
-import { ref, defineProps, reactive } from 'vue'
+import { ref, defineProps, onMounted } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
 import { useLikeStore } from '@/stores/likes'
+import instantiatePusher from '@/helpers/instantiatePusher'
 
 const props = defineProps({
   quote: {
@@ -64,31 +68,47 @@ const props = defineProps({
   }
 })
 
-const state = reactive({})
+onMounted(async () => {
+  instantiatePusher()
+
+  window.Echo.channel('comment').listen('PostComment', (data) => {
+    comments.value.push(data.comment)
+  })
+
+  window.Echo.channel('like').listen('PostLike', (data) => {
+    likes.value.push(data)
+  })
+
+  window.Echo.channel('dislike').listen('PostDislike', (data) => {
+    likes.value.pop()
+  })
+})
+
+const comments = ref(props.quote.comments)
 
 const authUser = userStore()
 
-const likesLength = ref(props.quote.likes.length)
+const likes = ref(props.quote.likes)
 
 const like = useLikeStore()
 
-const liked = ref(props.quote.likes.some((like) => like.author.id === authUser.data.id))
+const liked = ref(likes.value.some((like) => like.author.id === authUser.data.id))
 
 const likeData = {
   user_id: authUser.data.id,
   quote_id: props.quote.id,
-  receiver_id: props.quote.author.id
+  receiver_id: props.quote.author.id,
+  type: 'like',
+  sender_id: authUser.data.id
 }
 
 async function likeQuote() {
   await like.likeQuote(likeData)
-  likesLength.value++
   liked.value = true
 }
 
 async function unlikePost() {
   await like.dislikeQuote(likeData)
-  likesLength.value--
   liked.value = false
 }
 

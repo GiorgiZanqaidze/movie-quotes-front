@@ -15,28 +15,32 @@
     <div class="mt-4 mb-6 px-6">
       <div class="flex items-center gap-3">
         <profile-icon :path="user.authUserIcon"></profile-icon>
-        <h1 class="text-[20px]">{{ user.data.name }}</h1>
+        <h1 class="text-sm sm:text-md">{{ user.data.name }}</h1>
       </div>
     </div>
     <Form @submit="handleSubmit" class="mt-4 flex flex-col gap-4 pb-2 px-6" v-slot="{ errors }">
       <slot></slot>
       <TheTextarea
         name="quote_en"
+        rules="required|englishWords"
         :errors="errors.quote_en"
         v-model="state.quote_en"
         @update:modelValue="(newValue) => (state.quote_en = newValue)"
         placeholder="Start create new quote"
+        language="en"
       />
       <TheTextarea
         name="quote_ka"
+        rules="required|georgianWords"
         :errors="errors.quote_ka"
         v-model="state.quote_ka"
         @update:modelValue="(newValue) => (state.quote_ka = newValue)"
         placeholder="ახალი ციტატა"
+        language="ka"
       />
 
       <div
-        class="sm:w-full bg-transparent border rounded h-[86px]"
+        class="sm:w-full bg-transparent border rounded h-[86px] relative"
         :class="{
           'border-darkRed': errors.image,
           'border-green-500': state.uploadedImage && !errors.image,
@@ -65,13 +69,15 @@
             class="hidden"
           />
 
-          <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]">{{
-            $t('news_feed.write_quote.choose_file')
-          }}</label>
+          <label
+            for="file"
+            class="bg-mediumRed py-1 px-2 cursor-pointer text-[11px] sm:text-[20px]"
+            >{{ $t('news_feed.write_quote.choose_file') }}</label
+          >
         </div>
         <ErrorMessage
           name="image"
-          class="text-darkRed text-[14px] sm:text-sm bottom-[-22px] sm:bottom-[-15px] left-2"
+          class="text-darkRed text-[14px] sm:text-sm absolute sm:bottom-[-15px] left-2"
         />
       </div>
       <MoviesDropdown
@@ -157,6 +163,8 @@ const handleSubmit = async () => {
     movie_id: state.movie,
     user_id: user.data.id
   }
+
+  console.log(data)
 
   let formData = new FormData()
 

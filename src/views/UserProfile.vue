@@ -73,7 +73,13 @@
                   >
                     <span @click="cancellConfirm">{{ $t('landing.my_profile.cancell') }}</span>
                     <label
+                      v-if="!errors.name"
                       @click="showConfirmModal"
+                      class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                      >{{ $t('landing.my_profile.save_changes') }}</label
+                    >
+                    <label
+                      v-if="errors.name"
                       class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
                       >{{ $t('landing.my_profile.save_changes') }}</label
                     >
@@ -118,9 +124,9 @@
                           name="password"
                           :errors="errors.password"
                           v-model="state.newPassword"
-                          @update:modelValue="(newValue) => (state.director_ka = newValue)"
+                          @update:modelValue="(newValue) => (state.password = newValue)"
                           :placeholder="$t('landing.my_profile.new_password')"
-                          rules="required|alpha|min:15"
+                          rules="required|lowerCase"
                           :updateUser="true"
                         />
                       </div>
@@ -133,7 +139,9 @@
                           name="password_confirmation"
                           :errors="errors.password_confirmation"
                           v-model="state.newPasswordConfirmation"
-                          @update:modelValue="(newValue) => (state.director_ka = newValue)"
+                          @update:modelValue="
+                            (newValue) => (state.password_confirmation = newValue)
+                          "
                           :placeholder="$t('landing.my_profile.confirm_new_password')"
                           rules="required|confirmed:@password"
                           :updateUser="true"
@@ -142,8 +150,15 @@
                       <div class="items-center flex gap-20 mt-3 bottom-[-3rem] absolute sm:hidden">
                         <span @click="cancellConfirm">{{ $t('landing.my_profile.cancell') }}</span>
                         <label
+                          v-if="!errors.password && !errors.password_confirmation"
                           @click="showConfirmModal"
-                          class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                          class="bg-darkRed rounded-md text-[20px] py-2 px-1 cursor-pointer"
+                          >{{ $t('landing.my_profile.save_changes')
+                          }}{{ errors.password_confirmation }}</label
+                        >
+                        <label
+                          v-if="errors.password || errors.password_confirmation"
+                          class="bg-darkRed rounded-md text-[20px] py-2 px-1 cursor-pointer"
                           >{{ $t('landing.my_profile.save_changes') }}</label
                         >
                       </div>
@@ -253,16 +268,16 @@
 <script setup>
 import imagePath from '@/config/images/path'
 import { userStore } from '@/stores/user'
-import { Field, Form } from 'vee-validate'
+import { Field, Form, useForm } from 'vee-validate'
 import { computed, reactive, onMounted } from 'vue'
 import updateUserAvatar from '@/services/updateUserAvatar'
 import PasswordField from '@/components/PasswordField.vue'
 import updateUser from '@/services/updateUser'
 import TextField from '@/components/TextField.vue'
-import BackArrow from '@/components/images/back.vue'
 import { useRoute } from 'vue-router'
-import CloseBtn from '@/components/images/close.vue'
-import ConfirmedBtn from '@/components/images/confirm.vue'
+import BackArrow from '@/components/UI/BackArrow.vue'
+import CloseBtn from '@/components/UI/CloseButton.vue'
+import ConfirmedBtn from '@/components/UI/ConfirmButton.vue'
 
 const authUser = userStore()
 const imageUrl = computed(() => `${imagePath}${authUser.data.image}`)
@@ -282,10 +297,9 @@ const state = reactive({
   confirmModal: false,
   email: authUser.data.email,
   showEmailDiv: false,
-  changesUpdated: false
+  changesUpdated: false,
+  password_confirmation: ''
 })
-
-console.log(state.email)
 
 const handleAvatar = async (file) => {
   if (file && file.target.files[0].type.startsWith('image/')) {
@@ -355,12 +369,7 @@ const handleSubmit = async () => {
   }
 }
 
-const togglePassword = () => {
-  state.showPassword = !state.showPassword
-}
-
 const showConfirmModal = () => {
-  console.log('ffasfd')
   state.confirmModal = !state.confirmModal
 }
 

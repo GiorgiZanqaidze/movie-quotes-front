@@ -18,5 +18,7 @@
     "choose_file": "choose file",
     "choose_movie": "Choose Movie",
     "post": "Post"
-  }
+  },
+  "no_notifications": "There is no any notification",
+  "minutes_ago": "Minutes ago"
 }

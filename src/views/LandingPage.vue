@@ -21,12 +21,12 @@
       >
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
-            <div class="sm:w-[53px] sm:h-[3px] bg-white sm:mt-4 sm:mr-1"></div>
+            <div
+              class="sm:w-[53px] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
+            ></div>
             <div>
-              <h1 class="sm:text-4xl w-[317px] sm:w-[761px]">
-                “{{ $t('landing.movie_1.title') }}”
-              </h1>
-              <p class="sm:mt-2">
+              <h1 class="sm:text-4xl sm:w-[761px]">“{{ $t('landing.movie_1.title') }}”</h1>
+              <p class="sm:mt-2 sm:text-xl text-sm text-lightGray">
                 {{ $t('landing.movie_1.name') }}, {{ $t('landing.movie_1.released') }}
               </p>
             </div>
@@ -39,12 +39,12 @@
       >
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
-            <div class="sm:w-[53px] sm:h-[3px] bg-white sm:mt-4 sm:mr-1"></div>
+            <div
+              class="sm:w-[53px] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
+            ></div>
             <div>
-              <h1 class="sm:text-4xl sm:w-[761px] w-[317px]">
-                “{{ $t('landing.movie_2.title') }}”
-              </h1>
-              <p class="sm:mt-2">
+              <h1 class="sm:text-4xl sm:w-[761px]">“{{ $t('landing.movie_2.title') }}”</h1>
+              <p class="sm:mt-2 sm:text-xl text-sm text-lightGray">
                 {{ $t('landing.movie_2.name') }},{{ $t('landing.movie_2.released') }}
               </p>
             </div>
@@ -57,12 +57,12 @@
       >
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
-            <div class="sm:w-[53px] sm:h-[3px] bg-white sm:mt-4 sm:mr-1"></div>
+            <div
+              class="sm:w-[53px] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
+            ></div>
             <div>
-              <h1 class="sm:text-4xl sm:w-[761px] w-[317px]">
-                “{{ $t('landing.movie_3.title') }}”
-              </h1>
-              <p class="sm:mt-2">
+              <h1 class="sm:text-4xl sm:w-[761px]">“{{ $t('landing.movie_3.title') }}”</h1>
+              <p class="sm:mt-2 sm:text-xl text-sm text-lightGray">
                 {{ $t('landing.movie_3.name') }},{{ $t('landing.movie_3.released') }}
               </p>
             </div>

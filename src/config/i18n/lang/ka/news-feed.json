@@ -18,5 +18,7 @@
     "choose_file": "აირჩიე ფაილი",
     "choose_movie": "აირჩიე ფილმი",
     "post": "გამოქვეყნება"
-  }
+  },
+  "no_notifications": "არ არის შეტყობინებები",
+  "minutes_ago": "წუთის წინ"
 }

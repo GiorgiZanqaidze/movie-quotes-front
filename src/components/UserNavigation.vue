@@ -1,12 +1,6 @@
 <template>
   <div
-    @click="modal.toggleModal('null', false)"
-    v-if="modal.isVisible.condition"
-    class="fixed top-[-10px] left-[-10px] right-[-10px] bottom-[-10px]"
-    style="background: rgba(0, 0, 0, 0.54); backdrop-filter: blur(3px)"
-  ></div>
-  <div
-    class="text-white absolute sm:top-[150px] z-30 top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
+    class="text-white absolute sm:top-[150px] z-10 sm:z-0 top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
@@ -81,7 +75,13 @@ onMounted(() => {
 
 const user = computed(() => userData.data)
 
-const imageUrl = computed(() => `${imagePath}${userData.data.image}`)
+const imageUrl = computed(() => {
+  if (userData.data.image) {
+    return `${imagePath}${userData.data.image}`
+  } else {
+    return '/src/assets/icons/default_profile.svg'
+  }
+})
 
 const showNavBar = computed(() => modal.isVisible.name === 'userNavigation')
 </script>

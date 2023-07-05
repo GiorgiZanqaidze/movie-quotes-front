@@ -8,7 +8,7 @@ export const useQuoteStore = defineStore('quote', {
     }
   },
   actions: {
-    async getQuotes() {
+    async getQuotes(query) {
       try {
         const response = await getQuotes(query)
         this.setQuotes(response.data.data)
