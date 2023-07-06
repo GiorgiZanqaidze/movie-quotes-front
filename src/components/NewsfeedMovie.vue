@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-darkBlack sm:w-[961px] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
+  <div class="bg-darkBlack sm:w-[52rem] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
     <header class="flex items-center gap-4 text-sm sm:text-md">
       <profile-icon :path="profileIconUrl"></profile-icon>
       <h2>{{ props?.quote?.author?.name }}</h2>

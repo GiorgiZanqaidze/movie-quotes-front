@@ -43,7 +43,8 @@ const closeInput = () => {
   }
 }
 
-function handleSubmit() {
-  query.setSearchQuery(searchValue.value)
+async function handleSubmit() {
+  const response = await query.setSearchQuery(searchValue.value)
+  console.log(response)
 }
 </script>

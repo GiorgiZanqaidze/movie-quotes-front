@@ -26,9 +26,13 @@ export const useQuerySearchStore = defineStore('query', {
 
     toSearchText(text) {
       const toArray = text.split('')
-      toArray.shift()
-      const searchText = toArray.join('')
-      this.searchQuery = searchText
+      if (toArray[0] === '@' || toArray[0] === '#') {
+        toArray.shift()
+        const searchText = toArray.join('')
+        this.searchQuery = searchText
+      } else {
+        this.searchQuery = text
+      }
     },
 
     setMovieQuery(text) {

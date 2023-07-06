@@ -1,7 +1,7 @@
 <template>
   <div class="text-white bg-mediumDark min-h-screen">
     <div class="flex flex-col sm:items-center gap-4 pb-10">
-      <div class="sm:text-center w-[18rem] sm:w-[49rem] sm:mt-4 sm:mb-6 h-[52px] flex mt-4 ml-3">
+      <div class="sm:text-center w-[18rem] sm:w-[52rem] sm:mt-4 sm:mb-6 h-[52px] flex mt-4 ml-3">
         <div class="w-4/5 h-full">
           <button
             class="sm:bg-gray bg-transparent h-full w-full text-left pl-3 rounded-[10px] text-sm sm:text-md"
@@ -11,7 +11,7 @@
             {{ $t('news_feed.write_quote.title') }}
           </button>
         </div>
-        <SearchBar />
+        <search-bar></search-bar>
       </div>
       <div class="flex flex-col items-center gap-4 w-full">
         <li v-for="(quote, index) in quotes.data" :key="index" class="list-none">
