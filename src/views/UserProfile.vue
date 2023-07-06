@@ -278,7 +278,7 @@
 <script setup>
 import imagePath from '@/config/images/path'
 import { userStore } from '@/stores/user'
-import { Field, Form, useForm } from 'vee-validate'
+import { Field, Form } from 'vee-validate'
 import { computed, reactive, onMounted } from 'vue'
 import updateUserAvatar from '@/services/updateUserAvatar'
 import PasswordField from '@/components/PasswordField.vue'

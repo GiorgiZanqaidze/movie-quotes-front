@@ -75,7 +75,7 @@ onMounted(async () => {
     likes.value.push(data)
   })
 
-  window.Echo.channel('dislike').listen('PostDislike', (data) => {
+  window.Echo.channel('dislike').listen('PostDislike', () => {
     likes.value.pop()
   })
 })

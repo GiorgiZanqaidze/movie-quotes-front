@@ -27,7 +27,7 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { useQuerySearchStore } from '@/stores/querySearch'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useMovieStore } from '@/stores/movie'
 import IconBackArrow from '@/components/icons/IconBackArrow.vue'
