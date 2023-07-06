@@ -35,7 +35,7 @@
         :placeholder="$t('modals.sign_up.placeholder_email')"
         rules="required|email"
         :signUp="true"
-        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
+        :backEndErrors="backEndErrors?.[$i18n.locale]"
       />
 
       <PasswordField
