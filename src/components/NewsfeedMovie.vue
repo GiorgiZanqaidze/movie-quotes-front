@@ -15,26 +15,19 @@
       <div class="flex gap-2 items-center just">
         <p>{{ props?.quote?.comments?.length }}</p>
         <button>
-          <img src="@/assets/icons/comment.svg" alt="comment" class="w-[24px]" />
+          <icon-comment alt="comment" class="w-[24px]"></icon-comment>
         </button>
       </div>
       <div class="flex gap-2 items-center just">
         <p>{{ likes.length }}</p>
         <button>
-          <img
-            v-if="!liked"
-            @click="likeQuote"
-            src="@/assets/icons/likes.svg"
-            alt="likes"
-            class="w-[24px]"
-          />
-          <img
+          <icon-like v-if="!liked" @click="likeQuote" alt="likes" class="w-[24px]"></icon-like>
+          <icon-heart-fill
             v-if="liked"
             @click="unlikePost"
-            src="@/assets/icons/heart_fill.svg"
             alt="likes"
             class="w-[24px]"
-          />
+          ></icon-heart-fill>
         </button>
       </div>
     </div>
@@ -60,6 +53,9 @@ import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
 import { useLikeStore } from '@/stores/likes'
 import instantiatePusher from '@/helpers/instantiatePusher'
+import IconLike from '@/icons/IconLike.vue'
+import IconHeartFill from '@/icons/IconHeartFill.vue'
+import IconComment from '@/icons/IconComment.vue'
 
 const props = defineProps({
   quote: {

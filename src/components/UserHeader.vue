@@ -4,7 +4,7 @@
       {{ $t('landing.quotes') }}
     </h1>
     <div class="block sm:hidden cursor-pointer" @click="modal.toggleModal('userNavigation', true)">
-      <img src="@/assets/icons/burger_btn.svg" alt="burger_button" />
+      <icon-burger alt="burger_button"></icon-burger>
     </div>
 
     <div class="flex sm:gap-5 gap-0">
@@ -13,7 +13,7 @@
         v-if="route.name !== 'movieDescription' && route.name !== 'userProfile'"
       >
         <button @click="modal.toggleSearchModal">
-          <img src="@/assets/icons/search.svg" alt="search" />
+          <icon-search alt="search"></icon-search>
         </button>
       </div>
 
@@ -21,11 +21,10 @@
         class="text-white text-sm sm:text-lg sm:py-[3px] px-2 py-1 sm:px-3 rounded cursor-default"
       >
         <button class="flex relative" @click="modal.toggleNotifications()">
-          <img
-            src="@/assets/icons/notification.svg"
+          <icon-notifications
             alt="notification"
             class="cursor-pointer w-[24px] sm:w-[30px]"
-          />
+          ></icon-notifications>
           <span
             v-if="newsLength > 0"
             class="absolute top-[-5px] right-0 bg-darkRed rounded-full px-1 text-xs"
@@ -34,7 +33,7 @@
         </button>
         <div v-if="modal.notifications">
           <div class="relative">
-            <img src="@/assets/icons/arrow.svg" alt="arrow" class="absolute top-4 scale-[2] z-50" />
+            <icon-arrow alt="arrow" class="absolute top-4 scale-[2] z-50"></icon-arrow>
           </div>
           <div
             @click="modal.toggleNotifications()"
@@ -61,6 +60,10 @@ import { userStore } from '@/stores/user'
 import { ref, onMounted } from 'vue'
 import instantiatePusher from '@/helpers/instantiatePusher'
 import { useRoute } from 'vue-router'
+import IconArrow from '@/icons/IconArrow.vue'
+import IconBurger from '@/icons/IconBurger.vue'
+import IconSearch from '@/icons/IconSearch.vue'
+import IconNotifications from '@/icons/IconNotifications.vue'
 
 const route = useRoute()
 

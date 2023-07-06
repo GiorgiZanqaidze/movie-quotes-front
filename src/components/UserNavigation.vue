@@ -12,13 +12,12 @@
         }}</a>
       </div>
       <div class="flex justify-center items-start">
-        <img
+        <icon-home-red
           v-if="route.name === 'newsFeed'"
-          src="@/assets/icons/home_red.svg"
           alt="movies"
           class="w-[24px] sm:w-auto"
-        />
-        <img v-else src="@/assets/icons/home_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
+        ></icon-home-red>
+        <icon-home-white v-else alt="movies" class="w-[24px] sm:w-auto"></icon-home-white>
       </div>
       <div>
         <a href="/news-feed">
@@ -26,13 +25,12 @@
         </a>
       </div>
       <div class="flex justify-center items-start">
-        <img
+        <icon-movies-red
           v-if="route.name === 'moviesList'"
-          src="@/assets/icons/movies_red.svg"
           alt="movies"
           class="w-[24px] sm:w-auto"
-        />
-        <img v-else src="@/assets/icons/movies_white.svg" alt="movies" class="w-[24px] sm:w-auto" />
+        ></icon-movies-red>
+        <icon-movies-white v-else alt="movies" class="w-[24px] sm:w-auto"></icon-movies-white>
       </div>
       <div class="w-[200px]">
         <a href="/movies-list">
@@ -56,6 +54,10 @@ import imagePath from '@/config/images/path'
 const LanguageDropdown = defineAsyncComponent(() => import('@/components/LanguageDropdown.vue'))
 const LogOutButton = defineAsyncComponent(() => import('@/components/LogOutButton.vue'))
 const ProfileIcon = defineAsyncComponent(() => import('@/components/ProfileIcon.vue'))
+import IconHomeRed from '@/icons/IconHomeRed.vue'
+import IconHomeWhite from '@/icons/IconHomeWhite.vue'
+import IconMoviesWhite from '@/icons/IconMoviesWhite.vue'
+import IconMoviesRed from '@/icons/IconMoviesRed.vue'
 
 const userData = userStore()
 

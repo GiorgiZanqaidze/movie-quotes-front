@@ -7,7 +7,7 @@
             class="sm:bg-gray bg-transparent h-full w-full text-left pl-3 rounded-[10px] text-sm sm:text-md"
             @click="modal.toggleModal('writeQuote', true)"
           >
-            <img src="@/assets/icons/write_quote.svg" alt="write_quote" class="inline-block mr-2" />
+            <icon-write-quote alt="write_quote" class="inline-block mr-2"></icon-write-quote>
             {{ $t('news_feed.write_quote.title') }}
           </button>
         </div>
@@ -29,6 +29,7 @@ import { useQuerySearchStore } from '@/stores/querySearch.js'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import SearchBar from '@/components/SearchBar.vue'
+import IconWriteQuote from '@/icons/IconWriteQuote.vue'
 
 const modal = useModalStore()
 

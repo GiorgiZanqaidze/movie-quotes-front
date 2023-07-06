@@ -22,17 +22,16 @@
               :placeholder="$t('landing.my_movies.search')"
               v-model="state.searchValue"
             />
-            <img
-              src="@/assets/icons/search.svg"
+            <icon-search
               alt="search"
               class="absolute top-1/2 left-3 translate-y-[-50%]"
-            />
+            ></icon-search>
           </form>
           <button
             class="py-2 px-3 rounded bg-darkRed flex justify-center items-center gap-1 sm:gap-2 text-xs sm:text-md"
             @click="modal.toggleModal('addMovieModal', true)"
           >
-            <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
+            <icon-add-movie alt="add_movie" class="inline-block"></icon-add-movie>
             <span>{{ $t('landing.my_movies.add_movie') }}</span>
           </button>
         </div>
@@ -56,11 +55,8 @@
           </h3>
           <p class="text-sm sm:text-md">
             {{ movie?.quotes?.length || 0 }}
-            <img
-              src="@/assets/icons/quotes.svg"
-              alt="quotes"
-              class="inline-block ml-2 w-5 sm:w-[32px]"
-            />
+
+            <icon-quote alt="quotes" class="inline-block ml-2 w-5 sm:w-[32px]"></icon-quote>
           </p>
         </div>
       </div>
@@ -74,6 +70,10 @@ import { useMovieStore } from '@/stores/movie'
 import { useRouter, useRoute } from 'vue-router'
 import imagePath from '@/config/images/path'
 import { useModalStore } from '@/stores/modal'
+import IconAddMovie from '@/icons/IconAddMovie.vue'
+import IconSearch from '@/icons/IconSearch.vue'
+import IconQuote from '@/icons/IconQuote.vue'
+
 const modal = useModalStore()
 
 const movies = useMovieStore()

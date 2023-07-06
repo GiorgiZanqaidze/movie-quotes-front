@@ -1,7 +1,7 @@
 <template>
   <button class="flex justify-start" @click="deleteItem">
     <div>
-      <img src="@/assets/icons/trash.svg" alt="delete" class="inline-block mr-1 min-w-[0.5rem]" />
+      <icon-trash alt="delete" class="inline-block mr-1 min-w-[0.5rem]"></icon-trash>
     </div>
     <span class="text-xs text-white">
       <slot> </slot>
@@ -14,7 +14,7 @@ import { defineProps } from 'vue'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import deleteMovie from '@/services/deleteMovie'
 import { useRouter } from 'vue-router'
-
+import IconTrash from '@/icons/IconTrash.vue'
 const router = useRouter()
 const props = defineProps({
   quote_id: {

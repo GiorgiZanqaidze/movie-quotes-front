@@ -8,7 +8,7 @@
           <DeleteButton :quote_id="quote.id" @click="deleteQuote"></DeleteButton>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
           <button class="flex justify-start" @click="modal.toggleModal('editQuoteModal', true)">
-            <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1" />
+            <icon-pencil alt="delete" class="inline-block mr-1"></icon-pencil>
           </button>
         </div>
         <h1 class="text-white sm:text-2xl text-md">
@@ -16,7 +16,7 @@
         </h1>
         <div>
           <button class="" @click="modal.toggleModal('viewQuoteModal', false)">
-            <img src="@/assets/icons/close.svg" alt="close" />
+            <icon-close alt="close"></icon-close>
           </button>
         </div>
       </header>
@@ -45,26 +45,24 @@
             <div class="flex gap-2 items-center just">
               <p>{{ quote.comments.length }}</p>
               <button>
-                <img src="@/assets/icons/comment.svg" alt="comment" class="w-[24px]" />
+                <icon-comment alt="comment" class="w-[24px]"></icon-comment>
               </button>
             </div>
             <div class="flex gap-2 items-center">
               <p>{{ likes.length }}</p>
               <button>
-                <img
+                <icon-like
                   v-if="!liked"
                   @click="likeQuote"
-                  src="@/assets/icons/likes.svg"
                   alt="likes"
                   class="w-[24px]"
-                />
-                <img
+                ></icon-like>
+                <icon-heart-fill
                   v-if="liked"
                   @click="unlikePost"
-                  src="@/assets/icons/heart_fill.svg"
                   alt="likes"
                   class="w-[24px]"
-                />
+                ></icon-heart-fill>
               </button>
             </div>
           </div>
@@ -94,6 +92,11 @@ import DeleteButton from '@/components/DeleteButton.vue'
 import instantiatePusher from '@/helpers/instantiatePusher'
 import { useLikeStore } from '@/stores/likes'
 import { userStore } from '@/stores/user'
+import IconClose from '@/icons/IconClose.vue'
+import IconPencil from '@/icons/IconPencil.vue'
+import IconComment from '@/icons/IconComment.vue'
+import IconLike from '@/icons/IconLike.vue'
+import IconHeartFill from '@/icons/IconHeartFill.vue'
 const modal = useModalStore()
 
 onMounted(() => {

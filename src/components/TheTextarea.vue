@@ -22,12 +22,8 @@
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-0.5rem] sm:bottom-[-15px] left-2"
     />
     <div class="absolute right-4 top-9" :class="{ 'right-14': lang }">
-      <img
-        v-if="props.modelValue && !props.errors"
-        src="@/assets/icons/valid_icon.svg"
-        alt="valid"
-      />
-      <img v-if="props.errors" src="@/assets/icons/invalid_icon.svg" alt="invalid" />
+      <icon-valid v-if="props.modelValue && !props.errors" alt="valid"></icon-valid>
+      <icon-valid v-if="props.errors" alt="invalid"></icon-valid>
     </div>
     <div
       v-if="lang"
@@ -41,6 +37,7 @@
 <script setup>
 import { defineProps, computed } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
+import IconValid from '@/icons/IconValid.vue'
 
 const props = defineProps({
   name: {

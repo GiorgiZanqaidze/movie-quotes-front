@@ -9,7 +9,7 @@
         class="absolute top-1/2 right-4 translate-y-[-50%]"
         @click="modal.toggleModal('writeQuote', false)"
       >
-        <img src="@/assets/icons/close.svg" alt="close" />
+        <icon-close alt="close"></icon-close>
       </button>
     </header>
     <div class="mt-4 mb-6 px-6">
@@ -53,7 +53,7 @@
           @drop="drop"
         >
           <div>
-            <img src="@/assets/icons/drag_and_drop.svg" alt="camera" />
+            <icon-drag-and-drop alt="camera"></icon-drag-and-drop>
           </div>
           <h3 class="hidden sm:inline">
             {{ $t('news_feed.write_quote.drag_and_drop') }}
@@ -104,6 +104,8 @@ import axiosInstance from '@/config/axios/index'
 import { useQuoteStore } from '@/stores/quote.js'
 import { useMovieStore } from '@/stores/movie.js'
 import { useSingleMovieStore } from '@/stores/singleMovie'
+import IconClose from '@/icons/IconClose.vue'
+import IconDragAndDrop from '@/icons/IconDragAndDrop.vue'
 const TheTextarea = defineAsyncComponent(() => import('@/components/TheTextarea.vue'))
 const MoviesDropdown = defineAsyncComponent(() => import('@/components/MoviesDropdown.vue'))
 

@@ -11,7 +11,7 @@
           class="flex justify-start absolute right-5 top-5"
           @click="modal.toggleModal('null', false)"
         >
-          <img src="@/assets/icons/close.svg" alt="close" class="inline-block mr-1" />
+          <icon-close alt="close" class="inline-block mr-1"></icon-close>
         </button>
       </header>
       <div class="mt-4 mb-6 px-6">
@@ -57,7 +57,7 @@
                 {{ genre[0]?.name?.[this.$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
-                <img src="@/assets/icons/close.svg" alt="delete" class="inline-block w-3" />
+                <icon-close alt="delete" class="inline-block w-3"></icon-close>
               </span>
             </li>
           </ul>
@@ -146,7 +146,7 @@
             @drop="drop"
           >
             <div>
-              <img src="@/assets/icons/drag_and_drop.svg" alt="camera" />
+              <icon-drag-and-drop alt="camera"></icon-drag-and-drop>
             </div>
             <h3 class="hidden sm:inline">
               {{ $t('news_feed.write_quote.drag_and_drop') }}
@@ -193,6 +193,8 @@ import TextField from '@/components/TextField.vue'
 import getGentes from '@/services/getGenres'
 import postMovie from '@/services/postMovie'
 import { useMovieStore } from '@/stores/movie'
+import IconClose from '@/icons/IconClose.vue'
+import IconDragAndDrop from '@/icons/IconDragAndDrop.vue'
 
 const movie = useMovieStore()
 

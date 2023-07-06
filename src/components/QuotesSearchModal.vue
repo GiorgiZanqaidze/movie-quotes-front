@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-10">
       <div class="flex justify-start items-center h-10 border-b-2 border-darkGray mt-3 gap-2">
         <button class="mx-3" @click="modal.toggleSearchModal">
-          <img src="@/assets/icons/back_arrow.svg" alt="arrow" />
+          <icon-back-arrow alt="arrow"></icon-back-arrow>
         </button>
         <form @submit.prevent="handleSubmit">
           <input
@@ -30,6 +30,7 @@ import { useQuerySearchStore } from '@/stores/querySearch'
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useMovieStore } from '@/stores/movie'
+import IconBackArrow from '@/icons/IconBackArrow.vue'
 const modal = useModalStore()
 
 const query = useQuerySearchStore()

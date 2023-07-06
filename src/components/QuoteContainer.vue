@@ -14,7 +14,7 @@
           ref="threeDots"
           name="dotsButton"
         >
-          <img src="@/assets/icons/three_dots.svg" alt="dots" class="min-w-6" name="dots" />
+          <icon-three-dots alt="dots" class="min-w-6" name="dots"></icon-three-dots>
         </button>
         <div
           class="flex flex-col gap-3 bg-gray pl-3 pr-10 absolute right-5 bottom-5 sm:-right-28 sm:bottom-16 w-32 py-4 rounded-md justify-start"
@@ -23,11 +23,11 @@
           ref="container"
         >
           <button @click="showViewQuoteModal" class="flex justify-start">
-            <img src="@/assets/icons/visible.svg" alt="visible" class="inline-block mr-1" />
+            <icon-visible alt="visible" class="inline-block mr-1"></icon-visible>
             <span class="text-[13px]">{{ $t('landing.movie_description.view') }}</span>
           </button>
           <button class="flex justify-start" @click="editQuoteModal">
-            <img src="@/assets/icons/pencil.svg" alt="edit" class="inline-block mr-1" />
+            <icon-pencil alt="edit" class="inline-block mr-1"></icon-pencil>
             <span class="text-xs">{{ $t('landing.movie_description.edit') }}</span>
           </button>
 
@@ -40,11 +40,11 @@
     <div class="flex border-t mx-5 py-5 gap-3">
       <div class="flex gap-3">
         <p>{{ props?.quote?.comments?.length }}</p>
-        <span><img src="@/assets/icons/comment.svg" alt="comment" /></span>
+        <span> <icon-comment alt="comment"></icon-comment></span>
       </div>
       <div class="flex gap-3">
         <p>{{ props?.quote?.likes?.length }}</p>
-        <button><img src="@/assets/icons/likes.svg" alt="likes" /></button>
+        <button><icon-like alt="likes"></icon-like></button>
       </div>
     </div>
   </div>
@@ -56,6 +56,11 @@ import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import imagePath from '@/config/images/path'
 import DeleteButton from '@/components/DeleteButton.vue'
+import IconThreeDots from '@/icons/IconThreeDots.vue'
+import IconPencil from '@/icons/IconPencil.vue'
+import IconComment from '@/icons/IconComment.vue'
+import IconLike from '@/icons/IconLike.vue'
+import IconVisible from '@/icons/IconVisible.vue'
 
 const modal = useModalStore()
 

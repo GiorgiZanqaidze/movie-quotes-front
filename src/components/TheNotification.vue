@@ -8,17 +8,12 @@
         <div class="flex flex-col justify-start">
           <h1 class="text-left">giorgi zankaidze</h1>
           <p v-if="comment" class="text-[14px] sm:text-[20px]">
-            <img
-              src="@/assets/icons/comment_notify.svg"
-              alt="comment"
-              class="inline mr-1 w-[24px]"
-            />
+            <icon-comment-notify alt="comment" class="inline mr-1 w-[24px]"></icon-comment-notify>
             {{ $t('news_feed.commented_on') }}
           </p>
           <p v-else class="text-[14px] sm:text-[20px]">
-            <img src="@/assets/icons/like_notify.svg" alt="like" class="inline mr-1 w-[24px]" />{{
-              $t('news_feed.reacted_on')
-            }}
+            <icon-like-notify alt="like" class="inline mr-1 w-[24px]"></icon-like-notify>
+            {{ $t('news_feed.reacted_on') }}
           </p>
         </div>
       </div>
@@ -41,6 +36,9 @@
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import { computed, defineProps } from 'vue'
 import ImageSrc from '@/config/images/path'
+import IconCommentNotify from '@/icons/IconCommentNotify.vue'
+import IconLikeNotify from '@/icons/IconLikeNotify.vue'
+
 const props = defineProps({
   condition: {
     required: true

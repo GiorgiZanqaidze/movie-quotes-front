@@ -36,7 +36,7 @@
           </div>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
           <button class="flex justify-start" @click="modal.toggleModal('editMovieModal', true)">
-            <img src="@/assets/icons/pencil.svg" alt="delete" class="inline-block mr-1 min-w-1" />
+            <icon-pencil alt="edit" class="inline-block mr-1 min-w-1"></icon-pencil>
           </button>
         </div>
       </div>
@@ -70,6 +70,7 @@ import imagePath from '@/config/images/path.js'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import DeleteButton from '@/components/DeleteButton.vue'
+import IconPencil from '@/icons/IconPencil.vue'
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()
