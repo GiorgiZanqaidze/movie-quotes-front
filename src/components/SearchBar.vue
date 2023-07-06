@@ -13,11 +13,7 @@
       :placeholder="toggle.placeholder"
       v-model="searchValue"
     />
-    <img
-      src="@/assets/icons/search.svg"
-      alt="search"
-      class="absolute top-1/2 left-3 translate-y-[-50%]"
-    />
+    <icon-search alt="search" class="absolute top-1/2 left-3 translate-y-[-50%]"></icon-search>
   </form>
 </template>
 
@@ -25,6 +21,7 @@
 import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useQuerySearchStore } from '@/stores/querySearch'
+import IconSearch from '@/components/icons/IconSearch.vue'
 
 const { t } = useI18n()
 

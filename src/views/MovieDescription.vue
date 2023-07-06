@@ -19,7 +19,8 @@
           @click="addQuoteModal"
           class="bg-darkRed rounded py-1 px-2 flex items-center gap-2 text-sm"
         >
-          <img src="@/assets/icons/add_movie.svg" alt="add_movie" class="inline-block" />
+          <icon-add-movie alt="add_movie" class="inline-block"></icon-add-movie>
+
           <span> {{ $t('landing.movie_description.add_quote') }}</span>
         </button>
       </div>
@@ -37,6 +38,7 @@ import { useRoute } from 'vue-router'
 import QuoteContainer from '@/components/QuoteContainer.vue'
 import { useModalStore } from '@/stores/modal'
 import MovieContainer from '@/components/MovieContainer.vue'
+import IconAddMovie from '@/components/icons/IconAddMovie.vue'
 const modal = useModalStore()
 
 const movie = useSingleMovieStore()

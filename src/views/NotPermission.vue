@@ -1,7 +1,7 @@
 <template>
   <div class="text-white flex flex-col justify-center items-center min-h-screen gap-10 bg-darkGray">
     <div>
-      <img src="@/assets/icons/permission.svg" alt="permission" />
+      <icon-permission alt="permission"></icon-permission>
       <h1 class="text-3xl text-center">{{ $t('not_found.not_permited.title') }}!</h1>
     </div>
     <div class="flex flex-col items-center gap-6">
@@ -14,4 +14,5 @@
 
 <script setup>
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
+import IconPermission from '@/components/icons/IconPermission.vue'
 </script>

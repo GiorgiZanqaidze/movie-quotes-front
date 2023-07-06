@@ -2,12 +2,12 @@
   <div class="relative">
     <label v-if="label" :for="id">
       {{ label }}
-      <img
+
+      <icon-star-required
         v-if="requiredIcon"
-        src="@/assets/icons/required_star_icon.svg"
         alt="required"
         class="inline-block"
-      />
+      ></icon-star-required>
     </label>
     <Field
       :rules="props.rules"
@@ -28,7 +28,7 @@
     />
     <div class="absolute top-1/2 translate-y-[-50%] right-2" :class="{ 'top-10': props.signUp }">
       <div @click="togglePassword" class="cursor-pointer">
-        <img src="@/assets/icons/show_password.svg" alt="show" />
+        <icon-show-password alt="show"></icon-show-password>
       </div>
     </div>
     <ErrorMessage
@@ -41,16 +41,11 @@
       >{{ props.backEndErrors }}</span
     >
     <div class="absolute right-6 top-3" :class="{ 'top-9': props.signUp }">
-      <img
+      <icon-valid
         v-if="props.modelValue && !props.errors && !props.backEndErrors"
-        src="@/assets/icons/valid_icon.svg"
         alt="valid"
-      />
-      <img
-        v-if="props.errors || props.backEndErrors"
-        src="@/assets/icons/invalid_icon.svg"
-        alt="invalid"
-      />
+      ></icon-valid>
+      <icon-invalid v-if="props.errors || props.backEndErrors" alt="invalid"></icon-invalid>
     </div>
   </div>
 </template>
@@ -58,6 +53,10 @@
 <script setup>
 import { defineProps, ref } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
+import IconStarRequired from '@/components/icons/IconStarRequired.vue'
+import IconShowPassword from '@/components/icons/IconShowPassword.vue'
+import IconValid from '@/components/icons/IconValid.vue'
+import IconInvalid from '@/components/icons/IconInvalid.vue'
 
 const props = defineProps({
   name: {

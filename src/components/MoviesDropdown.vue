@@ -29,11 +29,10 @@
       </option>
     </Field>
 
-    <img
-      src="@/assets/icons/choose_movie.svg"
-      alt="ganres"
+    <icon-choose-movie
+      alt="genres"
       class="absolute top-1/2 translate-y-[-50%] sm:left-2 left-5"
-    />
+    ></icon-choose-movie>
     <ErrorMessage
       :name="name"
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-1.3rem] left-2 z-40"
@@ -44,6 +43,7 @@
 <script setup>
 import { defineProps } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
+import IconChooseMovie from '@/components/icons/IconChooseMovie.vue'
 
 const props = defineProps({
   name: {

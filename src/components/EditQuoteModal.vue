@@ -9,7 +9,7 @@
         }}</DeleteButton>
         <h1>{{ $t('landing.movie_description.edit_quote') }}</h1>
         <button @click="modal.toggleModal('null', false)">
-          <img src="@/assets/icons/close.svg" alt="close" />
+          <icon-close alt="close"></icon-close>
         </button>
       </header>
       <div class="text-white p-5">
@@ -58,7 +58,7 @@
                     class="flex flex-col gap-3 bg-slate-800 rounded-md p-3 translate-x-[-50%] translate-y-[50%]"
                   >
                     <div>
-                      <img src="@/assets/icons/drag_and_drop.svg" alt="camera" class="mx-auto" />
+                      <icon-drag-and-drop alt="camera" class="mx-auto"></icon-drag-and-drop>
                     </div>
                     <h4>{{ $t('landing.movie_description.change_photo') }}</h4>
                   </div>
@@ -87,6 +87,8 @@ import TheTextarea from '@/components/TheTextarea.vue'
 import { reactive } from 'vue'
 import { Form, Field } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
+import IconDragAndDrop from '@/components/icons/IconDragAndDrop.vue'
+import IconClose from '@/components/icons/IconClose.vue'
 
 const modal = useModalStore()
 

@@ -11,7 +11,7 @@
           class="flex justify-start absolute right-5 top-5"
           @click="modal.toggleModal('null', false)"
         >
-          <img src="@/assets/icons/close.svg" alt="close" class="inline-block mr-1" />
+          <icon-close alt="delete" calt="close" class="inline-block mr-1"></icon-close>
         </button>
       </header>
       <div class="mt-4 mb-6 px-6">
@@ -55,7 +55,7 @@
                 {{ genre?.name?.[this.$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
-                <img src="@/assets/icons/close.svg" alt="delete" class="inline-block w-3" />
+                <icon-close alt="delete" class="inline-block w-3"></icon-close>
               </span>
             </li>
           </ul>
@@ -186,6 +186,7 @@ import { useSingleMovieStore } from '@/stores/singleMovie'
 import getGentes from '@/services/getGenres'
 import EditTextInput from '@/components/EditTextInput.vue'
 import EditTextarea from '@/components/EditTextarea.vue'
+import IconClose from '@/components/icons/IconClose.vue'
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()

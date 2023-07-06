@@ -26,12 +26,8 @@
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-15px] left-2"
     />
     <div class="absolute right-3 top-9">
-      <img
-        v-if="props.modelValue && !props.errors"
-        src="@/assets/icons/valid_icon.svg"
-        alt="valid"
-      />
-      <img v-if="props.errors" src="@/assets/icons/invalid_icon.svg" alt="invalid" />
+      <icon-valid v-if="props.modelValue && !props.errors" alt="valid"></icon-valid>
+      <icon-invalid v-if="props.errors" alt="invalid"></icon-invalid>
     </div>
   </div>
 </template>
@@ -39,6 +35,8 @@
 <script setup>
 import { defineProps } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
+import IconValid from '@/components/icons/IconValid.vue'
+import IconInvalid from '@/components/icons/IconInvalid.vue'
 
 const props = defineProps({
   name: {

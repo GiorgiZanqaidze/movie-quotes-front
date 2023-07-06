@@ -45,9 +45,8 @@
         {{ $t('modals.new_password.button') }}
       </button>
       <p @click="modal.toggleModal('logIn', true)" class="text-center cursor-pointer text-sm">
-        <img src="@/assets/icons/left_arrow.svg" alt="arrow" class="inline-block mr-1" />{{
-          $t('modals.forgot_password.back_to_login')
-        }}
+        <icon-left-arrow alt="arrow" class="inline-block mr-1"></icon-left-arrow>
+        {{ $t('modals.forgot_password.back_to_login') }}
       </p>
     </Form>
   </div>
@@ -60,6 +59,7 @@ import resetPassword from '@/services/resetPassword'
 import { onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import PasswordField from '@/components/PasswordField.vue'
+import IconLeftArrow from '@/components/icons/IconLeftArrow.vue'
 
 const modal = useModalStore()
 

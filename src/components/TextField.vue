@@ -2,12 +2,12 @@
   <div class="relative">
     <label v-if="label" :for="id">
       {{ label }}
-      <img
+
+      <icon-star-required
         v-if="requiredIcon"
-        src="@/assets/icons/required_star_icon.svg"
         alt="required"
         class="inline-block"
-      />
+      ></icon-star-required>
     </label>
     <Field
       :rules="props.rules"
@@ -37,17 +37,11 @@
       >{{ props.backEndErrors }}</span
     >
     <div class="absolute right-6 top-3" :class="{ 'right-12': lang, 'top-8': props.signUp }">
-      <img
+      <icon-valid
         v-if="props.modelValue && !props.errors && !props.backEndErrors"
-        src="@/assets/icons/valid_icon.svg"
         alt="valid"
-      />
-
-      <img
-        v-if="props.errors || props.backEndErrors"
-        src="@/assets/icons/invalid_icon.svg"
-        alt="invalid"
-      />
+      ></icon-valid>
+      <icon-invalid v-if="props.errors || props.backEndErrors" alt="invalid"></icon-invalid>
     </div>
     <div
       v-if="lang"
@@ -61,6 +55,9 @@
 <script setup>
 import { defineProps, computed } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
+import IconValid from '@/components/icons/IconValid.vue'
+import IconInvalid from '@/components/icons/IconInvalid.vue'
+import IconStarRequired from '@/components/icons/IconStarRequired.vue'
 
 const props = defineProps({
   name: {

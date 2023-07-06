@@ -4,7 +4,7 @@
       <header class="text-xl pl-4">
         <h1 class="hidden sm:inline">{{ $t('landing.my_profile.title') }}</h1>
         <a href="/news-feed" class="block sm:hidden">
-          <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" />
+          <icon-back-arrow alt="arrow" class="w-5 ml-5 mt-5 cursor-pointer"></icon-back-arrow>
         </a>
       </header>
       <div class="bg-mediumDark sm:bg-darkBlack mt-[4rem] rounded-md pb-20">
@@ -52,7 +52,11 @@
                   v-if="state.showUsernameDiv"
                 >
                   <div class="block sm:hidden">
-                    <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="addUsernameDiv" />
+                    <icon-back-arrow
+                      alt="arrow"
+                      class="w-5 ml-5 mt-5 cursor-pointer"
+                      @click="addUsernameDiv"
+                    ></icon-back-arrow>
                   </div>
                   <div
                     class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
@@ -105,7 +109,10 @@
                   v-if="state.showPasswordDiv"
                 >
                   <div class="block sm:hidden">
-                    <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="addPasswordDiv" />
+                    <icon-back-arrow
+                      class="w-5 ml-5 mt-5 cursor-pointer"
+                      @click="addPasswordDiv"
+                    ></icon-back-arrow>
                   </div>
                   <div
                     class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[15rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
@@ -185,7 +192,10 @@
                   v-if="state.showEmailDiv"
                 >
                   <div class="block sm:hidden">
-                    <BackArrow class="w-5 ml-5 mt-5 cursor-pointer" @click="closeEmailDiv" />
+                    <icon-back-arrow
+                      class="w-5 ml-5 mt-5 cursor-pointer"
+                      @click="closeEmailDiv"
+                    ></icon-back-arrow>
                   </div>
                   <div
                     class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
@@ -256,10 +266,10 @@
         class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] p-5 flex text-xs sm:text-base w-[15rem] sm:w-[20rem] justify-between rounded-md"
       >
         <div class="flex justify-start gap-2">
-          <ConfirmedBtn />
+          <icon-confirmed></icon-confirmed>
           <h1 class="text-green-500">{{ $t('landing.my_profile.changes_updated') }}</h1>
         </div>
-        <CloseBtn @click="closeChangesModal" class="cursor-pointer" />
+        <icon-gray-close @click="closeChangesModal" class="cursor-pointer"></icon-gray-close>
       </div>
     </div>
   </div>
@@ -268,16 +278,16 @@
 <script setup>
 import imagePath from '@/config/images/path'
 import { userStore } from '@/stores/user'
-import { Field, Form, useForm } from 'vee-validate'
+import { Field, Form } from 'vee-validate'
 import { computed, reactive, onMounted } from 'vue'
 import updateUserAvatar from '@/services/updateUserAvatar'
 import PasswordField from '@/components/PasswordField.vue'
 import updateUser from '@/services/updateUser'
 import TextField from '@/components/TextField.vue'
 import { useRoute } from 'vue-router'
-import BackArrow from '@/components/UI/BackArrow.vue'
-import CloseBtn from '@/components/UI/CloseButton.vue'
-import ConfirmedBtn from '@/components/UI/ConfirmButton.vue'
+import IconBackArrow from '@/components/icons/IconBackArrow.vue'
+import IconGrayClose from '@/components/icons/IconGrayClose.vue'
+import IconConfirmed from '@/components/icons/IconConfirmed.vue'
 
 const authUser = userStore()
 const imageUrl = computed(() => `${imagePath}${authUser.data.image}`)
