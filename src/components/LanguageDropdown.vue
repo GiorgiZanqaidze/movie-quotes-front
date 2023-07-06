@@ -18,7 +18,7 @@
 <script setup>
 import { setLocale } from '@vee-validate/i18n'
 import { useI18n } from 'vue-i18n'
-import { reactive, onMounted } from 'vue'
+import { reactive } from 'vue'
 const { locale } = useI18n()
 
 const state = reactive({

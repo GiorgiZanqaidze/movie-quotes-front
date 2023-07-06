@@ -10,12 +10,15 @@
             >({{ $t('landing.my_movies.total') }} {{ movies.data?.length }})</span
           >
         </h1>
-        <div class="flex gap-10 justify-between">
+        <div class="flex gap-0 justify-between items-center">
           <form
             class="h-full relative text-lightDark border-box hidden sm:block transition-all"
             @submit.prevent="handleSubmit"
+            :class="state.class"
           >
             <input
+              @focus="openInput"
+              @blur="closeInput"
               type="text"
               name="search_movie"
               class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none"
@@ -81,7 +84,8 @@ const router = useRouter()
 const route = useRoute()
 
 const state = reactive({
-  searchValue: null
+  searchValue: null,
+  class: 'w-28'
 })
 
 const query = route.query.query
@@ -91,11 +95,21 @@ const handleSubmit = async () => {
 }
 
 onMounted(async () => {
-  state.searchValue = query
+  state.searchValue = query || ''
   await movies.getMovies(query)
 })
 
 function handleRoute(id) {
   router.push(`movies-list/movie/${id}`)
+}
+
+const openInput = () => {
+  state.class = 'w-[30rem]'
+}
+
+const closeInput = () => {
+  if (!state.searchValue) {
+    state.class = 'w-28'
+  }
 }
 </script>

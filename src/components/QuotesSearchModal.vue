@@ -53,6 +53,7 @@ async function handleSubmit() {
   } else {
     router.push({ path: '/movies-list', query: { query: searchValue.value } })
     await movies.getMovies(searchValue.value)
+    modal.toggleSearchModal()
   }
 }
 </script>
