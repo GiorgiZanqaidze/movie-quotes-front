@@ -48,7 +48,7 @@ import updatePassword from '@/services/updatePassword.js'
 import TextField from '@/components/TextField.vue'
 import { useModalStore } from '../stores/modal'
 import { reactive, ref } from 'vue'
-import IconLeftArrow from '@/icons/IconLeftArrow.vue'
+import IconLeftArrow from '@/components/icons/IconLeftArrow.vue'
 
 const modal = useModalStore()
 

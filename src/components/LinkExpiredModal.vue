@@ -21,7 +21,7 @@
 <script setup>
 import axiosInstance from '@/config/axios/index'
 import { useRoute } from 'vue-router'
-import IconLinkExpired from '@/icons/IconLinkExpired.vue'
+import IconLinkExpired from '@/components/icons/IconLinkExpired.vue'
 
 const route = useRoute()
 

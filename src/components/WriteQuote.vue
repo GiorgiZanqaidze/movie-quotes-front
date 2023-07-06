@@ -104,8 +104,8 @@ import axiosInstance from '@/config/axios/index'
 import { useQuoteStore } from '@/stores/quote.js'
 import { useMovieStore } from '@/stores/movie.js'
 import { useSingleMovieStore } from '@/stores/singleMovie'
-import IconClose from '@/icons/IconClose.vue'
-import IconDragAndDrop from '@/icons/IconDragAndDrop.vue'
+import IconClose from '@/components/icons/IconClose.vue'
+import IconDragAndDrop from '@/components/icons/IconDragAndDrop.vue'
 const TheTextarea = defineAsyncComponent(() => import('@/components/TheTextarea.vue'))
 const MoviesDropdown = defineAsyncComponent(() => import('@/components/MoviesDropdown.vue'))
 

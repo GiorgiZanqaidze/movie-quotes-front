@@ -70,9 +70,9 @@ import { useMovieStore } from '@/stores/movie'
 import { useRouter, useRoute } from 'vue-router'
 import imagePath from '@/config/images/path'
 import { useModalStore } from '@/stores/modal'
-import IconAddMovie from '@/icons/IconAddMovie.vue'
-import IconSearch from '@/icons/IconSearch.vue'
-import IconQuote from '@/icons/IconQuote.vue'
+import IconAddMovie from '@/components/icons/IconAddMovie.vue'
+import IconSearch from '@/components/icons/IconSearch.vue'
+import IconQuote from '@/components/icons/IconQuote.vue'
 
 const modal = useModalStore()
 

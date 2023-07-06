@@ -56,11 +56,11 @@ import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import imagePath from '@/config/images/path'
 import DeleteButton from '@/components/DeleteButton.vue'
-import IconThreeDots from '@/icons/IconThreeDots.vue'
-import IconPencil from '@/icons/IconPencil.vue'
-import IconComment from '@/icons/IconComment.vue'
-import IconLike from '@/icons/IconLike.vue'
-import IconVisible from '@/icons/IconVisible.vue'
+import IconThreeDots from '@/components/icons/IconThreeDots.vue'
+import IconPencil from '@/components/icons/IconPencil.vue'
+import IconComment from '@/components/icons/IconComment.vue'
+import IconLike from '@/components/icons/IconLike.vue'
+import IconVisible from '@/components/icons/IconVisible.vue'
 
 const modal = useModalStore()
 

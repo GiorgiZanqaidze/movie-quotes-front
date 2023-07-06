@@ -285,9 +285,9 @@ import PasswordField from '@/components/PasswordField.vue'
 import updateUser from '@/services/updateUser'
 import TextField from '@/components/TextField.vue'
 import { useRoute } from 'vue-router'
-import IconBackArrow from '@/icons/IconBackArrow.vue'
-import IconGrayClose from '@/icons/IconGrayClose.vue'
-import IconConfirmed from '@/icons/IconConfirmed.vue'
+import IconBackArrow from '@/components/icons/IconBackArrow.vue'
+import IconGrayClose from '@/components/icons/IconGrayClose.vue'
+import IconConfirmed from '@/components/icons/IconConfirmed.vue'
 
 const authUser = userStore()
 const imageUrl = computed(() => `${imagePath}${authUser.data.image}`)

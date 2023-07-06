@@ -14,5 +14,5 @@
 
 <script setup>
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
-import IconPermission from '@/icons/IconPermission.vue'
+import IconPermission from '@/components/icons/IconPermission.vue'
 </script>

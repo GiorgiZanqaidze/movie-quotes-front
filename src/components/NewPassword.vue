@@ -59,7 +59,7 @@ import resetPassword from '@/services/resetPassword'
 import { onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import PasswordField from '@/components/PasswordField.vue'
-import IconLeftArrow from '@/icons/IconLeftArrow.vue'
+import IconLeftArrow from '@/components/icons/IconLeftArrow.vue'
 
 const modal = useModalStore()
 

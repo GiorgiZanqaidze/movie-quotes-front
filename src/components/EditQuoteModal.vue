@@ -87,8 +87,8 @@ import TheTextarea from '@/components/TheTextarea.vue'
 import { reactive } from 'vue'
 import { Form, Field } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
-import IconDragAndDrop from '@/icons/IconDragAndDrop.vue'
-import IconClose from '@/icons/IconClose.vue'
+import IconDragAndDrop from '@/components/icons/IconDragAndDrop.vue'
+import IconClose from '@/components/icons/IconClose.vue'
 
 const modal = useModalStore()
 

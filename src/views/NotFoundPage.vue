@@ -16,5 +16,5 @@
 
 <script setup>
 import LanguageDropdown from '@/components/LanguageDropdown.vue'
-import IconNotFound from '@/icons/IconNotFound.vue'
+import IconNotFound from '@/components/icons/IconNotFound.vue'
 </script>

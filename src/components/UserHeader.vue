@@ -60,10 +60,10 @@ import { userStore } from '@/stores/user'
 import { ref, onMounted } from 'vue'
 import instantiatePusher from '@/helpers/instantiatePusher'
 import { useRoute } from 'vue-router'
-import IconArrow from '@/icons/IconArrow.vue'
-import IconBurger from '@/icons/IconBurger.vue'
-import IconSearch from '@/icons/IconSearch.vue'
-import IconNotifications from '@/icons/IconNotifications.vue'
+import IconArrow from '@/components/icons/IconArrow.vue'
+import IconBurger from '@/components/icons/IconBurger.vue'
+import IconSearch from '@/components/icons/IconSearch.vue'
+import IconNotifications from '@/components/icons/IconNotifications.vue'
 
 const route = useRoute()
 

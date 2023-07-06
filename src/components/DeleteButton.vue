@@ -14,7 +14,7 @@ import { defineProps } from 'vue'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import deleteMovie from '@/services/deleteMovie'
 import { useRouter } from 'vue-router'
-import IconTrash from '@/icons/IconTrash.vue'
+import IconTrash from '@/components/icons/IconTrash.vue'
 const router = useRouter()
 const props = defineProps({
   quote_id: {

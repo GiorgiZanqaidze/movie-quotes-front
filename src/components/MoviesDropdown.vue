@@ -43,7 +43,7 @@
 <script setup>
 import { defineProps } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
-import IconChooseMovie from '@/icons/IconChooseMovie.vue'
+import IconChooseMovie from '@/components/icons/IconChooseMovie.vue'
 
 const props = defineProps({
   name: {

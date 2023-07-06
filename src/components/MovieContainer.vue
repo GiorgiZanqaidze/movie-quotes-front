@@ -70,7 +70,7 @@ import imagePath from '@/config/images/path.js'
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import DeleteButton from '@/components/DeleteButton.vue'
-import IconPencil from '@/icons/IconPencil.vue'
+import IconPencil from '@/components/icons/IconPencil.vue'
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()

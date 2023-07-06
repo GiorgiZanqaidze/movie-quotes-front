@@ -92,11 +92,11 @@ import DeleteButton from '@/components/DeleteButton.vue'
 import instantiatePusher from '@/helpers/instantiatePusher'
 import { useLikeStore } from '@/stores/likes'
 import { userStore } from '@/stores/user'
-import IconClose from '@/icons/IconClose.vue'
-import IconPencil from '@/icons/IconPencil.vue'
-import IconComment from '@/icons/IconComment.vue'
-import IconLike from '@/icons/IconLike.vue'
-import IconHeartFill from '@/icons/IconHeartFill.vue'
+import IconClose from '@/components/icons/IconClose.vue'
+import IconPencil from '@/components/icons/IconPencil.vue'
+import IconComment from '@/components/icons/IconComment.vue'
+import IconLike from '@/components/icons/IconLike.vue'
+import IconHeartFill from '@/components/icons/IconHeartFill.vue'
 const modal = useModalStore()
 
 onMounted(() => {

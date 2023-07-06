@@ -53,9 +53,9 @@ import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
 import { useLikeStore } from '@/stores/likes'
 import instantiatePusher from '@/helpers/instantiatePusher'
-import IconLike from '@/icons/IconLike.vue'
-import IconHeartFill from '@/icons/IconHeartFill.vue'
-import IconComment from '@/icons/IconComment.vue'
+import IconLike from '@/components/icons/IconLike.vue'
+import IconHeartFill from '@/components/icons/IconHeartFill.vue'
+import IconComment from '@/components/icons/IconComment.vue'
 
 const props = defineProps({
   quote: {

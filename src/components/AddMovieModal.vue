@@ -193,8 +193,8 @@ import TextField from '@/components/TextField.vue'
 import getGentes from '@/services/getGenres'
 import postMovie from '@/services/postMovie'
 import { useMovieStore } from '@/stores/movie'
-import IconClose from '@/icons/IconClose.vue'
-import IconDragAndDrop from '@/icons/IconDragAndDrop.vue'
+import IconClose from '@/components/icons/IconClose.vue'
+import IconDragAndDrop from '@/components/icons/IconDragAndDrop.vue'
 
 const movie = useMovieStore()
 

@@ -30,7 +30,7 @@ import { useQuerySearchStore } from '@/stores/querySearch'
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useMovieStore } from '@/stores/movie'
-import IconBackArrow from '@/icons/IconBackArrow.vue'
+import IconBackArrow from '@/components/icons/IconBackArrow.vue'
 const modal = useModalStore()
 
 const query = useQuerySearchStore()

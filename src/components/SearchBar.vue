@@ -21,7 +21,7 @@
 import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useQuerySearchStore } from '@/stores/querySearch'
-import IconSearch from '@/icons/IconSearch.vue'
+import IconSearch from '@/components/icons/IconSearch.vue'
 
 const { t } = useI18n()
 

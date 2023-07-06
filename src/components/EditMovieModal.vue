@@ -186,7 +186,7 @@ import { useSingleMovieStore } from '@/stores/singleMovie'
 import getGentes from '@/services/getGenres'
 import EditTextInput from '@/components/EditTextInput.vue'
 import EditTextarea from '@/components/EditTextarea.vue'
-import IconClose from '@/icons/IconClose.vue'
+import IconClose from '@/components/icons/IconClose.vue'
 const movie = useSingleMovieStore()
 
 const modal = useModalStore()

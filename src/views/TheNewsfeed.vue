@@ -29,7 +29,7 @@ import { useQuerySearchStore } from '@/stores/querySearch.js'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useModalStore } from '@/stores/modal'
 import SearchBar from '@/components/SearchBar.vue'
-import IconWriteQuote from '@/icons/IconWriteQuote.vue'
+import IconWriteQuote from '@/components/icons/IconWriteQuote.vue'
 
 const modal = useModalStore()
 

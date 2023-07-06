@@ -11,5 +11,5 @@
 
 <script setup>
 import googleAuth from '@/services/googleAuth.js'
-import IconGoogle from '@/icons/IconGoogle.vue'
+import IconGoogle from '@/components/icons/IconGoogle.vue'
 </script>

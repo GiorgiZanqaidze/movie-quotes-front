@@ -43,8 +43,8 @@
 <script setup>
 import { defineProps } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
-import IconValid from '@/icons/IconValid.vue'
-import IconInvalid from '@/icons/IconInvalid.vue'
+import IconValid from '@/components/icons/IconValid.vue'
+import IconInvalid from '@/components/icons/IconInvalid.vue'
 
 const props = defineProps({
   name: {

@@ -38,7 +38,7 @@ import { useRoute } from 'vue-router'
 import QuoteContainer from '@/components/QuoteContainer.vue'
 import { useModalStore } from '@/stores/modal'
 import MovieContainer from '@/components/MovieContainer.vue'
-import IconAddMovie from '@/icons/IconAddMovie.vue'
+import IconAddMovie from '@/components/icons/IconAddMovie.vue'
 const modal = useModalStore()
 
 const movie = useSingleMovieStore()

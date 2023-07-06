@@ -36,8 +36,8 @@
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import { computed, defineProps } from 'vue'
 import ImageSrc from '@/config/images/path'
-import IconCommentNotify from '@/icons/IconCommentNotify.vue'
-import IconLikeNotify from '@/icons/IconLikeNotify.vue'
+import IconCommentNotify from '@/components/icons/IconCommentNotify.vue'
+import IconLikeNotify from '@/components/icons/IconLikeNotify.vue'
 
 const props = defineProps({
   condition: {

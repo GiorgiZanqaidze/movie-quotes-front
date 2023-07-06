@@ -54,10 +54,10 @@ import imagePath from '@/config/images/path'
 const LanguageDropdown = defineAsyncComponent(() => import('@/components/LanguageDropdown.vue'))
 const LogOutButton = defineAsyncComponent(() => import('@/components/LogOutButton.vue'))
 const ProfileIcon = defineAsyncComponent(() => import('@/components/ProfileIcon.vue'))
-import IconHomeRed from '@/icons/IconHomeRed.vue'
-import IconHomeWhite from '@/icons/IconHomeWhite.vue'
-import IconMoviesWhite from '@/icons/IconMoviesWhite.vue'
-import IconMoviesRed from '@/icons/IconMoviesRed.vue'
+import IconHomeRed from '@/components/icons/IconHomeRed.vue'
+import IconHomeWhite from '@/components/icons/IconHomeWhite.vue'
+import IconMoviesWhite from '@/components/icons/IconMoviesWhite.vue'
+import IconMoviesRed from '@/components/icons/IconMoviesRed.vue'
 
 const userData = userStore()
 
