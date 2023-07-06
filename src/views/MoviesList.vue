@@ -50,9 +50,7 @@
               class="w-full sm:max-h-[250px] max-h-[200px] rounded-md"
             />
           </div>
-          <h3 class="text-md sm:text-md">
-            {{ movie?.title?.[this.$i18n.locale] }} ({{ movie.year }})
-          </h3>
+          <h3 class="text-md sm:text-md">{{ movie?.title?.[$i18n.locale] }} ({{ movie.year }})</h3>
           <p class="text-sm sm:text-md">
             {{ movie?.quotes?.length || 0 }}
 

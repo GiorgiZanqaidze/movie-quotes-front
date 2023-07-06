@@ -33,7 +33,7 @@
       :class="{ 'w-[10rem] sm:w-[20rem]': quoteModal }"
     >
       <div class="flex justify-between sm:w-[25rem] sm:mb-2" :class="{ 'mb-2': !quoteModal }">
-        <h1>{{ movie.data?.title?.[this.$i18n.locale] }} ({{ movie.data.year }})</h1>
+        <h1>{{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})</h1>
         <div v-if="!quoteModal" class="flex gap-4 items-center bg-darkGray py-2 px-3 rounded-md">
           <div>
             <DeleteButton class="w-1" :movie_id="movie.data.id"></DeleteButton>
@@ -50,18 +50,18 @@
           :class="{ ' py-[2px] px-[0.5rem]': quoteModal }"
           v-for="(genre, index) in movie?.data?.genres"
           :key="index"
-          >{{ genre.name?.[this.$i18n.locale] }}</span
+          >{{ genre.name?.[$i18n.locale] }}</span
         >
       </div>
       <div>
         <h3>
           {{ $t('landing.movie_description.directore') }}:
-          {{ movie.data?.director?.[this.$i18n.locale] }}
+          {{ movie.data?.director?.[$i18n.locale] }}
         </h3>
       </div>
       <div>
         <p v-if="!quoteModal">
-          {{ movie.data?.description?.[this.$i18n.locale] }}
+          {{ movie.data?.description?.[$i18n.locale] }}
         </p>
       </div>
     </div>

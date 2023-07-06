@@ -5,8 +5,8 @@
       <h2>{{ props?.quote?.author?.name }}</h2>
     </header>
     <h1 class="text-sm sm:text-md" style="word-break: break-word">
-      “{{ props?.quote?.name?.[this.$i18n.locale] }}”movie-
-      {{ props?.quote?.movie?.title?.[this.$i18n.locale] }} ({{ props?.quote?.movie?.year }})
+      “{{ props?.quote?.name?.[$i18n.locale] }}”movie-
+      {{ props?.quote?.movie?.title?.[$i18n.locale] }} ({{ props?.quote?.movie?.year }})
     </h1>
     <div class="rounded-lg overflow-hidden">
       <img :src="imageUrl" alt="movie" class="mx-auto" />
