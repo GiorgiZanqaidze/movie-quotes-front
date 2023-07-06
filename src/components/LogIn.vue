@@ -20,7 +20,7 @@
         @update:modelValue="(newValue) => (state.email = newValue)"
         :label="$t('modals.login.email')"
         :placeholder="$t('modals.login.placeholder_email')"
-        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
+        :backEndErrors="backEndErrors?.[$i18n.locale]"
         rules="required"
         :signUp="true"
       />
@@ -36,7 +36,7 @@
         rules="required|alpha|min:8|max:15"
         :signUp="true"
         requiredIcon="true"
-        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
+        :backEndErrors="backEndErrors?.[$i18n.locale]"
       />
 
       <div class="flex justify-between text-xs sm:text-md">
@@ -109,8 +109,8 @@ async function handleLogin() {
     route.push('/news-feed')
     modal.toggleModal('logIn', false)
   } else {
+    console.log(response)
     backEndErrors.value = JSON.parse(response.response.data.message)
-    console.log(backEndErrors)
   }
 }
 

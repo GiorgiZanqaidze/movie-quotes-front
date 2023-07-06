@@ -12,7 +12,11 @@
         'sm:min-w-[800px] rounded-md overflow-hidden flex justify-center items-center': !quoteModal
       }"
     >
-      <div class="w-full">
+      <div
+        :class="{
+          'sm:w-[10rem] w-full': quoteModal
+        }"
+      >
         <img
           :src="`${imagePath}${movie.data?.image}`"
           alt="movie"
