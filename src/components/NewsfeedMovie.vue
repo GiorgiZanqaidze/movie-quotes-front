@@ -9,7 +9,7 @@
       {{ props?.quote?.movie?.title?.[$i18n.locale] }} ({{ props?.quote?.movie?.year }})
     </h1>
     <div class="rounded-lg overflow-hidden">
-      <img :src="imageUrl" alt="movie" class="mx-auto" />
+      <img :src="`${imagePath}${props?.quote?.image}`" alt="movie" class="mx-auto w-full" />
     </div>
     <div class="flex gap-4 mt-2 sm:mt-4 border-b-2 border-light pb-2 sm:pb-4">
       <div class="flex gap-2 items-center just">

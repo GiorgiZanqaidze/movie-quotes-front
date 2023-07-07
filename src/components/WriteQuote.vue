@@ -106,6 +106,7 @@ import { useMovieStore } from '@/stores/movie.js'
 import { useSingleMovieStore } from '@/stores/singleMovie'
 import IconClose from '@/components/icons/IconClose.vue'
 import IconDragAndDrop from '@/components/icons/IconDragAndDrop.vue'
+import postQuote from '@/services/postQuote.js'
 const TheTextarea = defineAsyncComponent(() => import('@/components/TheTextarea.vue'))
 const MoviesDropdown = defineAsyncComponent(() => import('@/components/MoviesDropdown.vue'))
 
@@ -166,8 +167,6 @@ const handleSubmit = async () => {
     user_id: user.data.id
   }
 
-  console.log(data)
-
   let formData = new FormData()
 
   Object.entries(data).forEach(([key, value]) => {
@@ -175,9 +174,9 @@ const handleSubmit = async () => {
   })
 
   try {
-    const response = await axiosInstance.post('api/quote/store', formData)
+    const response = await postQuote(formData)
+    // const response = await axiosInstance.post('api/quote/store', formData)
     modal.toggleModal('null', false)
-    console.log(response.data)
     quotes.addQuote(response.data)
     singleMovie.addMovieQuote(response.data)
   } catch (error) {

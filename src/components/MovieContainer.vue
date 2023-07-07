@@ -6,7 +6,6 @@
     }"
   >
     <div
-      class=""
       :class="{
         'sm:min-w-[200px]': quoteModal,
         'sm:min-w-[800px] rounded-md overflow-hidden flex justify-center items-center': !quoteModal
@@ -14,11 +13,12 @@
     >
       <div
         :class="{
-          'sm:w-[10rem] w-full': quoteModal
+          'sm:w-[10rem] w-full': quoteModal,
+          'w-full': !quoteModal
         }"
       >
         <img
-          :src="`${imagePath}${movie.data?.image}`"
+          :src="`${imagePath}${movie?.data?.image}`"
           alt="movie"
           class="rounded-md"
           :class="{
@@ -36,7 +36,7 @@
         <h1>{{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})</h1>
         <div v-if="!quoteModal" class="flex gap-4 items-center bg-darkGray py-2 px-3 rounded-md">
           <div>
-            <DeleteButton class="w-1" :movie_id="movie.data.id"></DeleteButton>
+            <delete-button class="w-1" :movie_id="movie.data.id"></delete-button>
           </div>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
           <button class="flex justify-start" @click="modal.toggleModal('editMovieModal', true)">

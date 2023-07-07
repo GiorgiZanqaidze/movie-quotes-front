@@ -15,10 +15,7 @@
           {{ $t('landing.start') }}
         </button>
       </div>
-      <div
-        class="container min-w-full min-h-screen"
-        style="background-image: url(src/assets/images/landing_image_1.png)"
-      >
+      <div class="container min-w-full min-h-screen bg-interstelar">
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
             <div
@@ -33,10 +30,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="container min-w-full min-h-screen"
-        style="background-image: url(src/assets/images/landing_image_2.png)"
-      >
+      <div class="container min-w-full min-h-screen bg-the_royal">
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
             <div
@@ -51,10 +45,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="container min-w-full min-h-screen"
-        style="background-image: url(src/assets/images/landing_image_3.png)"
-      >
+      <div class="container min-w-full min-h-screen bg-lord_of_rings">
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
             <div

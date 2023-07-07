@@ -29,6 +29,11 @@ module.exports = {
         lightBlack: '#12101A',
         cyan: '#D1E7DD',
         lightGray: '#D9D9D9'
+      },
+      backgroundImage: {
+        interstelar: "url('/src/assets/images/landing_image_1.png')",
+        the_royal: "url('/src/assets/images/landing_image_2.png')",
+        lord_of_rings: "url('/src/assets/images/landing_image_3.png')"
       }
     }
   },
