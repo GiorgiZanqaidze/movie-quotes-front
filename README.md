@@ -1,4 +1,4 @@
-# giorgi-zanqaidze-covid-questionaire
+# giorgi-zanqaidze-movie-quotes-upgraded
 
 The Movie Quotes Application is a web-based platform that allows users to register, create, and share their favorite movie quotes. With an intuitive interface and a range of features, users can easily express their love for cinema by contributing their unique quotes, engaging with other users' quotes through likes and comments, and receiving real-time notifications.
 
