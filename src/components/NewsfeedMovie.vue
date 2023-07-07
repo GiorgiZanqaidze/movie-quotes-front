@@ -108,6 +108,5 @@ async function unlikePost() {
   liked.value = false
 }
 
-const imageUrl = `${imagePath}${props.quote.image}`
 const profileIconUrl = `${imagePath}${props.quote.author.image}`
 </script>
