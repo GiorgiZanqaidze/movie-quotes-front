@@ -1,15 +1,15 @@
 <template>
-  <div class="bg-darkBlack sm:w-[961px] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
+  <div class="bg-darkBlack sm:w-[52rem] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
     <header class="flex items-center gap-4 text-sm sm:text-md">
       <profile-icon :path="profileIconUrl"></profile-icon>
       <h2>{{ props?.quote?.author?.name }}</h2>
     </header>
     <h1 class="text-sm sm:text-md" style="word-break: break-word">
-      “{{ props?.quote?.name?.[this.$i18n.locale] }}”movie-
-      {{ props?.quote?.movie?.title?.[this.$i18n.locale] }} ({{ props?.quote?.movie?.year }})
+      “{{ props?.quote?.name?.[$i18n.locale] }}”movie-
+      {{ props?.quote?.movie?.title?.[$i18n.locale] }} ({{ props?.quote?.movie?.year }})
     </h1>
     <div class="rounded-lg overflow-hidden">
-      <img :src="imageUrl" alt="movie" class="mx-auto" />
+      <img :src="`${imagePath}${props?.quote?.image}`" alt="movie" class="mx-auto w-full" />
     </div>
     <div class="flex gap-4 mt-2 sm:mt-4 border-b-2 border-light pb-2 sm:pb-4">
       <div class="flex gap-2 items-center just">
@@ -108,6 +108,5 @@ async function unlikePost() {
   liked.value = false
 }
 
-const imageUrl = `${imagePath}${props.quote.image}`
 const profileIconUrl = `${imagePath}${props.quote.author.image}`
 </script>

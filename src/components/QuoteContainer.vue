@@ -5,7 +5,7 @@
         <img :src="`${imagePath}${quote?.image}`" alt="quote" class="w-full" />
       </div>
       <div class="flex items-center">
-        <h1 class="break-all">"{{ quote?.name?.[this.$i18n.locale] }}"</h1>
+        <h1 class="break-all">"{{ quote?.name?.[$i18n.locale] }}"</h1>
       </div>
       <div class="absolute bottom-[-50px] right-10 sm:top-0 sm:right-4">
         <button
@@ -17,7 +17,7 @@
           <icon-three-dots alt="dots" class="min-w-6" name="dots"></icon-three-dots>
         </button>
         <div
-          class="flex flex-col gap-3 bg-gray pl-3 pr-10 absolute right-5 bottom-5 sm:-right-28 sm:bottom-16 w-32 py-4 rounded-md justify-start"
+          class="flex flex-col gap-3 bg-gray pl-3 pr-10 absolute right-5 top-[-5rem] sm:-right-28 sm:top-5 w-32 py-4 rounded-md justify-start"
           v-if="showDiv"
           name="divContainer"
           ref="container"
@@ -26,14 +26,21 @@
             <icon-visible alt="visible" class="inline-block mr-1"></icon-visible>
             <span class="text-[13px]">{{ $t('landing.movie_description.view') }}</span>
           </button>
-          <button class="flex justify-start" @click="editQuoteModal">
+          <button
+            class="flex justify-start"
+            @click="editQuoteModal"
+            v-if="authUser.data.id === props.quote.author.id"
+          >
             <icon-pencil alt="edit" class="inline-block mr-1"></icon-pencil>
             <span class="text-xs">{{ $t('landing.movie_description.edit') }}</span>
           </button>
 
-          <DeleteButton :quote_id="props?.quote?.id" @click="deleteQuote">{{
-            $t('landing.movie_description.delete')
-          }}</DeleteButton>
+          <delete-button
+            v-if="authUser.data.id === props.quote.author.id"
+            :quote_id="props?.quote?.id"
+            @click="deleteQuote"
+            >{{ $t('landing.movie_description.delete') }}</delete-button
+          >
         </div>
       </div>
     </div>
@@ -61,8 +68,11 @@ import IconPencil from '@/components/icons/IconPencil.vue'
 import IconComment from '@/components/icons/IconComment.vue'
 import IconLike from '@/components/icons/IconLike.vue'
 import IconVisible from '@/components/icons/IconVisible.vue'
+import { userStore } from '@/stores/user'
 
 const modal = useModalStore()
+
+const authUser = userStore()
 
 const props = defineProps({
   quote: {

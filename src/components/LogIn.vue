@@ -30,10 +30,10 @@
         name="password"
         :label="$t('modals.sign_up.password')"
         :errors="errors.password"
-        v-model="state.newPassword"
+        v-model="state.password"
         @update:modelValue="(newValue) => (state.password = newValue)"
         :placeholder="$t('landing.my_profile.new_password')"
-        rules="required|alpha|min:8|max:15"
+        rules="required"
         :signUp="true"
         requiredIcon="true"
         :backEndErrors="backEndErrors?.[$i18n.locale]"
@@ -48,19 +48,18 @@
           :value="true"
           :label="$t('modals.login.remember_me')"
         />
-        <button
-          href="#"
+        <span
           @click="modal.toggleModal('forgotPassword', true)"
           class="text-mediumBlue underline text-xs sm:text-md"
         >
           {{ $t('modals.login.forgot_password') }}
-        </button>
+        </span>
       </div>
       <button class="w-full bg-darkRed sm:py-1 rounded mt-2 text-sm sm:text-md py-1">
         {{ $t('modals.login.sign_in') }}
       </button>
 
-      <GoogleButton />
+      <google-button></google-button>
       <span class="text-sm sm:text-[16px] text-center text-mediumGray"
         >{{ $t('modals.login.have_account') }}
         <a href="#" @click="modal.toggleModal('signUp', true)" class="text-mediumBlue underline">
@@ -110,7 +109,7 @@ async function handleLogin() {
     modal.toggleModal('logIn', false)
   } else {
     console.log(response)
-    backEndErrors.value = JSON.parse(response.response.data.message)
+    // backEndErrors.value = JSON.parse(response.response.data.message)
   }
 }
 

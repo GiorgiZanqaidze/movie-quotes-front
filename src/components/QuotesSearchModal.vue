@@ -47,12 +47,13 @@ const newsFeed = ref(route.name === 'newsFeed')
 
 async function handleSubmit() {
   if (newsFeed.value) {
-    console.log(searchValue)
     router.push({ path: '/news-feed', query: { query: searchValue.value } })
     await query.setSearchQuery(searchValue.value)
+    modal.toggleSearchModal()
   } else {
     router.push({ path: '/movies-list', query: { query: searchValue.value } })
     await movies.getMovies(searchValue.value)
+    modal.toggleSearchModal()
   }
 }
 </script>

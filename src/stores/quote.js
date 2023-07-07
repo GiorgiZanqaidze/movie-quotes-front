@@ -28,7 +28,7 @@ export const useQuoteStore = defineStore('quote', {
       })
     },
     addQuote(quote) {
-      this.data.unshift(quote)
+      this.data = [quote, ...this.data]
     },
     rememberQuoteId(id) {
       this.currentQuoteId = id

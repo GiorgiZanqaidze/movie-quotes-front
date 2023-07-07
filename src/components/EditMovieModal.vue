@@ -52,7 +52,7 @@
               class="list-none py-1 px-2 rounded-md bg-mediumGray flex gap-2 items-center"
             >
               <span>
-                {{ genre?.name?.[this.$i18n.locale] }}
+                {{ genre?.name?.[$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
                 <icon-close alt="delete" class="inline-block w-3"></icon-close>
@@ -78,7 +78,7 @@
               :value="genre"
               class="text-white"
             >
-              {{ genre?.name?.[this.$i18n.locale] }}
+              {{ genre?.name?.[$i18n.locale] }}
             </option>
           </Field>
           <ErrorMessage

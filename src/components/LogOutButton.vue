@@ -10,13 +10,17 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import logOutUser from '@/services/logOutUser.js'
+import { useModalStore } from '@/stores/modal'
 const route = useRouter()
+
+const modal = useModalStore()
 
 async function logOut() {
   const result = await logOutUser()
 
   if (result.status === 200) {
     route.push({ name: 'home' })
+    modal.toggleModal('null', false)
   }
 }
 </script>

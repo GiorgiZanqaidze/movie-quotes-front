@@ -1,8 +1,8 @@
 import axiosInstance from '@/config/axios/index'
 
-export default async function getMovies(query) {
+export default async function likeQuote(data) {
   try {
-    const response = await axiosInstance.get(`api/user-movies?query=${query}`)
+    const response = await axiosInstance.post('api/quote/store', data)
     return response
   } catch (error) {
     console.log(error)

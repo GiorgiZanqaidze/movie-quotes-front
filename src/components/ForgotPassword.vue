@@ -24,7 +24,7 @@
         @update:modelValue="(newValue) => (state.email = newValue)"
         :label="$t('modals.login.email')"
         :placeholder="$t('modals.login.placeholder_email')"
-        :backEndErrors="backEndErrors?.[this.$i18n.locale]"
+        :backEndErrors="backEndErrors?.[$i18n.locale]"
         rules="required|email"
         :signUp="true"
       />
