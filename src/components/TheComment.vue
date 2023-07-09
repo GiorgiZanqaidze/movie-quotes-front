@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-start gap-0 mt-2 flex-col">
     <div class="flex items-center gap-3 mb-2 text-xs sm:text-base">
-      <profile-icon :path="profileIconPath"></profile-icon>
+      <profile-icon :path="profileIconUrl"></profile-icon>
       <h1>{{ props.author.name }}</h1>
     </div>
 
@@ -12,9 +12,8 @@
 </template>
 
 <script setup>
-import imageUrl from '@/config/images/path.js'
 import { computed, defineProps } from 'vue'
-
+import imagePath from '@/config/images/path'
 const props = defineProps({
   text: {
     type: String,
@@ -26,5 +25,11 @@ const props = defineProps({
   }
 })
 
-const profileIconPath = computed(() => `${imageUrl}${props.author.image}`)
+const profileIconUrl = computed(() => {
+  if (props.author.image) {
+    return `${imagePath}${props.author.image}`
+  } else {
+    return '/default_profile.svg'
+  }
+})
 </script>

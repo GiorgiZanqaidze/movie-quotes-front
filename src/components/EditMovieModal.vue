@@ -16,7 +16,7 @@
       </header>
       <div class="mt-4 mb-6 px-6">
         <div class="flex items-center gap-3">
-          <profile-icon :path="`${imagePath}${authUser?.data?.image}`"></profile-icon>
+          <profile-icon :authUser="true"></profile-icon>
           <h1 class="text-[20px]">{{ authUser?.data?.name }}</h1>
         </div>
       </div>

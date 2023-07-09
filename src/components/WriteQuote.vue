@@ -14,7 +14,7 @@
     </header>
     <div class="mt-4 mb-6 px-6">
       <div class="flex items-center gap-3">
-        <profile-icon :path="user.authUserIcon"></profile-icon>
+        <profile-icon :authUser="true"></profile-icon>
         <h1 class="text-sm sm:text-md">{{ user.data.name }}</h1>
       </div>
     </div>
@@ -174,7 +174,6 @@ const handleSubmit = async () => {
 
   try {
     const response = await postQuote(formData)
-    // const response = await axiosInstance.post('api/quote/store', formData)
     modal.toggleModal('null', false)
     quotes.addQuote(response.data)
     singleMovie.addMovieQuote(response.data)

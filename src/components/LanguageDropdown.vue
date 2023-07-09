@@ -18,11 +18,15 @@
 <script setup>
 import { setLocale } from '@vee-validate/i18n'
 import { useI18n } from 'vue-i18n'
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 const { locale } = useI18n()
 
 const state = reactive({
   currentLocale: localStorage.getItem('locale') || 'en'
+})
+
+onMounted(() => {
+  setLocale(localStorage.getItem('locale') || 'en')
 })
 
 const changeLocale = (newLocale) => {

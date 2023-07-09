@@ -24,7 +24,7 @@
       type="text"
       :name="props.name"
       :value="props.modelValue"
-      @blur="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage
       v-if="!backEndErrors"

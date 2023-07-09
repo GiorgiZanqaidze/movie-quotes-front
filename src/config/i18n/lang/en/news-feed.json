@@ -20,5 +20,6 @@
     "post": "Post"
   },
   "no_notifications": "There is no any notification",
-  "minutes_ago": "Minutes ago"
+  "minutes_ago": "Minutes ago",
+  "show_comments": "show all comments"
 }

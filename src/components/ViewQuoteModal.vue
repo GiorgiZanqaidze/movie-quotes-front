@@ -22,7 +22,7 @@
       </header>
       <div class="p-5 text-white flex flex-col gap-9">
         <div class="flex justify-start gap-2 items-center">
-          <ProfileIcon :path="`${imagePath}${quote.author.image}`" />
+          <ProfileIcon :path="profileIconUrl" />
           <p class="text-sm sm:text-md">{{ quote.author.name }}</p>
         </div>
         <div class="flex flex-col gap-2 text-sm">
@@ -84,7 +84,7 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import imagePath from '@/config/images/path'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import PostComment from '@/components/PostComment.vue'
@@ -150,4 +150,12 @@ async function unlikePost() {
   await like.dislikeQuote(likeData)
   liked.value = false
 }
+
+const profileIconUrl = computed(() => {
+  if (quote.author.image) {
+    return `${imagePath}${quote.author.image}`
+  } else {
+    return '/default_profile.svg'
+  }
+})
 </script>

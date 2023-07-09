@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center">
     <img
-      :src="props.path"
+      :src="userImageUrl"
       alt="profile"
       class="sm:w-[52px] w-[40px] sm:h-[52px] h-[40px] rounded-full overflow-hidden"
       :class="props.border"
@@ -10,7 +10,11 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
+import imagePath from '@/config/images/path'
+import { userStore } from '@/stores/user'
+
+const authUserStore = userStore()
 
 const props = defineProps({
   width: {
@@ -19,11 +23,23 @@ const props = defineProps({
   },
 
   path: {
-    type: String,
-    required: true
+    type: String
   },
   border: {
     type: String
+  },
+  authUser: {
+    type: Boolean
+  }
+})
+
+const userImageUrl = computed(() => {
+  if (props.authUser && authUserStore.data.image) {
+    return `${imagePath}${authUserStore.data.image}`
+  } else if (props.authUser && !authUserStore.data.image) {
+    return '/default_profile.svg'
+  } else {
+    return props.path
   }
 })
 </script>

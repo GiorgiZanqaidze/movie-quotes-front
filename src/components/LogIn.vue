@@ -108,8 +108,7 @@ async function handleLogin() {
     route.push('/news-feed')
     modal.toggleModal('logIn', false)
   } else {
-    console.log(response)
-    // backEndErrors.value = JSON.parse(response.response.data.message)
+    backEndErrors.value = JSON.parse(response.response.data.message)
   }
 }
 

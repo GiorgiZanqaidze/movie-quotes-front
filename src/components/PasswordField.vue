@@ -24,7 +24,7 @@
       :type="showPassword ? 'password' : 'text'"
       :name="props.name"
       :value="props.modelValue"
-      @blur="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <div class="absolute top-1/2 translate-y-[-50%] right-2" :class="{ 'top-10': props.signUp }">
       <div @click="togglePassword" class="cursor-pointer">

@@ -16,7 +16,8 @@
       </header>
       <div class="mt-4 mb-6 px-6">
         <div class="flex items-center gap-3">
-          <profile-icon :path="`${imagePath}${authUser?.data?.image}`"></profile-icon>
+          <profile-icon :authUser="true"></profile-icon>
+
           <h1 class="text-sm sm:text-md">{{ authUser?.data?.name }}</h1>
         </div>
       </div>
@@ -185,7 +186,6 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { userStore } from '@/stores/user'
-import imagePath from '@/config/images/path'
 import TheTextarea from '@/components/TheTextarea.vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import { reactive, onMounted } from 'vue'

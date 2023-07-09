@@ -1,5 +1,5 @@
 <template>
-  <button class="flex justify-start" @click="deleteItem">
+  <button class="flex justify-start items-center" @click="deleteItem">
     <div>
       <icon-trash alt="delete" class="inline-block mr-1 min-w-[0.5rem]"></icon-trash>
     </div>
