@@ -42,7 +42,7 @@
       <div class="grid sm:grid-cols-3 gap-4 place-items-center">
         <div
           class="sm:w-full w-[18rem] sm:h-[22rem] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
-          v-for="(movie, index) in movies.data"
+          v-for="(movie, index) in state.filteredMovies"
           :key="index"
           @click="handleRoute(movie.id)"
         >
@@ -82,18 +82,23 @@ const route = useRoute()
 
 const state = reactive({
   searchValue: null,
-  class: 'w-28'
+  class: 'w-28',
+  filteredMovies: movies.data
 })
 
 const query = route.query.query
 const handleSubmit = async () => {
   router.push({ path: '/movies-list', query: { query: state.searchValue } })
-  await movies.getMovies(state.searchValue)
+  const filteredMovies = movies.filteredMovies(state.searchValue)
+  state.filteredMovies = filteredMovies
 }
 
 onMounted(async () => {
   state.searchValue = query || ''
-  await movies.getMovies(query)
+  await movies.getMovies()
+  state.filteredMovies = movies.data
+  const filteredMovies = movies.filteredMovies(state.searchValue)
+  state.filteredMovies = filteredMovies
 })
 
 function handleRoute(id) {

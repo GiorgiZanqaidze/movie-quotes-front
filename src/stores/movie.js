@@ -35,5 +35,18 @@ export const useMovieStore = defineStore('movie', {
     setMovies(movies) {
       this.data = movies
     }
+  },
+  getters: {
+    filteredMovies: (state) => (searchTerm) => {
+      if (!searchTerm) {
+        return state.data
+      }
+      const searchTermLowerCase = searchTerm.toLowerCase()
+      return state.data.filter((movie) => {
+        const titleEn = movie.title.en.toLowerCase()
+        const titleKa = movie.title.ka.toLowerCase()
+        return titleEn.includes(searchTermLowerCase) || titleKa.includes(searchTermLowerCase)
+      })
+    }
   }
 })
