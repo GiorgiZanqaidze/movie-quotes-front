@@ -23,7 +23,7 @@
           class="rounded-md"
           :class="{
             'sm:w-full w-[5rem]': quoteModal,
-            'sm:w-full w-[30rem] rounded-md': !quoteModal
+            'sm:w-full w-[30rem] sm:max-h-[30rem] max-h-[10rem] rounded-md': !quoteModal
           }"
         />
       </div>
@@ -37,7 +37,10 @@
         :class="{ 'mb-2': !quoteModal }"
       >
         <h1>{{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})</h1>
-        <div v-if="!quoteModal" class="flex gap-3 items-center bg-darkGray py-1 px-3 rounded-md">
+        <div
+          v-if="!quoteModal"
+          class="flex gap-3 items-center bg-darkGray py-1 sm:py-2 px-3 sm:px-4 rounded-md"
+        >
           <div>
             <delete-button class="w-3" :movie_id="movie.data.id"></delete-button>
           </div>

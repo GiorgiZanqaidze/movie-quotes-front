@@ -62,7 +62,7 @@
             </li>
           </ul>
           <div
-            class="text-sm md-text-md cursor-pointer bg-black pl-5 rounded"
+            class="text-sm sm:text-base cursor-pointer bg-black pl-5 rounded"
             @click="toggleDropdown"
           >
             {{ $t('news_feed.write_quote.choose_movie') }}
@@ -82,7 +82,7 @@
               v-for="(genre, index) in state.genres"
               :key="index"
               :value="genre"
-              class="text-white cursor-pointer"
+              class="text-white cursor-pointer text-sm sm:text-base"
             >
               {{ genre?.name?.[$i18n.locale] }}
             </option>
@@ -154,8 +154,10 @@
                 class="h-2/3 w-full outline-dashed outline-1"
               />
             </div>
-            <div class="flex flex-col items-center gap-4 sm:gap-5 text-xs sm:text-md">
-              <span>{{ $t('landing.movie_description.replace_photo') }}</span>
+            <div class="flex flex-col items-center gap-4 sm:gap-5 text-xs sm:text-base">
+              <span class="text-lightGrey">{{
+                $t('landing.movie_description.replace_photo')
+              }}</span>
               <h3 class="hidden sm:inline">
                 {{ $t('news_feed.write_quote.drag_and_drop') }}
               </h3>
@@ -170,7 +172,7 @@
 
               <label
                 for="file"
-                class="bg-mediumRed py-1 px-2 cursor-pointer text-sm sm:text-md rounded"
+                class="bg-mediumRed py-1 px-2 cursor-pointer text-sm sm:text-base rounded"
                 >{{ $t('news_feed.write_quote.choose_file') }}</label
               >
             </div>

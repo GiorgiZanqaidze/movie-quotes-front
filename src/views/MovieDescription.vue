@@ -19,7 +19,7 @@
         <div class="bg-mediumGray sm:w-[1px] sm:h-6 w-full h-[1px]"></div>
         <button
           @click="addQuoteModal"
-          class="bg-darkRed rounded py-1 px-2 flex items-center gap-2 text-sm"
+          class="bg-darkRed rounded py-2 px-2 flex items-center gap-2 text-sm"
         >
           <icon-add-movie alt="add_movie" class="inline-block"></icon-add-movie>
 

@@ -63,7 +63,7 @@
             </li>
           </ul>
           <div
-            class="text-sm md-text-md cursor-pointer bg-black rounded pl-5"
+            class="text-sm sm:text-base cursor-pointer bg-black rounded pl-5"
             @click="toggleDropdown"
           >
             {{ $t('news_feed.write_quote.choose_movie') }}
@@ -83,7 +83,7 @@
               v-for="(genre, index) in state.genres"
               :key="index"
               :value="genre"
-              class="text-white text-sm md-text-md cursor-pointer"
+              class="text-white text-sm sm:text-base cursor-pointer"
             >
               {{ genre?.name?.[$i18n.locale] }}
             </option>
