@@ -1,6 +1,6 @@
 <template>
   <div class="text-white bg-mediumDark min-h-screen flex justify-end sm:pr-10">
-    <div class="w-[70rem]">
+    <div class="w-[70rem] sm:w-3/4">
       <div
         class="h-20 flex sm:justify-between justify-between items-center mb-0 sm:mb-4 gap-0 sm:gap-10 sm:w-auto w-[300px] mx-auto"
       >

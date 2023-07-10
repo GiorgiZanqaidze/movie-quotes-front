@@ -3,11 +3,11 @@
     <div class="mx-auto my-0 sm:w-[50rem] pt-[1rem]">
       <header class="text-xl pl-4">
         <h1 class="hidden sm:inline">{{ $t('landing.my_profile.title') }}</h1>
-        <a href="/news-feed" class="block sm:hidden">
+        <a href="/news-feed" class="inline-block sm:hidden">
           <icon-back-arrow alt="arrow" class="w-5 ml-5 mt-5 cursor-pointer"></icon-back-arrow>
         </a>
       </header>
-      <div class="bg-mediumDark sm:bg-darkBlack mt-[4rem] rounded-md pb-20">
+      <div class="bg-mediumDark sm:bg-darkBlack mt-[2rem] sm:mt-[4rem] rounded-md pb-20">
         <div class="flex justify-center">
           <div class="sm:translate-y-[-50%] flex flex-col items-center my-6 sm:my-0">
             <img

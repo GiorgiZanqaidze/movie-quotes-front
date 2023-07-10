@@ -1,6 +1,6 @@
 <template>
   <div class="text-white bg-mediumDark min-h-screen pb-10 flex justify-end sm:pr-10">
-    <div class="w-[70rem]">
+    <div class="w-3/4">
       <div class="py-6 text-2xl hidden sm:block">
         <h1>{{ $t('landing.movie_description.title') }}</h1>
       </div>
