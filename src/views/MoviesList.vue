@@ -1,6 +1,6 @@
 <template>
-  <div class="text-white bg-mediumDark min-h-screen">
-    <div class="sm:ml-[400px] max-w-[1200px]">
+  <div class="text-white bg-mediumDark min-h-screen flex justify-end sm:pr-10">
+    <div class="w-[70rem]">
       <div
         class="h-20 flex sm:justify-between justify-between items-center mb-0 sm:mb-4 gap-0 sm:gap-10 sm:w-auto w-[300px] mx-auto"
       >
@@ -41,7 +41,7 @@
       </div>
       <div class="grid sm:grid-cols-3 gap-4 place-items-center">
         <div
-          class="sm:w-[400px] w-[300px] sm:h-[370px] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
+          class="sm:w-full w-[300px] sm:h-[370px] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
           v-for="(movie, index) in movies.data"
           :key="index"
           @click="handleRoute(movie.id)"

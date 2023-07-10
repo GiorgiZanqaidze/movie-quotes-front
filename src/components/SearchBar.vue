@@ -22,12 +22,16 @@ import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useQuerySearchStore } from '@/stores/querySearch'
 import IconSearch from '@/components/icons/IconSearch.vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const { t } = useI18n()
 
 const query = useQuerySearchStore()
 
-const searchValue = ref('')
+const route = useRoute()
+const router = useRouter()
+
+const searchValue = ref(route.query.query)
 
 const toggle = reactive({ input: '', placeholder: t('news_feed.search') })
 
@@ -44,6 +48,7 @@ const closeInput = () => {
 }
 
 async function handleSubmit() {
+  router.push({ path: '/news-feed', query: { query: searchValue.value } })
   await query.setSearchQuery(searchValue.value)
 }
 </script>

@@ -8,7 +8,7 @@
     <div
       :class="{
         'sm:min-w-[200px]': quoteModal,
-        'sm:min-w-[800px] rounded-md overflow-hidden flex justify-center items-center': !quoteModal
+        'sm:min-w-[45rem] rounded-md overflow-hidden flex justify-center items-center': !quoteModal
       }"
     >
       <div
@@ -34,13 +34,13 @@
     >
       <div class="flex justify-between sm:w-[25rem] sm:mb-2" :class="{ 'mb-2': !quoteModal }">
         <h1>{{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})</h1>
-        <div v-if="!quoteModal" class="flex gap-4 items-center bg-darkGray py-2 px-3 rounded-md">
+        <div v-if="!quoteModal" class="flex gap-3 items-center bg-darkGray py-1 px-3 rounded-md">
           <div>
-            <delete-button class="w-1" :movie_id="movie.data.id"></delete-button>
+            <delete-button class="w-3" :movie_id="movie.data.id"></delete-button>
           </div>
           <div class="w-[1px] h-4 bg-mediumGray"></div>
           <button class="flex justify-start" @click="modal.toggleModal('editMovieModal', true)">
-            <icon-pencil alt="edit" class="inline-block mr-1 min-w-1"></icon-pencil>
+            <icon-pencil alt="edit" class="inline-block mr-1"></icon-pencil>
           </button>
         </div>
       </div>

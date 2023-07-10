@@ -1,6 +1,6 @@
 <template>
-  <div class="text-white bg-mediumDark min-h-screen pb-10">
-    <div class="sm:ml-[400px]">
+  <div class="text-white bg-mediumDark min-h-screen pb-10 flex justify-end sm:pr-10">
+    <div class="w-[70rem]">
       <div class="py-6 text-2xl hidden sm:block">
         <h1>{{ $t('landing.movie_description.title') }}</h1>
       </div>
@@ -24,7 +24,7 @@
           <span> {{ $t('landing.movie_description.add_quote') }}</span>
         </button>
       </div>
-      <div class="sm:w-[800px] mt-10 flex flex-col gap-6">
+      <div class="sm:w-[45rem] mt-10 flex flex-col gap-6" v-if="movie?.data?.quotes">
         <QuoteContainer v-for="(quote, index) in movie.data?.quotes" :key="index" :quote="quote" />
       </div>
     </div>

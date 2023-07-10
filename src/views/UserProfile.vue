@@ -179,23 +179,30 @@
                   </div>
                 </div>
               </div>
-              <div v-if="!authUser?.data?.google_id">
-                <div class="flex flex-col gap-2 text-sm sm:text-base">
+              <div>
+                <div
+                  class="flex flex-col gap-2 text-sm sm:text-base"
+                  :class="{ 'sm:mr-10': authUser?.data?.google_id }"
+                >
                   <p>{{ $t('landing.my_profile.email') }}</p>
+
                   <div class="flex items-center gap-2">
                     <div
                       class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
                     >
                       <h3 class="h-full flex items-center ml-3">{{ authUser.data.email }}</h3>
                     </div>
-                    <span class="cursor-pointer" @click="addEmailDiv">{{
-                      $t('landing.my_profile.edit')
-                    }}</span>
+                    <span
+                      class="cursor-pointer"
+                      v-if="!authUser?.data?.google_id"
+                      @click="addEmailDiv"
+                      >{{ $t('landing.my_profile.edit') }}</span
+                    >
                   </div>
                 </div>
                 <div
                   class="absolute sm:static top-14 left-0 right-0 bottom-0 sm:block sm:bg-transparent bg-black h-[50rem] sm:h-auto"
-                  v-if="state.showEmailDiv"
+                  v-if="state.showEmailDiv && !authUser?.data?.google_id"
                 >
                   <div class="block sm:hidden">
                     <icon-back-arrow
