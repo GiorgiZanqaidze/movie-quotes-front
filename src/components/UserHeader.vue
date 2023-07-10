@@ -1,5 +1,5 @@
 <template>
-  <header class="flex p-8 justify-between items-center bg-gray h-[38px] px-6 sm:px-2 relative">
+  <header class="flex p-8 justify-between items-center bg-gray h-[38px] px-6 sm:px-10 relative">
     <h1 class="text-lightGrey text-sm sm:text-lg hidden sm:block">
       {{ $t('landing.quotes') }}
     </h1>

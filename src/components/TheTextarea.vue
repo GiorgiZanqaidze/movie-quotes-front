@@ -23,7 +23,7 @@
     />
     <div class="absolute right-4 top-9" :class="{ 'right-14': lang }">
       <icon-valid v-if="props.modelValue && !props.errors" alt="valid"></icon-valid>
-      <icon-valid v-if="props.errors" alt="invalid"></icon-valid>
+      <icon-invalid v-if="props.errors" alt="invalid"></icon-invalid>
     </div>
     <div
       v-if="lang"
@@ -38,6 +38,7 @@
 import { defineProps, computed } from 'vue'
 import { Field, ErrorMessage } from 'vee-validate'
 import IconValid from '@/components/icons/IconValid.vue'
+import IconInvalid from '@/components/icons/IconInvalid.vue'
 
 const props = defineProps({
   name: {

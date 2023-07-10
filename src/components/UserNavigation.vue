@@ -1,10 +1,10 @@
 <template>
   <div
-    class="text-white absolute sm:top-[150px] z-10 sm:z-0 top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
+    class="text-white absolute sm:top-[5rem] z-10 sm:z-0 top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
-      <ProfileIcon :border="state.border" :path="imageUrl" />
+      <ProfileIcon :border="state.border" :authUser="true" />
       <div class="flex justify-center items-start flex-col w-[250px]">
         <h3 v-if="user.name" class="text-[20px]">{{ user.name }}</h3>
         <a href="/user-profile" class="sm:text-sm text-[14px] w-full">{{
@@ -50,7 +50,6 @@ import { computed, defineAsyncComponent, reactive, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { userStore } from '@/stores/user.js'
 import { useModalStore } from '@/stores/modal.js'
-import imagePath from '@/config/images/path'
 const LanguageDropdown = defineAsyncComponent(() => import('@/components/LanguageDropdown.vue'))
 const LogOutButton = defineAsyncComponent(() => import('@/components/LogOutButton.vue'))
 const ProfileIcon = defineAsyncComponent(() => import('@/components/ProfileIcon.vue'))
@@ -76,14 +75,6 @@ onMounted(() => {
 })
 
 const user = computed(() => userData.data)
-
-const imageUrl = computed(() => {
-  if (userData.data.image) {
-    return `${imagePath}${userData.data.image}`
-  } else {
-    return '/src/assets/icons/default_profile.svg'
-  }
-})
 
 const showNavBar = computed(() => modal.isVisible.name === 'userNavigation')
 </script>

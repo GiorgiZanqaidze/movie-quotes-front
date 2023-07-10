@@ -31,23 +31,27 @@
         </button>
       </div>
     </div>
-    <ul
-      class="sm:max-h-[20rem] max-h-[10rem]"
-      :class="{ 'overflow-y-scroll': comments.length > 2 }"
-    >
+    <ul>
       <the-comment
-        v-for="(comment, index) in comments"
+        v-for="(comment, index) in props.quote.comments.filter(
+          (item, index) => index < commentsCount
+        )"
         :key="index"
         :text="comment.text"
         :author="comment.author"
       ></the-comment>
     </ul>
+    <div v-if="props.quote.comments.length > 2">
+      <button @click="showAllComments" class="hover:underline text-sm sm:text-base">
+        {{ $t('news_feed.show_comments') }}
+      </button>
+    </div>
     <PostComment :quote="props?.quote" />
   </div>
 </template>
 
 <script setup>
-import { ref, defineProps, onMounted } from 'vue'
+import { ref, defineProps, onMounted, computed } from 'vue'
 import imagePath from '@/config/images/path.js'
 import { userStore } from '@/stores/user'
 import PostComment from '@/components/PostComment.vue'
@@ -68,7 +72,7 @@ onMounted(async () => {
   instantiatePusher()
 
   window.Echo.channel('comment').listen('PostComment', (data) => {
-    comments.value.push(data.comment)
+    comments.value.unshift(data.comment)
   })
 
   window.Echo.channel('like').listen('PostLike', (data) => {
@@ -79,6 +83,16 @@ onMounted(async () => {
     likes.value.pop()
   })
 })
+
+let commentsCount = ref(2)
+
+const showAllComments = () => {
+  if (commentsCount.value === props.quote.comments.length) {
+    commentsCount.value = 2
+  } else {
+    commentsCount.value = props.quote.comments.length
+  }
+}
 
 const comments = ref(props.quote.comments)
 
@@ -108,5 +122,11 @@ async function unlikePost() {
   liked.value = false
 }
 
-const profileIconUrl = `${imagePath}${props.quote.author.image}`
+const profileIconUrl = computed(() => {
+  if (props.quote.author.image) {
+    return `${imagePath}${props.quote.author.image}`
+  } else {
+    return '/default_profile.svg'
+  }
+})
 </script>

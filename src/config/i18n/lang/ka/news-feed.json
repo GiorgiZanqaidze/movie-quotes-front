@@ -20,5 +20,6 @@
     "post": "გამოქვეყნება"
   },
   "no_notifications": "არ არის შეტყობინებები",
-  "minutes_ago": "წუთის წინ"
+  "minutes_ago": "წუთის წინ",
+  "show_comments": "ყველა კომენტარი"
 }

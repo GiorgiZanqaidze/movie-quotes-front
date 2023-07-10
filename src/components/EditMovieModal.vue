@@ -6,7 +6,7 @@
       <header
         class="p-5 relative flex justify-center items-center text-xl border-b border-darkGray pb-3"
       >
-        <h1>Edit movie</h1>
+        <h1>{{ $t('landing.movie_description.edit_movie') }}</h1>
         <button
           class="flex justify-start absolute right-5 top-5"
           @click="modal.toggleModal('null', false)"
@@ -16,7 +16,7 @@
       </header>
       <div class="mt-4 mb-6 px-6">
         <div class="flex items-center gap-3">
-          <profile-icon :path="`${imagePath}${authUser?.data?.image}`"></profile-icon>
+          <profile-icon :authUser="true"></profile-icon>
           <h1 class="text-[20px]">{{ authUser?.data?.name }}</h1>
         </div>
       </div>
@@ -28,6 +28,7 @@
           @update:modelValue="(newValue) => (state.title_en = newValue)"
           placeholder="Movie name"
           rules="required|englishWords"
+          language="en"
         />
         <EditTextInput
           name="title_ka"
@@ -36,6 +37,7 @@
           @update:modelValue="(newValue) => (state.title_ka = newValue)"
           placeholder="ფილმის სახელი"
           rules="required|georgianWords"
+          language="ka"
         />
         <div
           class="flex flex-col gap-2 border p-2 rounded-md relative"
@@ -49,16 +51,22 @@
             <li
               v-for="(genre, index) in state.choosenGenres"
               :key="index"
-              class="list-none py-1 px-2 rounded-md bg-mediumGray flex gap-2 items-center"
+              class="list-none py-1 px-2 rounded bg-mediumGray flex gap-1 items-center"
             >
-              <span>
+              <span class="text-sm">
                 {{ genre?.name?.[$i18n.locale] }}
               </span>
               <span class="flex justify-start cursor-pointer" @click="handleGenreDelere(genre)">
-                <icon-close alt="delete" class="inline-block w-3"></icon-close>
+                <icon-close alt="delete" class="inline-block w-2"></icon-close>
               </span>
             </li>
           </ul>
+          <div
+            class="text-sm md-text-md cursor-pointer bg-black pl-5 rounded"
+            @click="toggleDropdown"
+          >
+            {{ $t('news_feed.write_quote.choose_movie') }}
+          </div>
           <Field
             :rules="state.genresValidator"
             name="genres"
@@ -67,25 +75,28 @@
             id="genres"
             as="select"
             multiple
-            class="w-full bg-black rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none"
+            class="w-full bg-black rounded overflow-hidden pl-5 focus:outline-none text-sm"
+            :class="{ 'h-0': !state.showDropDown, 'h-auto': state.showDropDown }"
           >
-            <option value="" disabled>
-              {{ $t('news_feed.write_quote.choose_movie') }}
-            </option>
             <option
               v-for="(genre, index) in state.genres"
               :key="index"
               :value="genre"
-              class="text-white"
+              class="text-white cursor-pointer"
             >
               {{ genre?.name?.[$i18n.locale] }}
             </option>
           </Field>
           <ErrorMessage
             name="genres"
-            class="text-darkRed text-xs sm:text-sm top-[80px] sm:bottom-[-15px] left-2 absolute"
+            class="text-darkRed text-xs sm:text-sm left-2 absolute"
+            :class="{
+              'sm:top-[3rem] top-[3.5rem]': !state.showDropDown,
+              'sm:top-[8rem] top-[8rem]': state.showDropDown
+            }"
           />
         </div>
+
         <EditTextInput
           name="director_en"
           :errors="errors.director_en"
@@ -93,6 +104,7 @@
           @update:modelValue="(newValue) => (state.director_en = newValue)"
           placeholder="Director"
           rules="required|englishWords"
+          language="en"
         />
         <EditTextInput
           name="director_ka"
@@ -101,6 +113,7 @@
           @update:modelValue="(newValue) => (state.director_ka = newValue)"
           placeholder="რეჟისორი"
           rules="required|georgianWords"
+          language="ka"
         />
         <EditTextarea
           name="description_en"
@@ -109,6 +122,7 @@
           @update:modelValue="(newValue) => (state.description_en = newValue)"
           placeholder="Movie Descrioption"
           rules="required|englishWords"
+          language="en"
         />
         <EditTextarea
           name="description_ka"
@@ -117,15 +131,9 @@
           @update:modelValue="(newValue) => (state.description_ka = newValue)"
           placeholder="ფილმის აღწერა"
           rules="required|georgianWords"
+          language="ka"
         />
-        <EditTextInput
-          name="year"
-          :errors="errors.year"
-          v-model="state.year"
-          @update:modelValue="(newValue) => (state.year = newValue)"
-          placeholder="წელი/year"
-          rules="required|year"
-        />
+
         <div
           class="sm:w-full bg-transparent border rounded h-[10rem]"
           :class="{
@@ -135,30 +143,37 @@
           }"
         >
           <div
-            class="sm:w-full cursor-pointer h-full flex justify-start gap-5 ml-5 items-center"
+            class="sm:w-full cursor-pointer h-full flex justify-center gap-1 items-center sm:gap-10"
             @dragover="dragOver"
             @drop="drop"
           >
-            <div class="h-full m-3 flex items-center">
-              <img :src="state.displayImage || state.uploadedImage" alt="quote" class="h-2/3" />
+            <div class="h-full m-2 flex items-center sm:w-[15rem]">
+              <img
+                :src="state.displayImage || state.uploadedImage"
+                alt="quote"
+                class="h-2/3 w-full outline-dashed outline-1"
+              />
             </div>
-            <h3 class="hidden sm:inline">
-              {{ $t('news_feed.write_quote.drag_and_drop') }}
-            </h3>
-            <p class="inline sm:hidden text-[16px]">upload Image</p>
-            <Field
-              :rules="state.imageValidator"
-              id="file"
-              type="file"
-              name="image"
-              accept="image/*"
-              @change="uploadImageFile"
-              class="hidden"
-            />
+            <div class="flex flex-col items-center gap-4 sm:gap-5 text-xs sm:text-md">
+              <span>{{ $t('landing.movie_description.replace_photo') }}</span>
+              <h3 class="hidden sm:inline">
+                {{ $t('news_feed.write_quote.drag_and_drop') }}
+              </h3>
+              <Field
+                id="file"
+                type="file"
+                name="image"
+                accept="image/*"
+                @change="uploadImageFile"
+                class="hidden"
+              />
 
-            <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]">{{
-              $t('news_feed.write_quote.choose_file')
-            }}</label>
+              <label
+                for="file"
+                class="bg-mediumRed py-1 px-2 cursor-pointer text-sm sm:text-md rounded"
+                >{{ $t('news_feed.write_quote.choose_file') }}</label
+              >
+            </div>
           </div>
           <ErrorMessage
             name="image"
@@ -169,7 +184,7 @@
           class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4"
           @click="handleSubmit"
         >
-          {{ $t('news_feed.write_quote.post') }}
+          {{ $t('landing.movie_description.edit_movie') }}
         </button>
       </Form>
     </div>
@@ -206,10 +221,15 @@ const state = reactive({
   choosenGenre: null,
   choosenGenres: [],
   genres: [],
-  genresValidator: 'required',
+  genresValidator: '',
   displayImage: null,
-  newImage: null
+  newImage: null,
+  showDropDown: false
 })
+
+const toggleDropdown = () => {
+  state.showDropDown = !state.showDropDown
+}
 
 const dragOver = (event) => {
   event.preventDefault()
@@ -286,14 +306,13 @@ function handleGenres() {
   if (!isDuplicate) {
     state.choosenGenres.push(state.choosenGenre[0])
   }
-
-  console.log(state.choosenGenres)
 }
 
 function handleGenreDelere(e) {
   state.choosenGenres = state.choosenGenres.filter((item) => item !== e)
 
   if (state.choosenGenres.length < 1) {
+    state.genresValidator = 'required'
     state.choosenGenre = null
   }
 }
@@ -302,8 +321,6 @@ onMounted(async () => {
   const response = await getGentes()
 
   state.genres = response.data
-
-  console.log(state.genres)
 
   movie.data.genres.map((genre) => {
     state.choosenGenres.push({ ...genre })

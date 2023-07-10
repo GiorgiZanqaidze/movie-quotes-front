@@ -20,9 +20,9 @@
           </button>
         </div>
       </header>
-      <div class="p-5 text-white flex flex-col gap-9">
+      <div class="p-5 text-white flex flex-col gap-5">
         <div class="flex justify-start gap-2 items-center">
-          <ProfileIcon :path="`${imagePath}${quote.author.image}`" />
+          <ProfileIcon :path="profileIconUrl" />
           <p class="text-sm sm:text-md">{{ quote.author.name }}</p>
         </div>
         <div class="flex flex-col gap-2 text-sm">
@@ -67,14 +67,21 @@
             </div>
           </div>
         </div>
-        <ul class="max-h-[10rem] overflow-y-scroll">
+        <ul class="">
           <the-comment
-            v-for="(comment, index) in comments"
+            v-for="(comment, index) in quote.comments.filter(
+              (item, index) => index < commentsCount
+            )"
             :key="index"
             :text="comment.text"
             :author="comment.author"
           ></the-comment>
         </ul>
+        <div v-if="quote.comments.length > 2">
+          <button @click="showAllComments" class="hover:underline text-sm sm:text-base">
+            {{ $t('news_feed.show_comments') }}
+          </button>
+        </div>
         <PostComment :quote="quote" />
       </div>
     </div>
@@ -84,7 +91,7 @@
 <script setup>
 import { useModalStore } from '@/stores/modal'
 import { useSingleMovieStore } from '@/stores/singleMovie'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import imagePath from '@/config/images/path'
 import ProfileIcon from '@/components/ProfileIcon.vue'
 import PostComment from '@/components/PostComment.vue'
@@ -103,7 +110,7 @@ onMounted(() => {
   instantiatePusher()
 
   window.Echo.channel('comment').listen('PostComment', (data) => {
-    comments.value.push(data.comment)
+    comments.value.unshift(data.comment)
   })
 
   window.Echo.channel('like').listen('PostLike', (data) => {
@@ -114,6 +121,16 @@ onMounted(() => {
     likes.value.pop()
   })
 })
+
+let commentsCount = ref(2)
+
+const showAllComments = () => {
+  if (commentsCount.value === quote.comments.length) {
+    commentsCount.value = 2
+  } else {
+    commentsCount.value = quote.comments.length
+  }
+}
 
 const movie = useSingleMovieStore()
 
@@ -150,4 +167,12 @@ async function unlikePost() {
   await like.dislikeQuote(likeData)
   liked.value = false
 }
+
+const profileIconUrl = computed(() => {
+  if (quote.author.image) {
+    return `${imagePath}${quote.author.image}`
+  } else {
+    return '/default_profile.svg'
+  }
+})
 </script>

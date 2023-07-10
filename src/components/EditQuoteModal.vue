@@ -14,7 +14,7 @@
       </header>
       <div class="text-white p-5">
         <div class="flex items-center gap-2">
-          <profile-icon :path="`${imagePath}${authUser.data?.image}`"></profile-icon>
+          <profile-icon :path="profileIconUrl"></profile-icon>
           <h3>{{ authUser.data.name }}</h3>
         </div>
         <div>
@@ -52,7 +52,7 @@
                 class="hidden"
               />
               <div for="file relative">
-                <img :src="state.displayImage || state.uploadedImage" alt="quote" />
+                <img class="w-full" :src="state.displayImage || state.uploadedImage" alt="quote" />
                 <label for="file" class="absolute top-1/2 left-1/2 cursor-pointer opacity-90">
                   <div
                     class="flex flex-col gap-3 bg-slate-800 rounded-md p-3 translate-x-[-50%] translate-y-[50%]"
@@ -84,7 +84,7 @@ import { useSingleMovieStore } from '@/stores/singleMovie'
 import { userStore } from '@/stores/user'
 import imagePath from '@/config/images/path'
 import TheTextarea from '@/components/TheTextarea.vue'
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { Form, Field } from 'vee-validate'
 import { useModalStore } from '@/stores/modal'
 import IconDragAndDrop from '@/components/icons/IconDragAndDrop.vue'
@@ -97,6 +97,8 @@ const authUser = userStore()
 const singleMovieStore = useSingleMovieStore()
 
 const currentQuote = singleMovieStore.getCurrentQuote
+
+console.log(currentQuote)
 
 const state = reactive({
   uploadedImage: `${imagePath}${currentQuote.image}`,
@@ -151,4 +153,12 @@ async function handleEdit() {
 const deleteQuote = () => {
   modal.toggleModal('null', false)
 }
+
+const profileIconUrl = computed(() => {
+  if (currentQuote.author.image) {
+    return `${imagePath}${currentQuote.author.image}`
+  } else {
+    return '/default_profile.svg'
+  }
+})
 </script>

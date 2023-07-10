@@ -8,7 +8,7 @@
         </a>
       </header>
       <div class="bg-mediumDark sm:bg-darkBlack mt-[4rem] rounded-md pb-20">
-        <div class="flex justify-center" @submit.prevent="handleAvatar">
+        <div class="flex justify-center">
           <div class="sm:translate-y-[-50%] flex flex-col items-center my-6 sm:my-0">
             <img
               :src="state.displayImage ?? imageUrl"
@@ -30,7 +30,7 @@
             </label>
           </div>
         </div>
-        <Form @submit="handleSubmit" class="pb-4" v-slot="{ errors }">
+        <Form @submit="handleSubmit" class="pb-4" v-slot="{ errors, values }">
           <div class="w-full px-4 sm:w-2/3 mx-auto">
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-4">
@@ -133,7 +133,7 @@
                           v-model="state.newPassword"
                           @update:modelValue="(newValue) => (state.password = newValue)"
                           :placeholder="$t('landing.my_profile.new_password')"
-                          rules="required|lowerCase"
+                          rules="required|min:8|max:15|alpha"
                           :updateUser="true"
                         />
                       </div>
@@ -154,17 +154,23 @@
                           :updateUser="true"
                         />
                       </div>
-                      <div class="items-center flex gap-20 mt-3 bottom-[-3rem] absolute sm:hidden">
+                      <div
+                        class="items-center flex gap-20 mt-3 bottom-[-3rem] absolute sm:hidden left-1/2 translate-x-[-50%]"
+                      >
                         <span @click="cancellConfirm">{{ $t('landing.my_profile.cancell') }}</span>
                         <label
-                          v-if="!errors.password && !errors.password_confirmation"
+                          v-if="
+                            !errors.password &&
+                            !errors.password_confirmation &&
+                            values.password &&
+                            values.password_confirmation
+                          "
                           @click="showConfirmModal"
                           class="bg-darkRed rounded-md text-[20px] py-2 px-1 cursor-pointer"
-                          >{{ $t('landing.my_profile.save_changes')
-                          }}{{ errors.password_confirmation }}</label
+                          >{{ $t('landing.my_profile.save_changes') }}</label
                         >
                         <label
-                          v-if="errors.password || errors.password_confirmation"
+                          v-else
                           class="bg-darkRed rounded-md text-[20px] py-2 px-1 cursor-pointer"
                           >{{ $t('landing.my_profile.save_changes') }}</label
                         >
@@ -173,23 +179,30 @@
                   </div>
                 </div>
               </div>
-              <div v-if="!authUser?.data?.google_id">
-                <div class="flex flex-col gap-2 text-sm sm:text-base">
+              <div>
+                <div
+                  class="flex flex-col gap-2 text-sm sm:text-base"
+                  :class="{ 'sm:mr-10': authUser?.data?.google_id }"
+                >
                   <p>{{ $t('landing.my_profile.email') }}</p>
+
                   <div class="flex items-center gap-2">
                     <div
                       class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
                     >
-                      <h3 class="h-full flex items-center ml-3">{{ state.email }}</h3>
+                      <h3 class="h-full flex items-center ml-3">{{ authUser.data.email }}</h3>
                     </div>
-                    <span class="cursor-pointer" @click="addEmailDiv">{{
-                      $t('landing.my_profile.edit')
-                    }}</span>
+                    <span
+                      class="cursor-pointer"
+                      v-if="!authUser?.data?.google_id"
+                      @click="addEmailDiv"
+                      >{{ $t('landing.my_profile.edit') }}</span
+                    >
                   </div>
                 </div>
                 <div
                   class="absolute sm:static top-14 left-0 right-0 bottom-0 sm:block sm:bg-transparent bg-black h-[50rem] sm:h-auto"
-                  v-if="state.showEmailDiv"
+                  v-if="state.showEmailDiv && !authUser?.data?.google_id"
                 >
                   <div class="block sm:hidden">
                     <icon-back-arrow
@@ -261,7 +274,11 @@
         }}</label>
       </div>
     </div>
-    <div class="fixed top-0 bottom-0 left-0 right-0" v-if="state.changesUpdated">
+    <div
+      class="fixed top-0 bottom-0 left-0 right-0"
+      @click="closeChangesModal"
+      v-if="state.changesUpdated"
+    >
       <div
         class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] p-5 flex text-xs sm:text-base w-[15rem] sm:w-[20rem] justify-between rounded-md"
       >
@@ -290,7 +307,14 @@ import IconGrayClose from '@/components/icons/IconGrayClose.vue'
 import IconConfirmed from '@/components/icons/IconConfirmed.vue'
 
 const authUser = userStore()
-const imageUrl = computed(() => `${imagePath}${authUser.data.image}`)
+
+const imageUrl = computed(() => {
+  if (authUser.data.image) {
+    return `${imagePath}${authUser.data.image}`
+  } else {
+    return '/default_profile.svg'
+  }
+})
 
 const state = reactive({
   uploadedImage: null,
@@ -299,13 +323,13 @@ const state = reactive({
   showUsernameDiv: null,
   showPasswordDiv: null,
   username: authUser.data.name,
-  newUserName: null,
-  newPassword: null,
+  oldUsername: authUser.data.name,
+  password: null,
+  oldPassword: null,
   newPasswordConfirmation: null,
-  showPassword: null,
-  showPasswordConfirm: null,
   confirmModal: false,
   email: authUser.data.email,
+  oldEmail: authUser.data.email,
   showEmailDiv: false,
   changesUpdated: false,
   password_confirmation: ''
@@ -370,12 +394,19 @@ const handleSubmit = async () => {
     password_confirmation: state.newPasswordConfirmation,
     email: state.email
   }
-  const response = await updateUser(authUser.data.id, data)
 
-  if (response.status === 200) {
-    cancellAddDiv()
-    state.changesUpdated = true
-    authUser.setUserData(response.data)
+  if (
+    state.oldEmail !== state.email ||
+    state.password !== state.oldPassword ||
+    state.username !== state.oldUsername
+  ) {
+    const response = await updateUser(authUser.data.id, data)
+
+    if (response.status === 200) {
+      cancellAddDiv()
+      state.changesUpdated = true
+      authUser.setUserData(response.data)
+    }
   }
 }
 
@@ -405,6 +436,7 @@ onMounted(async () => {
     const email = { email: route.query.update_email }
     const token = route.query.email_verify_token
     await updateEmail(token, email)
+    state.email = route.query.update_email
   }
 })
 

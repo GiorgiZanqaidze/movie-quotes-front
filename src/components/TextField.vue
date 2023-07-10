@@ -11,7 +11,7 @@
     </label>
     <Field
       :rules="props.rules"
-      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md pr-16"
+      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md pr-10 sm:pr-16"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors || props.backEndErrors,
@@ -24,7 +24,7 @@
       type="text"
       :name="props.name"
       :value="props.modelValue"
-      @blur="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage
       v-if="!backEndErrors"
@@ -36,7 +36,10 @@
       class="text-darkRed text-[14px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
       >{{ props.backEndErrors }}</span
     >
-    <div class="absolute right-6 top-3" :class="{ 'right-12': lang, 'top-8': props.signUp }">
+    <div
+      class="absolute right-6 top-3"
+      :class="{ 'sm:right-[2.5rem] right-[3rem]': lang, 'top-8': props.signUp }"
+    >
       <icon-valid
         v-if="props.modelValue && !props.errors && !props.backEndErrors"
         alt="valid"
