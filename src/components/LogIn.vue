@@ -50,7 +50,7 @@
         />
         <span
           @click="modal.toggleModal('forgotPassword', true)"
-          class="text-mediumBlue underline text-xs sm:text-md"
+          class="text-mediumBlue underline text-xs sm:text-md cursor-pointer"
         >
           {{ $t('modals.login.forgot_password') }}
         </span>

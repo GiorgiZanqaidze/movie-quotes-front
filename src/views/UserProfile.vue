@@ -34,17 +34,20 @@
           <div class="w-full px-4 sm:w-2/3 mx-auto">
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-4">
-                <div class="flex flex-col gap-2 text-sm sm:text-base">
+                <div class="flex flex-col gap-2 text-sm sm:text-lg">
                   <p>{{ $t('landing.my_profile.username') }}</p>
                   <div class="flex items-center gap-2">
                     <div
-                      class="text-mediumGray sm:bg-lightDark border-b sm:border w-full rounded h-10 overflow-hidden"
+                      class="text-mediumGray sm:bg-lightDark border-b sm:border w-full rounded h-10 overflow-hidden sm:w-[90%]"
                     >
                       <h3 class="h-full flex items-center ml-3">{{ authUser.data.name }}</h3>
                     </div>
-                    <span class="cursor-pointer" @click="addUsernameDiv">{{
-                      $t('landing.my_profile.edit')
-                    }}</span>
+                    <span
+                      v-if="!state.showUsernameDiv"
+                      class="cursor-pointer"
+                      @click="addUsernameDiv"
+                      >{{ $t('landing.my_profile.edit') }}</span
+                    >
                   </div>
                 </div>
                 <div
@@ -59,7 +62,7 @@
                     ></icon-back-arrow>
                   </div>
                   <div
-                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-[90%] px-10 sm:px-0 py-5"
                   >
                     <label for="name">{{ $t('landing.my_profile.new_username') }}</label>
                     <TextField
@@ -91,17 +94,20 @@
                 </div>
               </div>
               <div class="flex flex-col gap-4" v-if="!authUser?.data?.google_id">
-                <div class="flex flex-col gap-2 text-sm sm:text-base">
+                <div class="flex flex-col gap-2 text-sm sm:text-lg">
                   <p>{{ $t('landing.my_profile.password') }}</p>
                   <div class="flex items-center gap-2">
                     <div
-                      class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
+                      class="text-mediumGray sm:bg-lightDark border-b sm:border w-full rounded h-10 overflow-hidden sm:w-[90%]"
                     >
                       <h3 class="h-full flex items-center ml-3">*************</h3>
                     </div>
-                    <span class="cursor-pointer" @click="addPasswordDiv">{{
-                      $t('landing.my_profile.edit')
-                    }}</span>
+                    <span
+                      class="cursor-pointer"
+                      v-if="!state.showPasswordDiv"
+                      @click="addPasswordDiv"
+                      >{{ $t('landing.my_profile.edit') }}</span
+                    >
                   </div>
                 </div>
                 <div
@@ -115,7 +121,7 @@
                     ></icon-back-arrow>
                   </div>
                   <div
-                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[15rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[15rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full px-10 sm:px-0 py-5 sm:w-[90%]"
                   >
                     <div class="gap-4">
                       <div class="w-full border p-4 flex flex-col gap-3 rounded border-mediumGray">
@@ -155,7 +161,7 @@
                         />
                       </div>
                       <div
-                        class="items-center flex gap-20 mt-3 bottom-[-3rem] absolute sm:hidden left-1/2 translate-x-[-50%]"
+                        class="items-center flex gap-14 mt-3 bottom-[-3rem] absolute sm:hidden left-1/2 translate-x-[-50%]"
                       >
                         <span @click="cancellConfirm">{{ $t('landing.my_profile.cancell') }}</span>
                         <label
@@ -166,12 +172,12 @@
                             values.password_confirmation
                           "
                           @click="showConfirmModal"
-                          class="bg-darkRed rounded-md text-base py-2 px-1 cursor-pointer"
+                          class="bg-darkRed rounded-md text-base py-2 px-3 cursor-pointer whitespace-nowrap"
                           >{{ $t('landing.my_profile.save_changes') }}</label
                         >
                         <label
                           v-else
-                          class="bg-darkRed rounded-md text-base py-2 px-1 cursor-pointer"
+                          class="bg-darkRed rounded-md text-base py-2 px-3 cursor-pointer whitespace-nowrap"
                           >{{ $t('landing.my_profile.save_changes') }}</label
                         >
                       </div>
@@ -181,20 +187,22 @@
               </div>
               <div>
                 <div
-                  class="flex flex-col gap-2 text-sm sm:text-base"
+                  class="flex flex-col gap-2 text-sm sm:text-lg"
                   :class="{ 'sm:mr-10': authUser?.data?.google_id }"
                 >
                   <p>{{ $t('landing.my_profile.email') }}</p>
 
                   <div class="flex items-center gap-2">
                     <div
-                      class="text-mediumGray border-b sm:border w-full rounded h-10 overflow-hidden sm:bg-lightDark"
+                      class="text-mediumGray border-b sm:border w-full sm:w-[90%] rounded h-10 overflow-hidden sm:bg-lightDark"
                     >
-                      <h3 class="h-full flex items-center ml-3">{{ authUser.data.email }}</h3>
+                      <h3 class="h-full sm:w-[90%] flex items-center ml-3">
+                        {{ authUser.data.email }}
+                      </h3>
                     </div>
                     <span
                       class="cursor-pointer"
-                      v-if="!authUser?.data?.google_id"
+                      v-if="!authUser?.data?.google_id && !state.showEmailDiv"
                       @click="addEmailDiv"
                       >{{ $t('landing.my_profile.edit') }}</span
                     >
@@ -211,7 +219,7 @@
                     ></icon-back-arrow>
                   </div>
                   <div
-                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-auto px-10 sm:px-0 py-5"
+                    class="absolute sm:static sm:block flex flex-col gap-2 mr-9 bg-darkGray rounded-md top-[10rem] left-1/2 sm:translate-x-0 translate-x-[-50%] sm:translate-y-0 translate-y-[-50%] sm:bg-transparent w-full sm:w-[90%] px-10 sm:px-0 py-5"
                   >
                     <label for="email">{{ $t('landing.my_profile.new_email') }}</label>
                     <TextField
@@ -243,11 +251,11 @@
             v-if="state.confirmModal"
           >
             <div
-              class="mx-auto bg-gradient-to-br from-black to-mediumGray w-3/4 mt-20 rounded-md h-[15rem] flex justify-center"
+              class="mx-auto bg-gradient-to-br from-darkBlack to-gray w-4/5 mt-20 rounded-md h-[15rem] flex justify-center"
             >
-              <div class="flex flex-col items-center justify-center pb-10 gap-16">
+              <div class="flex flex-col justify-between gap-16 items-center mt-20 mb-5 w-full">
                 <div>{{ $t('landing.my_profile.make_changes') }}</div>
-                <div class="flex gap-5">
+                <div class="flex gap-5 border-t-[0.3px] pt-5 w-full justify-between px-2">
                   <span class="text-base py-2 px-3" @click="showConfirmModal">{{
                     $t('landing.my_profile.cancell')
                   }}</span>
@@ -281,13 +289,14 @@
       class="fixed top-0 bottom-0 left-0 right-0"
       @click="closeChangesModal"
       v-if="state.changesUpdated"
+      style="background: rgba(0, 0, 0, 0.54); backdrop-filter: blur(1px)"
     >
       <div
         class="absolute top-1/3 left-1/2 bg-cyan border translate-x-[-50%] translate-y-[-50%] p-5 flex text-xs sm:text-base w-[15rem] sm:w-[20rem] justify-between rounded-md"
       >
         <div class="flex justify-start gap-2">
           <icon-confirmed></icon-confirmed>
-          <h1 class="text-green-500">{{ $t('landing.my_profile.changes_updated') }}</h1>
+          <h1 class="text-darkGreen">{{ $t('landing.my_profile.changes_updated') }}</h1>
         </div>
         <icon-gray-close @click="closeChangesModal" class="cursor-pointer"></icon-gray-close>
       </div>

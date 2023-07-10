@@ -28,7 +28,8 @@ module.exports = {
         lightBlue: '#198754',
         lightBlack: '#12101A',
         cyan: '#D1E7DD',
-        lightGray: '#D9D9D9'
+        lightGray: '#D9D9D9',
+        darkGreen: '#0F5132'
       },
       backgroundImage: {
         interstelar: "url('/src/assets/images/landing_image_1.png')",

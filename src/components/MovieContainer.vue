@@ -23,7 +23,7 @@
           class="rounded-md"
           :class="{
             'sm:w-full w-[5rem]': quoteModal,
-            'sm:w-full w-[30rem] sm:max-h-[30rem] max-h-[10rem] rounded-md': !quoteModal
+            'sm:w-full w-[30rem] sm:max-h-[25rem] max-h-[10rem] rounded-md': !quoteModal
           }"
         />
       </div>

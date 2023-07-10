@@ -26,9 +26,10 @@
       :value="props.modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />
-    <div class="absolute top-1/2 right-2" :class="{ 'top-10': props.signUp }">
+    <div class="absolute right-2 sm:top-4" :class="{ 'sm:top-10 top-10': props.signUp }">
       <div @click="togglePassword" class="cursor-pointer">
-        <icon-show-password alt="show"></icon-show-password>
+        <icon-show-password v-if="showPassword" alt="show"></icon-show-password>
+        <icon-visible v-else class="w-3" alt="close"></icon-visible>
       </div>
     </div>
     <ErrorMessage
@@ -57,6 +58,7 @@ import IconStarRequired from '@/components/icons/IconStarRequired.vue'
 import IconShowPassword from '@/components/icons/IconShowPassword.vue'
 import IconValid from '@/components/icons/IconValid.vue'
 import IconInvalid from '@/components/icons/IconInvalid.vue'
+import IconVisible from '@/components/icons/IconVisible.vue'
 
 const props = defineProps({
   name: {
