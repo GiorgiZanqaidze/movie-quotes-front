@@ -52,7 +52,7 @@
                 class="hidden"
               />
               <div for="file relative">
-                <img :src="state.displayImage || state.uploadedImage" alt="quote" />
+                <img class="w-full" :src="state.displayImage || state.uploadedImage" alt="quote" />
                 <label for="file" class="absolute top-1/2 left-1/2 cursor-pointer opacity-90">
                   <div
                     class="flex flex-col gap-3 bg-slate-800 rounded-md p-3 translate-x-[-50%] translate-y-[50%]"
