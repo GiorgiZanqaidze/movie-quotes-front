@@ -39,7 +39,9 @@
     "delete": "Delete",
     "view_quote": "View Quote",
     "edit_quote": "Edit Quote",
-    "change_photo": "Change photo"
+    "change_photo": "Change photo",
+    "replace_photo": "REPLACE PHOTO",
+    "edit_movie": "Edit Movie"
   },
   "my_profile": {
     "title": "My Profile",

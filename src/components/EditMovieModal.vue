@@ -6,7 +6,7 @@
       <header
         class="p-5 relative flex justify-center items-center text-xl border-b border-darkGray pb-3"
       >
-        <h1>Edit movie</h1>
+        <h1>{{ $t('landing.movie_description.edit_movie') }}</h1>
         <button
           class="flex justify-start absolute right-5 top-5"
           @click="modal.toggleModal('null', false)"
@@ -143,29 +143,37 @@
           }"
         >
           <div
-            class="sm:w-full cursor-pointer h-full flex justify-start gap-5 ml-5 items-center"
+            class="sm:w-full cursor-pointer h-full flex justify-center gap-1 items-center sm:gap-10"
             @dragover="dragOver"
             @drop="drop"
           >
-            <div class="h-full m-3 flex items-center">
-              <img :src="state.displayImage || state.uploadedImage" alt="quote" class="h-2/3" />
+            <div class="h-full m-2 flex items-center sm:w-[15rem]">
+              <img
+                :src="state.displayImage || state.uploadedImage"
+                alt="quote"
+                class="h-2/3 w-full outline-dashed outline-1"
+              />
             </div>
-            <h3 class="hidden sm:inline">
-              {{ $t('news_feed.write_quote.drag_and_drop') }}
-            </h3>
-            <p class="inline sm:hidden text-[16px]">upload Image</p>
-            <Field
-              id="file"
-              type="file"
-              name="image"
-              accept="image/*"
-              @change="uploadImageFile"
-              class="hidden"
-            />
+            <div class="flex flex-col items-center gap-4 sm:gap-5 text-xs sm:text-md">
+              <span>{{ $t('landing.movie_description.replace_photo') }}</span>
+              <h3 class="hidden sm:inline">
+                {{ $t('news_feed.write_quote.drag_and_drop') }}
+              </h3>
+              <Field
+                id="file"
+                type="file"
+                name="image"
+                accept="image/*"
+                @change="uploadImageFile"
+                class="hidden"
+              />
 
-            <label for="file" class="bg-mediumRed py-1 px-2 cursor-pointer text-[20px]">{{
-              $t('news_feed.write_quote.choose_file')
-            }}</label>
+              <label
+                for="file"
+                class="bg-mediumRed py-1 px-2 cursor-pointer text-sm sm:text-md rounded"
+                >{{ $t('news_feed.write_quote.choose_file') }}</label
+              >
+            </div>
           </div>
           <ErrorMessage
             name="image"
@@ -176,7 +184,7 @@
           class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4"
           @click="handleSubmit"
         >
-          {{ $t('news_feed.write_quote.post') }}
+          {{ $t('landing.movie_description.edit_movie') }}
         </button>
       </Form>
     </div>

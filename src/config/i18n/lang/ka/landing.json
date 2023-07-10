@@ -39,7 +39,9 @@
     "delete": "წაშლა",
     "view_quote": "ციტატა",
     "edit_quote": "ციტატის ცვლილება",
-    "change_photo": "ფოტოს შეცვლა"
+    "change_photo": "ფოტოს შეცვლა",
+    "replace_photo": "ფოტოს შეცვლა",
+    "edit_movie": "ფილმის ცვლილება"
   },
   "my_profile": {
     "title": "ჩემი პროფილი",

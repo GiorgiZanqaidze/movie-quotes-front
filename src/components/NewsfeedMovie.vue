@@ -87,10 +87,10 @@ onMounted(async () => {
 let commentsCount = ref(2)
 
 const showAllComments = () => {
-  if (commentsCount.value === props.quote.comments.length - 1) {
+  if (commentsCount.value === props.quote.comments.length) {
     commentsCount.value = 2
   } else {
-    commentsCount.value = props.quote.comments.length - 1
+    commentsCount.value = props.quote.comments.length
   }
 }
 
