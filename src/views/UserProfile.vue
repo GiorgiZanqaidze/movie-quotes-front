@@ -1,13 +1,13 @@
 <template>
-  <div class="text-white bg-darkBlack sm:bg-mediumDark min-h-screen pb-10">
+  <div class="text-white bg-darkBlack sm:bg-mediumDark min-h-screen pb-10 sm:pt-5">
     <div class="mx-auto my-0 sm:w-[50rem] pt-[1rem]">
       <header class="text-xl pl-4">
-        <h1 class="hidden sm:inline">{{ $t('landing.my_profile.title') }}</h1>
+        <h1 class="hidden sm:inline-block ml-10">{{ $t('landing.my_profile.title') }}</h1>
         <a href="/news-feed" class="inline-block sm:hidden">
           <icon-back-arrow alt="arrow" class="w-5 ml-5 mt-5 cursor-pointer"></icon-back-arrow>
         </a>
       </header>
-      <div class="bg-mediumDark sm:bg-darkBlack mt-[2rem] sm:mt-[4rem] rounded-md pb-20">
+      <div class="bg-mediumDark sm:bg-darkBlack mt-[2rem] sm:mt-[7rem] rounded-md pb-20">
         <div class="flex justify-center">
           <div class="sm:translate-y-[-50%] flex flex-col items-center my-6 sm:my-0">
             <img
@@ -25,7 +25,7 @@
               @change="handleAvatar"
             />
 
-            <label for="file" class="py-1 px-2 cursor-pointer text-[20px] text-center">
+            <label for="file" class="py-1 px-2 cursor-pointer text-base text-center">
               {{ $t('landing.my_profile.upload_photo') }}
             </label>
           </div>
@@ -79,12 +79,12 @@
                     <label
                       v-if="!errors.name"
                       @click="showConfirmModal"
-                      class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                      class="bg-darkRed rounded-md text-base py-2 px-3 cursor-pointer"
                       >{{ $t('landing.my_profile.save_changes') }}</label
                     >
                     <label
                       v-if="errors.name"
-                      class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                      class="bg-darkRed rounded-md text-base py-2 px-3 cursor-pointer"
                       >{{ $t('landing.my_profile.save_changes') }}</label
                     >
                   </div>
@@ -166,12 +166,12 @@
                             values.password_confirmation
                           "
                           @click="showConfirmModal"
-                          class="bg-darkRed rounded-md text-[20px] py-2 px-1 cursor-pointer"
+                          class="bg-darkRed rounded-md text-base py-2 px-1 cursor-pointer"
                           >{{ $t('landing.my_profile.save_changes') }}</label
                         >
                         <label
                           v-else
-                          class="bg-darkRed rounded-md text-[20px] py-2 px-1 cursor-pointer"
+                          class="bg-darkRed rounded-md text-base py-2 px-1 cursor-pointer"
                           >{{ $t('landing.my_profile.save_changes') }}</label
                         >
                       </div>
@@ -230,7 +230,7 @@
                     <span @click="closeEmailDiv">{{ $t('landing.my_profile.cancell') }}</span>
                     <label
                       @click="showConfirmModal"
-                      class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                      class="bg-darkRed rounded-md text-base py-2 px-3 cursor-pointer"
                       >{{ $t('landing.my_profile.save_changes') }}</label
                     >
                   </div>
@@ -248,13 +248,13 @@
               <div class="flex flex-col items-center justify-center pb-10 gap-16">
                 <div>{{ $t('landing.my_profile.make_changes') }}</div>
                 <div class="flex gap-5">
-                  <span class="text-[20px] py-2 px-3" @click="showConfirmModal">{{
+                  <span class="text-base py-2 px-3" @click="showConfirmModal">{{
                     $t('landing.my_profile.cancell')
                   }}</span>
                   <button
                     @click="confirmData"
                     type="submit"
-                    class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer"
+                    class="bg-darkRed rounded-md text-base py-2 px-3 cursor-pointer"
                   >
                     {{ $t('landing.my_profile.confirm') }}
                   </button>
@@ -265,11 +265,14 @@
           <input id="submit" type="submit" name="submit" class="hidden" />
         </Form>
       </div>
-      <div class="hidden justify-end items-center gap-2 mt-3 sm:flex">
+      <div
+        class="hidden justify-end items-center gap-2 mt-3 sm:flex"
+        v-if="state.showUsernameDiv || state.showPasswordDiv || state.showEmailDiv"
+      >
         <span class="cursor-pointer" @click="cancellAddDiv">{{
           $t('landing.my_profile.cancell')
         }}</span>
-        <label for="submit" class="bg-darkRed rounded-md text-[20px] py-2 px-3 cursor-pointer">{{
+        <label for="submit" class="bg-darkRed rounded-md text-base py-2 px-3 cursor-pointer">{{
           $t('landing.my_profile.save_changes')
         }}</label>
       </div>

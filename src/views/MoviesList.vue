@@ -2,11 +2,11 @@
   <div class="text-white bg-mediumDark min-h-screen flex justify-end sm:pr-10">
     <div class="w-[70rem] sm:w-3/4">
       <div
-        class="h-20 flex sm:justify-between justify-between items-center mb-0 sm:mb-4 gap-0 sm:gap-10 sm:w-auto w-[300px] mx-auto"
+        class="h-20 flex sm:justify-between justify-between items-center mb-0 sm:mb-4 gap-0 sm:gap-10 sm:w-auto w-[18rem] mx-auto"
       >
-        <h1>
+        <h1 class="text-md sm:text-xl">
           {{ $t('landing.my_movies.my_list') }}
-          <span class="block sm:inline text-xs sm:text-md"
+          <span class="block sm:inline text-xs sm:text-base"
             >({{ $t('landing.my_movies.total') }} {{ movies.data?.length }})</span
           >
         </h1>
@@ -21,7 +21,7 @@
               @blur="closeInput"
               type="text"
               name="search_movie"
-              class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none"
+              class="h-full pl-10 w-full rounded-md bg-transparent text-lightDark focus:outline-none"
               :placeholder="$t('landing.my_movies.search')"
               v-model="state.searchValue"
             />
@@ -31,7 +31,7 @@
             ></icon-search>
           </form>
           <button
-            class="py-2 px-3 rounded bg-darkRed flex justify-center items-center gap-1 sm:gap-2 text-xs sm:text-md"
+            class="py-2 px-3 rounded bg-darkRed flex justify-center items-center gap-1 sm:gap-2 text-xs sm:text-base"
             @click="modal.toggleModal('addMovieModal', true)"
           >
             <icon-add-movie alt="add_movie" class="inline-block"></icon-add-movie>
@@ -41,23 +41,20 @@
       </div>
       <div class="grid sm:grid-cols-3 gap-4 place-items-center">
         <div
-          class="sm:w-full w-[300px] sm:h-[370px] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
+          class="sm:w-full w-[18rem] sm:h-[22rem] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
           v-for="(movie, index) in movies.data"
           :key="index"
           @click="handleRoute(movie.id)"
         >
-          <div class="flex justify-center">
-            <img
-              :src="`${imagePath}${movie.image}`"
-              alt="movie"
-              class="w-full sm:max-h-[250px] max-h-[200px] rounded-md"
-            />
+          <div
+            class="flex justify-center w-full sm:max-h-[22rem] max-h-[12rem] rounded-md overflow-hidden"
+          >
+            <img :src="`${imagePath}${movie.image}`" alt="movie" class="w-full h-full" />
           </div>
           <h3 class="text-md sm:text-md">{{ movie?.title?.[$i18n.locale] }} ({{ movie.year }})</h3>
           <p class="text-sm sm:text-md">
             {{ movie?.quotes?.length || 0 }}
-
-            <icon-quote alt="quotes" class="inline-block ml-2 w-5 sm:w-[32px]"></icon-quote>
+            <icon-quote alt="quotes" class="inline-block ml-2 w-5 sm:w-[2rem]"></icon-quote>
           </p>
         </div>
       </div>
