@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute top-1/2 left-1/2 bg-darkBlack sm:w-[961px] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white"
+    class="absolute top-1/2 left-1/2 bg-darkBlack sm:w-[50rem] translate-x-[-50%] translate-y-[-50%] pb-5 rounded-md w-full text-white"
     :class="{ 'top-[20rem] sm:top-1/2': addQuoteModal }"
   >
     <header class="p-5 relative border-b-2 border-darkGray">
@@ -40,7 +40,7 @@
       />
 
       <div
-        class="sm:w-full bg-transparent border rounded h-[86px] relative"
+        class="sm:w-full bg-transparent border rounded h-[4rem] relative"
         :class="{
           'border-darkRed': errors.image,
           'border-green-500': state.uploadedImage && !errors.image,
@@ -48,7 +48,7 @@
         }"
       >
         <div
-          class="sm:w-full cursor-pointer h-full flex justify-start gap-5 ml-5 items-center"
+          class="sm:w-full cursor-pointer h-full flex justify-start gap-2 sm:gap-5 ml-5 items-center"
           @dragover="dragOver"
           @drop="drop"
         >
@@ -58,7 +58,7 @@
           <h3 class="hidden sm:inline">
             {{ $t('news_feed.write_quote.drag_and_drop') }}
           </h3>
-          <p class="inline sm:hidden text-[16px]">upload Image</p>
+          <p class="inline sm:hidden text-xs">{{ $t('landing.my_movies.upload_image') }}</p>
           <Field
             :rules="state.imageValidator"
             id="file"
@@ -71,7 +71,7 @@
 
           <label
             for="file"
-            class="bg-mediumRed py-1 px-2 cursor-pointer text-[11px] sm:text-[20px]"
+            class="bg-mediumRed py-1 px-2 cursor-pointer text-[11px] sm:text-base rounded"
             >{{ $t('news_feed.write_quote.choose_file') }}</label
           >
         </div>
@@ -88,7 +88,7 @@
         :movies="movies.allMovieData"
         @update:modelValue="(newValue) => (state.movie = newValue)"
       />
-      <button class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4">
+      <button class="w-full bg-darkRed h-[2rem] sm:h-[2.5rem] text-sm rounded-md sm:text-xl mt-4">
         {{ $t('news_feed.write_quote.post') }}
       </button>
     </Form>

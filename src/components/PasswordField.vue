@@ -11,7 +11,7 @@
     </label>
     <Field
       :rules="props.rules"
-      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md"
+      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-lg"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors || props.backEndErrors,
@@ -26,14 +26,14 @@
       :value="props.modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />
-    <div class="absolute top-1/2 translate-y-[-50%] right-2" :class="{ 'top-10': props.signUp }">
+    <div class="absolute top-1/2 right-2" :class="{ 'top-10': props.signUp }">
       <div @click="togglePassword" class="cursor-pointer">
         <icon-show-password alt="show"></icon-show-password>
       </div>
     </div>
     <ErrorMessage
       :name="props.name"
-      class="text-darkRed text-[12px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-25px] left-2"
+      class="text-darkRed text-[12px] sm:text-sm absolute bottom-[-22px] sm:bottom-[-22px] left-2"
     />
     <span
       v-if="props.backEndErrors"

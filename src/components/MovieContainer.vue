@@ -7,8 +7,8 @@
   >
     <div
       :class="{
-        'sm:min-w-[200px]': quoteModal,
-        'sm:min-w-[45rem] rounded-md overflow-hidden flex justify-center items-center': !quoteModal
+        'sm:min-w-[10rem]': quoteModal,
+        'sm:min-w-[45rem] rounded-xl overflow-hidden flex justify-center items-center': !quoteModal
       }"
     >
       <div
@@ -32,7 +32,10 @@
       class="flex flex-col gap-1 text-xs sm:text-base"
       :class="{ 'w-[10rem] sm:w-[20rem]': quoteModal }"
     >
-      <div class="flex justify-between sm:w-[25rem] sm:mb-2" :class="{ 'mb-2': !quoteModal }">
+      <div
+        class="flex justify-between sm:w-[25rem] sm:mb-2 text-lightGrey"
+        :class="{ 'mb-2': !quoteModal }"
+      >
         <h1>{{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})</h1>
         <div v-if="!quoteModal" class="flex gap-3 items-center bg-darkGray py-1 px-3 rounded-md">
           <div>

@@ -11,7 +11,7 @@
     </label>
     <Field
       :rules="props.rules"
-      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-md pr-10 sm:pr-16"
+      class="text-mediumGray border w-full rounded p-2 text-sm sm:text-lg pr-10 sm:pr-16"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors || props.backEndErrors,
@@ -48,7 +48,7 @@
     </div>
     <div
       v-if="lang"
-      class="translate-y-[-50%] text-mediumGray absolute right-3 top-1/2 sm:text-md text-sm"
+      class="translate-y-[-50%] text-white absolute right-3 top-1/2 sm:text-md text-sm"
     >
       <h1>{{ lang }}</h1>
     </div>

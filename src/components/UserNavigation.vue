@@ -1,13 +1,13 @@
 <template>
   <div
-    class="text-white absolute sm:top-[5rem] z-10 sm:z-0 top-0 sm:w-[300px] w-[340px] sm:height-[200px] h-[658px] bg-darkBlack sm:bg-transparent sm:block"
+    class="text-white absolute sm:top-[5rem] z-10 sm:z-0 top-0 sm:w-[18rem] w-[18rem] sm:height-[10rem] h-[40rem] bg-darkBlack sm:bg-transparent sm:block"
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
       <ProfileIcon :border="state.border" :authUser="true" />
-      <div class="flex justify-center items-start flex-col w-[250px]">
-        <h3 v-if="user.name" class="text-[20px]">{{ user.name }}</h3>
-        <a href="/user-profile" class="sm:text-sm text-[14px] w-full">{{
+      <div class="flex justify-center items-start flex-col w-[13rem]">
+        <h3 v-if="user.name" class="text-lg">{{ user.name }}</h3>
+        <a href="/user-profile" class="sm:text-sm text-sm w-full">{{
           $t('news_feed.edit_profile')
         }}</a>
       </div>
@@ -15,9 +15,9 @@
         <icon-home-red
           v-if="route.name === 'newsFeed'"
           alt="movies"
-          class="w-[24px] sm:w-auto"
+          class="w-[2rem] sm:w-auto"
         ></icon-home-red>
-        <icon-home-white v-else alt="movies" class="w-[24px] sm:w-auto"></icon-home-white>
+        <icon-home-white v-else alt="movies" class="w-[2rem] sm:w-auto"></icon-home-white>
       </div>
       <div>
         <a href="/news-feed">
@@ -28,11 +28,11 @@
         <icon-movies-red
           v-if="route.name === 'moviesList'"
           alt="movies"
-          class="w-[24px] sm:w-auto"
+          class="w-[2rem] sm:w-auto"
         ></icon-movies-red>
-        <icon-movies-white v-else alt="movies" class="w-[24px] sm:w-auto"></icon-movies-white>
+        <icon-movies-white v-else alt="movies" class="w-[2rem] sm:w-auto"></icon-movies-white>
       </div>
-      <div class="w-[200px]">
+      <div class="w-[10rem]">
         <a href="/movies-list">
           <h3>{{ $t('news_feed.movies_list') }}</h3>
         </a>
