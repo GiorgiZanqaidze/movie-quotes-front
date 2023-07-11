@@ -46,13 +46,11 @@
           :key="index"
           @click="handleRoute(movie.id)"
         >
-          <div
-            class="flex justify-center w-full sm:max-h-[22rem] max-h-[12rem] rounded-md overflow-hidden"
-          >
+          <div class="flex justify-center w-full rounded-md overflow-hidden">
             <img
               :src="`${imagePath}${movie.image}`"
               alt="movie"
-              class="w-full h-full sm:min-h-[18rem] min-h-[12rem]"
+              class="w-full h-full sm:min-h-[15rem] min-h-[12rem] sm:max-h-[15rem] max-h-[12rem]"
             />
           </div>
           <h3 class="text-md sm:text-base">

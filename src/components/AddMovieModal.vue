@@ -148,7 +148,7 @@
           }"
         >
           <div
-            class="sm:w-full cursor-pointer h-full flex justify-start gap-1 sm:gap-5 ml-5 items-center"
+            class="sm:w-full cursor-pointer h-full flex justify-start gap-2 sm:gap-5 ml-5 items-center"
             @dragover="dragOver"
             @drop="drop"
           >
@@ -158,7 +158,6 @@
             <h3 class="hidden sm:inline">
               {{ $t('news_feed.write_quote.drag_and_drop') }}
             </h3>
-            <p class="inline sm:hidden text-xs">{{ $t('landing.my_movies.upload_image') }}</p>
             <Field
               :rules="state.imageValidator"
               id="file"

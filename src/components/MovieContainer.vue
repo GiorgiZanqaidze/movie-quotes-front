@@ -37,7 +37,9 @@
         class="flex justify-between sm:w-[25rem] sm:mb-2 text-lightGrey"
         :class="{ 'mb-2': !quoteModal }"
       >
-        <h1>{{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})</h1>
+        <h1 class="sm:text-lg text-base">
+          {{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})
+        </h1>
         <div
           v-if="!quoteModal"
           class="flex gap-3 items-center bg-darkGray py-1 sm:py-2 px-3 sm:px-4 rounded-md"

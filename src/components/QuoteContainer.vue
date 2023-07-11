@@ -2,7 +2,11 @@
   <div class="bg-darkBlack rounded-md">
     <div class="flex sm:justify-start items-center p-5 sm:flex-row flex-col relative gap-3">
       <div class="sm:w-56 w-full px-3">
-        <img :src="`${imagePath}${quote?.image}`" alt="quote" class="w-full" />
+        <img
+          :src="`${imagePath}${quote?.image}`"
+          alt="quote"
+          class="w-full max-h-[10rem] rounded"
+        />
       </div>
       <div class="flex items-center">
         <h1 class="break-all">"{{ quote?.name?.[$i18n.locale] }}"</h1>
@@ -17,7 +21,7 @@
           <icon-three-dots alt="dots" class="min-w-6" name="dots"></icon-three-dots>
         </button>
         <div
-          class="flex flex-col gap-4 bg-gray px-5 absolute right-5 top-[-10rem] sm:-right-28 sm:top-5 w-[10rem] py-8 rounded-md justify-center items-center"
+          class="flex flex-col gap-4 bg-gray px-5 absolute right-5 top-[-10rem] sm:-right-32 sm:top-5 w-[10rem] py-8 rounded-md justify-center items-center"
           v-if="showDiv"
           name="divContainer"
         >
@@ -44,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="flex border-t mx-5 py-3 sm:py-5 gap-3">
+    <div class="flex border-t border-darkGray mx-5 py-3 sm:py-5 gap-3">
       <div class="flex gap-3">
         <p>{{ props?.quote?.comments?.length }}</p>
         <span> <icon-comment class="sm:w-[2rem] w-[1.4rem]" alt="comment"></icon-comment></span>

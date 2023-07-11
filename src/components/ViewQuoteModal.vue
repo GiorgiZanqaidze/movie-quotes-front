@@ -11,7 +11,7 @@
             <icon-pencil alt="delete" class="inline-block mr-1"></icon-pencil>
           </button>
         </div>
-        <h1 class="text-white sm:text-2xl text-md">
+        <h1 class="text-white sm:text-2xl text-md hidden sm:inline">
           {{ $t('landing.movie_description.view_quote') }}
         </h1>
         <div>
@@ -37,7 +37,11 @@
         </div>
         <div class="flex justify-center">
           <div class="w-full">
-            <img :src="`${imagePath}${quote.image}`" alt="quote" class="w-full rounded" />
+            <img
+              :src="`${imagePath}${quote.image}`"
+              alt="quote"
+              class="w-full rounded max-h-[10rem] sm:max-h-[20rem]"
+            />
           </div>
         </div>
         <div>
