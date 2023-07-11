@@ -89,7 +89,7 @@
         @update:modelValue="(newValue) => (state.movie = newValue)"
       />
       <button class="w-full bg-darkRed h-[2rem] sm:h-[2.5rem] text-sm rounded-md sm:text-xl mt-4">
-        {{ $t('news_feed.write_quote.post') }}
+        {{ $t('modals.post_quote') }}
       </button>
     </Form>
   </div>

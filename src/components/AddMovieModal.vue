@@ -257,7 +257,7 @@ const handleSubmit = async () => {
     director_en: state.director_en,
     director_ka: state.director_ka,
     description_en: state.description_en,
-    description_ka: state.description_en,
+    description_ka: state.description_ka,
     year: state.year,
     image: state.uploadedImage,
     user_id: authUser.data.id,

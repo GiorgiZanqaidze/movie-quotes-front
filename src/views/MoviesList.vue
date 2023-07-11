@@ -49,10 +49,16 @@
           <div
             class="flex justify-center w-full sm:max-h-[22rem] max-h-[12rem] rounded-md overflow-hidden"
           >
-            <img :src="`${imagePath}${movie.image}`" alt="movie" class="w-full h-full" />
+            <img
+              :src="`${imagePath}${movie.image}`"
+              alt="movie"
+              class="w-full h-full sm:min-h-[18rem] min-h-[12rem]"
+            />
           </div>
-          <h3 class="text-md sm:text-md">{{ movie?.title?.[$i18n.locale] }} ({{ movie.year }})</h3>
-          <p class="text-sm sm:text-md">
+          <h3 class="text-md sm:text-base">
+            {{ movie?.title?.[$i18n.locale] }} ({{ movie.year }})
+          </h3>
+          <p class="text-sm sm:text-base">
             {{ movie?.quotes?.length || 0 }}
             <icon-quote alt="quotes" class="inline-block ml-2 w-5 sm:w-[2rem]"></icon-quote>
           </p>
