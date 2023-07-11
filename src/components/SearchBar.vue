@@ -1,6 +1,6 @@
 <template>
   <form
-    class="sm:w-1/5 w-[50px] h-full relative text-lightDark border-box hidden sm:block transition-all"
+    class="sm:w-1/5 w-[3rem] h-full relative text-lightDark border-box hidden sm:block transition-all border-gray"
     :class="toggle.input"
     @submit.prevent="handleSubmit"
   >
@@ -9,7 +9,7 @@
       @blur="closeInput"
       type="text"
       name="search_movie"
-      class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none text-sm sm:text-md"
+      class="h-full pl-10 w-full rounded-[10px] bg-transparent text-lightDark focus:outline-none text-sm sm:text-base"
       :placeholder="toggle.placeholder"
       v-model="searchValue"
     />
@@ -36,7 +36,7 @@ const searchValue = ref(route.query.query)
 const toggle = reactive({ input: '', placeholder: t('news_feed.search') })
 
 const openInput = () => {
-  toggle.input = 'sm:w-[200%]'
+  toggle.input = 'sm:w-[200%] border-b-2  ml-4'
   toggle.placeholder = `${t('news_feed.enter')} @ ${t('news_feed.search_placeholder')}`
 }
 

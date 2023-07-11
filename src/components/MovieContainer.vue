@@ -7,8 +7,8 @@
   >
     <div
       :class="{
-        'sm:min-w-[200px]': quoteModal,
-        'sm:min-w-[45rem] rounded-md overflow-hidden flex justify-center items-center': !quoteModal
+        'sm:min-w-[10rem]': quoteModal,
+        'sm:min-w-[45rem] rounded-xl overflow-hidden flex justify-center items-center': !quoteModal
       }"
     >
       <div
@@ -22,8 +22,10 @@
           alt="movie"
           class="rounded-md"
           :class="{
-            'sm:w-full w-[5rem]': quoteModal,
-            'sm:w-full w-[30rem] rounded-md': !quoteModal
+            'sm:w-full w-[5rem] sm:max-h-[8rem] sm:min-h-[8rem] max-h-[6rem] min-h-[6rem]':
+              quoteModal,
+            'sm:w-full w-[30rem] sm:max-h-[25rem] max-h-[10rem] rounded-md sm:min-h-[20rem] min-h-[8rem]':
+              !quoteModal
           }"
         />
       </div>
@@ -32,9 +34,17 @@
       class="flex flex-col gap-1 text-xs sm:text-base"
       :class="{ 'w-[10rem] sm:w-[20rem]': quoteModal }"
     >
-      <div class="flex justify-between sm:w-[25rem] sm:mb-2" :class="{ 'mb-2': !quoteModal }">
-        <h1>{{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})</h1>
-        <div v-if="!quoteModal" class="flex gap-3 items-center bg-darkGray py-1 px-3 rounded-md">
+      <div
+        class="flex justify-between sm:w-[25rem] sm:mb-2 text-lightGrey"
+        :class="{ 'mb-2': !quoteModal }"
+      >
+        <h1 class="sm:text-lg text-base">
+          {{ movie.data?.title?.[$i18n.locale] }} ({{ movie.data.year }})
+        </h1>
+        <div
+          v-if="!quoteModal"
+          class="flex gap-3 items-center bg-darkGray py-1 sm:py-2 px-3 sm:px-4 rounded-md"
+        >
           <div>
             <delete-button class="w-3" :movie_id="movie.data.id"></delete-button>
           </div>

@@ -1,6 +1,8 @@
 <template>
-  <div class="text-white bg-mediumDark min-h-screen pb-10 flex justify-end sm:pr-10">
-    <div class="w-[70rem]">
+  <div
+    class="text-white bg-mediumDark min-h-screen pb-10 flex justify-center sm:justify-end sm:pr-10"
+  >
+    <div class="w-[70rem] sm:w-3/4">
       <div class="py-6 text-2xl hidden sm:block">
         <h1>{{ $t('landing.movie_description.title') }}</h1>
       </div>
@@ -17,7 +19,7 @@
         <div class="bg-mediumGray sm:w-[1px] sm:h-6 w-full h-[1px]"></div>
         <button
           @click="addQuoteModal"
-          class="bg-darkRed rounded py-1 px-2 flex items-center gap-2 text-sm"
+          class="bg-darkRed rounded py-2 px-2 flex items-center gap-2 text-sm"
         >
           <icon-add-movie alt="add_movie" class="inline-block"></icon-add-movie>
 

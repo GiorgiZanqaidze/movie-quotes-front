@@ -69,7 +69,7 @@
               class="w-full bg-darkRed h-[48px] rounded-md text-[20px] mt-4"
               @click="handleEdit"
             >
-              {{ $t('news_feed.write_quote.post') }}
+              {{ $t('modals.save_quotes_changes') }}
             </button>
           </Form>
         </div>

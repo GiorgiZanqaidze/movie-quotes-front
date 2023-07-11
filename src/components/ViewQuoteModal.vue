@@ -11,7 +11,7 @@
             <icon-pencil alt="delete" class="inline-block mr-1"></icon-pencil>
           </button>
         </div>
-        <h1 class="text-white sm:text-2xl text-md">
+        <h1 class="text-white sm:text-2xl text-md hidden sm:inline">
           {{ $t('landing.movie_description.view_quote') }}
         </h1>
         <div>
@@ -23,9 +23,9 @@
       <div class="p-5 text-white flex flex-col gap-5">
         <div class="flex justify-start gap-2 items-center">
           <ProfileIcon :path="profileIconUrl" />
-          <p class="text-sm sm:text-md">{{ quote.author.name }}</p>
+          <p class="text-sm sm:text-base">{{ quote.author.name }}</p>
         </div>
-        <div class="flex flex-col gap-2 text-sm">
+        <div class="flex flex-col gap-2 text-base">
           <h1 class="border p-2 flex justify-between border-mediumGray rounded-sm">
             <span class="break-all">"{{ quote.name.en }}"</span
             ><span class="text-mediumGray ml-1">ENG</span>
@@ -37,7 +37,11 @@
         </div>
         <div class="flex justify-center">
           <div class="w-full">
-            <img :src="`${imagePath}${quote.image}`" alt="quote" class="w-full rounded" />
+            <img
+              :src="`${imagePath}${quote.image}`"
+              alt="quote"
+              class="w-full rounded max-h-[10rem] sm:max-h-[20rem]"
+            />
           </div>
         </div>
         <div>
@@ -45,7 +49,7 @@
             <div class="flex gap-2 items-center just">
               <p>{{ quote.comments.length }}</p>
               <button>
-                <icon-comment alt="comment" class="w-[24px]"></icon-comment>
+                <icon-comment alt="comment" class="w-[1.2rem] sm:w-[1.5rem]"></icon-comment>
               </button>
             </div>
             <div class="flex gap-2 items-center">
@@ -55,13 +59,13 @@
                   v-if="!liked"
                   @click="likeQuote"
                   alt="likes"
-                  class="w-[24px]"
+                  class="sm:w-[1.5rem] w-[1.2rem]"
                 ></icon-like>
                 <icon-heart-fill
                   v-if="liked"
                   @click="unlikePost"
                   alt="likes"
-                  class="w-[24px]"
+                  class="sm:w-[1.5rem] w-[1.2rem]"
                 ></icon-heart-fill>
               </button>
             </div>

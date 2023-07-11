@@ -63,7 +63,7 @@
             </li>
           </ul>
           <div
-            class="text-sm md-text-md cursor-pointer bg-black rounded pl-5"
+            class="text-sm sm:text-base cursor-pointer bg-black rounded pl-5"
             @click="toggleDropdown"
           >
             {{ $t('news_feed.write_quote.choose_movie') }}
@@ -83,7 +83,7 @@
               v-for="(genre, index) in state.genres"
               :key="index"
               :value="genre"
-              class="text-white text-sm md-text-md cursor-pointer"
+              class="text-white text-sm sm:text-base cursor-pointer"
             >
               {{ genre?.name?.[$i18n.locale] }}
             </option>
@@ -148,7 +148,7 @@
           }"
         >
           <div
-            class="sm:w-full cursor-pointer h-full flex justify-start gap-1 sm:gap-5 ml-5 items-center"
+            class="sm:w-full cursor-pointer h-full flex justify-start gap-2 sm:gap-5 ml-5 items-center"
             @dragover="dragOver"
             @drop="drop"
           >
@@ -158,7 +158,6 @@
             <h3 class="hidden sm:inline">
               {{ $t('news_feed.write_quote.drag_and_drop') }}
             </h3>
-            <p class="inline sm:hidden text-xs">{{ $t('landing.my_movies.upload_image') }}</p>
             <Field
               :rules="state.imageValidator"
               id="file"
@@ -171,7 +170,7 @@
 
             <label
               for="file"
-              class="bg-mediumRed py-1 px-2 cursor-pointer text-xs sm:text-[20px]"
+              class="bg-mediumRed py-1 px-2 cursor-pointer text-xs sm:text-base rounded"
               >{{ $t('news_feed.write_quote.choose_file') }}</label
             >
           </div>
@@ -257,7 +256,7 @@ const handleSubmit = async () => {
     director_en: state.director_en,
     director_ka: state.director_ka,
     description_en: state.description_en,
-    description_ka: state.description_en,
+    description_ka: state.description_ka,
     year: state.year,
     image: state.uploadedImage,
     user_id: authUser.data.id,

@@ -5,7 +5,9 @@
         class="container first bg-mediumDark min-w-full flex flex-col items-center justify-center"
         style="min-height: 80vh"
       >
-        <h1 class="w-[281px] sm:w-[860px] sm:text-6xl text-lightGrey font-medium text-center">
+        <h1
+          class="w-[15rem] sm:w-[50rem] text-xl sm:text-6xl text-lightGrey font-medium text-center"
+        >
           {{ $t('landing.title') }}
         </h1>
         <button
@@ -19,10 +21,10 @@
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
             <div
-              class="sm:w-[53px] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
+              class="sm:w-[3rem] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
             ></div>
             <div>
-              <h1 class="sm:text-4xl sm:w-[761px]">“{{ $t('landing.movie_1.title') }}”</h1>
+              <h1 class="sm:text-4xl sm:w-[50rem]">“{{ $t('landing.movie_1.title') }}”</h1>
               <p class="sm:mt-2 sm:text-xl text-sm text-lightGray">
                 {{ $t('landing.movie_1.name') }}, {{ $t('landing.movie_1.released') }}
               </p>
@@ -34,10 +36,10 @@
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
             <div
-              class="sm:w-[53px] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
+              class="sm:w-[3rem] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
             ></div>
             <div>
-              <h1 class="sm:text-4xl sm:w-[761px]">“{{ $t('landing.movie_2.title') }}”</h1>
+              <h1 class="sm:text-4xl sm:w-[50rem]">“{{ $t('landing.movie_2.title') }}”</h1>
               <p class="sm:mt-2 sm:text-xl text-sm text-lightGray">
                 {{ $t('landing.movie_2.name') }},{{ $t('landing.movie_2.released') }}
               </p>
@@ -49,10 +51,10 @@
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
             <div
-              class="sm:w-[53px] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
+              class="sm:w-[3rem] h-[2px] w-[1.8rem] sm:h-[3px] bg-white sm:mt-4 sm:mr-1 translate-y-[1rem] translate-x-[-0.5rem]"
             ></div>
             <div>
-              <h1 class="sm:text-4xl sm:w-[761px]">“{{ $t('landing.movie_3.title') }}”</h1>
+              <h1 class="sm:text-4xl sm:w-[50rem]">“{{ $t('landing.movie_3.title') }}”</h1>
               <p class="sm:mt-2 sm:text-xl text-sm text-lightGray">
                 {{ $t('landing.movie_3.name') }},{{ $t('landing.movie_3.released') }}
               </p>

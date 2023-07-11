@@ -2,7 +2,7 @@
   <div class="relative">
     <Field
       :rules="rules"
-      class="text-mediumGray bg-transparent border w-full h-[86px] rounded p-2 text-sm sm:text-md pr-10"
+      class="text-mediumGray bg-transparent border w-full h-[4rem] rounded p-2 text-sm sm:text-lg pr-10"
       :placeholder="props.placeholder"
       :class="{
         'border-darkRed': props.errors,
@@ -27,7 +27,7 @@
     </div>
     <div
       v-if="lang"
-      class="translate-y-[-50%] text-mediumGray absolute right-3 top-4 sm:text-md text-sm"
+      class="translate-y-[-50%] text-white absolute right-3 top-4 sm:text-md text-sm"
     >
       <h1>{{ lang }}</h1>
     </div>

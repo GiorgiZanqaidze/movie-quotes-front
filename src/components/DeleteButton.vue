@@ -3,7 +3,7 @@
     <div>
       <icon-trash alt="delete" class="inline-block mr-1 min-w-[0.5rem]"></icon-trash>
     </div>
-    <span class="text-xs text-white">
+    <span class="text-sm text-white">
       <slot> </slot>
     </span>
   </button>

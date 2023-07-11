@@ -57,6 +57,18 @@ npm install
 
 #
 
+And now you should provide **.env** file all the necessary environment variables:
+
+**SERVER URL**
+
+> VITE_API_BASE_URL=http://localhost:8000
+
+**PUSHER**
+
+> VITE_PUSHER_KEY=**\***
+
+#
+
 ### Development
 
 You can run vue's built-in development server by executing:

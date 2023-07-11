@@ -2,31 +2,42 @@
   <div class="bg-darkBlack sm:w-[52rem] p-4 rounded-lg flex flex-col gap-4 w-full px-8">
     <header class="flex items-center gap-4 text-sm sm:text-md">
       <profile-icon :path="profileIconUrl"></profile-icon>
-      <h2>{{ props?.quote?.author?.name }}</h2>
+      <h2 class="text-sm sm:text-base">{{ props?.quote?.author?.name }}</h2>
     </header>
-    <h1 class="text-sm sm:text-md" style="word-break: break-word">
-      “{{ props?.quote?.name?.[$i18n.locale] }}”movie-
-      {{ props?.quote?.movie?.title?.[$i18n.locale] }} ({{ props?.quote?.movie?.year }})
+    <h1 class="text-sm sm:text-base" style="word-break: break-word">
+      “{{ props?.quote?.name?.[$i18n.locale] }}.“{{ $t('news_feed.movie') }} -
+      <span class="text-lightGrey"> {{ props?.quote?.movie?.title?.[$i18n.locale] }}.</span> ({{
+        props?.quote?.movie?.year
+      }})
     </h1>
     <div class="rounded-lg overflow-hidden">
-      <img :src="`${imagePath}${props?.quote?.image}`" alt="movie" class="mx-auto w-full" />
+      <img
+        :src="`${imagePath}${props?.quote?.image}`"
+        alt="movie"
+        class="mx-auto w-full sm:max-h-[30rem] max-h-[10rem] sm:min-h-[30rem] min-h-[10rem]"
+      />
     </div>
     <div class="flex gap-4 mt-2 sm:mt-4 border-b-2 border-light pb-2 sm:pb-4">
-      <div class="flex gap-2 items-center just">
+      <div class="flex gap-2 items-center">
         <p>{{ props?.quote?.comments?.length }}</p>
         <button>
-          <icon-comment alt="comment" class="w-[24px]"></icon-comment>
+          <icon-comment alt="comment" class="w-[1.2rem] sm:w-[1.4rem]"></icon-comment>
         </button>
       </div>
-      <div class="flex gap-2 items-center just">
-        <p>{{ likes.length }}</p>
+      <div class="flex gap-2 items-center">
+        <p>{{ props?.quote?.likes?.length }}</p>
         <button>
-          <icon-like v-if="!liked" @click="likeQuote" alt="likes" class="w-[24px]"></icon-like>
+          <icon-like
+            v-if="!liked"
+            @click="likeQuote"
+            alt="likes"
+            class="w-[1.2rem] sm:w-[1.4rem]"
+          ></icon-like>
           <icon-heart-fill
             v-if="liked"
             @click="unlikePost"
             alt="likes"
-            class="w-[24px]"
+            class="w-[1.2rem] sm:w-[1.7rem]"
           ></icon-heart-fill>
         </button>
       </div>

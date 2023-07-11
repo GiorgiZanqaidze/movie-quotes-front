@@ -2,7 +2,11 @@
   <div class="bg-darkBlack rounded-md">
     <div class="flex sm:justify-start items-center p-5 sm:flex-row flex-col relative gap-3">
       <div class="sm:w-56 w-full px-3">
-        <img :src="`${imagePath}${quote?.image}`" alt="quote" class="w-full" />
+        <img
+          :src="`${imagePath}${quote?.image}`"
+          alt="quote"
+          class="w-full max-h-[10rem] rounded"
+        />
       </div>
       <div class="flex items-center">
         <h1 class="break-all">"{{ quote?.name?.[$i18n.locale] }}"</h1>
@@ -17,25 +21,25 @@
           <icon-three-dots alt="dots" class="min-w-6" name="dots"></icon-three-dots>
         </button>
         <div
-          class="flex flex-col gap-3 bg-gray pl-3 pr-10 absolute right-5 top-[-5rem] sm:-right-28 sm:top-5 w-32 py-4 rounded-md justify-start"
+          class="flex flex-col gap-4 bg-gray px-5 absolute right-5 top-[-10rem] sm:-right-32 sm:top-5 w-[10rem] py-8 rounded-md justify-center items-center"
           v-if="showDiv"
           name="divContainer"
-          ref="container"
         >
-          <button @click="showViewQuoteModal" class="flex justify-start">
+          <button @click="showViewQuoteModal" class="flex justify-start items-center gap-4 w-full">
             <icon-visible alt="visible" class="inline-block mr-1"></icon-visible>
-            <span class="text-[13px]">{{ $t('landing.movie_description.view') }}</span>
+            <span class="text-sm">{{ $t('landing.movie_description.view') }}</span>
           </button>
           <button
-            class="flex justify-start"
+            class="flex items-center gap-4 justify-start w-full"
             @click="editQuoteModal"
             v-if="authUser.data.id === props.quote.author.id"
           >
             <icon-pencil alt="edit" class="inline-block mr-1"></icon-pencil>
-            <span class="text-xs">{{ $t('landing.movie_description.edit') }}</span>
+            <span class="text-sm">{{ $t('landing.movie_description.edit') }}</span>
           </button>
 
           <delete-button
+            class="w-full gap-4"
             v-if="authUser.data.id === props.quote.author.id"
             :quote_id="props?.quote?.id"
             @click="deleteQuote"
@@ -44,14 +48,14 @@
         </div>
       </div>
     </div>
-    <div class="flex border-t mx-5 py-5 gap-3">
+    <div class="flex border-t border-darkGray mx-5 py-3 sm:py-5 gap-3">
       <div class="flex gap-3">
         <p>{{ props?.quote?.comments?.length }}</p>
-        <span> <icon-comment alt="comment"></icon-comment></span>
+        <span> <icon-comment class="sm:w-[2rem] w-[1.4rem]" alt="comment"></icon-comment></span>
       </div>
       <div class="flex gap-3">
         <p>{{ props?.quote?.likes?.length }}</p>
-        <button><icon-like alt="likes"></icon-like></button>
+        <button><icon-like class="sm:w-[2rem] w-[1.4rem]" alt="likes"></icon-like></button>
       </div>
     </div>
   </div>

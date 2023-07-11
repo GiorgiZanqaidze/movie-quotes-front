@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-[86px] relative text-[20px] border rounded"
+    class="w-full h-[4rem] relative text-base sm:text-lg border rounded"
     :class="{
       'border-darkRed': props.errors,
       'border-green-500': props.modelValue && !props.errors,
@@ -16,14 +16,14 @@
       as="select"
       class="w-full bg-black h-full rounded overflow-hidden sm:pl-10 pl-16 focus:outline-none text-sm sm:text-md"
     >
-      <option value="" disabled>
+      <option value="" disabled class="text-base sm:text-lg">
         {{ $t('news_feed.write_quote.choose_movie') }}
       </option>
       <option
         v-for="(movie, index) in props.movies"
         :key="index"
         :value="movie.id"
-        class="text-white"
+        class="text-white text-base sm:text-lg"
       >
         {{ movie.title[$i18n.locale] }}
       </option>

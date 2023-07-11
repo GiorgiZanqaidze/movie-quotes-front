@@ -18,6 +18,8 @@
         :condition="notification.read_at"
         :type="notification.type"
         :data="notification"
+        @click="handleNotification(notification.id)"
+        class="cursor-pointer"
       />
     </div>
     <div v-else>{{ $t('news_feed.no_notifications') }}</div>
@@ -29,6 +31,7 @@ import TheNotification from '@/components/TheNotification.vue'
 import { userStore } from '@/stores/user'
 import updateNotifications from '@/services/updateNotifications.js'
 import { reactive, defineEmits } from 'vue'
+import updateNotification from '@/services/updateNotification.js'
 
 const emit = defineEmits(['clear-notifications'])
 
@@ -43,6 +46,14 @@ const state = reactive({
 const markAll = async () => {
   const response = await updateNotifications()
 
+  if (response.status === 200) {
+    state.notifications = response.data
+    emit('clear-notifications', response.data)
+  }
+}
+
+const handleNotification = async (id) => {
+  const response = await updateNotification(id)
   if (response.status === 200) {
     state.notifications = response.data
     emit('clear-notifications', response.data)

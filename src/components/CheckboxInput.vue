@@ -2,7 +2,7 @@
   <div>
     <div class="flex gap-2 items-center">
       <input :id="id" type="checkbox" :name="name" @change="changeValue" :value="value" />
-      <label :for="id">{{ label }}</label>
+      <label :for="id" class="cursor-pointer">{{ label }}</label>
     </div>
   </div>
 </template>

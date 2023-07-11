@@ -18,7 +18,7 @@
     "title": "Create an account",
     "welcome": "Start your journey!",
     "name": "Name",
-    "placeholder_name": "At least 3 & max.15 lower case characters",
+    "placeholder_name": "Name",
     "email": "Email",
     "placeholder_email": "Enter your email",
     "password": "Password",
@@ -68,5 +68,7 @@
     "link_expired": "Link expired",
     "link_expired_desc": "Login link has expired, because you haven’t used it",
     "another_link": "Request another link"
-  }
+  },
+  "save_quotes_changes": "Save changes",
+  "post_quote": "Post"
 }

@@ -30,9 +30,9 @@
   },
   "movie_description": {
     "title": "ფილმის აღწერა",
-    "quotes": "ციტატები",
+    "quotes": "ციტატა",
     "total": "სულ",
-    "add_quote": "ციტატის დამატება",
+    "add_quote": "დაამატე ციტატა",
     "directore": "რეჟისორი",
     "view": "ნახვა",
     "edit": "შეცვლა",
@@ -45,7 +45,7 @@
   },
   "my_profile": {
     "title": "ჩემი პროფილი",
-    "upload_photo": "ფოტოს ატვირთვა",
+    "upload_photo": "ატვირთე ფოტო",
     "username": "სახელი",
     "new_username": "ახალი სახელი",
     "password": "პაროლი",
