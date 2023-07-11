@@ -4,8 +4,8 @@ export const useModalStore = defineStore('modal', {
   state() {
     return {
       isVisible: {
-        condition: false,
-        name: null
+        condition: JSON.parse(localStorage.getItem('modalCondition')) || false,
+        name: localStorage.getItem('modalName') || null
       },
       notifications: false,
       searchModal: false
@@ -13,10 +13,12 @@ export const useModalStore = defineStore('modal', {
   },
   actions: {
     toggleModal(modalName, showModal) {
-      this.isVisible = {
+      ;(this.isVisible = {
         condition: showModal,
         name: modalName
-      }
+      }),
+        localStorage.setItem('modalCondition', showModal)
+      localStorage.setItem('modalName', modalName)
     },
     toggleNotifications() {
       this.notifications = !this.notifications

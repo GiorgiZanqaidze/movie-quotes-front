@@ -1,6 +1,6 @@
 <template>
   <a
-    @click="googleAuth"
+    @click="loginWithGoogle"
     href="#"
     class="text-center w-full bg-transparent border sm:py-1 rounded text-sm sm:text-md py-1"
   >
@@ -12,4 +12,12 @@
 <script setup>
 import googleAuth from '@/services/googleAuth.js'
 import IconGoogle from '@/components/icons/IconGoogle.vue'
+import { useModalStore } from '@/stores/modal'
+
+const modal = useModalStore()
+
+const loginWithGoogle = async () => {
+  await googleAuth()
+  modal.toggleModal('null', false)
+}
 </script>

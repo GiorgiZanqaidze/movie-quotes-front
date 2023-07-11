@@ -22,7 +22,8 @@
           alt="movie"
           class="rounded-md"
           :class="{
-            'sm:w-full w-[5rem]': quoteModal,
+            'sm:w-full w-[5rem] sm:max-h-[8rem] sm:min-h-[8rem] max-h-[6rem] min-h-[6rem]':
+              quoteModal,
             'sm:w-full w-[30rem] sm:max-h-[25rem] max-h-[10rem] rounded-md sm:min-h-[20rem] min-h-[8rem]':
               !quoteModal
           }"

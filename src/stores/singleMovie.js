@@ -16,6 +16,7 @@ export const useSingleMovieStore = defineStore('singleMovie', {
       try {
         const response = await getSingleMovie(id)
         this.setMovie(response.data.data)
+        return response.data.data
       } catch (error) {
         console.error('Error fetching user data:', error)
       }
