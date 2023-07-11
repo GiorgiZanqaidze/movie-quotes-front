@@ -5,7 +5,8 @@ export const useMovieStore = defineStore('movie', {
   state() {
     return {
       data: [],
-      allMovieData: []
+      allMovieData: [],
+      filteredMovies: []
     }
   },
   actions: {
@@ -34,19 +35,20 @@ export const useMovieStore = defineStore('movie', {
 
     setMovies(movies) {
       this.data = movies
-    }
-  },
-  getters: {
-    filteredMovies: (state) => (searchTerm) => {
+    },
+
+    filterMovies(searchTerm) {
       if (!searchTerm) {
-        return state.data
+        this.filteredMovies = this.data
       }
       const searchTermLowerCase = searchTerm.toLowerCase()
-      return state.data.filter((movie) => {
+      const filtered = this.data.filter((movie) => {
         const titleEn = movie.title.en.toLowerCase()
         const titleKa = movie.title.ka.toLowerCase()
         return titleEn.includes(searchTermLowerCase) || titleKa.includes(searchTermLowerCase)
       })
+
+      this.filteredMovies = [...filtered]
     }
   }
 })

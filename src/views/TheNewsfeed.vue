@@ -1,10 +1,10 @@
 <template>
-  <div class="text-white bg-mediumDark min-h-screen pt-5">
+  <div class="text-white bg-mediumDark min-h-screen sm:pt-5">
     <div class="flex flex-col sm:items-center gap-4 pb-10">
       <div class="sm:text-center w-[18rem] sm:w-[52rem] sm:mt-4 sm:mb-6 h-[3rem] flex mt-4 ml-3">
         <div class="w-4/5 h-full">
           <button
-            class="sm:bg-gray bg-transparent h-full w-full text-left pl-3 rounded-md text-sm sm:text-md"
+            class="sm:bg-gray bg-transparent h-full w-full text-left pl-3 rounded-md text-sm sm:text-base"
             @click="modal.toggleModal('writeQuote', true)"
           >
             <icon-write-quote alt="write_quote" class="inline-block mr-2"></icon-write-quote>

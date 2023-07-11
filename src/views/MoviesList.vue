@@ -7,7 +7,7 @@
         <h1 class="text-md sm:text-xl">
           {{ $t('landing.my_movies.my_list') }}
           <span class="block sm:inline text-xs sm:text-base"
-            >({{ $t('landing.my_movies.total') }} {{ movies.data?.length }})</span
+            >({{ $t('landing.my_movies.total') }} {{ movies.filteredMovies.length }})</span
           >
         </h1>
         <div class="flex gap-0 justify-between items-center">
@@ -21,7 +21,7 @@
               @blur="closeInput"
               type="text"
               name="search_movie"
-              class="h-full pl-10 w-full rounded-md bg-transparent text-lightDark focus:outline-none"
+              class="h-full pl-10 w-full rounded-md bg-transparent text-lightDark focus:outline-none text-sm sm:text-base"
               :placeholder="$t('landing.my_movies.search')"
               v-model="state.searchValue"
             />
@@ -42,7 +42,7 @@
       <div class="grid sm:grid-cols-3 gap-4 place-items-center">
         <div
           class="sm:w-full w-[18rem] sm:h-[22rem] flex flex-col gap-2 rounded-md overflow-hidden cursor-pointer"
-          v-for="(movie, index) in state.filteredMovies"
+          v-for="(movie, index) in movies.filteredMovies"
           :key="index"
           @click="handleRoute(movie.id)"
         >
@@ -89,16 +89,13 @@ const state = reactive({
 const query = route.query.query
 const handleSubmit = async () => {
   router.push({ path: '/movies-list', query: { query: state.searchValue } })
-  const filteredMovies = movies.filteredMovies(state.searchValue)
-  state.filteredMovies = filteredMovies
+  movies.filterMovies(state.searchValue)
 }
 
 onMounted(async () => {
   state.searchValue = query || ''
   await movies.getMovies()
-  state.filteredMovies = movies.data
-  const filteredMovies = movies.filteredMovies(state.searchValue)
-  state.filteredMovies = filteredMovies
+  movies.filterMovies(state.searchValue)
 })
 
 function handleRoute(id) {
