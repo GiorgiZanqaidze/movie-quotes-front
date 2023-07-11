@@ -17,18 +17,23 @@
       <div class="flex gap-2 items-center">
         <p>{{ props?.quote?.comments?.length }}</p>
         <button>
-          <icon-comment alt="comment" class="w-[24px]"></icon-comment>
+          <icon-comment alt="comment" class="w-[1.2rem] sm:w-[1.4rem]"></icon-comment>
         </button>
       </div>
       <div class="flex gap-2 items-center">
-        <p>{{ likes.length }}</p>
+        <p>{{ props?.quote?.likes?.length }}</p>
         <button>
-          <icon-like v-if="!liked" @click="likeQuote" alt="likes" class="w-[24px]"></icon-like>
+          <icon-like
+            v-if="!liked"
+            @click="likeQuote"
+            alt="likes"
+            class="w-[1.2rem] sm:w-[1.4rem]"
+          ></icon-like>
           <icon-heart-fill
             v-if="liked"
             @click="unlikePost"
             alt="likes"
-            class="w-[24px]"
+            class="w-[1.2rem] sm:w-[1.7rem]"
           ></icon-heart-fill>
         </button>
       </div>

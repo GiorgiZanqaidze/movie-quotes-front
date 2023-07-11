@@ -30,7 +30,7 @@ export const useMovieStore = defineStore('movie', {
     },
 
     updateMovies(data) {
-      this.data.push(data)
+      this.filteredMovies.push(data)
     },
 
     setMovies(movies) {

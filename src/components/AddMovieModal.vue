@@ -171,7 +171,7 @@
 
             <label
               for="file"
-              class="bg-mediumRed py-1 px-2 cursor-pointer text-xs sm:text-[20px]"
+              class="bg-mediumRed py-1 px-2 cursor-pointer text-xs sm:text-base rounded"
               >{{ $t('news_feed.write_quote.choose_file') }}</label
             >
           </div>

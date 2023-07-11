@@ -3,7 +3,7 @@
     class="rounded fixed top-1/2 left-1/2 bg-darkGray z-50 sm:w-[601px] h-[400px] sm:h-[402px] translate-x-[-50%] translate-y-[-50%] font-helventica_light font-medium py-4 px-2"
   >
     <header class="flex flex-col items-center mb-4">
-      <img :src="imgSrc" alt="sent email" class="mb-4 sm:mb-0" />
+      <slot></slot>
       <h1 class="text-white sm:mt-8 sm:text-3xl mb-2">{{ title }}</h1>
       <span class="text-mediumGray text-sm my-4 text-center max-w-[500px]">{{ text }}</span>
     </header>
@@ -22,8 +22,7 @@
 export default {
   props: {
     imgSrc: {
-      type: String,
-      required: true
+      type: String
     },
     title: {
       type: String,
