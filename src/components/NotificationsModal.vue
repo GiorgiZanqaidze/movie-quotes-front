@@ -19,6 +19,7 @@
         :type="notification.type"
         :data="notification"
         @click="handleNotification(notification.id)"
+        class="cursor-pointer"
       />
     </div>
     <div v-else>{{ $t('news_feed.no_notifications') }}</div>
