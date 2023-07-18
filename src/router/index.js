@@ -10,6 +10,7 @@ import { userStore } from '@/stores/user'
 import MovieDescription from '@/views/MovieDescription.vue'
 import NotPermission from '@/views/NotPermission.vue'
 import UserProfile from '@/views/UserProfile.vue'
+import { useModalStore } from '@/stores/modal'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -56,6 +57,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const user = userStore()
+  const modal = useModalStore()
+  modal.toggleModal('null', false)
   await user.fetchUserData()
 
   if (to.meta.guest && !user.data) {
