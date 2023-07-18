@@ -22,19 +22,12 @@
 import axiosInstance from '@/config/axios/index'
 import { useRoute } from 'vue-router'
 import IconLinkExpired from '@/components/icons/IconLinkExpired.vue'
-
+import verifyUserEmail from '@/services/verifyUserEmail.js'
 const route = useRoute()
 
 const verifyToken = route.query.email_verify_token
 
 async function resendEmail() {
-  try {
-    const response = await axiosInstance.post(`api/resend/email/verify/${verifyToken}`)
-    console.log(response)
-    return response
-  } catch (error) {
-    console.log(error)
-    return error
-  }
+  verifyUserEmail(verifyToken)
 }
 </script>
