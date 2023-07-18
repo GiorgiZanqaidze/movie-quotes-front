@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import axiosInstance from '@/config/axios/index'
 import { useRoute } from 'vue-router'
 import IconLinkExpired from '@/components/icons/IconLinkExpired.vue'
 import verifyUserEmail from '@/services/verifyUserEmail.js'
