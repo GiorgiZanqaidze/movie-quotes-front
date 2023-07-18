@@ -2,7 +2,7 @@
   <main>
     <div>
       <div
-        class="container first bg-mediumDark min-w-full flex flex-col items-center justify-center"
+        class="first bg-mediumDark min-w-full flex flex-col items-center justify-center"
         style="min-height: 80vh"
       >
         <h1
@@ -17,7 +17,7 @@
           {{ $t('landing.start') }}
         </button>
       </div>
-      <div class="container min-w-full min-h-screen bg-interstelar">
+      <div class="min-w-full min-h-screen bg-interstelar">
         <div class="flex flex-col items-start justify-center min-h-screen text-white ml-10">
           <div class="flex">
             <div
