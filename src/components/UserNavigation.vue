@@ -4,7 +4,10 @@
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
-      <ProfileIcon :border="state.border" :authUser="true" />
+      <ProfileIcon
+        :border="(route.name === 'userProfile' && 'border border-red-600') || ''"
+        :authUser="true"
+      />
       <div class="flex justify-center items-start flex-col w-[13rem]">
         <h3 v-if="user?.name" class="text-lg">{{ user?.name }}</h3>
         <router-link :to="{ name: 'userProfile' }" class="sm:text-sm text-sm w-full">
