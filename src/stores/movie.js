@@ -22,7 +22,6 @@ export const useMovieStore = defineStore('movie', {
     async getAll() {
       try {
         const response = await getAllMovies()
-        console.log(response)
         this.allMovieData = response.data.data
       } catch (error) {
         console.error('Error fetching user data:', error)
