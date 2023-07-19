@@ -98,8 +98,6 @@ const singleMovieStore = useSingleMovieStore()
 
 const currentQuote = singleMovieStore.getCurrentQuote
 
-console.log(currentQuote)
-
 const state = reactive({
   uploadedImage: `${imagePath}${currentQuote.image}`,
   displayImage: null,
@@ -111,10 +109,6 @@ const state = reactive({
   imageValidator: 'required',
   quote_id: currentQuote.id
 })
-
-function handleSubmit() {
-  console.log(state)
-}
 
 const uploadImageFile = (file) => {
   if (file && file.target.files[0].type.startsWith('image/')) {

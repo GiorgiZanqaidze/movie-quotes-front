@@ -4,12 +4,15 @@
     :class="showNavBar ? 'block' : 'hidden'"
   >
     <div class="grid grid-cols-2 gap-y-0 sm:gap-y-6 h-1/3 pt-4 w-2/3 sm:w-full">
-      <ProfileIcon :border="state.border" :authUser="true" />
+      <ProfileIcon
+        :border="(route.name === 'userProfile' && 'border border-red-600') || ''"
+        :authUser="true"
+      />
       <div class="flex justify-center items-start flex-col w-[13rem]">
         <h3 v-if="user?.name" class="text-lg">{{ user?.name }}</h3>
-        <a href="/user-profile" class="sm:text-sm text-sm w-full">{{
-          $t('news_feed.edit_profile')
-        }}</a>
+        <router-link :to="{ name: 'userProfile' }" class="sm:text-sm text-sm w-full">
+          {{ $t('news_feed.edit_profile') }}
+        </router-link>
       </div>
       <div class="flex justify-center items-start">
         <icon-home-red
@@ -20,9 +23,9 @@
         <icon-home-white v-else alt="movies" class="w-[2rem] sm:w-auto"></icon-home-white>
       </div>
       <div>
-        <a href="/news-feed">
+        <router-link :to="{ name: 'newsFeed' }">
           <h3>{{ $t('news_feed.news_feed') }}</h3>
-        </a>
+        </router-link>
       </div>
       <div class="flex justify-center items-start">
         <icon-movies-red
@@ -33,9 +36,9 @@
         <icon-movies-white v-else alt="movies" class="w-[2rem] sm:w-auto"></icon-movies-white>
       </div>
       <div class="w-[10rem]">
-        <a href="/movies-list">
+        <router-link :to="{ name: 'moviesList' }">
           <h3>{{ $t('news_feed.movies_list') }}</h3>
-        </a>
+        </router-link>
       </div>
     </div>
     <div class="sm:hidden flex gap-3 justify-center items-center w-2/3">
