@@ -58,8 +58,11 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const user = userStore()
   const modal = useModalStore()
-  modal.toggleModal('null', false)
   await user.fetchUserData()
+
+  if (from.name !== undefined) {
+    modal.toggleModal('null', false)
+  }
 
   if (to.meta.guest && !user.data) {
     next()
