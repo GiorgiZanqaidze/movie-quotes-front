@@ -101,8 +101,6 @@ const props = defineProps({
 
 const showPassword = ref(true)
 
-console.log(props.signUp)
-
 const togglePassword = () => {
   showPassword.value = !showPassword.value
 }
