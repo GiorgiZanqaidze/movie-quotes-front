@@ -63,7 +63,6 @@ router.beforeEach(async (to, from, next) => {
   if (from.name !== undefined) {
     modal.toggleModal('null', false)
   }
-
   if (to.meta.guest && !user.data) {
     next()
   } else if (to.meta.auth && user.data) {

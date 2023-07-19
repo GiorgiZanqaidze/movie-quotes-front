@@ -26,7 +26,7 @@
       :value="props.modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />
-    <div class="absolute right-2 sm:top-4" :class="{ 'sm:top-10 top-10': props.signUp }">
+    <div class="absolute right-2 sm:top-4" :class="{ 'sm:top-[2.5rem] top-10': props.signUp }">
       <div @click="togglePassword" class="cursor-pointer">
         <icon-show-password v-if="showPassword" alt="show"></icon-show-password>
         <icon-visible v-else class="w-3" alt="close"></icon-visible>
@@ -100,6 +100,8 @@ const props = defineProps({
 })
 
 const showPassword = ref(true)
+
+console.log(props.signUp)
 
 const togglePassword = () => {
   showPassword.value = !showPassword.value
